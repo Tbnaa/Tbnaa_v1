@@ -8,8 +8,9 @@
     android:background="#fff"
     tools:context=".login">
 
+    //TODO: static fragment
+
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
@@ -78,10 +79,11 @@
                 android:id="@+id/login_signupLink_hyperText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:layout_marginBottom="24dp"
-                android:text="No account yet? Create one"
+                android:layout_marginTop="32dp"
                 android:gravity="center"
+                android:clickable="true"
+                android:text="No account yet? Create one"
                 android:textSize="16sp"/>
 
         </LinearLayout>
