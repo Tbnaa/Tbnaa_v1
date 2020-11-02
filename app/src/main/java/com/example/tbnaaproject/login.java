@@ -2,6 +2,7 @@ package com.example.tbnaaproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -24,7 +25,6 @@ public class login extends AppCompatActivity {
 
         login_email_editText = (EditText)findViewById(R.id.login_email_editText);
         login_password_editText = (EditText)findViewById(R.id.login_password_editText);
-        login_signupLink_hyperText = (TextView)findViewById(R.id.login_signupLink_hyperText);
         login_submit_button = (Button) findViewById(R.id.login_submit_button);
 
         login_submit_button.setOnClickListener(new View.OnClickListener() {
@@ -33,6 +33,18 @@ public class login extends AppCompatActivity {
                 register();
             }
         });
+
+    }
+
+    void openSignupPage() {
+        login_signupLink_hyperText = (TextView)findViewById(R.id.login_signupLink_hyperText);
+
+        try {
+            Intent openSignupPage = new Intent(getApplicationContext(), SignUp.class);
+            startActivity(openSignupPage);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public  void register(){
@@ -42,6 +54,9 @@ public class login extends AppCompatActivity {
         if(!validate()){
             Toast.makeText(getApplicationContext(),"Login Failed!",Toast.LENGTH_SHORT).show();
         } else {
+            Intent openSignupPage = new Intent(getApplicationContext(), SignUp.class);
+            //TODO: adjust those 2 lines
+            startActivity(openSignupPage);
             Toast.makeText(getApplicationContext(),"Valid Info.",Toast.LENGTH_LONG).show();
         }
     }
