@@ -17,6 +17,7 @@ public class login extends AppCompatActivity {
     private EditText login_password_editText;
     private TextView login_signupLink_hyperText;
     private Button login_submit_button;
+    private static final int REQUEST_SIGNUP = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class login extends AppCompatActivity {
         login_email_editText = (EditText)findViewById(R.id.login_email_editText);
         login_password_editText = (EditText)findViewById(R.id.login_password_editText);
         login_submit_button = (Button) findViewById(R.id.login_submit_button);
+        login_signupLink_hyperText = (TextView) findViewById(R.id.login_signupLink_hyperText);
 
         login_submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,17 +36,13 @@ public class login extends AppCompatActivity {
             }
         });
 
-    }
-
-    void openSignupPage() {
-        login_signupLink_hyperText = (TextView)findViewById(R.id.login_signupLink_hyperText);
-
-        try {
-            Intent openSignupPage = new Intent(getApplicationContext(), SignUp.class);
-            startActivity(openSignupPage);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        login_signupLink_hyperText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
+            }
+        });
     }
 
     public  void register(){
@@ -54,9 +52,6 @@ public class login extends AppCompatActivity {
         if(!validate()){
             Toast.makeText(getApplicationContext(),"Login Failed!",Toast.LENGTH_SHORT).show();
         } else {
-            Intent openSignupPage = new Intent(getApplicationContext(), SignUp.class);
-            //TODO: Adjust those 2 lines
-            startActivity(openSignupPage);
             Toast.makeText(getApplicationContext(),"Valid Info.",Toast.LENGTH_LONG).show();
         }
     }
