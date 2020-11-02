@@ -9,6 +9,7 @@
     tools:context=".SignUp">
 
     //TODO: static fragment
+    //TODO: profile picture
 
     <ScrollView
         android:id="@+id/scrollView1"
