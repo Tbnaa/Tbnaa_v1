@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">TbnaaProject</string>
+    <string-array name="cities_spinner">
+        <item>Choose city</item>
+        <item>Riyadh</item>
+        <item>Abha</item>
+        <item>Dammam</item>
+        <item>Jeddah</item>
+        <item>Medina</item>
+        <item>Mecca</item>
+    </string-array>
+
 </resources>
