@@ -11,26 +11,55 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:paddingTop="20dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
         <com.mikhaellopez.circularimageview.CircularImageView
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:layout_marginLeft="30dp"
             android:src="@drawable/img_character"></com.mikhaellopez.circularimageview.CircularImageView>
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jumana AAA"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"></TextView>
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jumana AAA"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="jumana5"></TextView>
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/ic_phone"></ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+966(512)3456"></TextView></LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit"
+                android:contentDescription="Edit icon"
+                android:layout_marginLeft="100dp"></ImageView></LinearLayout>
     </LinearLayout>
     <view
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/black"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
         ></view>
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,7 +67,7 @@
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_vertical">
         <ImageView
             android:layout_width="30dp"
@@ -72,7 +101,7 @@
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_vertical">
         <ImageView
             android:layout_width="30dp"
@@ -106,7 +135,34 @@
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_date"
+            android:contentDescription="Icon for birth date"></ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of Birth"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"></TextView></LinearLayout>
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></view>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_vertical">
         <ImageView
             android:layout_width="30dp"
@@ -125,23 +181,22 @@
             android:text="Khobar"
             android:layout_marginLeft="20dp"
             android:textSize="16dp"
-            ></TextView>
-    </LinearLayout>
+            ></TextView
+            ></LinearLayout>
     <view
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        ></view>
+        android:layout_marginRight="20dp"></view>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_vertical">
         <ImageView
             android:layout_width="30dp"
@@ -159,14 +214,107 @@
             android:layout_height="wrap_content"
             android:text="jumanaalghamdi5@gmail.com"
             android:layout_marginLeft="20dp"
-            android:textSize="16dp"></TextView>
-    </LinearLayout>
+            android:textSize="16dp"></TextView
+            ></LinearLayout>
     <view
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></view>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        ></view>
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_gender"></ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"></TextView>
+        <Spinner
+            android:id="@+id/gender_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_social_status"></ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Social Status"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"></TextView>
+        <Spinner
+            android:id="@+id/status_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner></LinearLayout>
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></view>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_location"></ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="***********"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            ></TextView
+            ></LinearLayout>
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></view>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="My Adoption Requests"></Button>
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="My Added Cats"></Button
+            ></LinearLayout>
 </LinearLayout>
