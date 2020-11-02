@@ -55,7 +55,7 @@ public class login extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Login Failed!",Toast.LENGTH_SHORT).show();
         } else {
             Intent openSignupPage = new Intent(getApplicationContext(), SignUp.class);
-            //TODO: adjust those 2 lines
+            //TODO: Adjust those 2 lines
             startActivity(openSignupPage);
             Toast.makeText(getApplicationContext(),"Valid Info.",Toast.LENGTH_LONG).show();
         }
