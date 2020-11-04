@@ -10,6 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
+
+        <activity
+            android:name=".TabbedActivityTest"
+            android:label="@string/title_activity_tabbed_test"
+            android:theme="@style/NoActionBar"></activity>
+          
+
         <activity android:name=".AdminProfileModification"></activity>
         <activity android:name=".AdminProfile" />
         <activity android:name=".UserProfile2" />
@@ -17,10 +24,11 @@
         <activity android:name=".UserProfile" />
         <activity android:name=".catProfile">
         </activity>
-        <activity android:name=".activity_adding_cat">
-        </activity>
-        <activity android:name=".UserProfile" >
-        </activity>
+
+
+        <activity android:name=".SignUp" />
+        <activity android:name=".login" />
+
         <activity android:name=".splashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,8 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUp" />
-        <activity android:name=".login" />
     </application>
 
 </manifest>
