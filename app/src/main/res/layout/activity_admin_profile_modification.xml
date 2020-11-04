@@ -6,47 +6,47 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AdminProfileModification">
+    <include layout="@layout/toolbar"/>
 
-    <RelativeLayout
-        android:id="@+id/imgAdmin"
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
+        android:layout_gravity="center"
+        android:text=""/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp">
 
         <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_centerInParent="true"
+            android:contentDescription="Admin profile image"
             android:id="@+id/admin_Edit_img"
-            android:layout_marginLeft="40dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/img_character2">
         </com.mikhaellopez.circularimageview.CircularImageView>
-        <Button
+
+        <ImageButton
             android:id="@+id/admin_img_chooseFromFile"
-            android:layout_toRightOf="@id/admin_Edit_img"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginBottom="14dp"
-            android:hint="Choose From File"
-            android:background="@drawable/design"
-            android:textSize="14sp"
-            android:layout_weight="2"
-            android:ems="10"/>
-        <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="35dp"
+            android:layout_toRightOf="@id/admin_Edit_img"
+            android:layout_alignBottom="@id/admin_Edit_img"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:background="@drawable/design"
-            android:src="" />
+            android:src="@drawable/ic_add_a_photo" />
 
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:layout_centerInParent="true">
 
@@ -66,8 +66,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
+                    android:layout_marginRight="15dp"
                     android:textColor="@color/Color3"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/admin_textEdit_Name"
@@ -85,14 +86,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:orientation="horizontal">
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Email"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/Color3"
-                        android:textSize="14sp" />
+                        android:textSize="15sp" />
 
                     <EditText
                         android:id="@+id/admin_textEdit_Email"
@@ -110,15 +111,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Password"
+                    android:layout_marginRight="15dp"
                     android:textColor="@color/Color3"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/admin_textEdit_Password"
@@ -137,16 +139,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Phone"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/Color3"
-                        android:textSize="14sp" />
-
+                        android:textSize="15sp" />
 
                     <EditText
                         android:id="@+id/admin_textEdit_Phone"
@@ -165,15 +166,16 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="City"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/Color3"
-                        android:textSize="14sp" />
+                        android:textSize="15sp" />
 
                     <Spinner
                         android:id="@+id/admin_city_spinner"
@@ -181,7 +183,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/Color8"
                         android:textSize="18sp"
-                        android:layout_marginTop="15dp"
                         android:paddingLeft="5dp"
                         android:tooltipText="City"
                         android:ems="10"/>
@@ -192,11 +193,42 @@
                         android:layout_marginTop="10dp"
                         android:background="@color/Color7" />
 
-
-
         </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="40dp">
+        <Button
+            android:id="@+id/admin_apply_modifications"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/design"
+            android:text="Apply"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/admin_cancel_modifications"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/design"
+            android:text="cancel"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 
 

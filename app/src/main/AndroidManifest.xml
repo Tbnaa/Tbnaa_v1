@@ -9,11 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+<<<<<<< HEAD
         <activity android:name=".AdminProfileModification"></activity>
         <activity android:name=".AdminProfile" />
         <activity android:name=".UserProfile2" />
         <activity android:name=".activity_adding_cat" />
         <activity android:name=".UserProfile" />
+=======
+        <activity android:name=".catProfile">
+
+        </activity>
+        <activity android:name=".UserProfile2" />
+        <activity android:name=".activity_adding_cat">
+    </activity>
+        <activity android:name=".UserProfile" >
+        </activity>
+>>>>>>> 064ed398ea8702d1dab2b9c256c5184337931a10
         <activity android:name=".SignUp" />
         <activity android:name=".login" />
         <activity android:name=".splashScreen">
