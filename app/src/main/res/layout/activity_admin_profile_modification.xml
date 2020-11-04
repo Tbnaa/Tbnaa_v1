@@ -47,154 +47,90 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:layout_centerInParent="true">
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="40dp">
 
-        <LinearLayout
+        <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:stretchColumns="1"
+            tools:layout_editor_absoluteX="202dp"
+            tools:layout_editor_absoluteY="263dp">
 
-
-            <LinearLayout
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content" >
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="Name"
-                    android:layout_marginRight="15dp"
                     android:textColor="@color/Color3"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/admin_textEdit_Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/Color7" />
+                    android:inputType="textPersonName"/>
+            </TableRow>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Email"
-                        android:layout_marginRight="15dp"
-                        android:textColor="@color/Color3"
-                        android:textSize="15sp" />
-
-                    <EditText
-                        android:id="@+id/admin_textEdit_Email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textEmailAddress" />
-                </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/Color7" />
-
-            <LinearLayout
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:orientation="horizontal">
-
+                android:layout_height="wrap_content" >
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textColor="@color/Color3"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/admin_textEdit_Email"
+                    android:ems="10"
+                    android:inputType="textEmailAddress" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
                     android:text="Password"
-                    android:layout_marginRight="15dp"
                     android:textColor="@color/Color3"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/admin_textEdit_Password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPassword" />
-            </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/Color7" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Phone"
+                    android:textColor="@color/Color3"
+                    android:textSize="15sp" />
 
+                <EditText
+                    android:id="@+id/admin_textEdit_Phone"
+                    android:ems="10"
+                    android:inputType="phone" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="City"
+                    android:paddingTop="20dp"
+                    android:textColor="@color/Color3"
+                    android:textSize="15sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                <Spinner
+                    android:id="@+id/admin_city_spinner"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="15sp"
+                    android:padding="25dp"
+                    android:orientation="vertical"
+                    android:ems="10"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Phone"
-                        android:layout_marginRight="15dp"
-                        android:textColor="@color/Color3"
-                        android:textSize="15sp" />
-
-                    <EditText
-                        android:id="@+id/admin_textEdit_Phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="phone" />
-                </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/Color7" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="City"
-                        android:layout_marginRight="15dp"
-                        android:textColor="@color/Color3"
-                        android:textSize="15sp" />
-
-                    <Spinner
-                        android:id="@+id/admin_city_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/Color8"
-                        android:textSize="18sp"
-                        android:paddingLeft="5dp"
-                        android:tooltipText="City"
-                        android:ems="10"/>
-                </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/Color7" />
-
-        </LinearLayout>
-
+            </TableRow>
+        </TableLayout>
     </RelativeLayout>
 
     <LinearLayout
@@ -207,8 +143,6 @@
             android:id="@+id/admin_apply_modifications"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp"
             android:background="@drawable/design"
             android:text="Apply"
             android:textColor="#fff"
@@ -219,11 +153,9 @@
             android:id="@+id/admin_cancel_modifications"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="32dp"
             android:background="@drawable/design"
-            android:text="cancel"
+            android:text="Cancel"
             android:textColor="#fff"
             android:textSize="20sp"
             android:textStyle="bold" />
