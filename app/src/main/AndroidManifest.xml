@@ -9,24 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-<<<<<<< HEAD
+        <activity
+            android:name=".TabbedActivityTest"
+            android:label="@string/title_activity_tabbed_test"
+            android:theme="@style/NoActionBar"></activity>
+          
         <activity android:name=".AdminProfileModification"></activity>
         <activity android:name=".AdminProfile" />
         <activity android:name=".UserProfile2" />
         <activity android:name=".activity_adding_cat" />
         <activity android:name=".UserProfile" />
-=======
         <activity android:name=".catProfile">
-
         </activity>
-        <activity android:name=".UserProfile2" />
         <activity android:name=".activity_adding_cat">
-    </activity>
+        </activity>
         <activity android:name=".UserProfile" >
         </activity>
->>>>>>> 064ed398ea8702d1dab2b9c256c5184337931a10
-        <activity android:name=".SignUp" />
-        <activity android:name=".login" />
         <activity android:name=".splashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity_adding_cat" />
+        <activity android:name=".UserProfile" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".login" />
     </application>
 
 </manifest>
