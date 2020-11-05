@@ -65,7 +65,6 @@ public class SignUp extends AppCompatActivity implements DatePickerDialog.OnDate
             }
         });
     }
-    //TODO: Extract Date
     public void showDatePickerDialog(){
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
