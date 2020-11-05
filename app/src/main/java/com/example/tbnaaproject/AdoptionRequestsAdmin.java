@@ -3,6 +3,7 @@ package com.example.tbnaaproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class AdoptionRequestsAdmin extends AppCompatActivity {
+// TODO: Menu !!
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,11 @@ public class AdoptionRequestsAdmin extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Word word = words.get(position);
+
+                //TODO: Open more INFO
+
+                Intent intent = new Intent(getApplicationContext(), AdoptionRequests_INFO_Admin.class);
+                startActivity(intent);
             }
         });
     }
