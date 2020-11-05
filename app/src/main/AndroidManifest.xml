@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
+
         <activity android:name=".ui.AdaptionForm">
         </activity>
         <activity android:name=".AdminProfileModification" />
@@ -27,7 +28,12 @@
     
 
         
-        <activity android:name=".SignUp"/>
+        
+
+        <activity android:name=".About"></activity>
+       
+        <activity android:name=".SignUp" />
+
         <activity android:name=".login" />
         <activity android:name=".splashScreen">
 
