@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AdminProfileModification">
+    <include layout="@layout/toolbar"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=""/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_centerInParent="true"
+            android:contentDescription="Admin profile image"
+            android:id="@+id/admin_Edit_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/img_character2">
+        </com.mikhaellopez.circularimageview.CircularImageView>
+
+        <ImageButton
+            android:id="@+id/admin_img_chooseFromFile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@id/admin_Edit_img"
+            android:layout_alignBottom="@id/admin_Edit_img"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:background="@drawable/design"
+            android:src="@drawable/ic_add_a_photo" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="40dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:stretchColumns="1"
+            tools:layout_editor_absoluteX="202dp"
+            tools:layout_editor_absoluteY="263dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+                <TextView
+                    android:text="Name"
+                    android:textColor="@color/Color3"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/admin_textEdit_Name"
+                    android:ems="10"
+                    android:textColor="@color/Color8"
+                    android:inputType="textPersonName"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+                <TextView
+                    android:text="Username"
+                    android:textColor="@color/Color3"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/admin_textEdit_username"
+                    android:ems="10"
+                    android:textColor="@color/Color8" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+                <TextView
+                    android:text="Email"
+                    android:textColor="@color/Color3"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/admin_textEdit_Email"
+                    android:ems="10"
+                    android:textColor="@color/Color8"
+                    android:inputType="textEmailAddress" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Password"
+                    android:textColor="@color/Color3"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/admin_textEdit_Password"
+                    android:ems="10"
+                    android:textColor="@color/Color8"
+                    android:inputType="textPassword" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Phone"
+                    android:textColor="@color/Color3"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/admin_textEdit_Phone"
+                    android:ems="10"
+                    android:textColor="@color/Color8"
+                    android:inputType="phone" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="City"
+                    android:paddingTop="20dp"
+                    android:textColor="@color/Color3"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/admin_city_spinner"
+                    android:textColor="@color/Color8"
+                    android:textSize="15sp"
+                    android:padding="25dp"
+                    android:orientation="vertical"
+                    android:ems="10"/>
+
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="40dp">
+        <Button
+            android:id="@+id/admin_apply_modifications"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/design"
+            android:text="Apply"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/admin_cancel_modifications"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/design"
+            android:text="Cancel"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
