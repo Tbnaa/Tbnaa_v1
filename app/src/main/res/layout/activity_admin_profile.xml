@@ -38,7 +38,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
             android:fontFamily="sans-serif-light"
-            android:text="Maha Alzahrani"
+            android:text="Malak Alqahtani"
             android:textColor="@color/Color3"
             android:textSize="32sp" />
 
@@ -51,7 +51,7 @@
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:fontFamily="sans-serif"
-            android:text="adminMaha"
+            android:text="adminMalak"
             android:textColor="@color/Color7"
             android:textSize="15sp" />
 
@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="adminMaha10@gmail.com"
+                    android:text="adminMalak10@gmail.com"
                     android:textColor="@color/Color8"
                     android:textSize="18sp" />
 
@@ -186,7 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="Dammam"
+                    android:text="Khobar"
                     android:textColor="@color/Color8"
                     android:textSize="18sp" />
 
