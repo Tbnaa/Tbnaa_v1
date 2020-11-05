@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <activity android:name=".ui.AdaptionForm">
         </activity>
         <activity android:name=".AdminProfileModification" />
@@ -23,15 +24,19 @@
 
         </activity>
 
-        <activity android:name=".SplashScreen">
+    
+
+        
+        <activity android:name=".SignUp"/>
+        <activity android:name=".login" />
+        <activity android:name=".splashScreen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUp" />
-        <activity android:name=".Login" />
     </application>
 
 </manifest>
