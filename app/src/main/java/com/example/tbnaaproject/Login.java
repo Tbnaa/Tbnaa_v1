@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class login extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     private EditText login_email_editText;
     private EditText login_password_editText;

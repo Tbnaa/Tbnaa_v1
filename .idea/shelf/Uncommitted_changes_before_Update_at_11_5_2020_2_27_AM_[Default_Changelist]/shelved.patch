@@ -1,0 +1,941 @@
+Index: app/src/main/res/layout/activity_adding_cat.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".activity_adding_cat\">\r\n\r\n\r\n    <ScrollView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\">\r\n\r\n\r\n    <TableLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\">\r\n\r\n\r\n        <TableRow\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\" />\r\n\r\n        <ImageView\r\n            android:id=\"@+id/imageView\"\r\n            android:layout_width=\"274dp\"\r\n            android:layout_height=\"100dp\"\r\n            android:layout_gravity=\"center_horizontal\"\r\n            android:layout_marginTop=\"70dp\"\r\n            android:src=\"@drawable/cat\"\r\n           />\r\n\r\n        <TableRow\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\" >\r\n\r\n            <TextView\r\n                android:id=\"@+id/textView4\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"33dp\"\r\n                android:layout_gravity=\"center_horizontal\"\r\n                android:layout_marginRight=\"10dp\"\r\n                android:layout_weight=\"2\"\r\n                android:gravity=\"center\"\r\n                android:text=\"Upload the cat photo:\"\r\n                android:textColor=\"#000000\"\r\n                android:textStyle=\"bold\" />\r\n\r\n        </TableRow>\r\n\r\n        <TableRow\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\" >\r\n\r\n            <Button\r\n                android:id=\"@+id/button\"\r\n                android:layout_width=\"150dp\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginTop=\"16dp\"\r\n                android:layout_marginLeft=\"16dp\"\r\n                android:layout_marginBottom=\"16dp\"\r\n                android:background=\"@drawable/design\"\r\n                android:textSize=\"14sp\"\r\n                android:layout_weight=\"2\"\r\n                android:ems=\"10\"\r\n                android:layout_gravity=\"center_horizontal\"\r\n                android:text=\"Upload\"\r\n                android:gravity=\"center\"\r\n\r\n                />\r\n        </TableRow>\r\n\r\n        <TableRow\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\" >\r\n\r\n            <TextView\r\n                android:id=\"@+id/catName_textView\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_weight=\"1\"\r\n                android:text=\"Cat's name:\"\r\n                android:textColor=\"#000000\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/catName_editText\"\r\n                android:layout_width=\"239dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_weight=\"1\"\r\n                android:ems=\"10\"\r\n                android:hint=\"Enter Cat's Name\"\r\n                android:inputType=\"textPersonName\" />\r\n        </TableRow>\r\n        <TableRow\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\" >\r\n\r\n            <TextView\r\n                android:id=\"@+id/catAge_TextView1\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_weight=\"1\"\r\n                android:text=\"Cat's age:\"\r\n                android:textColor=\"#000000\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/catAge_editText1\"\r\n                android:layout_width=\"239dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_weight=\"1\"\r\n                android:ems=\"10\"\r\n                android:hint=\"Enter Cat's Age\"\r\n                android:inputType=\"textPersonName\" />\r\n        </TableRow>\r\n        <TableRow\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\" >\r\n\r\n            <TextView\r\n                android:id=\"@+id/catAge_textView1\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_weight=\"1\"\r\n                android:text=\"Cat's gender:\"\r\n                android:textColor=\"#000000\" />\r\n\r\n           <LinearLayout\r\n               android:layout_width=\"wrap_content\"\r\n               android:layout_height=\"wrap_content\"\r\n               android:layout_weight=\"1\" >\r\n            <RadioGroup\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_weight=\"1\"\r\n                android:orientation=\"horizontal\">\r\n\r\n                <RadioButton\r\n                    android:id=\"@+id/radioButton\"\r\n                    android:layout_width=\"76dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_weight=\"1\"\r\n                    android:text=\"Male\" />\r\n\r\n                <RadioButton\r\n                    android:id=\"@+id/radioButton2\"\r\n                    android:layout_width=\"89dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_gravity=\"\"\r\n                    android:layout_weight=\"1\"\r\n\r\n                    android:text=\"Female\" />\r\n            </RadioGroup>\r\n           </LinearLayout>\r\n        </TableRow>\r\n        <TableRow\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\" >\r\n\r\n            <TextView\r\n                android:id=\"@+id/catName_textView3\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_weight=\"1\"\r\n                android:text=\"In which city does the cat live?\"\r\n                android:textColor=\"#000000\" />\r\n\r\n            <Spinner\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_weight=\"1\"\r\n                android:entries=\"@array/cities_spinner\"\r\n                android:layout_marginTop=\"4dp\"\r\n                ></Spinner>\r\n\r\n\r\n        </TableRow>\r\n        <TableRow\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\" >\r\n\r\n            <TextView\r\n                android:id=\"@+id/catName_textView4\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_weight=\"1\"\r\n                android:text=\"The cat's health condition:\"\r\n                android:textColor=\"#000000\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/catAge_editText\"\r\n                android:layout_width=\"239dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_weight=\"1\"\r\n                android:ems=\"10\"\r\n                android:hint=\"Enter Health Condition\"\r\n                android:inputType=\"textPersonName\" />\r\n        </TableRow>\r\n        <TableRow\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\" >\r\n\r\n            <TextView\r\n                android:id=\"@+id/catAge_textView156\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_weight=\"1\"\r\n                android:text=\"Has the cat been vaccinated?\"\r\n                android:textColor=\"#000000\" />\r\n\r\n            <RadioGroup\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_weight=\"1\"\r\n                android:orientation=\"horizontal\">\r\n\r\n                <RadioButton\r\n                    android:id=\"@+id/radioButton35\"\r\n                    android:layout_width=\"76dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_weight=\"1\"\r\n                    android:text=\"Yes\" />\r\n\r\n                <RadioButton\r\n                    android:id=\"@+id/radioButton246\"\r\n                    android:layout_width=\"89dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_gravity=\"\"\r\n                    android:layout_weight=\"1\"\r\n\r\n                    android:text=\"No\" />\r\n            </RadioGroup>\r\n\r\n        </TableRow>\r\n        <TableRow\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            >\r\n\r\n            <TextView\r\n                android:id=\"@+id/catAge_textView12424\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_weight=\"1\"\r\n                android:text=\"Has the cat been neutered?\"\r\n                android:textColor=\"#000000\" />\r\n\r\n            <RadioGroup\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_weight=\"1\"\r\n                android:orientation=\"horizontal\">\r\n\r\n                <RadioButton\r\n                    android:id=\"@+id/radioButton897\"\r\n                    android:layout_width=\"76dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_weight=\"1\"\r\n                    android:text=\"Yes\" />\r\n\r\n                <RadioButton\r\n                    android:id=\"@+id/radioButton66\"\r\n                    android:layout_width=\"89dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_gravity=\"\"\r\n                    android:layout_weight=\"1\"\r\n\r\n                    android:text=\"No\" />\r\n\r\n            </RadioGroup>\r\n\r\n        </TableRow>\r\n\r\n        <TableRow\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_weight=\"1\" >\r\n\r\n            <TextView\r\n                android:id=\"@+id/textView6\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_weight=\"1\"\r\n                android:text=\"Cat’s Story:\"\r\n                android:textColor=\"#000000\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/editTextTextMultiLine\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:ems=\"10\"\r\n                android:gravity=\"start|top\"\r\n                android:inputType=\"textMultiLine\"\r\n                android:layout_weight=\"1\"/>\r\n        </TableRow>\r\n    </TableLayout>\r\n    </ScrollView>\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_adding_cat.xml	(revision d2b7e2ae14f99acb1511e9da959358de5b15d590)
++++ app/src/main/res/layout/activity_adding_cat.xml	(date 1604532150816)
+@@ -12,23 +12,57 @@
+         android:layout_height="match_parent">
+ 
+ 
++
++
+     <TableLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+ 
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:padding="10dp"
++            android:orientation="horizontal">
++
++            <ImageView
++                android:layout_width="40dp"
++                android:layout_height="40dp"
++                android:layout_alignParentLeft="true"
++                android:contentDescription="humburger menu icon"
++                android:src="@drawable/ic_menu"></ImageView>
++            //TODO: make the text changeable based on each page using the tool bar
++            <TextView
++                android:layout_width="0dp"
++                android:layout_weight="1"
++                android:layout_height="wrap_content"
++                android:text="Adding Cat For Adaption"
++                android:textColor="@android:color/black"
++                android:gravity="center"
++                android:textSize="22sp"
++                android:textStyle="bold"></TextView>
++
++            <ImageView
++                android:layout_width="50dp"
++                android:layout_height="50dp"
++                android:layout_alignParentRight="true"
++                android:contentDescription="logo to be placed"
++                android:src="@drawable/playstore"></ImageView>
++
++        </LinearLayout>
+ 
+         <TableRow
+             android:layout_width="match_parent"
+-            android:layout_height="match_parent" />
++            android:layout_height="match_parent"
++            android:layout_marginTop="-70dp"/>
+ 
+         <ImageView
+             android:id="@+id/imageView"
+             android:layout_width="274dp"
+-            android:layout_height="100dp"
++            android:layout_height="156dp"
+             android:layout_gravity="center_horizontal"
+             android:layout_marginTop="70dp"
+-            android:src="@drawable/cat"
+-           />
++            android:src="@drawable/blackcat"
++            />
+ 
+         <TableRow
+             android:layout_width="match_parent"
+@@ -44,7 +78,8 @@
+                 android:gravity="center"
+                 android:text="Upload the cat photo:"
+                 android:textColor="#000000"
+-                android:textStyle="bold" />
++                android:textSize="18sp"
++                 />
+ 
+         </TableRow>
+ 
+@@ -81,17 +116,26 @@
+                 android:layout_marginLeft="20dp"
+                 android:layout_weight="1"
+                 android:text="Cat's name:"
+-                android:textColor="#000000" />
++                android:textColor="#000000"
++                android:textSize="18sp" />
++        </TableRow>
++
++        <TableRow
++            android:layout_width="match_parent"
++            android:layout_height="match_parent" >
+ 
+-            <EditText
++        <EditText
+                 android:id="@+id/catName_editText"
+-                android:layout_width="239dp"
++                android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:layout_weight="1"
+                 android:ems="10"
+                 android:hint="Enter Cat's Name"
+-                android:inputType="textPersonName" />
++                android:inputType="textPersonName"
++                android:layout_marginLeft="20dp"/>
+         </TableRow>
++
++
++
+         <TableRow
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" >
+@@ -101,17 +145,23 @@
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="20dp"
++                android:layout_marginTop="10dp"
+                 android:layout_weight="1"
+                 android:text="Cat's age:"
+-                android:textColor="#000000" />
++                android:textColor="#000000"
++                android:textSize="18sp" />
++        </TableRow>
++        <TableRow
++            android:layout_width="match_parent"
++            android:layout_height="match_parent" >
+ 
+             <EditText
+                 android:id="@+id/catAge_editText1"
+-                android:layout_width="239dp"
++                android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:layout_weight="1"
+                 android:ems="10"
+                 android:hint="Enter Cat's Age"
++                android:layout_marginLeft="20dp"
+                 android:inputType="textPersonName" />
+         </TableRow>
+         <TableRow
+@@ -123,35 +173,45 @@
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="20dp"
++                android:layout_marginTop="10dp"
+                 android:layout_weight="1"
+                 android:text="Cat's gender:"
+-                android:textColor="#000000" />
++                android:textColor="#000000"
++                android:textSize="18sp" />
++        </TableRow>
+ 
++        <TableRow
++            android:layout_width="match_parent"
++            android:layout_height="match_parent" >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+-               android:layout_weight="1" >
++               android:layout_marginLeft="20dp"
++              >
++
+             <RadioGroup
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+-                android:orientation="horizontal">
++                android:orientation="horizontal"
++                android:layout_marginTop="10dp">
+ 
+                 <RadioButton
+                     android:id="@+id/radioButton"
+                     android:layout_width="76dp"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+-                    android:text="Male" />
++                    android:text="Male"
++                    android:textSize="18sp" />
+ 
+                 <RadioButton
+                     android:id="@+id/radioButton2"
+                     android:layout_width="89dp"
+                     android:layout_height="wrap_content"
+-                    android:layout_gravity=""
+                     android:layout_weight="1"
+ 
+-                    android:text="Female" />
++                    android:text="Female"
++                    android:textSize="18sp" />
+             </RadioGroup>
+            </LinearLayout>
+         </TableRow>
+@@ -164,39 +224,48 @@
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="20dp"
++                android:layout_marginTop="10dp"
+                 android:layout_weight="1"
+                 android:text="In which city does the cat live?"
+-                android:textColor="#000000" />
+-
++                android:textColor="#000000"
++                android:textSize="18sp" />
++        </TableRow>
++        <TableRow
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:layout_marginLeft="20dp">
+             <Spinner
+-                android:layout_width="match_parent"
++                android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:layout_weight="1"
+                 android:entries="@array/cities_spinner"
+-                android:layout_marginTop="4dp"
++                android:layout_marginTop="15dp"
+                 ></Spinner>
+-
+-
+         </TableRow>
+         <TableRow
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" >
+ 
+             <TextView
++
+                 android:id="@+id/catName_textView4"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="20dp"
++                android:layout_marginTop="15dp"
+                 android:layout_weight="1"
+                 android:text="The cat's health condition:"
+-                android:textColor="#000000" />
+-
++                android:textColor="#000000"
++                android:textSize="18sp" />
++        </TableRow>
++        <TableRow
++            android:layout_width="match_parent"
++            android:layout_height="match_parent" >
+             <EditText
+                 android:id="@+id/catAge_editText"
+-                android:layout_width="239dp"
++                android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:layout_weight="1"
+                 android:ems="10"
++                android:layout_marginLeft="20dp"
+                 android:hint="Enter Health Condition"
+                 android:inputType="textPersonName" />
+         </TableRow>
+@@ -209,34 +278,43 @@
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="20dp"
++                android:layout_marginTop="15dp"
+                 android:layout_weight="1"
+                 android:text="Has the cat been vaccinated?"
+-                android:textColor="#000000" />
++                android:textColor="#000000"
++                android:textSize="18sp" />
++        </TableRow>
++
++     <TableRow
++        android:layout_width="match_parent"
++        android:layout_height="match_parent" >
+ 
+             <RadioGroup
++                android:layout_marginTop="15dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+-                android:orientation="horizontal">
++                android:orientation="horizontal"
++                >
+ 
+                 <RadioButton
+                     android:id="@+id/radioButton35"
+                     android:layout_width="76dp"
+                     android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:text="Yes" />
++                    android:layout_marginLeft="20dp"
++                    android:text="Yes"
++                    android:textSize="18sp" />
+ 
+                 <RadioButton
+                     android:id="@+id/radioButton246"
+                     android:layout_width="89dp"
+                     android:layout_height="wrap_content"
+-                    android:layout_gravity=""
+                     android:layout_weight="1"
+-
+-                    android:text="No" />
++                    android:text="No"
++                    android:textSize="18sp" />
+             </RadioGroup>
+-
+         </TableRow>
++
+         <TableRow
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+@@ -247,34 +325,40 @@
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="20dp"
++                android:layout_marginTop="15dp"
+                 android:layout_weight="1"
+                 android:text="Has the cat been neutered?"
+-                android:textColor="#000000" />
++                android:textColor="#000000"
++                android:textSize="18sp" />
++        </TableRow>
++        <TableRow
++            android:layout_width="match_parent"
++            android:layout_height="match_parent">
+ 
+             <RadioGroup
++                android:layout_marginTop="15dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:layout_weight="1"
+-                android:orientation="horizontal">
++                android:orientation="horizontal"
++                >
+ 
+                 <RadioButton
+                     android:id="@+id/radioButton897"
+                     android:layout_width="76dp"
+                     android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:text="Yes" />
++                    android:layout_marginLeft="20dp"
++                    android:text="Yes"
++                    android:textSize="18sp" />
+ 
+                 <RadioButton
+                     android:id="@+id/radioButton66"
+                     android:layout_width="89dp"
+                     android:layout_height="wrap_content"
+-                    android:layout_gravity=""
+                     android:layout_weight="1"
+-
+-                    android:text="No" />
++                    android:text="No"
++                    android:textSize="18sp" />
+ 
+             </RadioGroup>
+-
+         </TableRow>
+ 
+         <TableRow
+@@ -287,19 +371,28 @@
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="20dp"
++                android:layout_marginTop="15dp"
+                 android:layout_weight="1"
+                 android:text="Cat’s Story:"
+-                android:textColor="#000000" />
++                android:textColor="#000000"
++                android:textSize="18sp" />
++        </TableRow>
++        <TableRow
++            android:layout_width="match_parent"
++            android:layout_height="match_parent" >
+ 
+-            <EditText
++        <EditText
++                android:layout_marginTop="10dp"
+                 android:id="@+id/editTextTextMultiLine"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:ems="10"
+                 android:gravity="start|top"
+                 android:inputType="textMultiLine"
+-                android:layout_weight="1"/>
++            android:layout_marginLeft="20dp"
++            />
+         </TableRow>
+     </TableLayout>
+     </ScrollView>
+-</RelativeLayout>
+\ No newline at end of file
++</RelativeLayout>
++
+Index: app/src/main/res/layout/activity_cat_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_cat_profile.xml	(date 1604532150819)
++++ app/src/main/res/layout/activity_cat_profile.xml	(date 1604532150819)
+@@ -0,0 +1,21 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".catProfile">
++
++
++
++
++
++
++
++
++
++
++
++
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_admin_profile_modification.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_admin_profile_modification.xml	(date 1604532150818)
++++ app/src/main/res/layout/activity_admin_profile_modification.xml	(date 1604532150818)
+@@ -0,0 +1,167 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    tools:context=".AdminProfileModification">
++    <include layout="@layout/toolbar"/>
++
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_gravity="center"
++        android:text=""/>
++
++
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="36dp">
++
++        <com.mikhaellopez.circularimageview.CircularImageView
++            android:layout_centerInParent="true"
++            android:contentDescription="Admin profile image"
++            android:id="@+id/admin_Edit_img"
++            android:layout_width="100dp"
++            android:layout_height="100dp"
++            android:src="@drawable/img_character2">
++        </com.mikhaellopez.circularimageview.CircularImageView>
++
++        <ImageButton
++            android:id="@+id/admin_img_chooseFromFile"
++            android:layout_width="40dp"
++            android:layout_height="40dp"
++            android:layout_toRightOf="@id/admin_Edit_img"
++            android:layout_alignBottom="@id/admin_Edit_img"
++            android:paddingRight="10dp"
++            android:paddingLeft="10dp"
++            android:adjustViewBounds="true"
++            android:scaleType="centerInside"
++            android:background="@drawable/design"
++            android:src="@drawable/ic_add_a_photo" />
++
++    </RelativeLayout>
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_gravity="center"
++        android:layout_marginTop="50dp"
++        android:layout_marginHorizontal="40dp">
++
++        <TableLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="vertical"
++            android:stretchColumns="1"
++            tools:layout_editor_absoluteX="202dp"
++            tools:layout_editor_absoluteY="263dp">
++
++            <TableRow
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content" >
++                <TextView
++                    android:text="Name"
++                    android:textColor="@color/Color3"
++                    android:textSize="15sp" />
++
++                <EditText
++                    android:id="@+id/admin_textEdit_Name"
++                    android:ems="10"
++                    android:inputType="textPersonName"/>
++            </TableRow>
++
++            <TableRow
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content" >
++                <TextView
++                    android:text="Email"
++                    android:textColor="@color/Color3"
++                    android:textSize="15sp" />
++
++                <EditText
++                    android:id="@+id/admin_textEdit_Email"
++                    android:ems="10"
++                    android:inputType="textEmailAddress" />
++            </TableRow>
++            <TableRow
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content">
++                <TextView
++                    android:text="Password"
++                    android:textColor="@color/Color3"
++                    android:textSize="15sp" />
++
++                <EditText
++                    android:id="@+id/admin_textEdit_Password"
++                    android:ems="10"
++                    android:inputType="textPassword" />
++            </TableRow>
++            <TableRow
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content">
++                <TextView
++                    android:text="Phone"
++                    android:textColor="@color/Color3"
++                    android:textSize="15sp" />
++
++                <EditText
++                    android:id="@+id/admin_textEdit_Phone"
++                    android:ems="10"
++                    android:inputType="phone" />
++            </TableRow>
++            <TableRow
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content">
++                <TextView
++                    android:text="City"
++                    android:paddingTop="20dp"
++                    android:textColor="@color/Color3"
++                    android:textSize="15sp" />
++
++                <Spinner
++                    android:id="@+id/admin_city_spinner"
++                    android:textColor="@color/cardview_dark_background"
++                    android:textSize="15sp"
++                    android:padding="25dp"
++                    android:orientation="vertical"
++                    android:ems="10"/>
++
++            </TableRow>
++        </TableLayout>
++    </RelativeLayout>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:layout_marginTop="50dp"
++        android:layout_marginHorizontal="40dp">
++        <Button
++            android:id="@+id/admin_apply_modifications"
++            android:layout_width="150dp"
++            android:layout_height="50dp"
++            android:background="@drawable/design"
++            android:text="Apply"
++            android:textColor="#fff"
++            android:textSize="20sp"
++            android:textStyle="bold" />
++
++        <Button
++            android:id="@+id/admin_cancel_modifications"
++            android:layout_width="150dp"
++            android:layout_height="50dp"
++            android:layout_marginLeft="25dp"
++            android:background="@drawable/design"
++            android:text="Cancel"
++            android:textColor="#fff"
++            android:textSize="20sp"
++            android:textStyle="bold" />
++
++    </LinearLayout>
++
++
++
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_admin_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_admin_profile.xml	(date 1604532150817)
++++ app/src/main/res/layout/activity_admin_profile.xml	(date 1604532150817)
+@@ -0,0 +1,205 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    tools:context=".AdminProfile">
++
++    <include layout="@layout/toolbar"/>
++
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:paddingBottom="20dp"
++        android:layout_marginTop="40dp">
++
++        <RelativeLayout
++            android:id="@+id/imgAdmin"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_centerHorizontal="true"
++            android:layout_marginTop="40dp">
++
++            <com.mikhaellopez.circularimageview.CircularImageView
++                android:layout_width="100dp"
++                android:layout_height="100dp"
++                android:src="@drawable/img_character2">
++            </com.mikhaellopez.circularimageview.CircularImageView>
++
++        </RelativeLayout>
++
++        <TextView
++            android:id="@+id/Admin_name"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_below="@+id/imgAdmin"
++            android:layout_centerHorizontal="true"
++            android:layout_marginTop="15sp"
++            android:fontFamily="sans-serif-light"
++            android:text="Maha Alzahrani"
++            android:textColor="@color/Color3"
++            android:textSize="32sp" />
++
++
++        <TextView
++            android:id="@+id/adminUsername"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_below="@+id/Admin_name"
++            android:layout_centerHorizontal="true"
++            android:paddingTop="10dp"
++            android:fontFamily="sans-serif"
++            android:text="adminMaha"
++            android:textColor="@color/Color7"
++            android:textSize="15sp" />
++
++        <ImageView
++            android:layout_width="40dp"
++            android:layout_height="40dp"
++            android:layout_alignParentRight="true"
++            android:layout_marginRight="35dp"
++            android:adjustViewBounds="true"
++            android:scaleType="centerInside"
++            android:background="@drawable/design"
++            android:src="@drawable/ic_edit" />
++
++    </RelativeLayout>
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_marginTop="35dp"
++        android:layout_centerInParent="true">
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginLeft="40dp"
++            android:layout_marginRight="40dp"
++            android:orientation="vertical">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal">
++                <ImageView
++                    android:paddingTop="10dp"
++                    android:paddingRight="15dp"
++                    android:layout_width="40dp"
++                    android:layout_height="40dp"
++                    android:src="@drawable/ic_email" />
++
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="vertical">
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="Email"
++                    android:textColor="@color/Color3"
++                    android:textSize="14sp" />
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:fontFamily="sans-serif-light"
++                    android:text="adminMaha10@gmail.com"
++                    android:textColor="@color/Color8"
++                    android:textSize="18sp" />
++
++                <View
++                    android:layout_width="match_parent"
++                    android:layout_height="1dp"
++                    android:layout_marginTop="15dp"
++                    android:background="@color/Color7" />
++            </LinearLayout>
++
++            </LinearLayout>
++
++        <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal">
++
++            <ImageView
++                android:layout_width="40dp"
++                android:layout_height="56dp"
++                android:paddingTop="20dp"
++                android:paddingRight="15dp"
++                android:src="@drawable/ic_phone" />
++
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="15dp"
++                android:orientation="vertical">
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="Phone"
++                    android:textColor="@color/Color3"
++                    android:textSize="14sp" />
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:fontFamily="sans-serif-light"
++                    android:text="+966-502-555-015"
++                    android:textColor="@color/Color8"
++                    android:textSize="18sp" />
++
++                <View
++                    android:layout_width="match_parent"
++                    android:layout_height="1dp"
++                    android:layout_marginTop="15dp"
++                    android:background="@color/Color7" />
++
++                 </LinearLayout>
++            </LinearLayout>
++             <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal">
++
++            <ImageView
++                android:layout_width="40dp"
++                android:layout_height="56dp"
++                android:paddingTop="20dp"
++                android:paddingRight="15dp"
++                android:src="@drawable/ic_location" />
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="15dp"
++                android:orientation="vertical">
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="City"
++                    android:textColor="@color/Color3"
++                    android:textSize="14sp" />
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:fontFamily="sans-serif-light"
++                    android:text="Dammam"
++                    android:textColor="@color/Color8"
++                    android:textSize="18sp" />
++
++                <View
++                    android:layout_width="match_parent"
++                    android:layout_height="1dp"
++                    android:layout_marginTop="15dp"
++                    android:background="@color/Color7" />
++            </LinearLayout>
++        </LinearLayout>
++
++        </LinearLayout>
++
++    </RelativeLayout>
++
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/catProfile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/catProfile.java	(date 1604532150805)
++++ app/src/main/java/com/example/tbnaaproject/catProfile.java	(date 1604532150805)
+@@ -0,0 +1,14 @@
++package com.example.tbnaaproject;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.os.Bundle;
++
++public class catProfile extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_cat_profile);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/AdminProfile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/AdminProfile.java	(date 1604532150803)
++++ app/src/main/java/com/example/tbnaaproject/AdminProfile.java	(date 1604532150803)
+@@ -0,0 +1,14 @@
++package com.example.tbnaaproject;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.os.Bundle;
++
++public class AdminProfile extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_admin_profile);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/drawable/ic_add_a_photo.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/ic_add_a_photo.xml	(date 1604532150809)
++++ app/src/main/res/drawable/ic_add_a_photo.xml	(date 1604532150809)
+@@ -0,0 +1,9 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24">
++  <path
++      android:fillColor="#FF000000"
++      android:pathData="M21,6h-3.17L16,4h-6v2h5.12l1.83,2L21,8v12L5,20v-9L3,11v9c0,1.1 0.9,2 2,2h16c1.1,0 2,-0.9 2,-2L23,8c0,-1.1 -0.9,-2 -2,-2zM8,14c0,2.76 2.24,5 5,5s5,-2.24 5,-5 -2.24,-5 -5,-5 -5,2.24 -5,5zM13,11c1.65,0 3,1.35 3,3s-1.35,3 -3,3 -3,-1.35 -3,-3 1.35,-3 3,-3zM5,6h3L8,4L5,4L5,1L3,1v3L0,4v2h3v3h2z"/>
++</vector>
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\nbuildscript {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n    }\r\n    dependencies {\r\n        classpath \"com.android.tools.build:gradle:4.0.0\"\r\n\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision d2b7e2ae14f99acb1511e9da959358de5b15d590)
++++ build.gradle	(date 1604532150820)
+@@ -5,7 +5,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath "com.android.tools.build:gradle:4.0.0"
++        classpath 'com.android.tools.build:gradle:4.1.0'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: app/src/main/java/com/example/tbnaaproject/AdminProfileModification.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/AdminProfileModification.java	(date 1604532150804)
++++ app/src/main/java/com/example/tbnaaproject/AdminProfileModification.java	(date 1604532150804)
+@@ -0,0 +1,25 @@
++package com.example.tbnaaproject;
++
++import androidx.annotation.RequiresApi;
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.os.Build;
++import android.os.Bundle;
++import android.view.View;
++import android.widget.AdapterView;
++import android.widget.ArrayAdapter;
++import android.widget.Spinner;
++import android.widget.TextView;
++
++import java.util.ArrayList;
++
++public class AdminProfileModification extends AppCompatActivity {
++
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_admin_profile_modification);
++
++    }
++}
+\ No newline at end of file
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Thu Oct 29 17:01:02 AST 2020\r\ndistributionBase=GRADLE_USER_HOME\r\ndistributionPath=wrapper/dists\r\nzipStoreBase=GRADLE_USER_HOME\r\nzipStorePath=wrapper/dists\r\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-6.1.1-all.zip\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision d2b7e2ae14f99acb1511e9da959358de5b15d590)
++++ gradle/wrapper/gradle-wrapper.properties	(date 1604532150821)
+@@ -1,6 +1,6 @@
+-#Thu Oct 29 17:01:02 AST 2020
++#Wed Nov 04 19:08:33 GMT+03:00 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-6.1.1-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-bin.zip
