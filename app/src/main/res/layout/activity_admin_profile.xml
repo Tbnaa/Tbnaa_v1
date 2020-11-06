@@ -4,11 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
     android:orientation="vertical"
+    android:weightSum="8"
     tools:context=".AdminProfile">
 
-    <include layout="@layout/toolbar"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal|center_vertical">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_alignParentLeft="true"
+                android:contentDescription="humburger menu icon"
+                android:src="@drawable/ic_menu"></ImageView>
+
+            <TextView
+                android:layout_width="309dp"
+                android:layout_height="28dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="My Profile"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"></TextView>
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/tbnaacircle"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_alignParentRight="true"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:columnCount="1"
+        android:rowCount="2"
+        android:padding="15dp"
+        android:background="@drawable/whitebackground">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,9 +89,11 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
             android:fontFamily="sans-serif-light"
-            android:text="Maha Alzahrani"
+            android:gravity="center"
+            android:text="Admin First and Last Name"
             android:textColor="@color/Color3"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
 
         <TextView
@@ -49,17 +102,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/Admin_name"
             android:layout_centerHorizontal="true"
-            android:paddingTop="10dp"
             android:fontFamily="sans-serif"
-            android:text="adminMaha"
+            android:paddingTop="10dp"
+            android:text="Admin Username"
             android:textColor="@color/Color7"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-        <ImageView
+        <ImageButton
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="35dp"
+            android:layout_marginTop="65dp"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:background="@drawable/design"
@@ -104,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="adminMaha10@gmail.com"
+                    android:hint="Admin's email"
                     android:textColor="@color/Color8"
                     android:textSize="18sp" />
 
@@ -146,7 +201,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="+966-502-555-015"
+                    android:hint="+966 ** *** ****"
                     android:textColor="@color/Color8"
                     android:textSize="18sp" />
 
@@ -186,7 +241,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="Dammam"
+                    android:hint="Admin's city"
                     android:textColor="@color/Color8"
                     android:textSize="18sp" />
 
@@ -201,5 +256,7 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    </GridLayout>
 
 </LinearLayout>

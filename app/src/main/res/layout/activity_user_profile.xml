@@ -5,14 +5,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserProfile"
-    android:orientation="vertical">
+    android:background="#212121"
+    android:orientation="vertical"
+    android:weightSum="8">
 
-    <include layout="@layout/toolbar"/>
-    <LinearLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal|center_vertical">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_alignParentLeft="true"
+                android:contentDescription="humburger menu icon"
+                android:src="@drawable/ic_menu"></ImageView>
+
+            <TextView
+                android:layout_width="309dp"
+                android:layout_height="28dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="My Profile"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"></TextView>
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/tbnaacircle"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_alignParentRight="true"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:columnCount="1"
+        android:rowCount="17"
+        android:padding="15dp"
+        android:background="@drawable/whitebackground">
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
+        android:paddingTop="15dp"
         android:orientation="horizontal">
+
         <com.mikhaellopez.circularimageview.CircularImageView
             android:layout_width="90dp"
             android:layout_height="90dp"
@@ -26,38 +80,48 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jumana AAA"
+                android:text="User AAA"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"></TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="jumana5"></TextView>
+                android:text="Username"></TextView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+966(512)3456"></TextView></LinearLayout>
+                android:text="+966 ** *** ****"></TextView></LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/ic_edit"
                 android:contentDescription="Edit icon"
-                android:layout_marginLeft="100dp"></ImageView></LinearLayout></LinearLayout>
-    <view
+                android:background="@drawable/design"
+                android:layout_marginLeft="70dp"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"></ImageView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+            <view
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/black"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="5dp"
         ></view>
-    <LinearLayout
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -79,10 +143,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jumana"
             android:layout_marginLeft="20dp"
             android:textSize="16dp"></TextView></LinearLayout>
-    <view
+
+            <view
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
@@ -90,7 +154,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         ></view>
-    <LinearLayout
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -112,11 +177,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AAA"
             android:layout_marginLeft="20dp"
             android:textSize="16dp"></TextView>
     </LinearLayout>
-    <view
+
+            <view
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
@@ -124,7 +189,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         ></view>
-    <LinearLayout
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -144,14 +210,16 @@
             android:textStyle="bold"
             android:textSize="18dp"
             android:layout_marginLeft="10dp"></TextView></LinearLayout>
-    <view
+
+            <view
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"></view>
-    <LinearLayout
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -173,19 +241,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Khobar"
             android:layout_marginLeft="20dp"
             android:textSize="16dp"
             ></TextView
             ></LinearLayout>
-    <view
+
+            <view
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"></view>
-    <LinearLayout
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -207,18 +276,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="jumanaalghamdi5@gmail.com"
             android:layout_marginLeft="20dp"
             android:textSize="16dp"></TextView
             ></LinearLayout>
-    <view
+
+            <view
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"></view>
-    <LinearLayout
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -256,14 +326,16 @@
             android:id="@+id/status_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></Spinner></LinearLayout>
-    <view
+
+            <view
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"></view>
-    <LinearLayout
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -285,31 +357,47 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="***********"
             android:layout_marginLeft="20dp"
             android:textSize="16dp"
             ></TextView
             ></LinearLayout>
-    <view
+
+            <view
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"></view>
-    <LinearLayout
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:gravity="center">
         <Button
             android:layout_width="250dp"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_margin="8dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/design"
             android:text="My Adoption Requests"></Button>
         <Button
             android:layout_width="250dp"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_margin="8dp"
             android:layout_height="wrap_content"
-            android:text="My Added Cats"></Button
-            ></LinearLayout>
+            android:background="@drawable/design"
+            android:text="My Added Cats"></Button>
+
+    </LinearLayout>
+
+
+
+    </GridLayout>
+
 </LinearLayout>

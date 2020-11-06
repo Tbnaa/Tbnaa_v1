@@ -1,54 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
+    android:orientation="vertical"
+    android:weightSum="8"
     tools:context=".CatProfile">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal|center_vertical">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_alignParentLeft="true"
+                android:contentDescription="humburger menu icon"
+                android:src="@drawable/ic_menu"></ImageView>
+
+            <TextView
+                android:layout_width="309dp"
+                android:layout_height="28dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="My Profile"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"></TextView>
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/tbnaacircle"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_alignParentRight="true"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+<GridLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="7"
+    android:background="@drawable/whitebackground">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentLeft="true"
-                    android:contentDescription="humburger menu icon"
-                    android:src="@drawable/ic_menu"></ImageView>
-                //TODO: make the text changeable based on each page using the tool bar
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Cat Profile"
-                    android:textColor="@android:color/black"
-                    android:gravity="center"
-                    android:textSize="22sp"
-                    android:textStyle="bold"></TextView>
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
-                    android:contentDescription="logo to be placed"
-                    android:src="@drawable/playstore"></ImageView>
-
-            </LinearLayout>
+            android:layout_height="0dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -60,8 +75,8 @@
                 android:layout_width="236dp"
                 android:layout_height="156dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="70dp"
-                android:src="@drawable/blackcat" />
+                android:layout_marginTop="80dp"
+                android:src="@drawable/cat"/>
 
             <TextView
                 android:id="@+id/textView4"
@@ -72,7 +87,7 @@
                 android:layout_weight="2"
                 android:gravity="center"
                 android:paddingLeft="20dp"
-                android:text="Cat State:"
+                android:text="Cat State"
                 android:textColor="#326167"
                 android:textSize="18sp" />
 
@@ -343,4 +358,6 @@
             </TableRow>
         </TableLayout>
     </ScrollView>
-</RelativeLayout>
+
+</GridLayout>
+</LinearLayout>
