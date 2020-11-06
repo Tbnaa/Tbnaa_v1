@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".SignUp" />
         <activity android:name=".Login" />
+        <activity android:name=".AddingCatsRequestsList"/>
     </application>
 
 </manifest>
