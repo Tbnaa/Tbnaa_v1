@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -68,6 +72,40 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:contentDescription="humburger menu icon"
+                    android:src="@drawable/ic_menu"/>
+
+<!--                TODO: make the text changeable based on each page using the tool bar-->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Adaption Form"
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:contentDescription="logo to be placed"
+                    android:src="@drawable/playstore"/>
+
+            </LinearLayout>
+
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -79,13 +117,11 @@
                 android:layout_height="156dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="70dp"
-                android:src="@drawable/blackcat"
-                />
+                android:src="@drawable/blackcat"/>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
-
 
             </TableRow>
 
@@ -103,6 +139,7 @@
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:layout_marginTop="40dp"/>
+
             </TableRow>
 
             <TableRow
@@ -118,9 +155,8 @@
                     android:layout_marginLeft="20dp"
                     android:ems="10"
                     android:inputType="textPersonName" />
+
             </TableRow>
-
-
 
             <TableRow
                 android:layout_width="match_parent"
@@ -137,9 +173,8 @@
                     android:text="The name of the veterinary clinic you intend to deal with:"
                     android:textColor="#000000"
                     android:textSize="18sp" />
+
             </TableRow>
-
-
 
             <TableRow
                 android:layout_width="match_parent"
@@ -155,9 +190,10 @@
                     android:layout_marginRight="100dp"
                     android:gravity="start|top"
                     android:inputType="textMultiLine"
-                    android:layout_marginLeft="20dp"
-                    />
+                    android:layout_marginLeft="20dp"/>
+
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
@@ -172,12 +208,12 @@
                     android:text="Have you raised cats or animals before?"
                     android:textColor="#000000"
                     android:textSize="18sp" />
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
-
 
                     <RadioGroup
                         android:layout_marginTop="15dp"
@@ -200,10 +236,12 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="No"
-                            android:textSize="18sp" />Size="18sp" />
+                            android:textSize="18sp" />
+
                     </RadioGroup>
 
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
@@ -218,6 +256,7 @@
                     android:text="If yes, what happened to them?"
                     android:textColor="#000000"
                     android:textSize="18sp" />
+
             </TableRow>
 
             <TableRow
@@ -240,11 +279,13 @@
                     android:inputType="textPersonName" />
 
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
@@ -259,6 +300,7 @@
                     android:text="Do you live alone?"
                     android:textColor="#000000"
                     android:textSize="18sp" />
+
             </TableRow>
 
             <TableRow
@@ -270,8 +312,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radioButton35"
@@ -288,13 +329,14 @@
                         android:layout_weight="1"
                         android:text="No"
                         android:textSize="18sp" />
+
                 </RadioGroup>
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/catAge_textView12424"
@@ -306,7 +348,9 @@
                     android:text="Do you have children?"
                     android:textColor="#000000"
                     android:textSize="18sp" />
+
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -315,8 +359,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radioButton897"
@@ -335,7 +378,9 @@
                         android:textSize="18sp" />
 
                 </RadioGroup>
+
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
@@ -350,6 +395,7 @@
                     android:text="Are your parents agree with the adoption?"
                     android:textColor="#000000"
                     android:textSize="18sp" />
+
             </TableRow>
 
             <TableRow
@@ -361,8 +407,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radioButton35l"
@@ -379,8 +424,11 @@
                         android:layout_weight="1"
                         android:text="No"
                         android:textSize="18sp" />
+
                 </RadioGroup>
+
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
@@ -395,6 +443,7 @@
                     android:text="Does anyone in your family is allergic to cats?"
                     android:textColor="#000000"
                     android:textSize="18sp" />
+
             </TableRow>
 
             <TableRow
@@ -406,8 +455,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radioButtioon35l"
@@ -424,8 +472,11 @@
                         android:layout_weight="1"
                         android:text="No"
                         android:textSize="18sp" />
+
                 </RadioGroup>
+
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
@@ -440,6 +491,7 @@
                     android:text="To whom this cat will be?"
                     android:textColor="#000000"
                     android:textSize="18sp" />
+
             </TableRow>
 
             <TableRow
@@ -451,8 +503,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radioButton3y5l"
@@ -460,8 +511,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:text="Me"
-                        android:textSize="18sp"
-                        />
+                        android:textSize="18sp"/>
 
                     <RadioButton
                         android:id="@+id/radioButtton246i"
@@ -470,8 +520,11 @@
                         android:layout_weight="1"
                         android:text="For others"
                         android:textSize="18sp" />
+
                 </RadioGroup>
+
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
@@ -486,6 +539,7 @@
                     android:text="Where will you put the cat?"
                     android:textColor="#000000"
                     android:textSize="18sp" />
+
             </TableRow>
 
             <TableRow
@@ -497,8 +551,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radioButtonl3y5l"
@@ -508,8 +561,7 @@
                         android:text="Inside the house"
                         android:layout_marginTop="-9dp"
                         android:textSize="18sp"
-                        android:layout_weight="3"
-                        />
+                        android:layout_weight="3"/>
 
                     <RadioButton
                         android:id="@+id/radioBputtton246i"
@@ -526,10 +578,10 @@
                     android:layout_marginLeft="20dp"
                     android:text="rooftop"
                     android:textSize="18sp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1"/>
 
                 </RadioGroup>
+
         </TableRow>
 
             <TableRow
@@ -551,7 +603,9 @@
                     android:text="I pledge and I swear God that I will do my best to take care of the cat, feed it, treat it when needed, provide a home for it, and not abandon it whatever the circumstances, and communicate with Tbnaa immediately if I'm not able to apply the rules above."
                     android:textColor="#000000"
                     android:textSize="18sp" />
+
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -564,10 +618,10 @@
                 android:text="Agree"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:textSize="18sp"
+                android:textSize="18sp"/>
 
-                />
             </TableRow>
+
             <Button
                 android:id="@+id/button"
                 android:layout_width="150dp"
@@ -583,12 +637,21 @@
                 android:ems="10"
                 android:layout_gravity="center_horizontal"
                 android:text="Adapt"
+
                 android:gravity="center"
                 />
 
 
+                android:gravity="center"/>
+
 
         </TableLayout>
+
     </ScrollView>
+
     </GridLayout>
 </LinearLayout>
+
+
+</RelativeLayout>
+
