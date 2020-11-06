@@ -1,404 +1,486 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
+    android:orientation="vertical"
+    android:weightSum="8"
     tools:context=".activity_adding_cat">
 
-
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal|center_vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
                 android:layout_alignParentLeft="true"
                 android:contentDescription="humburger menu icon"
-                android:src="@drawable/ic_menu"></ImageView>
-            //TODO: make the text changeable based on each page using the tool bar
+                android:src="@drawable/ic_menu"/>
+
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="309dp"
+                android:layout_height="28dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Adding Cat For Adaption"
-                android:textColor="@android:color/black"
-                android:gravity="center"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="My Profile"
+                android:textColor="@android:color/white"
                 android:textSize="22sp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"/>
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:contentDescription="logo to be placed"
-                android:src="@drawable/playstore"></ImageView>
+                android:id="@+id/imageView4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/tbnaacircle"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_alignParentRight="true"/>
 
         </LinearLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="-70dp"/>
+    </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="274dp"
-            android:layout_height="156dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="70dp"
-            android:src="@drawable/blackcat"
-            />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="33dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginRight="10dp"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="Upload the cat photo:"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                 />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/design"
-                android:textSize="14sp"
-                android:layout_weight="2"
-                android:ems="10"
-                android:layout_gravity="center_horizontal"
-                android:text="Upload"
-                android:gravity="center"
-
-                />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/catName_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="Cat's name:"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-        <EditText
-                android:id="@+id/catName_editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Enter Cat's Name"
-                android:inputType="textPersonName"
-                android:layout_marginLeft="20dp"/>
-        </TableRow>
-
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/catAge_TextView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:text="Cat's age:"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-        </TableRow>
-
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <EditText
-                android:id="@+id/catAge_editText1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Enter Cat's Age"
-                android:layout_marginLeft="20dp"
-                android:inputType="textPersonName" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/catAge_textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:text="Cat's gender:"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-           <LinearLayout
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="20dp"
-              >
-
-            <RadioGroup
-                android:layout_marginTop="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radioButton"
-                    android:layout_width="76dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Male"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="89dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:text="Female"
-                    android:textSize="18sp" />
-            </RadioGroup>
-           </LinearLayout>
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/catName_textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:text="In which city does the cat live?"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp">
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/cities_spinner"
-                android:layout_marginTop="15dp"
-                ></Spinner>
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-
-                android:id="@+id/catName_textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:text="The cat's health condition:"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-            <EditText
-                android:id="@+id/catAge_editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:layout_marginLeft="20dp"
-                android:hint="Enter Health Condition"
-                android:inputType="textPersonName" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/catAge_textView156"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:text="Has the cat been vaccinated?"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-        </TableRow>
-
-     <TableRow
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:background="@drawable/whitebackground">
 
-            <RadioGroup
-                android:layout_marginTop="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                >
-
-                <RadioButton
-                    android:id="@+id/radioButton35"
-                    android:layout_width="76dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="Yes"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/radioButton246"
-                    android:layout_width="89dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="No"
-                    android:textSize="18sp" />
-            </RadioGroup>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-
-            <TextView
-                android:id="@+id/catAge_textView12424"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:text="Has the cat been neutered?"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-        </TableRow>
-        <TableRow
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RadioGroup
-                android:layout_marginTop="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/radioButton897"
-                    android:layout_width="76dp"
+                <TableRow
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="Yes"
-                    android:textSize="18sp" />
+                    android:layout_marginTop="-70dp"
+                    android:layout_gravity="center_horizontal"/>
 
-                <RadioButton
-                    android:id="@+id/radioButton66"
-                    android:layout_width="89dp"
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="274dp"
+                    android:layout_height="156dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="90dp"
+                    android:src="@drawable/blackcat"/>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Upload cat's photo"
+                        android:textColor="#000000"
+                        android:textSize="18sp"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/design"
+                        android:textSize="20sp"
+                        android:layout_weight="2"
+                        android:ems="10"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Upload"
+                        android:textColor="#FFFF"
+                        android:gravity="center"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/catName_textView"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cat's name:"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                <EditText
+                        android:id="@+id/catName_editText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Enter Cat's Name"
+                        android:inputType="textPersonName"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" >
+
+                    <TextView
+                        android:id="@+id/catAge_TextView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:text="Cat's age:"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <EditText
+                        android:id="@+id/catAge_editText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Enter Cat's Age"
+                        android:inputType="textPersonName" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" >
+
+                    <TextView
+                        android:id="@+id/catAge_textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:text="Cat's gender:"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
+
+                        <RadioGroup
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/radioButton"
+                                android:layout_width="76dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Male"
+                                android:textSize="18sp" />
+
+                            <RadioButton
+                                android:id="@+id/radioButton2"
+                                android:layout_width="89dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+
+                                android:text="Female"
+                                android:textSize="18sp" />
+                        </RadioGroup>
+
+                   </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/catName_textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:text="In which city does the cat live?"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/cities_spinner"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center">
+
+                    </Spinner>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/catName_textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:text="The cat's health condition:"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <EditText
+                        android:id="@+id/catAge_editText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Enter Health Condition"
+                        android:inputType="textPersonName"
+                        android:gravity="center"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/catAge_textView156"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:text="Has the cat been vaccinated?"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <RadioGroup
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <RadioButton
+                            android:id="@+id/radioButton35"
+                            android:layout_width="76dp"
+                            android:layout_height="wrap_content"
+                            android:text="Yes"
+                            android:textSize="18sp" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton246"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="No"
+                            android:textSize="18sp" />
+
+                    </RadioGroup>
+
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/catAge_textView12424"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:text="Has the cat been neutered?"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <RadioGroup
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <RadioButton
+                            android:id="@+id/radioButton897"
+                            android:layout_width="76dp"
+                            android:layout_height="wrap_content"
+                            android:text="Yes"
+                            android:textSize="18sp" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton66"
+                            android:layout_width="89dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="No"
+                            android:textSize="18sp" />
+
+                    </RadioGroup>
+
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="No"
-                    android:textSize="18sp" />
+                    android:gravity="center_horizontal">
 
-            </RadioGroup>
-        </TableRow>
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:text="Cat’s Story:"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
+                </TableRow>
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:text="Cat’s Story:"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
 
-        <EditText
-                android:layout_marginTop="10dp"
-                android:id="@+id/editTextTextMultiLine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-            android:layout_marginLeft="20dp"
-            android:hint="Enter Cat's Story"
-            />
-        </TableRow>
-    </TableLayout>
-    </ScrollView>
-</RelativeLayout>
+                <EditText
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/editTextTextMultiLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:layout_marginLeft="20dp"
+                        android:hint="Enter Cat's Story"/>
+
+                </TableRow>
+
+                <Button
+                    android:id="@+id/button22"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/design"
+                    android:textSize="20sp"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Add Cat"
+                    android:textColor="#FFFF"
+                    android:gravity="center"/>
+
+            </TableLayout>
+
+        </ScrollView>
+
+    </GridLayout>
+
+</LinearLayout>
 
 
