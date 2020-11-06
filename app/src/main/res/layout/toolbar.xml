@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -16,8 +17,10 @@
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:contentDescription="humburger menu icon"
-            android:src="@drawable/ic_menu"></ImageView>
-        //TODO: make the text changeable based on each page using the tool bar
+            android:src="@drawable/ic_menu"/>
+
+<!--        TODO: make the text changeable based on each page using the tool bar-->
+
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -26,19 +29,19 @@
             android:textColor="@android:color/black"
             android:gravity="center"
             android:textSize="22sp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:contentDescription="logo to be placed"
-            android:src="@drawable/playstore"></ImageView>
+            android:src="@drawable/playstore"/>
 
     </LinearLayout>
-    <view
-        android:layout_width="match_parent"
-        android:layout_height="1dp"></view>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
 
 </RelativeLayout>

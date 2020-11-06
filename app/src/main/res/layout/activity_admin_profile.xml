@@ -90,7 +90,7 @@
             android:layout_marginTop="15sp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
-            android:text="Admin First & Last Name"
+            android:text="Admin First and Last Name"
             android:textColor="@color/Color3"
             android:textSize="32sp"
             android:textStyle="bold" />
