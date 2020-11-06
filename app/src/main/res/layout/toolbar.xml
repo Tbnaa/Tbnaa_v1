@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="My Profile"
+            android:text=""
             android:textColor="@android:color/black"
             android:gravity="center"
             android:textSize="22sp"
