@@ -46,8 +46,6 @@ public class AdoptionRequestsAdmin extends AppCompatActivity {
 
                 //TODO: Open more INFO
 
-                Intent intent = new Intent(getApplicationContext(), AdoptionRequests_INFO_Admin.class);
-                startActivity(intent);
             }
         });
     }
