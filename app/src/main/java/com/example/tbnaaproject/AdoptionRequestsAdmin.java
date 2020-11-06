@@ -45,7 +45,6 @@ public class AdoptionRequestsAdmin extends AppCompatActivity {
                 Word word = words.get(position);
 
                 //TODO: Open more INFO
-
             }
         });
     }
