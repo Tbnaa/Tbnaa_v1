@@ -5,46 +5,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
     android:orientation="vertical"
+    android:weightSum="8"
     tools:context=".AddingCatsRequestsList">
 
     <RelativeLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal|center_vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
                 android:layout_alignParentLeft="true"
                 android:contentDescription="humburger menu icon"
+
+                android:src="@drawable/ic_menu"></ImageView>
+
+
                 android:src="@drawable/ic_menu"/>
 <!--            TODO: make the text changeable based on each page using the tool bar-->
+
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="309dp"
+                android:layout_height="28dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Adding Cat Request"
-                android:textColor="@android:color/black"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="My Profile"
+                android:textColor="@android:color/white"
                 android:textSize="22sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"></TextView>
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:contentDescription="logo to be placed"
-                android:src="@drawable/playstore"/>
+                android:id="@+id/imageView4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/tbnaacircle"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_alignParentRight="true"/>
 
         </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:columnCount="1"
+        android:padding="5dp"
+        android:background="@drawable/whitebackground">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp">
+    <ScrollView
+        android:id="@+id/scrollView_ForAddCatRequest"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints"
+        android:layout_weight="1">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp">
 
         <View
             android:layout_width="match_parent"
@@ -63,6 +100,7 @@
             android:layout_height="match_parent"
             tools:ignore="MissingConstraints"
             android:layout_weight="1">
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -115,6 +153,63 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+
+                                android:text="Ahmed"/>
+                    </LinearLayout>
+                        <Button
+                            android:layout_width="105dp"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/design"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Show Details"
+                            android:textStyle="bold"
+                            android:textColor="@color/Color5"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:layout_marginBottom="10dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/yes_ii" />
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/no_ii"/>
+                    </LinearLayout>
+
+                </TableRow>
+                <view
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/black"
+                    android:layout_marginTop="10dp" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+                    <ImageView
+                        android:id="@+id/addCatRequest2"
+                        android:layout_width="60dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/cat"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+
                                 android:text="Luna"/>
 
                         </LinearLayout>
@@ -185,6 +280,7 @@
 
                     <TableRow
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
                         android:padding="15dp">
 
@@ -277,6 +373,60 @@
 
                         </LinearLayout>
 
+                        <Button
+                            android:layout_width="105dp"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/design"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Show Details"
+                            android:textStyle="bold"
+                            android:textColor="@color/Color5"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:layout_marginBottom="10dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/yes_ii" />
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/no_ii"/>
+                    </LinearLayout>
+
+                </TableRow>
+                <view
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/black"
+                    android:layout_marginTop="10dp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+                    <ImageView
+                        android:id="@+id/addCatRequest3"
+                        android:layout_width="60dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/cat"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+
+
                     </TableRow>
 
                     <View
@@ -287,6 +437,7 @@
 
                     <TableRow
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
                         android:padding="15dp">
 
@@ -380,6 +531,60 @@
                                 android:src="@drawable/ic_reject"/>
                         </LinearLayout>
 
+                        <Button
+                            android:layout_width="105dp"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/design"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Show Details"
+                            android:textStyle="bold"
+                            android:textColor="@color/Color5"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:layout_marginBottom="10dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/yes_ii" />
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/no_ii"/>
+                    </LinearLayout>
+
+                </TableRow>
+                <view
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/black"
+                    android:layout_marginTop="10dp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+                    <ImageView
+                        android:id="@+id/addCatRequest4"
+                        android:layout_width="60dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/cat"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+
+
                     </TableRow>
 
                     <View
@@ -390,6 +595,7 @@
 
                     <TableRow
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
                         android:padding="15dp">
 
@@ -484,6 +690,60 @@
 
                         </LinearLayout>
 
+                        <Button
+                            android:layout_width="105dp"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/design"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Show Details"
+                            android:textStyle="bold"
+                            android:textColor="@color/Color5"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:layout_marginBottom="10dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/yes_ii" />
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/no_ii"/>
+                    </LinearLayout>
+
+                </TableRow>
+                <view
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/black"
+                    android:layout_marginTop="10dp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+                    <ImageView
+                        android:id="@+id/addCatRequest5"
+                        android:layout_width="60dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/cat"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+
+
                     </TableRow>
 
                     <View
@@ -494,6 +754,7 @@
 
                     <TableRow
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
                         android:padding="15dp">
 
@@ -587,6 +848,60 @@
                                 android:src="@drawable/ic_reject"/>
                         </LinearLayout>
 
+                        <Button
+                            android:layout_width="105dp"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/design"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Show Details"
+                            android:textStyle="bold"
+                            android:textColor="@color/Color5"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:layout_marginBottom="10dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/yes_ii" />
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/no_ii"/>
+                    </LinearLayout>
+
+                </TableRow>
+                <view
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/black"
+                    android:layout_marginTop="10dp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+                    <ImageView
+                        android:id="@+id/addCatRequest6"
+                        android:layout_width="60dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/cat"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+
+
                     </TableRow>
 
                     <View
@@ -597,6 +912,7 @@
 
                     <TableRow
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
                         android:padding="15dp">
 
@@ -690,6 +1006,56 @@
                                 android:src="@drawable/ic_reject"/>
 
                         </LinearLayout>
+
+                        <Button
+                            android:layout_width="105dp"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/design"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Show Details"
+                            android:textStyle="bold"
+                            android:textColor="@color/Color5"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:layout_marginBottom="10dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/yes_ii" />
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="1dp"
+                            android:scaleType="centerInside"
+                            android:background="#FFFF"
+                            android:src="@drawable/no_ii"/>
+                    </LinearLayout>
+
+                </TableRow>
+                <view
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/black"
+                    android:layout_marginTop="10dp" />
+
+
+
+
+            </TableLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
+    </GridLayout>
+
 
                     </TableRow>
 
