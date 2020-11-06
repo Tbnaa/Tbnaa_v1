@@ -39,7 +39,6 @@
 
     </RelativeLayout>
 
-
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -55,7 +54,7 @@
             android:orientation="vertical">
 
             <ScrollView
-                android:id="@+id/scrollView1"
+                android:id="@+id/scrollView12"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 tools:ignore="DuplicateIds,MissingConstraints"
@@ -84,7 +83,7 @@
                         android:fontFamily="sans-serif-condensed-medium"/>
 
                     <EditText
-                        android:id="@+id/signup_firstName_editText"
+                        android:id="@+id/signup_firstName_editText1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -94,7 +93,7 @@
                         android:ems="10" />
 
                     <EditText
-                        android:id="@+id/signup_lastName_editText"
+                        android:id="@+id/signup_lastName_editText1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -104,7 +103,7 @@
                         android:ems="10" />
 
                     <EditText
-                        android:id="@+id/signup_userName_editText"
+                        android:id="@+id/signup_userName_editText1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -113,7 +112,7 @@
                         android:ems="10" />
 
                     <EditText
-                        android:id="@+id/signup_email_editText"
+                        android:id="@+id/signup_email_editText1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -123,7 +122,7 @@
                         android:ems="10" />
 
                     <EditText
-                        android:id="@+id/signup_password_editText"
+                        android:id="@+id/signup_password_editText1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -133,7 +132,7 @@
                         android:ems="10"/>
 
                     <EditText
-                        android:id="@+id/signup_phoneNo_editText"
+                        android:id="@+id/signup_phoneNo_editText1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -149,7 +148,7 @@
                         android:gravity="center">
 
                         <EditText
-                            android:id="@+id/signup_DoB_editText"
+                            android:id="@+id/signup_DoB_editText1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -160,7 +159,7 @@
                             android:ems="10"/>
 
                         <Button
-                            android:id="@+id/signup_DoB_button"
+                            android:id="@+id/signup_DoB_button1"
                             android:layout_width="150dp"
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
@@ -177,7 +176,7 @@
                     </LinearLayout>
 
                     <RadioGroup
-                        android:id="@+id/signup_gender_radioButtons"
+                        android:id="@+id/signup_gender_radioButtons1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -193,14 +192,14 @@
                             android:ems="10"/>
 
                         <RadioButton
-                            android:id="@+id/Male"
+                            android:id="@+id/Male1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="Male"/>
 
                         <RadioButton
-                            android:id="@+id/Female"
+                            android:id="@+id/Female1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -209,7 +208,7 @@
                     </RadioGroup>
 
                     <RadioGroup
-                        android:id="@+id/signup_socialState"
+                        android:id="@+id/signup_socialState1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -225,14 +224,14 @@
                             android:ems="6"/>
 
                         <RadioButton
-                            android:id="@+id/Single"
+                            android:id="@+id/Single1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="Single"/>
 
                         <RadioButton
-                            android:id="@+id/Married"
+                            android:id="@+id/Married1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -247,7 +246,7 @@
                         android:gravity="center_horizontal">
 
                         <TextView
-                            android:id="@+id/signup_city_editText"
+                            android:id="@+id/signup_city_editText1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textSize="18sp"
@@ -257,7 +256,7 @@
                             android:ems="10"/>
 
                         <Spinner
-                            android:id="@+id/signup_city_spinner"
+                            android:id="@+id/signup_city_spinner1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
@@ -268,7 +267,7 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/signup_submit_button"
+                        android:id="@+id/signup_submit_button1"
                         android:layout_width="200dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center_horizontal"
@@ -287,6 +286,7 @@
         </LinearLayout>
 
     </GridLayout>
+
 
         <ScrollView
             android:id="@+id/scrollView1"
@@ -514,5 +514,6 @@
             </LinearLayout>
 
         </ScrollView>
+
 
 </LinearLayout>
