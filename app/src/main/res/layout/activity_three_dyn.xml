@@ -23,6 +23,7 @@
         android:background="@drawable/design"
         android:textColor="#fff"
         android:text="User Info" />
+
     <Button
         android:id="@+id/Fragment3"
         android:layout_width="match_parent"
@@ -30,6 +31,7 @@
         android:textColor="#fff"
         android:background="@drawable/design"
         android:text="Form Info" />
+
     <fragment
         android:id="@+id/DefaultFragment"
         android:layout_width="match_parent"
