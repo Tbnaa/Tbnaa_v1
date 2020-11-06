@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -48,162 +49,61 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
+
     </RelativeLayout>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="15dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
 
-    <ScrollView
-        android:id="@+id/scrollView_ForAddCatRequest"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        tools:ignore="MissingConstraints"
-        android:layout_weight="1">
+        <ScrollView
+            android:id="@+id/scrollView_ForAddCatRequest"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            tools:ignore="MissingConstraints"
+            android:layout_weight="1">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_marginHorizontal="30dp">
-
-            <TableLayout
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:stretchColumns="0,1,2"
-                tools:layout_editor_absoluteX="202dp"
-                tools:layout_editor_absoluteY="263dp">
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="30dp">
 
-                <TableRow
-                    android:layout_width="match_parent"
+                <TableLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="15dp">
+                    android:orientation="vertical"
+                    android:stretchColumns="0,1,2"
+                    tools:layout_editor_absoluteX="202dp"
+                    tools:layout_editor_absoluteY="263dp">
 
-                    <ImageView
-                        android:id="@+id/addCatRequest1"
-                        android:layout_width="60dp"
-                        android:layout_height="80dp"
-                        app:srcCompat="@drawable/cat"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <TableRow
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:layout_marginLeft="20dp">
+                        android:padding="15dp">
+
+                        <ImageView
+                            android:id="@+id/addCatRequest1"
+                            android:layout_width="60dp"
+                            android:layout_height="80dp"
+                            app:srcCompat="@drawable/cat"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:layout_marginLeft="20dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Cat Name: "
-                            android:textSize="15sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Luna"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="User Name: "
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Ahmed"/>
-
-                    </LinearLayout>
-
-                        <Button
-                            android:layout_width="105dp"
-                            android:layout_height="25dp"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/design"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Show Details"
-                            android:textStyle="bold"
-                            android:textColor="@color/Color5"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:layout_marginBottom="10dp"
-                            android:scaleType="centerInside"
-                            android:background="#6ACF6E"
-                            android:src="@drawable/ic_accept" />
-
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:scaleType="centerInside"
-                            android:background="@color/Color6"
-                            android:src="@drawable/ic_reject"/>
-
-                    </LinearLayout>
-
-                </TableRow>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@android:color/black"
-                    android:layout_marginTop="10dp" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:id="@+id/addCatRequest2"
-                        android:layout_width="60dp"
-                        android:layout_height="80dp"
-                        app:srcCompat="@drawable/cat"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical" />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:layout_marginLeft="20dp">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                                android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -215,493 +115,595 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Bella"/>
+                                android:text="Luna"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="User Name: "
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Ahmed"/>
+
+                        </LinearLayout>
+
+                            <Button
+                                android:layout_width="105dp"
+                                android:layout_height="25dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/design"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Show Details"
+                                android:textStyle="bold"
+                                android:textColor="@color/Color5"/>
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="User Name: "
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:layout_marginBottom="10dp"
+                                android:scaleType="centerInside"
+                                android:background="#6ACF6E"
+                                android:src="@drawable/ic_accept" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sara"/>
-
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="105dp"
-                            android:layout_height="25dp"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/design"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Show Details"
-                            android:textStyle="bold"
-                            android:textColor="@color/Color5"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:layout_marginBottom="10dp"
-                            android:scaleType="centerInside"
-                            android:background="#6ACF6E"
-                            android:src="@drawable/ic_accept" />
-
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:scaleType="centerInside"
-                            android:background="@color/Color6"
-                            android:src="@drawable/ic_reject"/>
-
-                    </LinearLayout>
-
-                </TableRow>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@android:color/black"
-                    android:layout_marginTop="10dp" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:id="@+id/addCatRequest3"
-                        android:layout_width="60dp"
-                        android:layout_height="80dp"
-                        app:srcCompat="@drawable/cat"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:layout_marginLeft="20dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Cat Name: "
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Kitty"/>
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:scaleType="centerInside"
+                                android:background="@color/Color6"
+                                android:src="@drawable/ic_reject"/>
 
                         </LinearLayout>
 
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@android:color/black"
+                        android:layout_marginTop="10dp" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+                        <ImageView
+                            android:id="@+id/addCatRequest2"
+                            android:layout_width="60dp"
+                            android:layout_height="80dp"
+                            app:srcCompat="@drawable/cat"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical" />
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:layout_marginLeft="20dp">
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="User Name: "
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                android:orientation="horizontal">
 
-                            <TextView
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cat Name: "
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Bella"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Ayman"/>
+                                android:orientation="horizontal">
 
-                        </LinearLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="User Name: "
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
 
-                        <Button
-                            android:layout_width="105dp"
-                            android:layout_height="25dp"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/design"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Show Details"
-                            android:textStyle="bold"
-                            android:textColor="@color/Color5"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sara"/>
 
-                    </LinearLayout>
+                            </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:layout_marginBottom="10dp"
-                            android:scaleType="centerInside"
-                            android:background="#6ACF6E"
-                            android:src="@drawable/ic_accept" />
-
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:scaleType="centerInside"
-                            android:background="@color/Color6"
-                            android:src="@drawable/ic_reject"/>
-                    </LinearLayout>
-
-                </TableRow>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@android:color/black"
-                    android:layout_marginTop="10dp" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:id="@+id/addCatRequest4"
-                        android:layout_width="60dp"
-                        android:layout_height="80dp"
-                        app:srcCompat="@drawable/cat"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:layout_marginLeft="20dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Cat Name: "
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Callie"/>
+                            <Button
+                                android:layout_width="105dp"
+                                android:layout_height="25dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/design"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Show Details"
+                                android:textStyle="bold"
+                                android:textColor="@color/Color5"/>
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="User Name: "
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:layout_marginBottom="10dp"
+                                android:scaleType="centerInside"
+                                android:background="#6ACF6E"
+                                android:src="@drawable/ic_accept" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Malak"/>
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:scaleType="centerInside"
+                                android:background="@color/Color6"
+                                android:src="@drawable/ic_reject"/>
 
                         </LinearLayout>
 
-                        <Button
-                            android:layout_width="105dp"
-                            android:layout_height="25dp"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/design"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Show Details"
-                            android:textStyle="bold"
-                            android:textColor="@color/Color5" />
+                    </TableRow>
 
-                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@android:color/black"
+                        android:layout_marginTop="10dp" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <TableRow
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
+                        android:padding="15dp">
 
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:layout_marginBottom="10dp"
-                            android:scaleType="centerInside"
-                            android:background="#6ACF6E"
-                            android:src="@drawable/ic_accept" />
-
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:scaleType="centerInside"
-                            android:background="@color/Color6"
-                            android:src="@drawable/ic_reject"/>
-
-                    </LinearLayout>
-
-                </TableRow>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@android:color/black"
-                    android:layout_marginTop="10dp" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:id="@+id/addCatRequest5"
-                        android:layout_width="60dp"
-                        android:layout_height="80dp"
-                        app:srcCompat="@drawable/cat"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:layout_marginLeft="20dp">
+                        <ImageView
+                            android:id="@+id/addCatRequest3"
+                            android:layout_width="60dp"
+                            android:layout_height="80dp"
+                            app:srcCompat="@drawable/cat"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:layout_marginLeft="20dp">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Cat Name: "
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                android:orientation="horizontal">
 
-                            <TextView
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cat Name: "
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Kitty"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Nala"/>
+                                android:orientation="horizontal">
 
-                        </LinearLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="User Name: "
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Ayman"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="User Name: "
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                            </LinearLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Majed"/>
-
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="105dp"
-                            android:layout_height="25dp"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/design"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Show Details"
-                            android:textStyle="bold"
-                            android:textColor="@color/Color5"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:layout_marginBottom="10dp"
-                            android:scaleType="centerInside"
-                            android:background="#6ACF6E"
-                            android:src="@drawable/ic_accept" />
-
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:scaleType="centerInside"
-                            android:background="@color/Color6"
-                            android:src="@drawable/ic_reject"/>
-                    </LinearLayout>
-
-                </TableRow>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@android:color/black"
-                    android:layout_marginTop="10dp" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:id="@+id/addCatRequest6"
-                        android:layout_width="60dp"
-                        android:layout_height="80dp"
-                        app:srcCompat="@drawable/cat"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:layout_marginLeft="20dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Cat Name: "
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Zeo"/>
+                            <Button
+                                android:layout_width="105dp"
+                                android:layout_height="25dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/design"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Show Details"
+                                android:textStyle="bold"
+                                android:textColor="@color/Color5"/>
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
 
-                            <TextView
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:layout_marginBottom="10dp"
+                                android:scaleType="centerInside"
+                                android:background="#6ACF6E"
+                                android:src="@drawable/ic_accept" />
+
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:scaleType="centerInside"
+                                android:background="@color/Color6"
+                                android:src="@drawable/ic_reject"/>
+                        </LinearLayout>
+
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@android:color/black"
+                        android:layout_marginTop="10dp" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+                        <ImageView
+                            android:id="@+id/addCatRequest4"
+                            android:layout_width="60dp"
+                            android:layout_height="80dp"
+                            app:srcCompat="@drawable/cat"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:layout_marginLeft="20dp">
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="User Name: "
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                android:orientation="horizontal">
 
-                            <TextView
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cat Name: "
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Callie"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Maram"/>
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="User Name: "
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Malak"/>
+
+                            </LinearLayout>
+
+                            <Button
+                                android:layout_width="105dp"
+                                android:layout_height="25dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/design"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Show Details"
+                                android:textStyle="bold"
+                                android:textColor="@color/Color5" />
 
                         </LinearLayout>
 
-                        <Button
-                            android:layout_width="105dp"
-                            android:layout_height="25dp"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/design"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Show Details"
-                            android:textStyle="bold"
-                            android:textColor="@color/Color5"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:layout_marginBottom="10dp"
+                                android:scaleType="centerInside"
+                                android:background="#6ACF6E"
+                                android:src="@drawable/ic_accept" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:scaleType="centerInside"
+                                android:background="@color/Color6"
+                                android:src="@drawable/ic_reject"/>
+
+                        </LinearLayout>
+
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@android:color/black"
+                        android:layout_marginTop="10dp" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
+                        android:padding="15dp">
 
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:layout_marginBottom="10dp"
-                            android:scaleType="centerInside"
-                            android:background="#6ACF6E"
-                            android:src="@drawable/ic_accept" />
+                        <ImageView
+                            android:id="@+id/addCatRequest5"
+                            android:layout_width="60dp"
+                            android:layout_height="80dp"
+                            app:srcCompat="@drawable/cat"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical" />
 
-                        <ImageButton
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:elevation="1dp"
-                            android:scaleType="centerInside"
-                            android:background="@color/Color6"
-                            android:src="@drawable/ic_reject"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:layout_marginLeft="20dp">
 
-                    </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
 
-                </TableRow>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cat Name: "
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@android:color/black"
-                    android:layout_marginTop="10dp" />
-            </TableLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nala"/>
 
-        </RelativeLayout>
+                            </LinearLayout>
 
-    </ScrollView>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
 
-</RelativeLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="User Name: "
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Majed"/>
+
+                            </LinearLayout>
+
+                            <Button
+                                android:layout_width="105dp"
+                                android:layout_height="25dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/design"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Show Details"
+                                android:textStyle="bold"
+                                android:textColor="@color/Color5"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:layout_marginBottom="10dp"
+                                android:scaleType="centerInside"
+                                android:background="#6ACF6E"
+                                android:src="@drawable/ic_accept" />
+
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:scaleType="centerInside"
+                                android:background="@color/Color6"
+                                android:src="@drawable/ic_reject"/>
+                        </LinearLayout>
+
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@android:color/black"
+                        android:layout_marginTop="10dp" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+                        <ImageView
+                            android:id="@+id/addCatRequest6"
+                            android:layout_width="60dp"
+                            android:layout_height="80dp"
+                            app:srcCompat="@drawable/cat"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:layout_marginLeft="20dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cat Name: "
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Zeo"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="User Name: "
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Maram"/>
+
+                            </LinearLayout>
+
+                            <Button
+                                android:layout_width="105dp"
+                                android:layout_height="25dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/design"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Show Details"
+                                android:textStyle="bold"
+                                android:textColor="@color/Color5"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:layout_marginBottom="10dp"
+                                android:scaleType="centerInside"
+                                android:background="#6ACF6E"
+                                android:src="@drawable/ic_accept" />
+
+                            <ImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:elevation="1dp"
+                                android:scaleType="centerInside"
+                                android:background="@color/Color6"
+                                android:src="@drawable/ic_reject"/>
+
+                        </LinearLayout>
+
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@android:color/black"
+                        android:layout_marginTop="10dp" />
+                </TableLayout>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
 
 </LinearLayout>
