@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,9 +12,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:text="">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +30,7 @@
                 android:layout_weight="1"
                 android:layout_alignParentLeft="true"
                 android:contentDescription="humburger menu icon"
-                android:src="@drawable/ic_menu"></ImageView>
+                android:src="@drawable/ic_menu"/>
 
             <TextView
                 android:layout_width="309dp"
@@ -38,7 +40,7 @@
                 android:text="My Profile"
                 android:textColor="@android:color/white"
                 android:textSize="22sp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"/>
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -62,170 +64,188 @@
         android:padding="20dp"
         android:background="@drawable/whitebackground">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp">
-
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:layout_centerInParent="true"
-            android:contentDescription="Admin profile image"
-            android:id="@+id/admin_Edit_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/img_character2">
-        </com.mikhaellopez.circularimageview.CircularImageView>
-
-        <ImageButton
-            android:id="@+id/admin_img_chooseFromFile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="35dp"
-            android:layout_marginTop="35dp"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:background="@drawable/design"
-            android:src="@drawable/ic_add_a_photo" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginHorizontal="40dp">
-
-        <TableLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:stretchColumns="1"
-            tools:layout_editor_absoluteX="202dp"
-            tools:layout_editor_absoluteY="263dp">
+            android:layout_marginTop="36dp">
 
-            <TableRow
+            <ImageView
+                android:layout_centerInParent="true"
+                android:contentDescription="Admin profile image"
+                android:id="@+id/admin_Edit_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/img_character2"/>
+
+            <ImageButton
+                android:id="@+id/admin_img_chooseFromFile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="35dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:background="@drawable/design"
+                android:src="@drawable/ic_add_a_photo" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="40dp">
+
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-                <TextView
-                    android:text="Name"
-                    android:textColor="@color/Color3"
-                    android:textSize="15sp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:stretchColumns="1"
+                tools:layout_editor_absoluteX="202dp"
+                tools:layout_editor_absoluteY="263dp">
 
-                <EditText
-                    android:id="@+id/admin_textEdit_Name"
-                    android:ems="10"
-                    android:textColor="@color/Color8"
-                    android:inputType="textPersonName"/>
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-                <TextView
-                    android:text="Username"
-                    android:textColor="@color/Color3"
-                    android:textSize="15sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <EditText
-                    android:id="@+id/admin_textEdit_username"
-                    android:ems="10"
-                    android:textColor="@color/Color8" />
-            </TableRow>
+                    <TextView
+                        android:text="Name"
+                        android:textColor="@color/Color3"
+                        android:textSize="15sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-                <TextView
-                    android:text="Email"
-                    android:textColor="@color/Color3"
-                    android:textSize="15sp" />
+                    <EditText
+                        android:id="@+id/admin_textEdit_Name"
+                        android:ems="10"
+                        android:textColor="@color/Color8"
+                        android:inputType="textPersonName"/>
 
-                <EditText
-                    android:id="@+id/admin_textEdit_Email"
-                    android:ems="10"
-                    android:textColor="@color/Color8"
-                    android:inputType="textEmailAddress" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="Password"
-                    android:textColor="@color/Color3"
-                    android:textSize="15sp" />
+                </TableRow>
 
-                <EditText
-                    android:id="@+id/admin_textEdit_Password"
-                    android:ems="10"
-                    android:textColor="@color/Color8"
-                    android:inputType="textPassword" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="Phone"
-                    android:textColor="@color/Color3"
-                    android:textSize="15sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <EditText
-                    android:id="@+id/admin_textEdit_Phone"
-                    android:ems="10"
-                    android:textColor="@color/Color8"
-                    android:inputType="phone" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="City"
-                    android:paddingTop="20dp"
-                    android:textColor="@color/Color3"
-                    android:textSize="15sp" />
+                    <TextView
+                        android:text="Username"
+                        android:textColor="@color/Color3"
+                        android:textSize="15sp" />
 
-                <Spinner
-                    android:id="@+id/admin_city_spinner"
-                    android:textColor="@color/Color8"
-                    android:textSize="15sp"
-                    android:padding="25dp"
-                    android:orientation="vertical"
-                    android:ems="10"/>
+                    <EditText
+                        android:id="@+id/admin_textEdit_username"
+                        android:ems="10"
+                        android:textColor="@color/Color8" />
 
-            </TableRow>
-        </TableLayout>
-    </RelativeLayout>
+                </TableRow>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="50dp"
-        android:gravity="center_horizontal">
-        <Button
-            android:id="@+id/admin_apply_modifications"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:background="@drawable/design"
-            android:text="Apply"
-            android:textColor="#fff"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-        <Button
-            android:id="@+id/admin_cancel_modifications"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="25dp"
-            android:background="@drawable/design"
-            android:text="Cancel"
-            android:textColor="#fff"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+                    <TextView
+                        android:text="Email"
+                        android:textColor="@color/Color3"
+                        android:textSize="15sp" />
 
-    </LinearLayout>
+                    <EditText
+                        android:id="@+id/admin_textEdit_Email"
+                        android:ems="10"
+                        android:textColor="@color/Color8"
+                        android:inputType="textEmailAddress" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Password"
+                        android:textColor="@color/Color3"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/admin_textEdit_Password"
+                        android:ems="10"
+                        android:textColor="@color/Color8"
+                        android:inputType="textPassword" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Phone"
+                        android:textColor="@color/Color3"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/admin_textEdit_Phone"
+                        android:ems="10"
+                        android:textColor="@color/Color8"
+                        android:inputType="phone" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="City"
+                        android:paddingTop="20dp"
+                        android:textColor="@color/Color3"
+                        android:textSize="15sp" />
+
+                    <Spinner
+                        android:id="@+id/admin_city_spinner"
+                        android:textColor="@color/Color8"
+                        android:textSize="15sp"
+                        android:padding="25dp"
+                        android:orientation="vertical"
+                        android:ems="10"/>
+
+                </TableRow>
+
+            </TableLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/admin_apply_modifications"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:background="@drawable/design"
+                android:text="Apply"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/admin_cancel_modifications"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/design"
+                android:text="Cancel"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </GridLayout>
+
 </LinearLayout>
