@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AddingCatsRequestsList">
+
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
                 android:layout_alignParentLeft="true"
                 android:contentDescription="humburger menu icon"
                 android:src="@drawable/ic_menu"/>
-            //TODO: make the text changeable based on each page using the tool bar
+<!--            TODO: make the text changeable based on each page using the tool bar-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -43,7 +44,8 @@
                 android:src="@drawable/playstore"/>
 
         </LinearLayout>
-        <view
+
+        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
     </RelativeLayout>
@@ -52,12 +54,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="15dp">
+
     <ScrollView
         android:id="@+id/scrollView_ForAddCatRequest"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints"
         android:layout_weight="1">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,6 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp">
+
                     <ImageView
                         android:id="@+id/addCatRequest1"
                         android:layout_width="60dp"
@@ -84,6 +89,7 @@
                         app:srcCompat="@drawable/cat"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -91,36 +97,45 @@
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
                         android:layout_marginLeft="20dp">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cat Name: "
                             android:textSize="15sp"
                             android:textStyle="bold"/>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Luna"/>
+
                     </LinearLayout>
+
                     <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="User Name: "
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Ahmed"/>
+
                     </LinearLayout>
+
                         <Button
                             android:layout_width="105dp"
                             android:layout_height="25dp"
@@ -129,14 +144,16 @@
                             android:fontFamily="sans-serif-light"
                             android:text="Show Details"
                             android:textStyle="bold"
-                            android:textColor="@color/Color5"
-                            />
+                            android:textColor="@color/Color5"/>
+
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical">
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -145,6 +162,7 @@
                             android:scaleType="centerInside"
                             android:background="#6ACF6E"
                             android:src="@drawable/ic_accept" />
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -152,10 +170,12 @@
                             android:scaleType="centerInside"
                             android:background="@color/Color6"
                             android:src="@drawable/ic_reject"/>
+
                     </LinearLayout>
 
                 </TableRow>
-                <view
+
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="@android:color/black"
@@ -165,6 +185,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp">
+
                     <ImageView
                         android:id="@+id/addCatRequest2"
                         android:layout_width="60dp"
@@ -183,32 +204,40 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Cat Name: "
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Bella"/>
+
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="User Name: "
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Sara"/>
+
                         </LinearLayout>
+
                         <Button
                             android:layout_width="105dp"
                             android:layout_height="25dp"
@@ -217,14 +246,16 @@
                             android:fontFamily="sans-serif-light"
                             android:text="Show Details"
                             android:textStyle="bold"
-                            android:textColor="@color/Color5"
-                            />
+                            android:textColor="@color/Color5"/>
+
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical">
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -233,6 +264,7 @@
                             android:scaleType="centerInside"
                             android:background="#6ACF6E"
                             android:src="@drawable/ic_accept" />
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -240,18 +272,22 @@
                             android:scaleType="centerInside"
                             android:background="@color/Color6"
                             android:src="@drawable/ic_reject"/>
+
                     </LinearLayout>
 
                 </TableRow>
-                <view
+
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="@android:color/black"
                     android:layout_marginTop="10dp" />
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp">
+
                     <ImageView
                         android:id="@+id/addCatRequest3"
                         android:layout_width="60dp"
@@ -259,6 +295,7 @@
                         app:srcCompat="@drawable/cat"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -266,36 +303,45 @@
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
                         android:layout_marginLeft="20dp">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Cat Name: "
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Kitty"/>
+
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="User Name: "
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Ayman"/>
+
                         </LinearLayout>
+
                         <Button
                             android:layout_width="105dp"
                             android:layout_height="25dp"
@@ -304,14 +350,16 @@
                             android:fontFamily="sans-serif-light"
                             android:text="Show Details"
                             android:textStyle="bold"
-                            android:textColor="@color/Color5"
-                            />
+                            android:textColor="@color/Color5"/>
+
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical">
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -320,6 +368,7 @@
                             android:scaleType="centerInside"
                             android:background="#6ACF6E"
                             android:src="@drawable/ic_accept" />
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -330,15 +379,18 @@
                     </LinearLayout>
 
                 </TableRow>
-                <view
+
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="@android:color/black"
                     android:layout_marginTop="10dp" />
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp">
+
                     <ImageView
                         android:id="@+id/addCatRequest4"
                         android:layout_width="60dp"
@@ -346,6 +398,7 @@
                         app:srcCompat="@drawable/cat"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -353,36 +406,45 @@
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
                         android:layout_marginLeft="20dp">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Cat Name: "
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Callie"/>
+
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="User Name: "
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Malak"/>
+
                         </LinearLayout>
+
                         <Button
                             android:layout_width="105dp"
                             android:layout_height="25dp"
@@ -391,14 +453,16 @@
                             android:fontFamily="sans-serif-light"
                             android:text="Show Details"
                             android:textStyle="bold"
-                            android:textColor="@color/Color5"
-                            />
+                            android:textColor="@color/Color5" />
+
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical">
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -407,6 +471,7 @@
                             android:scaleType="centerInside"
                             android:background="#6ACF6E"
                             android:src="@drawable/ic_accept" />
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -414,18 +479,22 @@
                             android:scaleType="centerInside"
                             android:background="@color/Color6"
                             android:src="@drawable/ic_reject"/>
+
                     </LinearLayout>
 
                 </TableRow>
-                <view
+
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="@android:color/black"
                     android:layout_marginTop="10dp" />
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp">
+
                     <ImageView
                         android:id="@+id/addCatRequest5"
                         android:layout_width="60dp"
@@ -433,6 +502,7 @@
                         app:srcCompat="@drawable/cat"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -440,36 +510,45 @@
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
                         android:layout_marginLeft="20dp">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Cat Name: "
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Nala"/>
+
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="User Name: "
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Majed"/>
+
                         </LinearLayout>
+
                         <Button
                             android:layout_width="105dp"
                             android:layout_height="25dp"
@@ -478,14 +557,16 @@
                             android:fontFamily="sans-serif-light"
                             android:text="Show Details"
                             android:textStyle="bold"
-                            android:textColor="@color/Color5"
-                            />
+                            android:textColor="@color/Color5"/>
+
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical">
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -494,6 +575,7 @@
                             android:scaleType="centerInside"
                             android:background="#6ACF6E"
                             android:src="@drawable/ic_accept" />
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -504,15 +586,18 @@
                     </LinearLayout>
 
                 </TableRow>
-                <view
+
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="@android:color/black"
                     android:layout_marginTop="10dp" />
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp">
+
                     <ImageView
                         android:id="@+id/addCatRequest6"
                         android:layout_width="60dp"
@@ -520,6 +605,7 @@
                         app:srcCompat="@drawable/cat"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -527,36 +613,45 @@
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
                         android:layout_marginLeft="20dp">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Cat Name: "
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Zeo"/>
+
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="User Name: "
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Maram"/>
+
                         </LinearLayout>
+
                         <Button
                             android:layout_width="105dp"
                             android:layout_height="25dp"
@@ -565,14 +660,16 @@
                             android:fontFamily="sans-serif-light"
                             android:text="Show Details"
                             android:textStyle="bold"
-                            android:textColor="@color/Color5"
-                            />
+                            android:textColor="@color/Color5"/>
+
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical">
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -581,6 +678,7 @@
                             android:scaleType="centerInside"
                             android:background="#6ACF6E"
                             android:src="@drawable/ic_accept" />
+
                         <ImageButton
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -588,23 +686,22 @@
                             android:scaleType="centerInside"
                             android:background="@color/Color6"
                             android:src="@drawable/ic_reject"/>
+
                     </LinearLayout>
 
                 </TableRow>
-                <view
+
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="@android:color/black"
                     android:layout_marginTop="10dp" />
-
-
-
-
             </TableLayout>
+
         </RelativeLayout>
+
     </ScrollView>
+
 </RelativeLayout>
-
-
 
 </LinearLayout>

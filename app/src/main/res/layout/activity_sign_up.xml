@@ -58,7 +58,7 @@
                 android:id="@+id/scrollView1"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                tools:ignore="MissingConstraints"
+                tools:ignore="DuplicateIds,MissingConstraints"
                 android:layout_weight="1">
 
                 <LinearLayout
@@ -514,7 +514,5 @@
             </LinearLayout>
 
         </ScrollView>
-
-
 
 </LinearLayout>
