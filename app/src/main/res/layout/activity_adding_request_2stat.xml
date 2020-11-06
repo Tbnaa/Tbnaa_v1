@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".adding_request_2stat">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,8 +19,9 @@
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:contentDescription="humburger menu icon"
-            android:src="@drawable/ic_menu"></ImageView>
-        //TODO: make the text changeable based on each page using the tool bar
+            android:src="@drawable/ic_menu"/>
+
+<!--        //TODO: make the text changeable based on each page using the tool bar-->
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -27,14 +30,14 @@
             android:textColor="@android:color/black"
             android:gravity="center"
             android:textSize="22sp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:contentDescription="logo to be placed"
-            android:src="@drawable/playstore"></ImageView>
+            android:src="@drawable/playstore"/>
 
     </LinearLayout>
 
@@ -47,6 +50,7 @@
         tools:layout="@layout/fragment_cat_info">
 
     </fragment>
+
     <fragment
         android:name="com.example.tbnaaproject.Fragment_user_info"
         android:id="@+id/Fragment2"
@@ -56,12 +60,14 @@
         tools:layout="@layout/fragment_user_info">
 
     </fragment>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="40dp">
+
         <Button
             android:id="@+id/admin_apply_modifications"
             android:layout_width="150dp"
@@ -84,4 +90,5 @@
             android:textStyle="bold" />
 
     </LinearLayout>
+
 </LinearLayout>
