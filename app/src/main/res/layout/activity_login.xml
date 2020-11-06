@@ -130,11 +130,11 @@
                         android:textSize="16sp"/>
 
                 </LinearLayout>
+
             </ScrollView>
+
         </LinearLayout>
 
     </GridLayout>
-
-
 
 </LinearLayout>
