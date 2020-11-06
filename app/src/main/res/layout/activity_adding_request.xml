@@ -26,7 +26,6 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-
             android:textColor="@android:color/black"
             android:gravity="center"
             android:textSize="22sp"
@@ -92,7 +91,9 @@
                     android:layout_height="wrap_content"
                     android:text="Show details" />
             </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 
     <View
@@ -110,7 +111,6 @@
             tools:src="@drawable/cat" />
 
         <LinearLayout
-
             android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,7 +140,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Show details" />
+
             </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -156,7 +158,6 @@
             tools:src="@drawable/cat" />
 
         <LinearLayout
-
             android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -186,10 +187,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Show details" />
+
             </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
 
 </LinearLayout>
-

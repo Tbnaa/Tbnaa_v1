@@ -14,84 +14,105 @@
         android:paddingTop="20dp"
         android:orientation="horizontal">
 
-        <com.mikhaellopez.circularimageview.CircularImageView
+        <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="30dp"
-            android:src="@drawable/img_character"></com.mikhaellopez.circularimageview.CircularImageView>
+            android:src="@drawable/img_character"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="15dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jumana AAA"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"></TextView>
+                android:layout_marginTop="10dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp">
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_username"></ImageView>
+                    android:src="@drawable/ic_username"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="jumana5"
-                    android:layout_marginLeft="10dp"></TextView></LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_phone"></ImageView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+966(512)3456"
-                    android:layout_marginLeft="10dp"></TextView></LinearLayout>
+                    android:layout_marginLeft="10dp"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_phone"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+966(512)3456"
+                    android:layout_marginLeft="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_location"></ImageView>
+                    android:src="@drawable/ic_location"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CITY"
-                    android:layout_marginLeft="10dp"></TextView
-                    ></LinearLayout>
+                    android:layout_marginLeft="10dp"/>
+
             </LinearLayout>
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_gender"
                 android:contentDescription="Gender icon"
-                android:layout_marginLeft="100dp"></ImageView></LinearLayout></LinearLayout>
-    <view
+                android:layout_marginLeft="100dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/black"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginBottom="20dp"
-        ></view>
+        android:layout_marginBottom="20dp"/>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -127,6 +148,5 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 
 </LinearLayout>
