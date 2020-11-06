@@ -1,161 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
+    android:orientation="vertical"
+    android:weightSum="8"
     tools:context=".ui.AdaptionForm">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TableLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal|center_vertical">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_alignParentLeft="true"
+                android:contentDescription="humburger menu icon"
+                android:src="@drawable/ic_menu"/>
+
+            <TextView
+                android:layout_width="309dp"
+                android:layout_height="28dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="My Profile"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/tbnaacircle"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_alignParentRight="true"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:columnCount="1"
+        android:padding="15dp"
+        android:background="@drawable/whitebackground">
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentLeft="true"
-                    android:contentDescription="humburger menu icon"
-                    android:src="@drawable/ic_menu"></ImageView>
-                //TODO: make the text changeable based on each page using the tool bar
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Adaption Form"
-                    android:textColor="@android:color/black"
-                    android:gravity="center"
-                    android:textSize="22sp"
-                    android:textStyle="bold"></TextView>
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
-                    android:contentDescription="logo to be placed"
-                    android:src="@drawable/playstore"></ImageView>
-
-            </LinearLayout>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="-70dp"/>
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="274dp"
-                android:layout_height="156dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="70dp"
-                android:src="@drawable/blackcat"
-                />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <TextView
-                    android:id="@+id/catName_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="Additional phone number:"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:layout_marginTop="40dp"/>
-            </TableRow>
-
-            <TableRow
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <EditText
-                    android:id="@+id/catName_editText"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginRight="100dp"
-                    android:layout_marginLeft="20dp"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-            </TableRow>
+                    android:padding="10dp"
+                    android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:contentDescription="humburger menu icon"
+                        android:src="@drawable/ic_menu"/>
 
+<!--                TODO: make the text changeable based on each page using the tool bar-->
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Adaption Form"
+                        android:textColor="@android:color/black"
+                        android:gravity="center"
+                        android:textSize="22sp"
+                        android:textStyle="bold"/>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:contentDescription="logo to be placed"
+                        android:src="@drawable/playstore"/>
 
-                <TextView
-                    android:id="@+id/catAge_TextView1"
-                    android:layout_width="333dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="80dp"
-                    android:text="The name of the veterinary clinic you intend to deal with:"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-            </TableRow>
+                </LinearLayout>
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="-70dp"/>
 
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="274dp"
+                    android:layout_height="156dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="70dp"
+                    android:src="@drawable/blackcat"/>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
 
-                <EditText
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/editTextTextMultiLine"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:layout_weight="1"
-                    android:layout_marginRight="100dp"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine"
-                    android:layout_marginLeft="20dp"
-                    />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/catAge_textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:text="Have you raised cats or animals before?"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-            </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                    <TextView
+                        android:id="@+id/catName_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="Additional phone number:"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:layout_marginTop="40dp"/>
 
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/catName_editText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginRight="100dp"
+                        android:layout_marginLeft="20dp"
+                        android:ems="10"
+                        android:inputType="textPersonName" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/catAge_TextView1"
+                        android:layout_width="333dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:layout_marginRight="80dp"
+                        android:text="The name of the veterinary clinic you intend to deal with:"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <EditText
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/editTextTextMultiLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_weight="1"
+                        android:layout_marginRight="100dp"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:layout_marginLeft="20dp"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/catAge_textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:text="Have you raised cats or animals before?"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
 
                     <RadioGroup
                         android:layout_marginTop="15dp"
@@ -178,394 +232,413 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="No"
-                            android:textSize="18sp" />Size="18sp" />
+                            android:textSize="18sp" />
+
                     </RadioGroup>
 
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/catName_textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:text="If yes, what happened to them?"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-            </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"/>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <EditText
-                    android:id="@+id/catAge_editText"
-                    android:layout_weight="1"
-                    android:layout_marginRight="100dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:layout_marginLeft="20dp"
-                    android:inputType="textPersonName" />
-
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <TextView
-                    android:id="@+id/catAge_textView156"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
-                    android:text="Do you live alone?"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <RadioGroup
-                    android:layout_marginTop="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    >
-
-                    <RadioButton
-                        android:id="@+id/radioButton35"
-                        android:layout_width="76dp"
+                    <TextView
+                        android:id="@+id/catName_textView3"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="Yes"
-                        android:textSize="18sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton246"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:text="No"
+                        android:text="If yes, what happened to them?"
+                        android:textColor="#000000"
                         android:textSize="18sp" />
-                </RadioGroup>
-            </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/catAge_textView12424"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
-                    android:text="Do you have children?"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"/>
 
-                <RadioGroup
-                    android:layout_marginTop="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
 
-                    <RadioButton
-                        android:id="@+id/radioButton897"
-                        android:layout_width="76dp"
+                    <EditText
+                        android:id="@+id/catAge_editText"
+                        android:layout_weight="1"
+                        android:layout_marginRight="100dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_marginLeft="20dp"
+                        android:inputType="textPersonName" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/catAge_textView156"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="Yes"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:text="Do you live alone?"
+                        android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton66"
-                        android:layout_width="89dp"
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <RadioGroup
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="No"
-                        android:textSize="18sp" />
+                        android:orientation="horizontal">
 
-                </RadioGroup>
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                        <RadioButton
+                            android:id="@+id/radioButton35"
+                            android:layout_width="76dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Yes"
+                            android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/catAge_textVihew156"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
-                    android:text="Are your parents agree with the adoption?"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-            </TableRow>
+                        <RadioButton
+                            android:id="@+id/radioButton246"
+                            android:layout_width="89dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="No"
+                            android:textSize="18sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                    </RadioGroup>
 
-                <RadioGroup
-                    android:layout_marginTop="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    >
+                </TableRow>
 
-                    <RadioButton
-                        android:id="@+id/radioButton35l"
-                        android:layout_width="76dp"
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/catAge_textView12424"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="Yes"
-                        android:textSize="18sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton246i"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
                         android:layout_weight="1"
-                        android:text="No"
+                        android:text="Do you have children?"
+                        android:textColor="#000000"
                         android:textSize="18sp" />
-                </RadioGroup>
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
 
-                <TextView
-                    android:id="@+id/catAge_tytextVihew156"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
-                    android:text="Does anyone in your family is allergic to cats?"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-            </TableRow>
+                </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <RadioGroup
-                    android:layout_marginTop="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    >
+                    <RadioGroup
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/radioButtioon35l"
-                        android:layout_width="76dp"
+                        <RadioButton
+                            android:id="@+id/radioButton897"
+                            android:layout_width="76dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Yes"
+                            android:textSize="18sp" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton66"
+                            android:layout_width="89dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="No"
+                            android:textSize="18sp" />
+
+                    </RadioGroup>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/catAge_textVihew156"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="Yes"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:text="Are your parents agree with the adoption?"
+                        android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <RadioButton
-                        android:id="@+id/radioB7utton246i"
-                        android:layout_width="89dp"
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <RadioGroup
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="No"
-                        android:textSize="18sp" />
-                </RadioGroup>
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/catAge_textVi7hew156"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
-                    android:text="To whom this cat will be?"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-            </TableRow>
+                        <RadioButton
+                            android:id="@+id/radioButton35l"
+                            android:layout_width="76dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Yes"
+                            android:textSize="18sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                        <RadioButton
+                            android:id="@+id/radioButton246i"
+                            android:layout_width="89dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="No"
+                            android:textSize="18sp" />
 
-                <RadioGroup
-                    android:layout_marginTop="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    >
+                    </RadioGroup>
 
-                    <RadioButton
-                        android:id="@+id/radioButton3y5l"
-                        android:layout_width="76dp"
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/catAge_tytextVihew156"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="Me"
-                        android:textSize="18sp"
-                        />
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:text="Does anyone in your family is allergic to cats?"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
 
-                    <RadioButton
-                        android:id="@+id/radioButtton246i"
-                        android:layout_width="89dp"
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <RadioGroup
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="For others"
-                        android:textSize="18sp" />
-                </RadioGroup>
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/catAge_tegxtVi7hew156"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
-                    android:text="Where will you put the cat?"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-            </TableRow>
+                        <RadioButton
+                            android:id="@+id/radioButtioon35l"
+                            android:layout_width="76dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Yes"
+                            android:textSize="18sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                        <RadioButton
+                            android:id="@+id/radioB7utton246i"
+                            android:layout_width="89dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="No"
+                            android:textSize="18sp" />
 
-                <RadioGroup
-                    android:layout_marginTop="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    >
+                    </RadioGroup>
 
-                    <RadioButton
-                        android:id="@+id/radioButtonl3y5l"
-                        android:layout_width="76dp"
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/catAge_textVi7hew156"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="Inside the house"
-                        android:layout_marginTop="-9dp"
-                        android:textSize="18sp"
-                        android:layout_weight="3"
-                        />
-
-                    <RadioButton
-                        android:id="@+id/radioBputtton246i"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
                         android:layout_weight="1"
-                        android:text="Yard"
+                        android:text="To whom this cat will be?"
+                        android:textColor="#000000"
                         android:textSize="18sp" />
 
-                <RadioButton
-                    android:id="@+id/radieoButtonl3y5l"
-                    android:layout_width="76dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="rooftop"
-                    android:textSize="18sp"
-                    android:layout_weight="1"
-                    />
+                </TableRow>
 
-                </RadioGroup>
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                    <RadioGroup
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/catName_textView356"
-                    android:layout_width="wrap_content"
-                    android:layout_height="172dp"
-                    android:layout_marginLeft="30dp"
-                    android:paddingTop="10dp"
+                        <RadioButton
+                            android:id="@+id/radioButton3y5l"
+                            android:layout_width="76dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Me"
+                            android:textSize="18sp"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButtton246i"
+                            android:layout_width="89dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="For others"
+                            android:textSize="18sp" />
+
+                    </RadioGroup>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/catAge_tegxtVi7hew156"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:text="Where will you put the cat?"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <RadioGroup
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioButtonl3y5l"
+                            android:layout_width="76dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Inside the house"
+                            android:layout_marginTop="-9dp"
+                            android:textSize="18sp"
+                            android:layout_weight="3"/>
+
+                        <RadioButton
+                            android:id="@+id/radioBputtton246i"
+                            android:layout_width="89dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Yard"
+                            android:textSize="18sp" />
+
+                        <RadioButton
+                            android:id="@+id/radieoButtonl3y5l"
+                            android:layout_width="76dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="rooftop"
+                            android:textSize="18sp"
+                            android:layout_weight="1"/>
+
+                    </RadioGroup>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/catName_textView356"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:paddingTop="10dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/design"
+                        android:fadeScrollbars="true"
+                        android:paddingLeft="12dp"
+                        android:text="I pledge and I swear God that I will do my best to take care of the cat, feed it, treat it when needed, provide a home for it, and not abandon it whatever the circumstances, and communicate with Tbnaa immediately if I'm not able to apply the rules above."
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp">
+
+                    <RadioButton
+                        android:id="@+id/radiottButtonl3y5l"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agree"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="18sp"/>
+
+                </TableRow>
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="25dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_weight="1"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/design"
-                    android:fadeScrollbars="true"
-                    android:paddingLeft="12dp"
-                    android:text="I pledge and I swear God that I will do my best to take care of the cat, feed it, treat it when needed, provide a home for it, and not abandon it whatever the circumstances, and communicate with Tbnaa immediately if I'm not able to apply the rules above."
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp">
+                    android:textSize="20sp"
+                    android:layout_weight="2"
+                    android:textColor="#FFFF"
+                    android:ems="10"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Adapt"
+                    android:gravity="center"/>
 
-            <RadioButton
-                android:id="@+id/radiottButtonl3y5l"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Agree"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:textSize="18sp"
+            </TableLayout>
 
-                />
-            </TableRow>
-            <Button
-                android:id="@+id/button"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/design"
-                android:textSize="14sp"
-                android:layout_weight="2"
-                android:ems="10"
-                android:layout_gravity="center_horizontal"
-                android:text="Adapt"
-                android:gravity="center"
+        </ScrollView>
 
-                />
+    </GridLayout>
 
-
-
-        </TableLayout>
-    </ScrollView>
-</RelativeLayout>
+</LinearLayout>

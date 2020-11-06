@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class AdoptionRequests_INFO_Admin extends AppCompatActivity {
+public class adding_request_2stat extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adoption_requests__i_n_f_o__admin);
+        setContentView(R.layout.activity_adding_request_2stat);
     }
 }

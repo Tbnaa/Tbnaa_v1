@@ -1,103 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="#212121"
+    android:orientation="vertical"
+    android:weightSum="5"
     tools:context=".Login">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/fragment_cover"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/cover_ii_ii"
-            android:layout_weight="2"/>
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
 
-        <ScrollView
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/tbnaacircle"/>
+
+            <ImageView
+                android:id="@+id/imageView44"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/tbnaalogotext"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:columnCount="2"
+        android:rowCount="3"
+        android:padding="15dp"
+        android:background="@drawable/whitebackground">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            tools:ignore="MissingConstraints"
-            android:layout_weight="1">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/greybackground"
-                android:orientation="vertical">
+                android:fitsSystemWindows="true"
+                tools:ignore="MissingConstraints"
+                android:layout_weight="1">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="32dp"
-                    android:text="Log In"
-                    android:textStyle="bold"
-                    android:textSize="32sp"
-                    android:textAlignment="center"
-                    android:gravity="center_horizontal"
-                    android:textColor="@color/Color8"
-                    android:fontFamily="sans-serif-condensed-medium"/>
-
-                <EditText
-                    android:id="@+id/login_email_editText"
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
-                    android:paddingLeft="5dp"
-                    android:ems="10" />
+                    android:background="@drawable/greybackground"
+                    android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/login_password_editText"
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:paddingLeft="5dp"
-                    android:ems="10"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="32dp"
+                        android:text="Log In"
+                        android:textStyle="bold"
+                        android:textSize="32sp"
+                        android:textAlignment="center"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/Color8"
+                        android:fontFamily="sans-serif-condensed-medium"/>
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    <EditText
+                        android:id="@+id/login_email_editText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="16dp"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="5dp"
+                        android:ems="10" />
 
-                <Button
-                    android:id="@+id/login_submit_button"
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="32dp"
-                    android:background="@drawable/design"
-                    android:text="Log In"
-                    android:textColor="#fff"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/login_password_editText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="16dp"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:paddingLeft="5dp"
+                        android:ems="10"/>
 
-                <TextView
-                    android:id="@+id/login_signupLink_hyperText"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:layout_marginTop="32dp"
-                    android:gravity="center"
-                    android:text="No account yet? Create one"
-                    android:textSize="16sp"/>
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+                    <Button
+                        android:id="@+id/login_submit_button"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="32dp"
+                        android:background="@drawable/design"
+                        android:text="Log In"
+                        android:textColor="#fff"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/login_signupLink_hyperText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:layout_marginTop="32dp"
+                        android:gravity="center"
+                        android:text="No account yet? Create one"
+                        android:textSize="16sp"/>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </GridLayout>
+
+</LinearLayout>
