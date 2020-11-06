@@ -1,14 +1,16 @@
-package com.example.tbnaaproject;
+package com.example.tbnaaproject.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class AdoptionRequests_INFO_Admin extends AppCompatActivity {
+import com.example.tbnaaproject.R;
+
+public class AdaptionForm extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adoption_requests__i_n_f_o__admin);
+        setContentView(R.layout.activity_adaption_form);
     }
 }

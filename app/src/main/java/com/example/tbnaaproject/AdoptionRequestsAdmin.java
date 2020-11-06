@@ -45,9 +45,6 @@ public class AdoptionRequestsAdmin extends AppCompatActivity {
                 Word word = words.get(position);
 
                 //TODO: Open more INFO
-
-                Intent intent = new Intent(getApplicationContext(), AdoptionRequests_INFO_Admin.class);
-                startActivity(intent);
             }
         });
     }
