@@ -19,14 +19,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="#212121">
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentLeft="true"
                     android:contentDescription="humburger menu icon"
-                    android:src="@drawable/ic_menu"/>
+                    android:src="@drawable/ic_menu"
+                    />
 
 <!--                TODO: make the text changeable based on each page using the tool bar-->
                 <TextView
@@ -34,7 +36,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Adaption Form"
-                    android:textColor="@android:color/black"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/white"
                     android:gravity="center"
                     android:textSize="22sp"
                     android:textStyle="bold"/>
@@ -44,21 +47,21 @@
                     android:layout_height="50dp"
                     android:layout_alignParentRight="true"
                     android:contentDescription="logo to be placed"
-                    android:src="@drawable/playstore"/>
+                    android:src="@drawable/tbnaacircle"/>
 
             </LinearLayout>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="-70dp"/>
+                android:layout_height="11dp"
+                android:layout_marginTop="-70dp" />
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="274dp"
                 android:layout_height="156dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="80dp"
                 android:src="@drawable/blackcat"/>
 
             <TableRow
