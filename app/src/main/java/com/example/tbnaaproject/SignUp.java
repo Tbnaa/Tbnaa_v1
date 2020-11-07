@@ -32,7 +32,7 @@ public class SignUp extends AppCompatActivity implements DatePickerDialog.OnDate
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        signup_city_spinner = findViewById(R.id.signup_city_spinner);
+        signup_city_spinner = findViewById(R.id.signup_city_spinner1);
         ArrayList<String> cityArrayList = new ArrayList<>();
         cityArrayList.add("Khoubar");
         cityArrayList.add("Dammam");
@@ -56,10 +56,10 @@ public class SignUp extends AppCompatActivity implements DatePickerDialog.OnDate
             }
         });
 
-        signup_DoB_editText = findViewById(R.id.signup_DoB_editText);
-        signup_DoB_button = findViewById(R.id.signup_DoB_button);
+        signup_DoB_editText = findViewById(R.id.signup_city_editText1);
+        signup_DoB_button = findViewById(R.id.signup_DoB_button1);
 
-        findViewById(R.id.signup_DoB_button).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.signup_DoB_button1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
