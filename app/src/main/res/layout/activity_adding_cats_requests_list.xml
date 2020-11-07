@@ -35,21 +35,25 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textSize="22sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"></TextView>
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:contentDescription="logo to be placed"
-                android:src="@drawable/playstore"/>
 
+                android:id="@+id/imageView4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/tbnaacircle"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_alignParentRight="true">
+                android:contentDescription="logo to be placed"
+                android:src="@drawable/playstore">
+          </ImageView>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-
+            android:layout_height="1dp"></View>
     </RelativeLayout>
 
     <RelativeLayout

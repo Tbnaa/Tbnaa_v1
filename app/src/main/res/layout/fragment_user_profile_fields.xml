@@ -1,134 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfile"
-    android:background="#212121"
-    android:orientation="vertical"
-    android:weightSum="8">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerInParent="true"
-            android:gravity="center_horizontal|center_vertical">
-
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:layout_alignParentLeft="true"
-                android:contentDescription="humburger menu icon"
-                android:src="@drawable/ic_menu"/>
-
-            <TextView
-                android:layout_width="309dp"
-                android:layout_height="28dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="My Profile"
-                android:textColor="@android:color/white"
-                android:textSize="22sp"
-                android:textStyle="bold"/>
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                app:srcCompat="@drawable/tbnaacircle"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                android:layout_alignParentRight="true"/>
-
-        </LinearLayout>
-
-    </RelativeLayout>
+    tools:context=".UserProfileFields"
+    android:background="@color/Color4"
+    android:orientation="vertical">
 
     <GridLayout
         android:id="@+id/gridUserProfile"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="7"
         android:columnCount="1"
         android:rowCount="17"
         android:padding="15dp"
         android:background="@drawable/whitebackground">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_marginLeft="30dp"
-                android:src="@drawable/img_character"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="User AAA"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Username"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+966 ** *** ****"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_edit"
-                    android:contentDescription="Edit icon"
-                    android:background="@drawable/design"
-                    android:layout_marginLeft="70dp"
-                    android:scaleType="centerInside"
-                    android:adjustViewBounds="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="50dp"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@android:color/black"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="5dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -261,12 +149,13 @@
                 android:textSize="18dp"
                 android:layout_marginLeft="10dp"/>
 
-            <TextView
+            <Spinner
+                android:id="@+id/signup_city_spinner1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:textSize="16dp"/>
-
+                android:layout_height="match_parent"
+                android:paddingLeft="5dp"
+                android:tooltipText="City"
+                android:ems="10"/>
         </LinearLayout>
 
         <View
@@ -329,24 +218,55 @@
                 android:layout_height="30dp"
                 android:src="@drawable/ic_gender"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/signup_gender_radioButtons1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gender"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:layout_marginLeft="10dp"/>
+                android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/gender_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Gender "
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:ems="10"
+                    android:layout_marginLeft="10dp"
+                    />
+                <RadioButton
+                    android:id="@+id/Male1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Male"/>
 
+                <RadioButton
+                    android:id="@+id/Female1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Female"/>
+            </RadioGroup>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_social_status"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -355,13 +275,19 @@
                 android:textSize="18dp"
                 android:layout_marginLeft="10dp"/>
 
-            <Spinner
-                android:id="@+id/status_spinner"
+            <RadioButton
+                android:id="@+id/Single1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="Single"/>
 
+            <RadioButton
+                android:id="@+id/Married1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Married"/>
         </LinearLayout>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -408,34 +334,6 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <Button
-                android:layout_width="250dp"
-                android:textColor="#fff"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_margin="8dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/design"
-                android:text="My Adoption Requests"/>
-
-            <Button
-                android:layout_width="250dp"
-                android:textColor="#fff"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_margin="8dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/design"
-                android:text="My Added Cats"/>
-
-        </LinearLayout>
-
     </GridLayout>
 
-</LinearLayout>
+</FrameLayout>
