@@ -9,10 +9,12 @@ import java.util.List;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
     private List<Fragment> mFragmentList = new ArrayList<>();
-    private List<String> mFragmentTitleList = new ArrayList<>();
+    private int numOfTabs;
 
-    public ViewPagerAdapter(FragmentManager manager) {
+    public ViewPagerAdapter(FragmentManager manager, int numOfTabs) {
         super(manager);
+        this.numOfTabs = numOfTabs;
+        addFragments();
     }
 
     @Override
@@ -22,7 +24,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return mFragmentList.size();
+        return numOfTabs;
     }
 
     public void addFragments(){
@@ -35,8 +37,4 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         mFragmentList.add(profile);
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mFragmentTitleList.get(position);
-    }
 }

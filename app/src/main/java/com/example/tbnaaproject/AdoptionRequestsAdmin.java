@@ -37,8 +37,8 @@ public class AdoptionRequestsAdmin extends AppCompatActivity {
         WordAdapter adapter = new WordAdapter(this, words);
         ListView listView = (ListView) findViewById(R.id.activity_adoption_requests_adminList);
         listView.setAdapter(adapter);
-
-        ListView listView2 = (ListView) findViewById(R.id.activity_adoption_requests_adminList2);
+        //temp fix of the id here, it was adminlist2 but there is no such file
+        ListView listView2 = (ListView) findViewById(R.id.activity_adoption_requests_adminList);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
