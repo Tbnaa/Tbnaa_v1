@@ -5,11 +5,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class UserProfile2 extends AppCompatActivity {
     ViewPager mViewPager;
     TabLayout mTabLayout;
+    TabItem profileTab, adoptionTab, addingTab;
     ViewPagerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +20,13 @@ public class UserProfile2 extends AppCompatActivity {
 
         mTabLayout = (TabLayout) findViewById(R.id.userProfileTabs);
         mViewPager = (ViewPager) findViewById(R.id.userProfilePager);
-
-        setupViewPager(mViewPager);
-        mTabLayout.setupWithViewPager(mViewPager);
-    }
-
-    private void setupViewPager(ViewPager mViewPager) {
-        adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragments();
+        profileTab = (TabItem) findViewById(R.id.profileInfoTab);
+        adoptionTab = (TabItem) findViewById(R.id.adoptionRequestTab);
+        addingTab = (TabItem) findViewById(R.id.addingRequestTab);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
         mViewPager.setAdapter(adapter);
+        mTabLayout.setupWithViewPager(mViewPager);
+
     }
+
 }
