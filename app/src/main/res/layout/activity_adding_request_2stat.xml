@@ -21,12 +21,11 @@
             android:contentDescription="humburger menu icon"
             android:src="@drawable/ic_menu"/>
 
-<!--        //TODO: make the text changeable based on each page using the tool bar-->
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Adding request"
+            android:text="Adding Request"
             android:textColor="@android:color/black"
             android:gravity="center"
             android:textSize="22sp"

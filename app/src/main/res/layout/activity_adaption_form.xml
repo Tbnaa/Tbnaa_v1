@@ -28,7 +28,7 @@
                 android:layout_weight="1"
                 android:layout_alignParentLeft="true"
                 android:contentDescription="humburger menu icon"
-                android:src="@drawable/ic_menu"></ImageView>
+                android:src="@drawable/ic_menu"/>
 
             <TextView
                 android:layout_width="309dp"
@@ -38,7 +38,7 @@
                 android:text="Adaption Form"
                 android:textColor="@android:color/white"
                 android:textSize="22sp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"/>
 
             <ImageView
                 android:id="@+id/imageView4"
