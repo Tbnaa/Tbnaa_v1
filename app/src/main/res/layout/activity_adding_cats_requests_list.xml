@@ -24,9 +24,8 @@
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
                 android:contentDescription="humburger menu icon"
-                android:src="@drawable/ic_menu"></ImageView>
+                android:src="@drawable/ic_menu"/>
 <!--            //TODO: make the text changeable based on each page using the tool bar-->
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -39,16 +38,19 @@
                 android:textStyle="bold"></TextView>
 
             <ImageView
+
                 android:id="@+id/imageView4"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 app:srcCompat="@drawable/tbnaacircle"
                 android:layout_margin="15dp"
                 android:layout_weight="1"
-                android:layout_alignParentRight="true"
-                android:contentDescription="logo to be placed">
-            </ImageView>
+                android:layout_alignParentRight="true">
+                android:contentDescription="logo to be placed"
+                android:src="@drawable/playstore">
+          </ImageView>
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"></View>
