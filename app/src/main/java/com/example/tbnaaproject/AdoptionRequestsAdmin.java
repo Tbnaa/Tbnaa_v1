@@ -38,6 +38,9 @@ public class AdoptionRequestsAdmin extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.activity_adoption_requests_adminList);
         listView.setAdapter(adapter);
 
+        ListView listView2 = (ListView) findViewById(R.id.activity_adoption_requests_adminList2);
+        listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
