@@ -26,4 +26,37 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string-array name="adoption_requests">
+        <item>Lucy</item>
+        <item>Sasha</item>
+        <item>Nader</item>
+        <item>Alex</item>
+        <item>Maya</item>
+    </string-array>
+
+    <string-array name="cat_gender">
+        <item>female</item>
+        <item>female</item>
+        <item>male</item>
+        <item>male</item>
+        <item>female</item>
+    </string-array>
+
+    <string-array name="cat_city">
+        <item>Dammam</item>
+        <item>Khobar</item>
+        <item>Riyadh</item>
+        <item>Jeddah</item>
+        <item>Hail</item>
+    </string-array>
+
+    <string-array name="request_decision">
+        <item>decline</item>
+        <item>accept</item>
+    </string-array>
+
+    <string name="userInfoTab">First</string>
+    <string name="addReqTab">Second</string>
+    <string name="adoptReqTab">Third</string>
+
 </resources>
