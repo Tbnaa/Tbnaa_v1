@@ -97,7 +97,7 @@
                                 android:id="@+id/addCatRequest1"
                                 android:layout_width="60dp"
                                 android:layout_height="80dp"
-                                app:srcCompat="@drawable/cat"
+                                app:srcCompat="@drawable/blackcat"
                                 android:layout_weight="1"
                                 android:layout_gravity="center_vertical" />
 
@@ -200,7 +200,7 @@
                                 android:id="@+id/addCatRequest2"
                                 android:layout_width="60dp"
                                 android:layout_height="80dp"
-                                app:srcCompat="@drawable/cat"
+                                app:srcCompat="@drawable/blackcat"
                                 android:layout_weight="1"
                                 android:layout_gravity="center_vertical" />
 
@@ -304,7 +304,7 @@
                                 android:id="@+id/addCatRequest3"
                                 android:layout_width="60dp"
                                 android:layout_height="80dp"
-                                app:srcCompat="@drawable/cat"
+                                app:srcCompat="@drawable/blackcat"
                                 android:layout_weight="1"
                                 android:layout_gravity="center_vertical" />
 
@@ -408,7 +408,7 @@
                                 android:id="@+id/addCatRequest4"
                                 android:layout_width="60dp"
                                 android:layout_height="80dp"
-                                app:srcCompat="@drawable/cat"
+                                app:srcCompat="@drawable/blackcat"
                                 android:layout_weight="1"
                                 android:layout_gravity="center_vertical" />
 
@@ -512,7 +512,7 @@
                                 android:id="@+id/addCatRequest5"
                                 android:layout_width="60dp"
                                 android:layout_height="80dp"
-                                app:srcCompat="@drawable/cat"
+                                app:srcCompat="@drawable/blackcat"
                                 android:layout_weight="1"
                                 android:layout_gravity="center_vertical" />
 
@@ -616,7 +616,7 @@
                                 android:id="@+id/addCatRequest6"
                                 android:layout_width="60dp"
                                 android:layout_height="80dp"
-                                app:srcCompat="@drawable/cat"
+                                app:srcCompat="@drawable/blackcat"
                                 android:layout_weight="1"
                                 android:layout_gravity="center_vertical" />
 
