@@ -34,7 +34,7 @@
                 android:layout_height="28dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="My Profile"
+                android:text="Cat Profile"
                 android:textColor="@android:color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"></TextView>
@@ -142,10 +142,11 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cat's name."
-                    android:textSize="18sp"
                     android:layout_marginLeft="-152dp"
-                    android:layout_marginTop="35dp"/>
+                    android:layout_marginTop="35dp"
+                    android:text="Cat's name."
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
             </TableRow>
 
@@ -173,6 +174,7 @@
                     android:layout_marginTop="23dp"
                     android:layout_marginRight="50dp"
                     android:text="Cat's story."
+                    android:textColor="#000000"
                     android:textSize="18sp" />
             </TableRow>
 
@@ -192,14 +194,16 @@
                     android:text="Cat's age:"
                     android:textColor="#326167"
                     android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/textView25"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:text="Cat's age."
-                    android:textSize="18sp"
                     android:layout_marginLeft="-160dp"
-                    android:layout_marginTop="23dp"/>
+                    android:layout_marginTop="23dp"
+                    android:text="Cat's age."
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
             </TableRow>
             <TableRow
@@ -250,10 +254,11 @@
                     android:id="@+id/textView2377"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="City."
-                    android:textSize="18sp"
                     android:layout_marginLeft="-142dp"
-                    android:layout_marginTop="35dp"/>
+                    android:layout_marginTop="35dp"
+                    android:text="City."
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
             </TableRow>
             <TableRow
@@ -274,10 +279,11 @@
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Owner account."
-                    android:textSize="18sp"
                     android:layout_marginLeft="-160dp"
-                    android:layout_marginTop="35dp"/>
+                    android:layout_marginTop="35dp"
+                    android:text="Owner account."
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
 
             </TableRow>

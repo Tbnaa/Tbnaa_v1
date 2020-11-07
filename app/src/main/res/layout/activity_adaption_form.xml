@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,7 +35,7 @@
                 android:layout_height="28dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="My Profile"
+                android:text="Adaption Form"
                 android:textColor="@android:color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"></TextView>
@@ -72,41 +69,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="horizontal"
-                android:background="#212121">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentLeft="true"
-                    android:contentDescription="humburger menu icon"
-                    android:src="@drawable/ic_menu"
-                    />
-
-<!--                TODO: make the text changeable based on each page using the tool bar-->
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Adaption Form"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@android:color/white"
-                    android:gravity="center"
-                    android:textSize="22sp"
-                    android:textStyle="bold"/>
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
-                    android:contentDescription="logo to be placed"
-                    android:src="@drawable/tbnaacircle"/>
-
-            </LinearLayout>
 
 
             <TableRow
@@ -640,21 +602,12 @@
                 android:ems="10"
                 android:layout_gravity="center_horizontal"
                 android:text="Adapt"
-
                 android:gravity="center"
                 />
 
-
-                android:gravity="center"/>
-
-
-        </TableLayout>
-
+    </TableLayout>
     </ScrollView>
 
     </GridLayout>
 </LinearLayout>
-
-
-</RelativeLayout>
 
