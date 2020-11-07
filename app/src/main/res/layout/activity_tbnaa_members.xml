@@ -69,8 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="70dp"
-                android:layout_marginHorizontal="24dp">
+                android:layout_marginTop="70dp">
 
                 <TableLayout
                     android:layout_width="wrap_content"
@@ -83,7 +82,8 @@
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp">
+                        android:padding="6dp">
+
                         <ImageView
                             android:text="K"
                             android:src="@drawable/user"
@@ -91,28 +91,35 @@
                             android:layout_width="70dp"
                             android:layout_margin="8dp"
                             android:layout_gravity="center"/>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="20dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Kholoud Awaji"
                                 android:textSize="19sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="+966-507-004-514"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Kholoud@gmail.com"/>
+
                         </LinearLayout>
+
                     </TableRow>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -123,6 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp">
+
                         <ImageView
                             android:text="K"
                             android:src="@drawable/user"
@@ -130,28 +138,35 @@
                             android:layout_width="70dp"
                             android:layout_margin="8dp"
                             android:layout_gravity="center"/>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="20dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Noura Althobaity "
                                 android:textSize="19sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="+966-502-455-001"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="noura@gmail.com"/>
+
                         </LinearLayout>
+
                     </TableRow>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -162,6 +177,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp">
+
                         <ImageView
                             android:text="K"
                             android:src="@drawable/user"
@@ -169,28 +185,35 @@
                             android:layout_width="70dp"
                             android:layout_margin="8dp"
                             android:layout_gravity="center"/>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="20dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Amjad Alsaeed"
                                 android:textSize="19sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="+966-507-000-356"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="amjad@gmail.com"/>
+
                         </LinearLayout>
+
                     </TableRow>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -201,6 +224,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp">
+
                         <ImageView
                             android:text="K"
                             android:src="@drawable/user"
@@ -208,28 +232,35 @@
                             android:layout_width="70dp"
                             android:layout_margin="8dp"
                             android:layout_gravity="center"/>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="20dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Malak Alqahtani"
                                 android:textSize="19sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="+966-507-807-409"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="malak@gmail.com"/>
+
                         </LinearLayout>
+
                     </TableRow>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -240,6 +271,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp">
+
                         <ImageView
                             android:text="K"
                             android:src="@drawable/user"
@@ -247,28 +279,35 @@
                             android:layout_width="70dp"
                             android:layout_margin="8dp"
                             android:layout_gravity="center"/>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="20dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Fatimah Hazazi"
                                 android:textSize="19sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="+966-553-364-006"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="fatimah@gmail.com"/>
+
                         </LinearLayout>
+
                     </TableRow>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -279,6 +318,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp">
+
                         <ImageView
                             android:text="K"
                             android:src="@drawable/user"
@@ -286,28 +326,35 @@
                             android:layout_width="70dp"
                             android:layout_margin="8dp"
                             android:layout_gravity="center"/>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="20dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Fatimah Mujlid"
                                 android:textSize="19sp"
                                 android:textStyle="bold"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="+966-500-304-106"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="fatimah1234@gmail.com"/>
+
                         </LinearLayout>
+
                     </TableRow>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -315,7 +362,9 @@
                         android:layout_marginTop="10dp" />
 
                 </TableLayout>
+
             </RelativeLayout>
+
         </ScrollView>
 
     </GridLayout>
