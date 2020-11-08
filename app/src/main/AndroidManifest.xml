@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ui.AdaptionForm"/>
+        <activity android:name=".ui.AdoptionForm"/>
         <activity android:name=".AdminProfileModification" />
         <activity android:name=".AdminProfile" />
         <activity android:name=".UserProfile2"/>

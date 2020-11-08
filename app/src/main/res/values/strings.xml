@@ -15,7 +15,7 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string-array name="cities_spinner">
-        <item>Choose city</item>
+        <item>City</item>
         <item>Riyadh</item>
         <item>Abha</item>
         <item>Dammam</item>
@@ -35,11 +35,15 @@
     </string-array>
 
     <string-array name="cat_gender">
-        <item>female</item>
-        <item>female</item>
-        <item>male</item>
-        <item>male</item>
-        <item>female</item>
+        <item>Gender</item>
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+    <string-array name="cat_age">
+        <item>Age</item>
+        <item>1 year and less</item>
+        <item>1 year and more</item>
     </string-array>
 
     <string-array name="cat_city">
