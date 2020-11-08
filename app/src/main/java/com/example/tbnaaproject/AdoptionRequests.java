@@ -14,7 +14,7 @@ public class AdoptionRequests extends Fragment {
 
     RecyclerView recyclerViewAdoption;
     String catname[], catgender[], catcity[], decision[];
-    int catimages[] = {R.drawable.img_cat_lucy, R.drawable.img_cat_sasha, R.drawable.img_cat_nader, R.drawable.img_cat_alex, R.drawable.img_cat_maya};
+    int catimages[] = {R.drawable.img_cat_lucy, R.drawable.img_cat_sasha};
 
     public AdoptionRequests() {
         // Required empty public constructor
@@ -40,10 +40,10 @@ public class AdoptionRequests extends Fragment {
 
         recyclerViewAdoption = view.findViewById(R.id.recyclerViewAdoptionRequests);
 
-        catname = getResources().getStringArray(R.array.adoption_requests);
-        catgender = getResources().getStringArray(R.array.cat_gender);
-        catcity = getResources().getStringArray(R.array.cat_city);
-        decision = getResources().getStringArray(R.array.request_decision);
+        catname = getResources().getStringArray(R.array.adoption_requests_cats);
+        catgender = getResources().getStringArray(R.array.adoption_requests_gender);
+        catcity = getResources().getStringArray(R.array.adoption_requests_city);
+        decision = getResources().getStringArray(R.array.adding_requests_status);
         //com.example.tbnaaproject.MyAdapter(Context ct, String name[], String gender[], String city[], String dec[], int imgs[])
         MyAdapter adapter = new MyAdapter(getActivity(), catname, catgender, catcity, decision, catimages);
         recyclerViewAdoption.setAdapter(adapter);
