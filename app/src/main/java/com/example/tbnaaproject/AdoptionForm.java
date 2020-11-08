@@ -1,4 +1,4 @@
-package com.example.tbnaaproject.ui;
+package com.example.tbnaaproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
