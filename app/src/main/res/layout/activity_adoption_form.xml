@@ -8,7 +8,7 @@
     android:background="#212121"
     android:orientation="vertical"
     android:weightSum="8"
-    tools:context=".ui.AdaptionForm">
+    tools:context=".ui.AdoptionForm">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:layout_height="28dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="Adaption Form"
+                android:text="Adoption Form"
                 android:textColor="@android:color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"/>
