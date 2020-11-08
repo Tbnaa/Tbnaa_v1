@@ -35,7 +35,7 @@
                 android:layout_height="28dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="My Profile"
+                android:text="Adaption Form"
                 android:textColor="@android:color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"/>
@@ -69,50 +69,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentLeft="true"
-                        android:contentDescription="humburger menu icon"
-                        android:src="@drawable/ic_menu"/>
-
-<!--                TODO: make the text changeable based on each page using the tool bar-->
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="Adaption Form"
-                        android:textColor="@android:color/black"
-                        android:gravity="center"
-                        android:textSize="22sp"
-                        android:textStyle="bold"/>
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:contentDescription="logo to be placed"
-                        android:src="@drawable/playstore"/>
-
-                </LinearLayout>
-
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="-70dp"/>
+                    android:layout_height="11dp"
+                    android:layout_marginTop="-70dp" />
 
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="274dp"
                     android:layout_height="156dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="80dp"
                     android:src="@drawable/blackcat"/>
 
                 <TableRow
@@ -211,30 +178,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
-                    <RadioGroup
-                        android:layout_marginTop="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/ryadioButton35"
-                            android:layout_width="76dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:text="Yes"
-                            android:textSize="18sp" />
-
-                        <RadioButton
-                            android:id="@+id/radio5Button246"
-                            android:layout_width="89dp"
+                        <RadioGroup
+                            android:layout_marginTop="15dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="No"
-                            android:textSize="18sp" />
+                            android:orientation="horizontal">
 
-                    </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/ryadioButton35"
+                                android:layout_width="76dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:text="Yes"
+                                android:textSize="18sp" />
+
+                            <RadioButton
+                                android:id="@+id/radio5Button246"
+                                android:layout_width="89dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="No"
+                                android:textSize="18sp" />
+
+                        </RadioGroup>
 
                 </TableRow>
 
@@ -567,18 +534,18 @@
                             android:text="Yard"
                             android:textSize="18sp" />
 
-                        <RadioButton
-                            android:id="@+id/radieoButtonl3y5l"
-                            android:layout_width="76dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:text="rooftop"
-                            android:textSize="18sp"
-                            android:layout_weight="1"/>
+                    <RadioButton
+                        android:id="@+id/radieoButtonl3y5l"
+                        android:layout_width="76dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="rooftop"
+                        android:textSize="18sp"
+                        android:layout_weight="1"/>
 
                     </RadioGroup>
 
-                </TableRow>
+            </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -607,14 +574,14 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp">
 
-                    <RadioButton
-                        android:id="@+id/radiottButtonl3y5l"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Agree"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:textSize="18sp"/>
+                <RadioButton
+                    android:id="@+id/radiottButtonl3y5l"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Agree"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="18sp"/>
 
                 </TableRow>
 
@@ -642,3 +609,4 @@
     </GridLayout>
 
 </LinearLayout>
+

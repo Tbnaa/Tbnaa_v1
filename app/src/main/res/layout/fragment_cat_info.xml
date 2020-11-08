@@ -4,8 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment_cat_info">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -257,5 +262,7 @@
             </TableRow>
 
         </TableLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

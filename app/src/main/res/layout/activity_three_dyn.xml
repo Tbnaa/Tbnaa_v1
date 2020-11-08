@@ -1,41 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
     android:orientation="vertical"
     tools:context=".three_dyn">
 
-    <Button
-        android:id="@+id/Fragment1"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/design"
-        android:textColor="#fff"
-        android:text="Cat Info" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <Button
-        android:id="@+id/Fragment2"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/design"
-        android:textColor="#fff"
-        android:text="User Info" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal|center_vertical">
 
-    <Button
-        android:id="@+id/Fragment3"
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_alignParentLeft="true"
+                android:contentDescription="humburger menu icon"
+                android:src="@drawable/ic_menu"/>
+
+            <TextView
+                android:layout_width="309dp"
+                android:layout_height="28dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Cat Adoption Requests"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/tbnaacircle"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_alignParentRight="true"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:textColor="#fff"
-        android:background="@drawable/design"
-        android:text="Form Info" />
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:columnCount="1"
+        android:rowCount="17"
+        android:padding="15dp"
+        android:background="@drawable/whitebackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Fragment1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/design"
+            android:textColor="#fff"
+            android:layout_weight="1"
+            android:text="Cat Info" />
+
+        <Button
+            android:id="@+id/Fragment2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/design"
+            android:textColor="#fff"
+            android:layout_weight="1"
+            android:text="User Info" />
+
+        <Button
+            android:id="@+id/Fragment3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="#fff"
+            android:layout_weight="1"
+            android:background="@drawable/design"
+            android:text="Form Info" />
+
+        </LinearLayout>
 
     <fragment
         android:id="@+id/DefaultFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="16dp"
         android:name="com.example.tbnaaproject.FragmentDy" />
+
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/accept"
+            android:background="@color/Color3"
+            android:text="Accept"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/reject"
+            android:background="@color/Color6"
+            android:text="Reject"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
 </LinearLayout>

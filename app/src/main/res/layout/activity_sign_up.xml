@@ -188,7 +188,7 @@
                             android:paddingLeft="5dp"
                             android:text="Gender "
                             android:textSize="18sp"
-                            android:ems="10"/>
+                            android:ems="1"/>
 
                         <RadioButton
                             android:id="@+id/Male1"
@@ -213,13 +213,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="150dp"
+                            android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
                             android:paddingLeft="5dp"
                             android:text="Social State "
                             android:textSize="18sp"
-                            android:ems="6"/>
+                            android:ems="1"/>
 
                         <RadioButton
                             android:id="@+id/Single1"
@@ -244,22 +244,20 @@
 
                         <TextView
                             android:id="@+id/signup_city_editText1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:textSize="18sp"
                             android:layout_marginTop="16dp"
                             android:paddingLeft="5dp"
                             android:text="City "
-                            android:ems="10"/>
+                            android:ems="1"/>
 
                         <Spinner
                             android:id="@+id/signup_city_spinner1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:paddingLeft="5dp"
-                            android:tooltipText="City"
-                            android:ems="10"/>
+                            android:paddingLeft="5dp"/>
 
                     </LinearLayout>
 
