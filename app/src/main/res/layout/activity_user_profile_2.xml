@@ -23,29 +23,30 @@
             android:gravity="center_horizontal|center_vertical">
 
             <ImageView
-                android:layout_width="70dp"
-                android:layout_height="60dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 android:layout_weight="1"
+                android:layout_margin="8dp"
                 android:layout_alignParentLeft="true"
                 android:contentDescription="humburger menu icon"
                 android:src="@drawable/ic_menu"/>
 
             <TextView
-                android:layout_width="309dp"
-                android:layout_height="28dp"
+                android:layout_width="288dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="My Profile"
                 android:textColor="@android:color/white"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:textStyle="bold"/>
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
                 app:srcCompat="@drawable/tbnaacircle"
-                android:layout_margin="15dp"
                 android:layout_weight="1"
                 android:layout_alignParentRight="true"/>
 
@@ -103,13 +104,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+              
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/ic_edit"
                     android:contentDescription="Edit icon"
                     android:background="@drawable/design"
-                    android:layout_marginLeft="70dp"
+                    android:layout_marginLeft="40dp"
                     android:scaleType="centerInside"
                     android:adjustViewBounds="true"
                     android:layout_marginTop="10dp"
@@ -119,24 +121,20 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@android:color/black"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="5dp"/>
-
         <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/userProfileTabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:tabMode="fixed"
+                app:tabTextColor="@color/Color1"
+                >
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/profileInfoTab"
@@ -157,12 +155,19 @@
                     android:text="Adding Requests" />
 
             </com.google.android.material.tabs.TabLayout>
-
+<!--
+            <androidx.viewpager2.widget.ViewPager2
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/userProfilePager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />-->
+          
             <androidx.viewpager.widget.ViewPager
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/userProfilePager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
+          
         </RelativeLayout>
 
     </GridLayout>

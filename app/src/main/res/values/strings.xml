@@ -15,7 +15,7 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string-array name="cities_spinner">
-        <item>Choose city</item>
+        <item>Choose a city</item>
         <item>Riyadh</item>
         <item>Abha</item>
         <item>Dammam</item>
@@ -26,7 +26,51 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string-array name="adoption_requests">
+    <string-array name="adoption_requests_cats">
+        <item>Lucy</item>
+        <item>Sasha</item>
+    </string-array>
+
+    <string-array name="adoption_requests_gender">
+        <item>female</item>
+        <item>female</item>
+    </string-array>
+
+    <string-array name="adoption_requests_city">
+        <item>Dammam</item>
+        <item>Dhahran</item>
+    </string-array>
+
+    <string-array name="adoption_requests_status">
+        <item>Accpetted</item>
+        <item>Declined</item>
+    </string-array>
+
+    <string-array name="adding_requests_cats">
+        <item>Nader</item>
+        <item>Alex</item>
+        <item>Maya</item>
+    </string-array>
+
+    <string-array name="adding_requests_gender">
+        <item>male</item>
+        <item>male</item>
+        <item>male</item>
+    </string-array>
+
+    <string-array name="adding_requests_city">
+        <item>Dammam</item>
+        <item>Khobar</item>
+        <item>Jubail</item>
+    </string-array>
+
+    <string-array name="adding_requests_status">
+        <item>Accpet</item>
+        <item>In Progress</item>
+        <item>In Progress</item>
+    </string-array>
+
+    <string-array name="cat_names">
         <item>Lucy</item>
         <item>Sasha</item>
         <item>Nader</item>
@@ -35,11 +79,15 @@
     </string-array>
 
     <string-array name="cat_gender">
-        <item>female</item>
-        <item>female</item>
-        <item>male</item>
-        <item>male</item>
-        <item>female</item>
+        <item>Gender</item>
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+    <string-array name="cat_age">
+        <item>Age</item>
+        <item>1 year and less</item>
+        <item>1 year and more</item>
     </string-array>
 
     <string-array name="cat_city">
@@ -55,8 +103,8 @@
         <item>accept</item>
     </string-array>
 
-    <string name="userInfoTab">First</string>
-    <string name="addReqTab">Second</string>
-    <string name="adoptReqTab">Third</string>
+    <string name="userInfoTab">User Information</string>
+    <string name="addReqTab">Adding Requests</string>
+    <string name="adoptReqTab">Addoption Requests</string>
 
 </resources>

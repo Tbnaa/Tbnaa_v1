@@ -13,31 +13,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_alignParentLeft="true"
             android:contentDescription="humburger menu icon"
             android:src="@drawable/ic_menu"/>
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="288dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Adding Request"
             android:textColor="@android:color/black"
             android:gravity="center"
-            android:textSize="22sp"
+            android:textSize="16sp"
             android:textStyle="bold"/>
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_alignParentRight="true"
             android:contentDescription="logo to be placed"
-            android:src="@drawable/playstore"/>
+            android:src="@drawable/playstore_nobackground"/>
 
     </LinearLayout>
 

@@ -37,10 +37,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>  {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.catName.setText(catname[position]);
         holder.catCity.setText(catcity[position]);
-        holder.catGender.setImageResource(catgender[position] == "male"? gendericon[0]:gendericon[1]);
+        holder.catGender.setImageResource(catgender[position].equals("male")? gendericon[0]:gendericon[1]);
         holder.catImage.setImageResource(images[position]);
         //TODO: set icon based on status
-        holder.requestStatus.setImageResource(status[0]);
+        holder.requestStatus.setText(decision[position].toUpperCase());
     }
 
     @Override
@@ -49,8 +49,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>  {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView catName, catCity;
-        ImageView catGender, catImage, requestStatus;
+        TextView catName, catCity, requestStatus;
+        ImageView catGender, catImage;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,7 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>  {
             catCity = itemView.findViewById(R.id.textViewCatCity);
             catImage = itemView.findViewById(R.id.imageViewCat);
             catGender = itemView.findViewById(R.id.imageViewCatGender);
-            requestStatus = itemView.findViewById(R.id.imageViewRequestStatus);
+            requestStatus = itemView.findViewById(R.id.textViewRequestStatus);
 
         }
     }
