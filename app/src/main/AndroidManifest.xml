@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tbnaaproject">
 
     <application
@@ -12,18 +13,17 @@
         <activity android:name=".AdoptionForm"/>
         <activity android:name=".AdminProfileModification" />
         <activity android:name=".AdminProfile" />
-        <activity android:name=".UserProfile2">
+        <activity android:name=".UserProfile2"/>
+        <activity android:name=".UserProfile" />
+        <activity android:name=".CatProfile"/>
+        <activity android:name=".activity_adding_cat"/>
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserProfile" />
-        <activity android:name=".CatProfile"/>
-        <activity android:name=".activity_adding_cat"/>
-        <activity android:name=".SplashScreen">
-
-        </activity>
+        <activity android:name=".AdoptionRequestsAdmin"/>
         <activity android:name=".SignUp" />
         <activity android:name=".TbnaaMembers"/>
         <activity android:name=".Login" />
