@@ -39,9 +39,11 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             app:srcCompat="@drawable/tbnaacircle"
+            android:contentDescription="logo to be placed"
             android:layout_margin="15dp"
             android:layout_weight="1"
             android:layout_alignParentRight="true"/>
+
 
     </LinearLayout>
 
@@ -101,6 +103,9 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:elevation="1"
         android:columnCount="1"
         android:rowCount="1"
         android:background="#FFFFFF">
@@ -110,7 +115,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="10dp">
+        android:layout_margin="15dp">
 
         <Button
             android:id="@+id/admin_apply_modifications"
@@ -118,7 +123,7 @@
             android:layout_height="50dp"
             android:background="@drawable/design"
             android:text="Accept"
-            android:layout_margin="16dp"
+            android:layout_marginRight="15dp"
             android:textColor="#fff"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -127,7 +132,7 @@
             android:id="@+id/admin_cancel_modifications"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/design"
             android:text="Reject"
             android:textColor="#fff"
