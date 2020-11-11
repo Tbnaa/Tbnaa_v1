@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserProfileFields"
     android:background="@color/Color4"
     android:orientation="vertical">
-
     <GridLayout
         android:id="@+id/gridUserProfile"
         android:layout_width="match_parent"
@@ -15,8 +15,7 @@
         android:columnCount="1"
         android:rowCount="17"
         android:padding="15dp"
-        android:background="@drawable/whitebackground">
-
+        android:background="@color/White">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="First Name"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="14sp"
                 android:layout_marginLeft="10dp"/>
 
             <TextView
@@ -75,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:text="Last Name"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="14sp"
                 android:layout_marginLeft="10dp"/>
 
             <TextView
@@ -85,7 +84,43 @@
                 android:textSize="16dp"/>
 
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_username"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textSize="16dp"/>
+
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -114,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:text="Date of Birth"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="14sp"
                 android:layout_marginLeft="10dp"/>
 
         </LinearLayout>
@@ -146,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:text="City"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="14sp"
                 android:layout_marginLeft="10dp"/>
 
             <Spinner
@@ -185,7 +220,45 @@
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="14sp"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textSize="16dp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_phone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone No."
+                android:textStyle="bold"
+                android:textSize="14sp"
                 android:layout_marginLeft="10dp"/>
 
             <TextView
@@ -225,26 +298,25 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gender "
+                    android:text="Gender"
                     android:textStyle="bold"
-                    android:textSize="18dp"
-                    android:ems="10"
+                    android:textSize="14sp"
                     android:layout_marginLeft="10dp"
                     />
                 <RadioButton
                     android:id="@+id/Male1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:textSize="12sp"
                     android:text="Male"/>
 
                 <RadioButton
                     android:id="@+id/Female1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:textSize="12sp"
                     android:text="Female"/>
             </RadioGroup>
         </LinearLayout>
@@ -272,20 +344,21 @@
                 android:layout_height="wrap_content"
                 android:text="Social Status"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="13sp"
                 android:layout_marginLeft="10dp"/>
 
             <RadioButton
                 android:id="@+id/Single1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:text="Single"/>
 
             <RadioButton
                 android:id="@+id/Married1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:textSize="12sp"
                 android:text="Married"/>
         </LinearLayout>
         <View
@@ -315,7 +388,7 @@
                 android:layout_height="wrap_content"
                 android:text="Password"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="14sp"
                 android:layout_marginLeft="10dp"/>
 
             <TextView

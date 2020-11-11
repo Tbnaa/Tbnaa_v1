@@ -28,13 +28,16 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     }
 
     public void addFragments(){
+        Fragment profile = new UserProfileFields();
         Fragment adoption = new AdoptionRequests();
         Fragment adding = new AddingRequests();
-        Fragment profile = new UserProfileFields();
 
-        mFragmentList.add(adding);
-        mFragmentList.add(adoption);
+
         mFragmentList.add(profile);
+        mFragmentList.add(adoption);
+        mFragmentList.add(adding);
+
+
     }
 
 }

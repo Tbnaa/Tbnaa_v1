@@ -51,8 +51,11 @@ public class Login extends AppCompatActivity {
 
         if(!validate()){
             Toast.makeText(getApplicationContext(),"Login Failed!",Toast.LENGTH_SHORT).show();
+
         } else {
             Toast.makeText(getApplicationContext(),"Valid Info.",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), CatCards.class);
+            startActivity(intent);
         }
     }
 
