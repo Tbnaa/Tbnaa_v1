@@ -126,12 +126,13 @@
                             android:src="@drawable/website"/>
 
                         <ImageView
+                            android:id="@+id/contact_us_email"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_gravity="center_vertical"
                             android:layout_margin="1dp"
                             android:layout_weight="1"
-                            android:src="@drawable/emailicon"/>
+                            android:src="@drawable/emailicon" />
 
                     </LinearLayout>
 
