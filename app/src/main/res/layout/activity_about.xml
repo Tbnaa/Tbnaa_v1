@@ -73,8 +73,8 @@
                     android:src="@drawable/whoarewe"/>
 
                 <ImageView
-                    android:layout_width="350dp"
-                    android:layout_height="350dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="15dp"
                     android:layout_weight="2"
@@ -110,6 +110,7 @@
                     android:layout_marginTop="15dp">
 
                     <ImageView
+                        android:id="@+id/tweetImage"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_gravity="center_vertical"
@@ -118,68 +119,13 @@
                         android:src="@drawable/tweet"/>
 
                     <ImageView
-                        android:layout_width="350dp"
-                        android:layout_height="350dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/aboutus"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="10dp"
-                android:elevation="10dp"
-                app:cardCornerRadius="15dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center|center_horizontal|center_vertical"
-                    android:orientation="vertical"
-                    android:weightSum="2">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|center_horizontal|center_vertical"
-                        android:orientation="horizontal"
-                        android:weightSum="3"
-                        android:layout_marginTop="15dp">
-
-                        <ImageView
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="1dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/tweet"/>
-
-                        <ImageView
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="1dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/website"/>
-
-                        <ImageView
-                            android:id="@+id/contact_us_email"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="1dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/emailicon" />
-
-                    </LinearLayout>
+                        android:id="@+id/websiteImage"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/website"/>
 
                     <ImageView
                         android:id="@+id/contact_us_email"
@@ -190,10 +136,18 @@
                         android:layout_weight="1"
                         android:src="@drawable/emailicon" />
 
+<!--                    <ImageView-->
+<!--                        android:layout_width="350dp"-->
+<!--                        android:layout_height="350dp"-->
+<!--                        android:layout_marginTop="0dp"-->
+<!--                        android:layout_marginBottom="15dp"-->
+<!--                        android:layout_weight="2"-->
+<!--                        android:src="@drawable/aboutus"/>-->
+
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imageView"
                     android:layout_width="200dp"
                     android:layout_height="70dp"
                     app:srcCompat="@drawable/copyrightblack"
@@ -201,6 +155,79 @@
                     android:layout_marginTop="15dp"/>
 
             </LinearLayout>
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_rowWeight="1"-->
+<!--                android:layout_columnWeight="1"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:elevation="10dp"-->
+<!--                app:cardCornerRadius="15dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center|center_horizontal|center_vertical"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:weightSum="2">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center|center_horizontal|center_vertical"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:weightSum="3"-->
+<!--                        android:layout_marginTop="15dp">-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="70dp"-->
+<!--                            android:layout_height="70dp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_margin="1dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:src="@drawable/tweet"/>-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="70dp"-->
+<!--                            android:layout_height="70dp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_margin="1dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:src="@drawable/website"/>-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/contact_us_email1"-->
+<!--                            android:layout_width="70dp"-->
+<!--                            android:layout_height="70dp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_margin="1dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:src="@drawable/emailicon" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/contact_us_email"-->
+<!--                        android:layout_width="70dp"-->
+<!--                        android:layout_height="70dp"-->
+<!--                        android:layout_gravity="center_vertical"-->
+<!--                        android:layout_margin="1dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:src="@drawable/emailicon" />-->
+
+<!--                </LinearLayout>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView3"-->
+<!--                    android:layout_width="200dp"-->
+<!--                    android:layout_height="70dp"-->
+<!--                    app:srcCompat="@drawable/copyrightblack"-->
+<!--                    android:layout_marginBottom="0dp"-->
+<!--                    android:layout_marginTop="15dp"/>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
 
         </androidx.cardview.widget.CardView>
 
