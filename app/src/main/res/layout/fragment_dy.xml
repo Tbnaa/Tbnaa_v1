@@ -127,7 +127,7 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/editTextTextMultiLine"
+                        android:id="@+id/cat_story_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -215,7 +215,7 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/catAge_editText"
+                        android:id="@+id/cat_helth_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -261,7 +261,7 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/radioButton35"
+                            android:id="@+id/vaccinated_xml"
                             android:layout_width="76dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -269,7 +269,7 @@
                             android:textSize="18sp" />
 
                         <RadioButton
-                            android:id="@+id/radioButton246"
+                            android:id="@+id/not_vaccinated_xml"
                             android:layout_width="89dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -308,7 +308,7 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/radioButton897"
+                            android:id="@+id/neutered_xml"
                             android:layout_width="76dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -316,7 +316,7 @@
                             android:textSize="18sp" />
 
                         <RadioButton
-                            android:id="@+id/radioButton66"
+                            android:id="@+id/not_neutered_xml"
                             android:layout_width="89dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -569,7 +569,7 @@
                 </TableRow>
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/upload_cat_image_button"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
