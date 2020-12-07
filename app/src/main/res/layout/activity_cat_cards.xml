@@ -9,7 +9,9 @@
     android:orientation="vertical"
     tools:context=".CatCards">
 
+
 <!--    TODO: filters-->
+
 
 
     <RelativeLayout
@@ -25,29 +27,30 @@
             android:gravity="center_horizontal|center_vertical">
 
             <ImageView
-                android:layout_width="70dp"
-                android:layout_height="60dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 android:layout_weight="1"
+                android:layout_margin="8dp"
                 android:layout_alignParentLeft="true"
                 android:contentDescription="humburger menu icon"
                 android:src="@drawable/ic_menu"/>
 
             <TextView
-                android:layout_width="309dp"
-                android:layout_height="28dp"
+                android:layout_width="288dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="Cats Gallary"
                 android:textColor="@android:color/white"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:textStyle="bold"/>
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
                 app:srcCompat="@drawable/tbnaacircle"
-                android:layout_margin="15dp"
                 android:layout_weight="1"
                 android:layout_alignParentRight="true"/>
 
@@ -66,19 +69,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="3"
-            android:paddingTop="20dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:layout_margin="8dp"
+            android:paddingTop="8dp"
             android:gravity="center_horizontal">
 
             <Spinner
                 android:id="@+id/sp1"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_width="wrap_content"
+                android:layout_width="104dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:paddingRight="50dp"
                 android:layout_gravity="left"
                 android:background="@drawable/spinner_design1"
                 android:entries="@array/cities_spinner"/>
@@ -87,22 +88,20 @@
                 android:id="@+id/sp2"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_width="wrap_content"
+                android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/spinner_design1"
                 android:ems="10"
-                android:entries="@array/cat_gender"
-                android:paddingRight="50dp"/>
+                android:entries="@array/cat_gender"/>
 
             <Spinner
                 android:id="@+id/sp3"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_width="wrap_content"
+                android:layout_width="104dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:paddingRight="50dp"
                 android:layout_gravity="right"
                 android:background="@drawable/spinner_design1"
                 android:entries="@array/cat_age"/>
