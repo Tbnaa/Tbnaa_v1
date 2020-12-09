@@ -155,14 +155,14 @@ public class TbnaaDatabase  {
 
         ContentValues cv = new ContentValues();
 
-        cv.put("password", uPassword);
+        cv.put("uPassword", uPassword);
         cv.put("uImage", uImage);
         cv.put("uFirstName", uFirstName);
         cv.put("uLastName", uLastName);
         cv.put("uGender", uGender);
         cv.put("socialState", socialState);
-        cv.put("email", uEmail);
-        cv.put("phone", uPhone);
+        cv.put("uEmail", uEmail);
+        cv.put("uPhone", uPhone);
         cv.put("uCity", uCity);
 
         this.connect();
