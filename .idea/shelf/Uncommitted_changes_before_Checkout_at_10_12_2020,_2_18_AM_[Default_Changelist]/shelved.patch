@@ -1,0 +1,993 @@
+Index: app/src/main/java/com/example/tbnaaproject/CatCards.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tbnaaproject;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport android.content.Intent;\nimport android.graphics.Color;\nimport android.os.Bundle;\nimport android.view.View;\nimport android.widget.AdapterView;\nimport android.widget.ArrayAdapter;\nimport android.widget.GridView;\nimport android.widget.TextView;\n\nimport com.example.tbnaaproject.adapters.CatCardsAdapter;\nimport com.example.tbnaaproject.R;\nimport com.example.tbnaaproject.models.Cats;\n\nimport java.util.ArrayList;\n\npublic class CatCards extends AppCompatActivity {\n\n    GridView gridView;\n    ArrayList<Cats> catsList;\n    CatCardsAdapter catAdapter;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_cat_cards);\n\n        gridView = (GridView) findViewById(R.id.catsGridView);\n\n        TbnaaDatabase databaseHelper = new TbnaaDatabase(CatCards.this);\n        catsList = new ArrayList<Cats>();\n\n        catsList = databaseHelper.getAllCats();\n        catAdapter = new CatCardsAdapter(CatCards.this, catsList);\n        gridView.setAdapter(catAdapter);\n\n//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {\n//\n//            @Override\n//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {\n//\n//                // Open cat profile page\n//                Cats theCat = (Cats) parent.getItemAtPosition(position);\n//\n//                Bundle b = new Bundle();\n//                b.putSerializable(\"bundleobj\", theCat);\n//\n//                Intent intent = new Intent(CatCards.this, CatProfile.class);\n//                intent.putExtra(\"catID\", b);\n//                startActivity(intent);\n//\n//            }\n//        });\n\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/CatCards.java	(revision e7ab100d33ec41bbe876921800bf7d5eba9da689)
++++ app/src/main/java/com/example/tbnaaproject/CatCards.java	(date 1607551621000)
+@@ -9,7 +9,9 @@
+ import android.widget.AdapterView;
+ import android.widget.ArrayAdapter;
+ import android.widget.GridView;
++import android.widget.Spinner;
+ import android.widget.TextView;
++import android.widget.Toast;
+ 
+ import com.example.tbnaaproject.adapters.CatCardsAdapter;
+ import com.example.tbnaaproject.R;
+@@ -22,6 +24,12 @@
+     GridView gridView;
+     ArrayList<Cats> catsList;
+     CatCardsAdapter catAdapter;
++    TbnaaDatabase databaseHelper;
++    Spinner sp1;
++    Spinner sp2;
++
++    String cities[]={"City","Riyadh","Abha","Dammam","Jeddah","Medina","Mecca"};
++    String gender[]={"Gender","Female","Male"};
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -30,30 +38,99 @@
+ 
+         gridView = (GridView) findViewById(R.id.catsGridView);
+ 
+-        TbnaaDatabase databaseHelper = new TbnaaDatabase(CatCards.this);
++        databaseHelper = new TbnaaDatabase(CatCards.this);
+         catsList = new ArrayList<Cats>();
+ 
+         catsList = databaseHelper.getAllCats();
+         catAdapter = new CatCardsAdapter(CatCards.this, catsList);
+         gridView.setAdapter(catAdapter);
++
++        //card selection event
++        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
++
++            @Override
++            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
++
++                // Open cat profile page
++                Cats theCat = new Cats();
++                Intent intent = new Intent(CatCards.this, CatProfile.class);
++                intent.putExtra("catID", theCat.getCatId());
++                startActivity(intent);
++            }
++        });
++
++        //city spinner selection event
++        sp1 = findViewById(R.id.sp1);
++        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
++            @Override
++            public void onItemSelected(AdapterView<?> parent, View view, int position, long itemID) {
++
++                if(position == 0){
++                    catsList = new ArrayList<Cats>();
++                    catsList = databaseHelper.getAllCats();
++                    catAdapter = new CatCardsAdapter(CatCards.this, catsList);
++                    gridView.setAdapter(catAdapter);
++
++                } else if (position > 0 && position < cities.length) {
++
++                    String text = parent.getItemAtPosition(position).toString();
++                        ArrayList<Cats> catssList = new ArrayList<Cats>();
++                        ArrayList<Cats> allData = databaseHelper.getAllCats();
++
++                        //filter by city
++                        for (Cats catt : allData) {
++                            if (catt.getCatCity().trim().equalsIgnoreCase(text.trim())) {
++                                catssList.add(catt);
++                            }
++                        }
++
++                        //instatiate adapter a
++                        catAdapter = new CatCardsAdapter(CatCards.this, catssList);
++                        //set the adapter to GridView
++                        gridView.setAdapter(catAdapter);
++                } else {
++                    Toast.makeText(CatCards.this, "There are no data based on your selection.", Toast.LENGTH_SHORT).show();
++                }
++            }
++            @Override
++            public void onNothingSelected(AdapterView<?> adapterView) {}
++        });
++
++        //Gender spinner selection event
++        sp2 = findViewById(R.id.sp2);
++        sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
++            @Override
++            public void onItemSelected(AdapterView<?> parent, View view, int position, long itemID) {
++                if(position == 0){
++                    catsList = new ArrayList<Cats>();
++                    catsList = databaseHelper.getAllCats();
++                    catAdapter = new CatCardsAdapter(CatCards.this, catsList);
++                    gridView.setAdapter(catAdapter);
++
++                } else if (position > 0 && position < gender.length) {
++
++                    String text = parent.getItemAtPosition(position).toString();
++                    ArrayList<Cats> catssList = new ArrayList<Cats>();
++                    ArrayList<Cats> allData = databaseHelper.getAllCats();
+ 
+-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+-//
+-//            @Override
+-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+-//
+-//                // Open cat profile page
+-//                Cats theCat = (Cats) parent.getItemAtPosition(position);
+-//
+-//                Bundle b = new Bundle();
+-//                b.putSerializable("bundleobj", theCat);
+-//
+-//                Intent intent = new Intent(CatCards.this, CatProfile.class);
+-//                intent.putExtra("catID", b);
+-//                startActivity(intent);
+-//
+-//            }
+-//        });
++                    //filter by city
++                    for (Cats catt : allData) {
++                        if (catt.getCatGender().trim().equalsIgnoreCase(text.trim())) {
++                            catssList.add(catt);
++                        }
++                    }
++
++                    //instatiate adapter a
++                    catAdapter = new CatCardsAdapter(CatCards.this, catssList);
++                    //set the adapter to GridView
++                    gridView.setAdapter(catAdapter);
++                } else {
++                    Toast.makeText(CatCards.this, "There are no data based on your selection.", Toast.LENGTH_SHORT).show();
++                }
++            }
++            @Override
++            public void onNothingSelected(AdapterView<?> adapterView) {}
++        });
+ 
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <string name=\"app_name\">TbnaaProject</string>\n    <string name=\"prompt_email\">Email</string>\n    <!-- Strings related to login -->\n    <string name=\"prompt_password\">Password</string>\n    <string name=\"action_sign_in\">Sign in or register</string>\n    <string name=\"action_sign_in_short\">Sign in</string>\n    <string name=\"welcome\">\"Welcome!\"</string>\n    <string name=\"invalid_username\">Not a valid username</string>\n    <string name=\"invalid_password\">Password must be >5 characters</string>\n    <string name=\"login_failed\">\"Login failed\"</string>\n    <!-- TODO: Remove or change this placeholder text -->\n    <string name=\"title_activity_tabbed_test\">TabbedActivityTest</string>\n    <!-- TODO: Remove or change this placeholder text -->\n    <string name=\"tab_text_1\">Tab 1</string>\n    <string name=\"tab_text_2\">Tab 2</string>\n    <string-array name=\"cities_spinner\" id=\"cities_spinner\">\n        <item>Choose a city</item>\n        <item>Riyadh</item>\n        <item>Abha</item>\n        <item>Dammam</item>\n        <item>Jeddah</item>\n        <item>Medina</item>\n        <item>Mecca</item>\n    </string-array>\n    <!-- TODO: Remove or change this placeholder text -->\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\n\n    <string-array name=\"adoption_requests_cats\">\n        <item>Lucy</item>\n        <item>Sasha</item>\n    </string-array>\n\n    <string-array name=\"adoption_requests_gender\">\n        <item>female</item>\n        <item>female</item>\n    </string-array>\n\n    <string-array name=\"adoption_requests_city\">\n        <item>Dammam</item>\n        <item>Dhahran</item>\n    </string-array>\n\n    <string-array name=\"adoption_requests_status\">\n        <item>Accpetted</item>\n        <item>Declined</item>\n    </string-array>\n\n    <string-array name=\"adding_requests_cats\">\n        <item>Nader</item>\n        <item>Alex</item>\n        <item>Maya</item>\n    </string-array>\n\n    <string-array name=\"adding_requests_gender\">\n        <item>male</item>\n        <item>male</item>\n        <item>male</item>\n    </string-array>\n\n    <string-array name=\"adding_requests_city\">\n        <item>Dammam</item>\n        <item>Khobar</item>\n        <item>Jubail</item>\n    </string-array>\n\n    <string-array name=\"adding_requests_status\">\n        <item>Accpet</item>\n        <item>In Progress</item>\n        <item>In Progress</item>\n    </string-array>\n\n    <string-array name=\"cat_names\">\n        <item>Lucy</item>\n        <item>Sasha</item>\n        <item>Nader</item>\n        <item>Alex</item>\n        <item>Maya</item>\n    </string-array>\n\n    <string-array name=\"cat_gender\">\n        <item>Gender</item>\n        <item>Female</item>\n        <item>Male</item>\n    </string-array>\n\n    <string-array name=\"cat_age\">\n        <item>Age</item>\n        <item>1 year and less</item>\n        <item>1 year and more</item>\n    </string-array>\n\n    <string-array name=\"cat_city\">\n        <item>Dammam</item>\n        <item>Khobar</item>\n        <item>Riyadh</item>\n        <item>Jeddah</item>\n        <item>Hail</item>\n    </string-array>\n\n    <string-array name=\"request_decision\">\n        <item>decline</item>\n        <item>accept</item>\n    </string-array>\n\n    <string name=\"userInfoTab\">User Information</string>\n    <string name=\"addReqTab\">Adding Requests</string>\n    <string name=\"adoptReqTab\">Addoption Requests</string>\n\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision e7ab100d33ec41bbe876921800bf7d5eba9da689)
++++ app/src/main/res/values/strings.xml	(date 1607554477000)
+@@ -106,5 +106,16 @@
+     <string name="userInfoTab">User Information</string>
+     <string name="addReqTab">Adding Requests</string>
+     <string name="adoptReqTab">Addoption Requests</string>
++    <string name="title_activity_admin_menu">AdminMenu</string>
++    <string name="navigation_drawer_open">Open navigation drawer</string>
++    <string name="navigation_drawer_close">Close navigation drawer</string>
++    <string name="nav_header_title">Android Studio</string>
++    <string name="nav_header_subtitle">android.studio@android.com</string>
++    <string name="nav_header_desc">Navigation header</string>
++    <string name="action_settings">Settings</string>
++
++    <string name="menu_home">Home</string>
++    <string name="menu_gallery">Gallery</string>
++    <string name="menu_slideshow">Slideshow</string>
+ 
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/layout/nav_header_main.xml
+===================================================================
+--- app/src/main/res/layout/nav_header_main.xml	(date 1607554481000)
++++ app/src/main/res/layout/nav_header_main.xml	(date 1607554481000)
+@@ -0,0 +1,35 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    android:layout_width="match_parent"
++    android:layout_height="@dimen/nav_header_height"
++    android:background="@drawable/side_nav_bar"
++    android:gravity="bottom"
++    android:orientation="vertical"
++    android:paddingLeft="@dimen/activity_horizontal_margin"
++    android:paddingTop="@dimen/activity_vertical_margin"
++    android:paddingRight="@dimen/activity_horizontal_margin"
++    android:paddingBottom="@dimen/activity_vertical_margin"
++    android:theme="@style/ThemeOverlay.AppCompat.Dark">
++
++    <ImageView
++        android:id="@+id/imageView"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:contentDescription="@string/nav_header_desc"
++        android:paddingTop="@dimen/nav_header_vertical_spacing"
++        app:srcCompat="@mipmap/ic_launcher_round" />
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:paddingTop="@dimen/nav_header_vertical_spacing"
++        android:text="@string/nav_header_title"
++        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
++
++    <TextView
++        android:id="@+id/textView"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="@string/nav_header_subtitle" />
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/AdminMenu.java
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/AdminMenu.java	(date 1607554481000)
++++ app/src/main/java/com/example/tbnaaproject/AdminMenu.java	(date 1607554481000)
+@@ -0,0 +1,63 @@
++package com.example.tbnaaproject;
++
++import android.os.Bundle;
++import android.view.View;
++import android.view.Menu;
++
++import com.google.android.material.floatingactionbutton.FloatingActionButton;
++import com.google.android.material.snackbar.Snackbar;
++import com.google.android.material.navigation.NavigationView;
++
++import androidx.navigation.NavController;
++import androidx.navigation.Navigation;
++import androidx.navigation.ui.AppBarConfiguration;
++import androidx.navigation.ui.NavigationUI;
++import androidx.drawerlayout.widget.DrawerLayout;
++import androidx.appcompat.app.AppCompatActivity;
++import androidx.appcompat.widget.Toolbar;
++
++public class AdminMenu extends AppCompatActivity {
++
++    private AppBarConfiguration mAppBarConfiguration;
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_admin_menu);
++        Toolbar toolbar = findViewById(R.id.toolbar);
++        setSupportActionBar(toolbar);
++        FloatingActionButton fab = findViewById(R.id.fab);
++        fab.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
++                        .setAction("Action", null).show();
++            }
++        });
++        DrawerLayout drawer = findViewById(R.id.drawer_layout);
++        NavigationView navigationView = findViewById(R.id.nav_view);
++        // Passing each menu ID as a set of Ids because each
++        // menu should be considered as top level destinations.
++        mAppBarConfiguration = new AppBarConfiguration.Builder(
++                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
++                .setDrawerLayout(drawer)
++                .build();
++        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
++        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
++        NavigationUI.setupWithNavController(navigationView, navController);
++    }
++
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        // Inflate the menu; this adds items to the action bar if it is present.
++        getMenuInflater().inflate(R.menu.admin_menu, menu);
++        return true;
++    }
++
++    @Override
++    public boolean onSupportNavigateUp() {
++        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
++        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
++                || super.onSupportNavigateUp();
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/menu/activity_main_drawer.xml
+===================================================================
+--- app/src/main/res/menu/activity_main_drawer.xml	(date 1607554478000)
++++ app/src/main/res/menu/activity_main_drawer.xml	(date 1607554478000)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    tools:showIn="navigation_view">
++
++    <group android:checkableBehavior="single">
++        <item
++            android:id="@+id/nav_home"
++            android:icon="@drawable/ic_menu_camera"
++            android:title="@string/menu_home" />
++        <item
++            android:id="@+id/nav_gallery"
++            android:icon="@drawable/ic_menu_gallery"
++            android:title="@string/menu_gallery" />
++        <item
++            android:id="@+id/nav_slideshow"
++            android:icon="@drawable/ic_menu_slideshow"
++            android:title="@string/menu_slideshow" />
++    </group>
++</menu>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_admin_menu.xml
+===================================================================
+--- app/src/main/res/layout/activity_admin_menu.xml	(date 1607554481000)
++++ app/src/main/res/layout/activity_admin_menu.xml	(date 1607554481000)
+@@ -0,0 +1,24 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/drawer_layout"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:fitsSystemWindows="true"
++    tools:openDrawer="start">
++
++    <include
++        layout="@layout/app_bar_main"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent" />
++
++    <com.google.android.material.navigation.NavigationView
++        android:id="@+id/nav_view"
++        android:layout_width="wrap_content"
++        android:layout_height="match_parent"
++        android:layout_gravity="start"
++        android:fitsSystemWindows="true"
++        app:headerLayout="@layout/nav_header_main"
++        app:menu="@menu/activity_main_drawer" />
++</androidx.drawerlayout.widget.DrawerLayout>
+\ No newline at end of file
+Index: app/src/main/res/navigation/mobile_navigation.xml
+===================================================================
+--- app/src/main/res/navigation/mobile_navigation.xml	(date 1607554478000)
++++ app/src/main/res/navigation/mobile_navigation.xml	(date 1607554478000)
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="utf-8"?>
++<navigation xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/mobile_navigation"
++    app:startDestination="@+id/nav_home">
++
++    <fragment
++        android:id="@+id/nav_home"
++        android:name="com.example.tbnaaproject.ui.home.HomeFragment"
++        android:label="@string/menu_home"
++        tools:layout="@layout/fragment_home" />
++
++    <fragment
++        android:id="@+id/nav_gallery"
++        android:name="com.example.tbnaaproject.ui.gallery.GalleryFragment"
++        android:label="@string/menu_gallery"
++        tools:layout="@layout/fragment_gallery" />
++
++    <fragment
++        android:id="@+id/nav_slideshow"
++        android:name="com.example.tbnaaproject.ui.slideshow.SlideshowFragment"
++        android:label="@string/menu_slideshow"
++        tools:layout="@layout/fragment_slideshow" />
++</navigation>
+\ No newline at end of file
+Index: app/src/main/res/layout/app_bar_main.xml
+===================================================================
+--- app/src/main/res/layout/app_bar_main.xml	(date 1607554481000)
++++ app/src/main/res/layout/app_bar_main.xml	(date 1607554481000)
+@@ -0,0 +1,33 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".AdminMenu">
++
++    <com.google.android.material.appbar.AppBarLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:theme="@style/AppBarOverlay">
++
++        <androidx.appcompat.widget.Toolbar
++            android:id="@+id/toolbar"
++            android:layout_width="match_parent"
++            android:layout_height="?attr/actionBarSize"
++            android:background="?attr/colorPrimary"
++            app:popupTheme="@style/PopupOverlay" />
++
++    </com.google.android.material.appbar.AppBarLayout>
++
++    <include layout="@layout/content_main" />
++
++    <com.google.android.material.floatingactionbutton.FloatingActionButton
++        android:id="@+id/fab"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_gravity="bottom|end"
++        android:layout_margin="@dimen/fab_margin"
++        app:srcCompat="@android:drawable/ic_dialog_email" />
++
++</androidx.coordinatorlayout.widget.CoordinatorLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/ui/slideshow/SlideshowViewModel.java
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/ui/slideshow/SlideshowViewModel.java	(date 1607554478000)
++++ app/src/main/java/com/example/tbnaaproject/ui/slideshow/SlideshowViewModel.java	(date 1607554478000)
+@@ -0,0 +1,19 @@
++package com.example.tbnaaproject.ui.slideshow;
++
++import androidx.lifecycle.LiveData;
++import androidx.lifecycle.MutableLiveData;
++import androidx.lifecycle.ViewModel;
++
++public class SlideshowViewModel extends ViewModel {
++
++    private MutableLiveData<String> mText;
++
++    public SlideshowViewModel() {
++        mText = new MutableLiveData<>();
++        mText.setValue("This is slideshow fragment");
++    }
++
++    public LiveData<String> getText() {
++        return mText;
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/ui/slideshow/SlideshowFragment.java
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/ui/slideshow/SlideshowFragment.java	(date 1607554481000)
++++ app/src/main/java/com/example/tbnaaproject/ui/slideshow/SlideshowFragment.java	(date 1607554481000)
+@@ -0,0 +1,35 @@
++package com.example.tbnaaproject.ui.slideshow;
++
++import android.os.Bundle;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.TextView;
++
++import androidx.annotation.NonNull;
++import androidx.annotation.Nullable;
++import androidx.fragment.app.Fragment;
++import androidx.lifecycle.Observer;
++import androidx.lifecycle.ViewModelProvider;
++
++import com.example.tbnaaproject.R;
++
++public class SlideshowFragment extends Fragment {
++
++    private SlideshowViewModel slideshowViewModel;
++
++    public View onCreateView(@NonNull LayoutInflater inflater,
++                             ViewGroup container, Bundle savedInstanceState) {
++        slideshowViewModel =
++                new ViewModelProvider(this).get(SlideshowViewModel.class);
++        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
++        final TextView textView = root.findViewById(R.id.text_slideshow);
++        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
++            @Override
++            public void onChanged(@Nullable String s) {
++                textView.setText(s);
++            }
++        });
++        return root;
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_cat_cards.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<LinearLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"#212121\"\n    android:orientation=\"vertical\"\n    tools:context=\".CatCards\">\n\n\n<!--    TODO: filters-->\n\n\n\n    <RelativeLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"0dp\"\n        android:layout_weight=\"1\">\n\n        <LinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:orientation=\"horizontal\"\n            android:layout_centerInParent=\"true\"\n            android:gravity=\"center_horizontal|center_vertical\">\n\n            <ImageView\n                android:layout_width=\"72dp\"\n                android:layout_height=\"72dp\"\n                android:layout_weight=\"1\"\n                android:layout_margin=\"8dp\"\n                android:layout_alignParentLeft=\"true\"\n                android:contentDescription=\"humburger menu icon\"\n                android:src=\"@drawable/ic_menu\"/>\n\n            <TextView\n                android:layout_width=\"288dp\"\n                android:layout_height=\"wrap_content\"\n                android:layout_weight=\"1\"\n                android:gravity=\"center_vertical|center_horizontal\"\n                android:text=\"Cats Gallary\"\n                android:textColor=\"@android:color/white\"\n                android:textSize=\"24sp\"\n                android:textStyle=\"bold\"/>\n\n            <ImageView\n                android:id=\"@+id/imageView4\"\n                android:layout_width=\"80dp\"\n                android:layout_height=\"80dp\"\n                android:layout_margin=\"8dp\"\n                app:srcCompat=\"@drawable/tbnaacircle\"\n                android:layout_weight=\"1\"\n                android:layout_alignParentRight=\"true\"/>\n\n        </LinearLayout>\n\n    </RelativeLayout>\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"0dp\"\n        android:layout_weight=\"7\"\n        android:background=\"@drawable/background\"\n        android:orientation=\"vertical\">\n\n        <GridLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:columnCount=\"3\"\n            android:layout_margin=\"8dp\"\n            android:paddingTop=\"8dp\"\n            android:gravity=\"center_horizontal\">\n\n            <Spinner\n                android:id=\"@+id/sp1\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_width=\"104dp\"\n                android:layout_height=\"wrap_content\"\n                android:ems=\"10\"\n                android:layout_gravity=\"left\"\n                android:background=\"@drawable/spinner_design1\"\n                android:entries=\"@array/cities_spinner\"/>\n\n            <Spinner\n                android:id=\"@+id/sp2\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_width=\"112dp\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:background=\"@drawable/spinner_design1\"\n                android:ems=\"10\"\n                android:entries=\"@array/cat_gender\"/>\n\n            <Spinner\n                android:id=\"@+id/sp3\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_width=\"104dp\"\n                android:layout_height=\"wrap_content\"\n                android:ems=\"10\"\n                android:layout_gravity=\"right\"\n                android:background=\"@drawable/spinner_design1\"\n                android:entries=\"@array/cat_age\"/>\n\n        </GridLayout>\n\n    <GridView\n        android:id=\"@+id/catsGridView\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:padding=\"8dp\"\n        android:horizontalSpacing=\"8dp\"\n        android:verticalSpacing=\"4dp\"\n        android:numColumns=\"2\"\n        android:scrollbars=\"none\"/>\n\n\n    </LinearLayout>\n\n    </LinearLayout>\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_cat_cards.xml	(revision e7ab100d33ec41bbe876921800bf7d5eba9da689)
++++ app/src/main/res/layout/activity_cat_cards.xml	(date 1607551071000)
+@@ -68,19 +68,19 @@
+         <GridLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+-            android:columnCount="3"
+-            android:layout_margin="8dp"
+-            android:paddingTop="8dp"
++            android:columnCount="2"
++            android:layout_margin="15dp"
++            android:paddingTop="10dp"
+             android:gravity="center_horizontal">
+ 
+             <Spinner
+                 android:id="@+id/sp1"
+                 android:layout_rowWeight="1"
+                 android:layout_columnWeight="1"
+-                android:layout_width="104dp"
++                android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:ems="10"
+-                android:layout_gravity="left"
++                android:layout_marginRight="8dp"
+                 android:background="@drawable/spinner_design1"
+                 android:entries="@array/cities_spinner"/>
+ 
+@@ -88,24 +88,13 @@
+                 android:id="@+id/sp2"
+                 android:layout_rowWeight="1"
+                 android:layout_columnWeight="1"
+-                android:layout_width="112dp"
++                android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:layout_gravity="center_horizontal"
+                 android:background="@drawable/spinner_design1"
+                 android:ems="10"
++                android:layout_marginLeft="8dp"
+                 android:entries="@array/cat_gender"/>
+ 
+-            <Spinner
+-                android:id="@+id/sp3"
+-                android:layout_rowWeight="1"
+-                android:layout_columnWeight="1"
+-                android:layout_width="104dp"
+-                android:layout_height="wrap_content"
+-                android:ems="10"
+-                android:layout_gravity="right"
+-                android:background="@drawable/spinner_design1"
+-                android:entries="@array/cat_age"/>
+-
+         </GridLayout>
+ 
+     <GridView
+Index: app/src/main/java/com/example/tbnaaproject/ui/gallery/GalleryViewModel.java
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/ui/gallery/GalleryViewModel.java	(date 1607554478000)
++++ app/src/main/java/com/example/tbnaaproject/ui/gallery/GalleryViewModel.java	(date 1607554478000)
+@@ -0,0 +1,19 @@
++package com.example.tbnaaproject.ui.gallery;
++
++import androidx.lifecycle.LiveData;
++import androidx.lifecycle.MutableLiveData;
++import androidx.lifecycle.ViewModel;
++
++public class GalleryViewModel extends ViewModel {
++
++    private MutableLiveData<String> mText;
++
++    public GalleryViewModel() {
++        mText = new MutableLiveData<>();
++        mText.setValue("This is gallery fragment");
++    }
++
++    public LiveData<String> getText() {
++        return mText;
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_slideshow.xml
+===================================================================
+--- app/src/main/res/layout/fragment_slideshow.xml	(date 1607554481000)
++++ app/src/main/res/layout/fragment_slideshow.xml	(date 1607554481000)
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".ui.slideshow.SlideshowFragment">
++
++    <TextView
++        android:id="@+id/text_slideshow"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="8dp"
++        android:layout_marginEnd="8dp"
++        android:textAlignment="center"
++        android:textSize="20sp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/ui/gallery/GalleryFragment.java
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/ui/gallery/GalleryFragment.java	(date 1607554481000)
++++ app/src/main/java/com/example/tbnaaproject/ui/gallery/GalleryFragment.java	(date 1607554481000)
+@@ -0,0 +1,35 @@
++package com.example.tbnaaproject.ui.gallery;
++
++import android.os.Bundle;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.TextView;
++
++import androidx.annotation.NonNull;
++import androidx.annotation.Nullable;
++import androidx.fragment.app.Fragment;
++import androidx.lifecycle.Observer;
++import androidx.lifecycle.ViewModelProvider;
++
++import com.example.tbnaaproject.R;
++
++public class GalleryFragment extends Fragment {
++
++    private GalleryViewModel galleryViewModel;
++
++    public View onCreateView(@NonNull LayoutInflater inflater,
++                             ViewGroup container, Bundle savedInstanceState) {
++        galleryViewModel =
++                new ViewModelProvider(this).get(GalleryViewModel.class);
++        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
++        final TextView textView = root.findViewById(R.id.text_gallery);
++        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
++            @Override
++            public void onChanged(@Nullable String s) {
++                textView.setText(s);
++            }
++        });
++        return root;
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_gallery.xml
+===================================================================
+--- app/src/main/res/layout/fragment_gallery.xml	(date 1607554481000)
++++ app/src/main/res/layout/fragment_gallery.xml	(date 1607554481000)
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".ui.gallery.GalleryFragment">
++
++    <TextView
++        android:id="@+id/text_gallery"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="8dp"
++        android:layout_marginEnd="8dp"
++        android:textAlignment="center"
++        android:textSize="20sp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/CatProfile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tbnaaproject;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport android.content.Intent;\nimport android.os.Bundle;\n\nimport com.example.tbnaaproject.models.Cats;\n\npublic class CatProfile extends AppCompatActivity {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_cat_profile);\n\n        Intent intent = getIntent();\n        Cats catProf = (Cats) intent.getSerializableExtra(\"catID\");\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/CatProfile.java	(revision e7ab100d33ec41bbe876921800bf7d5eba9da689)
++++ app/src/main/java/com/example/tbnaaproject/CatProfile.java	(date 1607537097000)
+@@ -14,7 +14,7 @@
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_cat_profile);
+ 
+-        Intent intent = getIntent();
+-        Cats catProf = (Cats) intent.getSerializableExtra("catID");
++        Bundle extras = getIntent().getExtras();
++        int imageID = extras.getInt("catID");
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/ui/home/HomeFragment.java
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/ui/home/HomeFragment.java	(date 1607554481000)
++++ app/src/main/java/com/example/tbnaaproject/ui/home/HomeFragment.java	(date 1607554481000)
+@@ -0,0 +1,35 @@
++package com.example.tbnaaproject.ui.home;
++
++import android.os.Bundle;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.TextView;
++
++import androidx.annotation.NonNull;
++import androidx.annotation.Nullable;
++import androidx.fragment.app.Fragment;
++import androidx.lifecycle.Observer;
++import androidx.lifecycle.ViewModelProvider;
++
++import com.example.tbnaaproject.R;
++
++public class HomeFragment extends Fragment {
++
++    private HomeViewModel homeViewModel;
++
++    public View onCreateView(@NonNull LayoutInflater inflater,
++                             ViewGroup container, Bundle savedInstanceState) {
++        homeViewModel =
++                new ViewModelProvider(this).get(HomeViewModel.class);
++        View root = inflater.inflate(R.layout.fragment_home, container, false);
++        final TextView textView = root.findViewById(R.id.text_home);
++        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
++            @Override
++            public void onChanged(@Nullable String s) {
++                textView.setText(s);
++            }
++        });
++        return root;
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/ui/home/HomeViewModel.java
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/ui/home/HomeViewModel.java	(date 1607554478000)
++++ app/src/main/java/com/example/tbnaaproject/ui/home/HomeViewModel.java	(date 1607554478000)
+@@ -0,0 +1,19 @@
++package com.example.tbnaaproject.ui.home;
++
++import androidx.lifecycle.LiveData;
++import androidx.lifecycle.MutableLiveData;
++import androidx.lifecycle.ViewModel;
++
++public class HomeViewModel extends ViewModel {
++
++    private MutableLiveData<String> mText;
++
++    public HomeViewModel() {
++        mText = new MutableLiveData<>();
++        mText.setValue("This is home fragment");
++    }
++
++    public LiveData<String> getText() {
++        return mText;
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/drawable-v21/ic_menu_camera.xml
+===================================================================
+--- app/src/main/res/drawable-v21/ic_menu_camera.xml	(date 1607554480000)
++++ app/src/main/res/drawable-v21/ic_menu_camera.xml	(date 1607554480000)
+@@ -0,0 +1,12 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24.0"
++    android:viewportHeight="24.0">
++    <path
++        android:fillColor="#FF000000"
++        android:pathData="M12,12m-3.2,0a3.2,3.2 0,1 1,6.4 0a3.2,3.2 0,1 1,-6.4 0" />
++    <path
++        android:fillColor="#FF000000"
++        android:pathData="M9,2L7.17,4H4c-1.1,0 -2,0.9 -2,2v12c0,1.1 0.9,2 2,2h16c1.1,0 2,-0.9 2,-2V6c0,-1.1 -0.9,-2 -2,-2h-3.17L15,2H9zm3,15c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5z" />
++</vector>
+Index: app/src/main/res/layout/fragment_home.xml
+===================================================================
+--- app/src/main/res/layout/fragment_home.xml	(date 1607554480000)
++++ app/src/main/res/layout/fragment_home.xml	(date 1607554480000)
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".ui.home.HomeFragment">
++
++    <TextView
++        android:id="@+id/text_home"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="8dp"
++        android:layout_marginEnd="8dp"
++        android:textAlignment="center"
++        android:textSize="20sp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"com.example.tbnaaproject\">\n\n    <uses-permission android:name=\"android.permission.INTERNET\"/>\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\"/>\n    <application\n        android:allowBackup=\"true\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.AppCompat.Light.NoActionBar\">\n        <activity android:name=\".SendingEmail\"/>\n        <activity android:name=\".About\"/>\n        <activity android:name=\".AdoptionForm\" />\n        <activity android:name=\".AdminProfileModification\" />\n        <activity android:name=\".AdminProfile\" />\n        <activity android:name=\".UserProfile2\"/>\n        <activity android:name=\".UserProfile\" />\n        <activity android:name=\".CatProfile\" />\n        <activity android:name=\".activity_adding_cat\"/>\n        <activity android:name=\".SplashScreen\"/>\n        <activity android:name=\".three_dyn\"/>\n        <activity android:name=\".AdoptionRequestsAdmin\" />\n        <activity android:name=\".SignUp\" />\n        <activity android:name=\".TbnaaMembers\" />\n        <activity android:name=\".Login\" />\n        <activity android:name=\".AddingCatsRequestsList\" />\n        <activity android:name=\".CatCards\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision e7ab100d33ec41bbe876921800bf7d5eba9da689)
++++ app/src/main/AndroidManifest.xml	(date 1607554480000)
+@@ -1,10 +1,10 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<manifest
+-    xmlns:android="http://schemas.android.com/apk/res/android"
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+     package="com.example.tbnaaproject">
+ 
+-    <uses-permission android:name="android.permission.INTERNET"/>
+-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
++    <uses-permission android:name="android.permission.INTERNET" />
++    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
++
+     <application
+         android:allowBackup="true"
+         android:icon="@mipmap/ic_launcher"
+@@ -12,17 +12,21 @@
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+-        <activity android:name=".SendingEmail"/>
+-        <activity android:name=".About"/>
++        <activity
++            android:name=".AdminMenu"
++            android:label="@string/title_activity_admin_menu"
++            android:theme="@style/NoActionBar"></activity>
++        <activity android:name=".SendingEmail" />
++        <activity android:name=".About" />
+         <activity android:name=".AdoptionForm" />
+         <activity android:name=".AdminProfileModification" />
+         <activity android:name=".AdminProfile" />
+-        <activity android:name=".UserProfile2"/>
++        <activity android:name=".UserProfile2" />
+         <activity android:name=".UserProfile" />
+         <activity android:name=".CatProfile" />
+-        <activity android:name=".activity_adding_cat"/>
+-        <activity android:name=".SplashScreen"/>
+-        <activity android:name=".three_dyn"/>
++        <activity android:name=".activity_adding_cat" />
++        <activity android:name=".SplashScreen" />
++        <activity android:name=".three_dyn" />
+         <activity android:name=".AdoptionRequestsAdmin" />
+         <activity android:name=".SignUp" />
+         <activity android:name=".TbnaaMembers" />
+@@ -31,10 +35,10 @@
+         <activity android:name=".CatCards">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
++
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
+-
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\n\nandroid {\n    compileSdkVersion 30\n    buildToolsVersion \"30.0.2\"\n\n    defaultConfig {\n        applicationId \"com.example.tbnaaproject\"\n        minSdkVersion 16\n        targetSdkVersion 30\n        versionCode 1\n        versionName \"1.0\"\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n}\n\ndependencies {\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\n    implementation 'androidx.appcompat:appcompat:1.2.0'\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.3'\n\n    implementation 'androidx.cardview:cardview:1.0.0'\n    implementation 'com.pkmmte.view:circularimageview:1.1'\n    implementation 'com.subinkrishna:circularimageview:1.2.2'\n    implementation 'im.amomo.circularimageview:circularimageview:1.0'\n    implementation 'androidx.recyclerview:recyclerview:1.1.0'\n    implementation 'androidx.viewpager2:viewpager2:1.0.0'\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\n    implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha04'\n    implementation \"com.google.android.material:material:1.3.0-alpha03\"\n\n    implementation files('libs\\\\activation.jar')\n    implementation files('libs\\\\mail.jar')\n    implementation files('libs\\\\additionnal.jar')\n    implementation 'org.jetbrains:annotations-java5:15.0'\n    implementation 'com.google.code.gson:gson:2.8.6'\n\n    testImplementation 'junit:junit:4.13.1'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\n\n    //noinspection GradleCompatible\n    compile 'com.android.support:design:28.0.0'\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision e7ab100d33ec41bbe876921800bf7d5eba9da689)
++++ app/build.gradle	(date 1607554478000)
+@@ -42,6 +42,10 @@
+     implementation files('libs\\additionnal.jar')
+     implementation 'org.jetbrains:annotations-java5:15.0'
+     implementation 'com.google.code.gson:gson:2.8.6'
++    implementation 'androidx.navigation:navigation-fragment:2.3.2'
++    implementation 'androidx.navigation:navigation-ui:2.3.2'
++    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
++    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+ 
+     testImplementation 'junit:junit:4.13.1'
+     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+Index: app/src/main/res/drawable/side_nav_bar.xml
+===================================================================
+--- app/src/main/res/drawable/side_nav_bar.xml	(date 1607554477000)
++++ app/src/main/res/drawable/side_nav_bar.xml	(date 1607554477000)
+@@ -0,0 +1,9 @@
++<shape xmlns:android="http://schemas.android.com/apk/res/android"
++    android:shape="rectangle">
++    <gradient
++        android:angle="135"
++        android:centerColor="#009688"
++        android:endColor="#00695C"
++        android:startColor="#4DB6AC"
++        android:type="linear" />
++</shape>
+\ No newline at end of file
+Index: app/src/main/res/layout/content_main.xml
+===================================================================
+--- app/src/main/res/layout/content_main.xml	(date 1607554480000)
++++ app/src/main/res/layout/content_main.xml	(date 1607554480000)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    app:layout_behavior="@string/appbar_scrolling_view_behavior"
++    tools:showIn="@layout/app_bar_main">
++
++    <fragment
++        android:id="@+id/nav_host_fragment"
++        android:name="androidx.navigation.fragment.NavHostFragment"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        app:defaultNavHost="true"
++        app:layout_constraintLeft_toLeftOf="parent"
++        app:layout_constraintRight_toRightOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:navGraph="@navigation/mobile_navigation" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/menu/admin_menu.xml
+===================================================================
+--- app/src/main/res/menu/admin_menu.xml	(date 1607554480000)
++++ app/src/main/res/menu/admin_menu.xml	(date 1607554480000)
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto">
++    <item
++        android:id="@+id/action_settings"
++        android:orderInCategory="100"
++        android:title="@string/action_settings"
++        app:showAsAction="never" />
++</menu>
+\ No newline at end of file
+Index: app/src/main/res/drawable-v21/ic_menu_slideshow.xml
+===================================================================
+--- app/src/main/res/drawable-v21/ic_menu_slideshow.xml	(date 1607554480000)
++++ app/src/main/res/drawable-v21/ic_menu_slideshow.xml	(date 1607554480000)
+@@ -0,0 +1,9 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24.0"
++    android:viewportHeight="24.0">
++    <path
++        android:fillColor="#FF000000"
++        android:pathData="M4,6H2v14c0,1.1 0.9,2 2,2h14v-2H4V6zm16,-4H8c-1.1,0 -2,0.9 -2,2v12c0,1.1 0.9,2 2,2h12c1.1,0 2,-0.9 2,-2V4c0,-1.1 -0.9,-2 -2,-2zm-8,12.5v-9l6,4.5 -6,4.5z" />
++</vector>
+Index: app/src/main/res/values/drawables.xml
+===================================================================
+--- app/src/main/res/values/drawables.xml	(date 1607554477000)
++++ app/src/main/res/values/drawables.xml	(date 1607554477000)
+@@ -0,0 +1,8 @@
++<resources xmlns:android="http://schemas.android.com/apk/res/android">
++    <item name="ic_menu_camera" type="drawable">@android:drawable/ic_menu_camera</item>
++    <item name="ic_menu_gallery" type="drawable">@android:drawable/ic_menu_gallery</item>
++    <item name="ic_menu_slideshow" type="drawable">@android:drawable/ic_menu_slideshow</item>
++    <item name="ic_menu_manage" type="drawable">@android:drawable/ic_menu_manage</item>
++    <item name="ic_menu_share" type="drawable">@android:drawable/ic_menu_share</item>
++    <item name="ic_menu_send" type="drawable">@android:drawable/ic_menu_send</item>
++</resources>
+\ No newline at end of file
+Index: app/src/main/res/drawable-v21/ic_menu_gallery.xml
+===================================================================
+--- app/src/main/res/drawable-v21/ic_menu_gallery.xml	(date 1607554480000)
++++ app/src/main/res/drawable-v21/ic_menu_gallery.xml	(date 1607554480000)
+@@ -0,0 +1,9 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24.0"
++    android:viewportHeight="24.0">
++    <path
++        android:fillColor="#FF000000"
++        android:pathData="M22,16V4c0,-1.1 -0.9,-2 -2,-2H8c-1.1,0 -2,0.9 -2,2v12c0,1.1 0.9,2 2,2h12c1.1,0 2,-0.9 2,-2zm-11,-4l2.03,2.71L16,11l4,5H8l3,-4zM2,6v14c0,1.1 0.9,2 2,2h14v-2H4V6H2z" />
++</vector>
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n    <!-- Default screen margins, per the Android Design guidelines. -->\n    <dimen name=\"text_margin\">16dp</dimen>\n    <dimen name=\"activity_horizontal_margin\">16dp</dimen>\n    <dimen name=\"activity_vertical_margin\">16dp</dimen>\n    <dimen name=\"appbar_padding\">16dp</dimen>\n    <dimen name=\"fab_margin\">16dp</dimen>\n    <dimen name=\"appbar_padding_top\">8dp</dimen>\n    <dimen name=\"fragment_horizontal_margin\">16dp</dimen>\n    <dimen name=\"fragment_vertical_margin\">16dp</dimen>\n    <!-- Height of each list item -->\n    <dimen name=\"list_item_height\">80dp</dimen>\n    <dimen name=\"yes_no_icon_height\">42dp</dimen>\n</resources>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/dimens.xml	(revision e7ab100d33ec41bbe876921800bf7d5eba9da689)
++++ app/src/main/res/values/dimens.xml	(date 1607554477000)
+@@ -12,4 +12,6 @@
+     <!-- Height of each list item -->
+     <dimen name="list_item_height">80dp</dimen>
+     <dimen name="yes_no_icon_height">42dp</dimen>
++    <dimen name="nav_header_vertical_spacing">8dp</dimen>
++    <dimen name="nav_header_height">176dp</dimen>
+ </resources>
