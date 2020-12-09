@@ -33,6 +33,11 @@ public class TbnaaDatabase  {
     private static String userTableName = "User";
     private static final String createUserTable = "CREATE TABLE User (userId INTEGER PRIMARY KEY AUTOINCREMENT,userImage BLOB, username TEXT,firstName TEXT, LastName TEXT, userGender TEXT,socialState TEXT, email TEXT, phone TEXT, password TEXT, userCity);";
 
+    //Admin table
+    private static String adminTableName = "Admin";
+    private static final String createAdminTable = "CREATE TABLE Admin (adminId INTEGER PRIMARY KEY AUTOINCREMENT,adminImage BLOB, username TEXT,Name TEXT,email TEXT, phone TEXT, password TEXT);";
+
+
     //basics
     private final Context ct;
     private DatabaseHelper dbHelper;

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.os.Bundle;
@@ -57,9 +58,9 @@ TbnaaDatabase.DatabaseHelper DBHelper;
 
 
 
-
+//
         // When list view item is clicked.
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -68,15 +69,10 @@ TbnaaDatabase.DatabaseHelper DBHelper;
                 Object clickItemObject = adapterView.getAdapter().getItem(position);
                 SQLiteCursor cursor = (SQLiteCursor)clickItemObject;
 
-                // Get row column data.
 
 
-//                Integer word = words.get(position);
-                //show erreor message
-                //    result.getPosition();
-                //     AddingAdminWord word = words.get(position);
 
-                //TODO: Open more INFO
+
             }
         });
  
