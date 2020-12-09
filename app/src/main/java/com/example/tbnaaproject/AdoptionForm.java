@@ -47,7 +47,7 @@ public class AdoptionForm extends AppCompatActivity {
 
         init();
 
-        catID = 1;
+
         Cursor c = tbnaadbHelper.retrieveCatInfo(catID);
         while (c.moveToNext()) {
 

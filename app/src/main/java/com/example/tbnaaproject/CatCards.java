@@ -37,23 +37,23 @@ public class CatCards extends AppCompatActivity {
         catAdapter = new CatCardsAdapter(CatCards.this, catsList);
         gridView.setAdapter(catAdapter);
 
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                // Open cat profile page
-//                Cats theCat = (Cats) parent.getItemAtPosition(position);
-//
-//                Bundle b = new Bundle();
-//                b.putSerializable("bundleobj", theCat);
-//
-//                Intent intent = new Intent(CatCards.this, CatProfile.class);
-//                intent.putExtra("catID", b);
-//                startActivity(intent);
-//
-//            }
-//        });
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                // Open cat profile page
+                Cats theCat = (Cats) parent.getItemAtPosition(position);
+
+                Bundle b = new Bundle();
+                b.putSerializable("bundleobj", theCat);
+
+                Intent intent = new Intent(CatCards.this, CatProfile.class);
+                intent.putExtra("catID", b);
+                startActivity(intent);
+
+            }
+        });
 
     }
 }
