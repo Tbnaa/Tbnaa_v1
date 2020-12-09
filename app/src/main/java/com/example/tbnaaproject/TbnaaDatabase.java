@@ -119,9 +119,7 @@ public class TbnaaDatabase  {
 
     // getAllCats method to get all cats general info from Cat table to show in gallary
     public ArrayList<Cats> getAllCats() {
-
         this.connect();
-
         //return database.rawQuery("SELECT catImage,catName, catCity, catGender FROM Cat", null);
 
         String query = "SELECT catImage, catName, catCity, catGender FROM Cat";
@@ -149,6 +147,35 @@ public class TbnaaDatabase  {
         return setOfCats;
     }
 
+    // getAllCats method to get all cats general info from Cat table to show in gallary
+    public ArrayList<Cats> getRequestedCats(String useridgi) {
+        this.connect();
+        //return database.rawQuery("SELECT catImage,catName, catCity, catGender FROM Cat", null);
+
+        String query = "SELECT catImage, catName, catCity, catGender FROM Cat";
+        ArrayList<Cats> setOfCats = new ArrayList<Cats>();
+
+        Cursor c = database.rawQuery(query, null);
+        if (c != null) {
+            while (c.moveToNext()) {
+                byte[] imageOfCatt = c.getBlob(c.getColumnIndex("catImage"));
+                //Bitmap cattImage = BitmapFactory.decodeByteArray(imageOfCatt, 0, imageOfCatt.length);
+
+                String nameOfCat = c.getString(c.getColumnIndex("catName"));
+                String cityOfCat = c.getString(c.getColumnIndex("catCity"));
+                String genderOfCat = c.getString(c.getColumnIndex("catGender"));
+
+                Cats cat = new Cats();
+                cat.setImage(imageOfCatt);
+                cat.setName(nameOfCat);
+                cat.setCity(cityOfCat);
+                cat.setGender(genderOfCat);
+
+                setOfCats.add(cat);
+            }
+        }
+        return setOfCats;
+    }
     public long addUser(byte[] uImage, String uPassword, String uFirstName,
                        String uLastName, String uGender, String socialState,
                        String uEmail, String uPhone, String uCity) {
@@ -168,4 +195,6 @@ public class TbnaaDatabase  {
         this.connect();
         return database.insert(userTableName, null, cv);
     }
+
+
 }
