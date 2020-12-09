@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".AddingAdmin"></activity>
+        <activity android:name=".AddingAdmin">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".AdoptionForm" />
         <activity android:name=".AdminProfileModification" />
         <activity android:name=".AdminProfile" />
@@ -18,25 +24,15 @@
         <activity android:name=".CatProfile" />
         <activity android:name=".activity_adding_cat" />
         <activity android:name=".SplashScreen" />
-        <activity android:name=".adding_request_2stat">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".adding_request_2stat"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".three_dyn" />
         <activity android:name=".AdoptionRequestsAdmin" />
         <activity android:name=".SignUp" />
         <activity android:name=".TbnaaMembers"></activity>
         <activity android:name=".Login" />
-        <activity android:name=".AddingCatsRequestsList">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".AddingCatsRequestsList"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".SendingEmail"></activity>
         <activity android:name=".About"></activity>
     </application>
