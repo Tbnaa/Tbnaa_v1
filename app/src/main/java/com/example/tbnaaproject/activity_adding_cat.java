@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,17 +24,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 
-
 public class activity_adding_cat extends AppCompatActivity {
-
-
 
     EditText catNameEditText,catStoryEditText,catAgeEditText, catHealtheConditionEditText;
     ImageView catImage_ImageView;
@@ -47,14 +42,11 @@ public class activity_adding_cat extends AppCompatActivity {
     String cities[]={"Choose a city","Riyadh","Abha","Dammam","Jeddah","Medina","Mecca"};
     String cityName;
 
-
     // for uploading cat image
     final int PICK_IMAGE_FROM_GALLERY=1;
     public Bitmap imageBitmap;
     public byte[] imageByte;
     Uri imageUri;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +56,6 @@ public class activity_adding_cat extends AppCompatActivity {
         final TbnaaDatabase tbnaadbHelper= new TbnaaDatabase(this);
 
         init();
-
 
         // upload cat image
         uploadCatImageButton.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +76,6 @@ public class activity_adding_cat extends AppCompatActivity {
 
         //city Spinner values
         catCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -118,7 +108,6 @@ public class activity_adding_cat extends AppCompatActivity {
                     case 6:
                         cityName = "Mecca";
                         break;
-
                 }
             }
 
@@ -199,12 +188,6 @@ public class activity_adding_cat extends AppCompatActivity {
         });
     }
 
-
-
-
-
-
-
     // Start upload cat image
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -249,8 +232,6 @@ public class activity_adding_cat extends AppCompatActivity {
     }
     //End uploading cat image
 
-
-
     //-------------------------------------------------------------------
     private void init() {
         //EditText
@@ -273,7 +254,6 @@ public class activity_adding_cat extends AppCompatActivity {
         genderRadioGroup = findViewById(R.id.cat_gender_rideogroup);
         vaccinatedRadioGroup = findViewById(R.id.vaccinated_rideogroup);
         neuteredRadioGroup = findViewById(R.id.neutered_rideogroup);
-
     }
 
     //------------------------------------------------------------------
@@ -299,7 +279,7 @@ public class activity_adding_cat extends AppCompatActivity {
 
     }
 
-    //add cat
+//add cat
 //    public void addCat() {
 //
 //
