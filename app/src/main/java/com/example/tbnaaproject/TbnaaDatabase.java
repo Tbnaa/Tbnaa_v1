@@ -8,12 +8,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
-import androidx.annotation.Nullable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import androidx.annotation.Nullable;
 import com.example.tbnaaproject.models.Cats;
 
-import java.util.ArrayList;
+import java.sql.Blob;
 
+import java.util.ArrayList;
 import javax.xml.validation.Schema;
 
 public class TbnaaDatabase {
@@ -23,11 +26,22 @@ public class TbnaaDatabase {
     private static final int databaseVersion = 13;
     //Cat table
     private static String catTableName = "Cat";
-    private static final String createCatTable = "CREATE TABLE IF NOT EXISTS Cat (catId INTEGER PRIMARY KEY AUTOINCREMENT,catImage BLOB, catName TEXT,catAge TEXT, catCity TEXT, catGender TEXT,vaccinated TEXT, neutered TEXT, healtheCare TEXT, catStory TEXT, isApproved TEXT, isAdoptted TEXT);";
 
-    //Adoption  table
-    private static String adoptionTableName = "AdaptionForm";
-    private static final String createAdaptionFormTable = "CREATE TABLE IF NOT EXISTS AdaptionForm(adoptionFormId INTEGER PRIMARY KEY AUTOINCREMENT, hadAdopted TEXT,adoptedStory TEXT, extraPhoneNo TEXT, liveAlone TEXT,haveKids TEXT, perantApproval TEXT, allergic TEXT, catPlacement TEXT,isOwner TEXT,clinicName TEXT, pledge TEXT, isApproved TEXT);";
+    private static final String createCatTable = "CREATE TABLE Cat (catId INTEGER PRIMARY KEY AUTOINCREMENT" +
+            ",catImage BLOB, catName TEXT,catAge TEXT, catCity TEXT, catGender TEXT,vaccinated TEXT, neutered TEXT" +
+            ", healtheCare TEXT, catStory TEXT, isApproved TEXT, isAdoptted TEXT);";
+
+    //User table
+    private static String userTableName = "User";
+    private static final String createUserTable = "CREATE TABLE User (uID INTEGER PRIMARY KEY AUTOINCREMENT" +
+            ", upassword TEXT, uImage BLOB, uFirstName TEXT, uLastName TEXT, uGender TEXT, socialState TEXT, uEmail TEXT" +
+            ", uPhone TEXT, uCity TEXT);";
+
+    //Admin table
+    private static String adminTableName = "Admin";
+    private static final String createAdminTable = "CREATE TABLE Admin (aID INTEGER PRIMARY KEY AUTOINCREMENT" +
+            ", aPassword TEXT, aImage BLOB, aFirstName TEXT, aLastName TEXT, aGender TEXT, aEmail TEXT, aPhone TEXT);";
+
 
     //shareableCatInfo Table for ContentProvider
     private static String shareableCatInfoTableName = "shareableCatInfo";
@@ -41,7 +55,6 @@ public class TbnaaDatabase {
     public TbnaaDatabase(Context context) {
         this.ct = context;
         dbHelper = new DatabaseHelper(ct);
-
     }
 
     //-------------------------------------------------------------------------
@@ -56,8 +69,10 @@ public class TbnaaDatabase {
         public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
             try {
-                //Create Tables here
-
+                //User Table
+                sqLiteDatabase.execSQL(createUserTable);
+                //Admin Table
+                sqLiteDatabase.execSQL(createAdminTable);
                 //Cat Table
                 sqLiteDatabase.execSQL(createCatTable);
                 //adaption Table
@@ -70,7 +85,6 @@ public class TbnaaDatabase {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-
         }
 
         @Override
@@ -119,7 +133,6 @@ public class TbnaaDatabase {
 
 
         return database.insert(catTableName, null, cv);
-
     }
 
     // addAdaptionForm method to insert Adaption Form into AdaptionForm table
@@ -191,43 +204,30 @@ public class TbnaaDatabase {
                 setOfCats.add(cat);
             }
         }
-
         return setOfCats;
-
     }
 
+
+    public long addUser(byte[] uImage, String uPassword, String uFirstName,
+                       String uLastName, String uGender, String socialState,
+                       String uEmail, String uPhone, String uCity) {
+
+        ContentValues cv = new ContentValues();
+
+
+        cv.put("uPassword", uPassword);
+        cv.put("uImage", uImage);
+        cv.put("uFirstName", uFirstName);
+        cv.put("uLastName", uLastName);
+        cv.put("uGender", uGender);
+        cv.put("socialState", socialState);
+        cv.put("uEmail", uEmail);
+        cv.put("uPhone", uPhone);
+        cv.put("uCity", uCity);
+
+
+        this.connect();
+        return database.insert(userTableName, null, cv);
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
