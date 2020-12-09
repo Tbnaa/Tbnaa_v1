@@ -45,13 +45,16 @@ public class CatCards extends AppCompatActivity {
         catAdapter = new CatCardsAdapter(CatCards.this, catsList);
         gridView.setAdapter(catAdapter);
 
+
         //card selection event
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 // Open cat profile page
+
                 Cats theCat = new Cats();
                 Intent intent = new Intent(CatCards.this, CatProfile.class);
                 intent.putExtra("catID", theCat.getCatId());
@@ -130,6 +133,10 @@ public class CatCards extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
+
+
+
+
         });
 
     }
