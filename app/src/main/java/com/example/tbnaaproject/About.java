@@ -38,6 +38,6 @@ public class About extends AppCompatActivity {
         mail.setType("application/octet-stream");
         mail.putExtra(Intent.EXTRA_EMAIL, new String[]{"tbnaatest@gmail.com"});
         startActivity(mail);
-
     }
 }
+
