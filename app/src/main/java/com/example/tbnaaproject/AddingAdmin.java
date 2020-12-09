@@ -30,8 +30,6 @@ TbnaaDatabase.DatabaseHelper DBHelper;
     ArrayList<Cats> catsList;
     AddingAdminAdapter catAdapter;
 
-    TextView catName1, userName1;
-    ImageView imge1;
     ImageButton yes,no;
 
     @Override
@@ -68,8 +66,6 @@ TbnaaDatabase.DatabaseHelper DBHelper;
                 // Get list view item SQLiteCursor object.
                 Object clickItemObject = adapterView.getAdapter().getItem(position);
                 SQLiteCursor cursor = (SQLiteCursor)clickItemObject;
-
-
 
 
 

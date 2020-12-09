@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -52,6 +54,8 @@ public class AddingAdminAdapter extends BaseAdapter {
 
                 ImageView catImageView = (ImageView) convertView.findViewById(R.id.image);
                 TextView catNameTextView = (TextView) convertView.findViewById(R.id.catName);
+                ImageButton yes = (ImageButton) convertView.findViewById(R.id.yes);
+                ImageButton no = (ImageButton) convertView.findViewById(R.id.no);
 
 
                 Cats c = new Cats();
@@ -61,6 +65,24 @@ public class AddingAdminAdapter extends BaseAdapter {
                 catImageView.setImageBitmap(cattImage);
                 catNameTextView.setText("Name: " + c.getCatName());
                 return convertView;
+
+                //OnClick listeners for all the buttons on the ListView Item
+                yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                });
+
+                //OnClick listeners for all the buttons on the ListView Item
+                no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                });
+
+
         }
 
 

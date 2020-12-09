@@ -35,7 +35,7 @@ public class TbnaaDatabase  {
 
     //Admin table
     private static String adminTableName = "Admin";
-    private static final String createAdminTable = "CREATE TABLE Admin (adminId INTEGER PRIMARY KEY AUTOINCREMENT,adminImage BLOB, username TEXT,Name TEXT,email TEXT, phone TEXT, password TEXT);";
+    private static final String createAdminTable = "CREATE TABLE Admin (adminId INTEGER PRIMARY KEY AUTOINCREMENT,adminImage BLOB, username TEXT,Name TEXT,email TEXT, phone TEXT, password TEXT, city TEXT);";
 
 
     //basics
@@ -178,6 +178,24 @@ public class TbnaaDatabase  {
         return setOfCats;
 
     }
+
+
+//    public boolean updateData(String id,String name,String username,String email,String phone, String city) {
+//        this.connect();
+//        database = dbHelper.getWritableDatabase();
+//
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(Col_1,id);
+//        contentValues.put(COL_2,name);
+//        contentValues.put(COL_3,username);
+//        contentValues.put(COL_4,email);
+//        contentValues.put(COL_5,phone);
+//        contentValues.put(COL_6,city);
+//        database.update(adminTableName, contentValues, "ID = ?",new String[] { id });
+//        return true;
+//    }
+
+
 
 }
 
