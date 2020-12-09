@@ -1,0 +1,307 @@
+Index: app/src/main/res/layout/activity_cat_cards.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<LinearLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"#212121\"\n    android:orientation=\"vertical\"\n    android:weightSum=\"8\"\n    tools:context=\".CatCards\">\n\n    <RelativeLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"0dp\"\n        android:layout_weight=\"1\">\n\n        <LinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:orientation=\"horizontal\"\n            android:layout_centerInParent=\"true\"\n            android:gravity=\"center_horizontal|center_vertical\">\n\n            <ImageView\n                android:layout_width=\"72dp\"\n                android:layout_height=\"72dp\"\n                android:layout_weight=\"1\"\n                android:layout_margin=\"8dp\"\n                android:layout_alignParentLeft=\"true\"\n                android:contentDescription=\"humburger menu icon\"\n                android:src=\"@drawable/ic_menu\"/>\n\n            <TextView\n                android:layout_width=\"288dp\"\n                android:layout_height=\"wrap_content\"\n                android:layout_weight=\"1\"\n                android:gravity=\"center_vertical|center_horizontal\"\n                android:text=\"Cats Gallary\"\n                android:textColor=\"@android:color/white\"\n                android:textSize=\"24sp\"\n                android:textStyle=\"bold\"/>\n\n            <ImageView\n                android:id=\"@+id/imageView4\"\n                android:layout_width=\"80dp\"\n                android:layout_height=\"80dp\"\n                android:layout_margin=\"8dp\"\n                app:srcCompat=\"@drawable/tbnaacircle\"\n                android:layout_weight=\"1\"\n                android:layout_alignParentRight=\"true\"/>\n\n        </LinearLayout>\n\n    </RelativeLayout>\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"0dp\"\n        android:layout_weight=\"7\"\n        android:background=\"@drawable/background\"\n        android:orientation=\"vertical\">\n\n        <GridLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:columnCount=\"3\"\n            android:layout_margin=\"8dp\"\n            android:paddingTop=\"8dp\"\n            android:gravity=\"center_horizontal\">\n\n            <Spinner\n                android:id=\"@+id/sp1\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:ems=\"10\"\n                android:layout_gravity=\"left\"\n                android:background=\"@drawable/spinner_design1\"\n                android:entries=\"@array/cities_spinner\"/>\n\n            <Spinner\n                android:id=\"@+id/sp2\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:background=\"@drawable/spinner_design1\"\n                android:ems=\"10\"\n                android:entries=\"@array/cat_gender\"/>\n\n            <Spinner\n                android:id=\"@+id/sp3\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:ems=\"10\"\n                android:layout_gravity=\"right\"\n                android:background=\"@drawable/spinner_design1\"\n                android:entries=\"@array/cat_age\"/>\n\n        </GridLayout>\n\n        <GridLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"match_parent\"\n            android:columnCount=\"2\"\n            android:rowCount=\"4\">\n\n            <androidx.cardview.widget.CardView\n                android:layout_width=\"0dp\"\n                android:layout_height=\"0dp\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_margin=\"10dp\"\n                android:elevation=\"10dp\"\n                app:cardCornerRadius=\"15dp\">\n\n                <LinearLayout\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"wrap_content\"\n                    android:gravity=\"center|center_horizontal\"\n                    android:orientation=\"vertical\"\n                    android:weightSum=\"3\">\n\n                    <ImageView\n                        android:layout_width=\"50dp\"\n                        android:layout_height=\"50dp\"\n                        android:layout_margin=\"15dp\"\n                        android:layout_weight=\"2\"\n                        android:src=\"@drawable/blackcat\" />\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Cat Name\"\n                        android:textSize=\"15sp\" />\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Gender\"\n                        android:textSize=\"15sp\" />\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"City\"\n                        android:textSize=\"15sp\" />\n\n                </LinearLayout>\n\n            </androidx.cardview.widget.CardView>\n\n            <androidx.cardview.widget.CardView\n                android:layout_width=\"0dp\"\n                android:layout_height=\"0dp\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_margin=\"10dp\"\n                android:elevation=\"10dp\"\n                app:cardCornerRadius=\"15dp\">\n\n                <LinearLayout\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"wrap_content\"\n                    android:gravity=\"center|center_horizontal\"\n                    android:orientation=\"vertical\"\n                    android:weightSum=\"3\">\n\n                    <ImageView\n                        android:layout_width=\"50dp\"\n                        android:layout_height=\"50dp\"\n                        android:layout_margin=\"15dp\"\n                        android:layout_weight=\"2\"\n                        android:src=\"@drawable/blackcat\" />\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Cat Name\"\n                        android:textSize=\"15sp\" />\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Gender\"\n                        android:textSize=\"15sp\" />\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"City\"\n                        android:textSize=\"15sp\" />\n\n                </LinearLayout>\n\n            </androidx.cardview.widget.CardView>\n\n            <androidx.cardview.widget.CardView\n                android:layout_width=\"0dp\"\n                android:layout_height=\"0dp\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_margin=\"10dp\"\n                android:elevation=\"10dp\"\n                app:cardCornerRadius=\"15dp\">\n\n                <LinearLayout\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"wrap_content\"\n                    android:gravity=\"center|center_horizontal\"\n                    android:orientation=\"vertical\"\n                    android:weightSum=\"3\">\n\n                    <ImageView\n                        android:layout_width=\"50dp\"\n                        android:layout_height=\"50dp\"\n                        android:layout_margin=\"15dp\"\n                        android:layout_weight=\"2\"\n                        android:src=\"@drawable/blackcat\"></ImageView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Cat Name\"\n                        android:textSize=\"15sp\"></TextView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Gender\"\n                        android:textSize=\"15sp\"></TextView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"City\"\n                        android:textSize=\"15sp\"></TextView>\n\n                </LinearLayout>\n\n            </androidx.cardview.widget.CardView>\n\n            <androidx.cardview.widget.CardView\n                android:layout_width=\"0dp\"\n                android:layout_height=\"0dp\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_margin=\"10dp\"\n                android:elevation=\"10dp\"\n                app:cardCornerRadius=\"15dp\">\n\n                <LinearLayout\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"wrap_content\"\n                    android:gravity=\"center|center_horizontal\"\n                    android:orientation=\"vertical\"\n                    android:weightSum=\"3\">\n\n                    <ImageView\n                        android:layout_width=\"50dp\"\n                        android:layout_height=\"50dp\"\n                        android:layout_margin=\"15dp\"\n                        android:layout_weight=\"2\"\n                        android:src=\"@drawable/blackcat\"></ImageView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Cat Name\"\n                        android:textSize=\"15sp\"></TextView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Gender\"\n                        android:textSize=\"15sp\"></TextView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"City\"\n                        android:textSize=\"15sp\"></TextView>\n\n                </LinearLayout>\n\n            </androidx.cardview.widget.CardView>\n\n            <androidx.cardview.widget.CardView\n                android:layout_width=\"0dp\"\n                android:layout_height=\"0dp\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_margin=\"10dp\"\n                android:elevation=\"10dp\"\n                app:cardCornerRadius=\"15dp\">\n\n                <LinearLayout\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"wrap_content\"\n                    android:gravity=\"center|center_horizontal\"\n                    android:orientation=\"vertical\"\n                    android:weightSum=\"3\">\n\n                    <ImageView\n                        android:layout_width=\"50dp\"\n                        android:layout_height=\"50dp\"\n                        android:layout_margin=\"15dp\"\n                        android:layout_weight=\"2\"\n                        android:src=\"@drawable/blackcat\"></ImageView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Cat Name\"\n                        android:textSize=\"15sp\"></TextView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Gender\"\n                        android:textSize=\"15sp\"></TextView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"City\"\n                        android:textSize=\"15sp\"></TextView>\n\n                </LinearLayout>\n\n            </androidx.cardview.widget.CardView>\n\n            <androidx.cardview.widget.CardView\n                android:layout_width=\"0dp\"\n                android:layout_height=\"0dp\"\n                android:layout_rowWeight=\"1\"\n                android:layout_columnWeight=\"1\"\n                android:layout_margin=\"10dp\"\n                android:elevation=\"10dp\"\n                app:cardCornerRadius=\"15dp\">\n\n                <LinearLayout\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"wrap_content\"\n                    android:gravity=\"center|center_horizontal\"\n                    android:orientation=\"vertical\"\n                    android:weightSum=\"3\">\n\n                    <ImageView\n                        android:layout_width=\"50dp\"\n                        android:layout_height=\"50dp\"\n                        android:layout_margin=\"15dp\"\n                        android:layout_weight=\"2\"\n                        android:src=\"@drawable/blackcat\"></ImageView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Cat Name\"\n                        android:textSize=\"15sp\"></TextView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"Gender\"\n                        android:textSize=\"15sp\"></TextView>\n\n                    <TextView\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:text=\"City\"\n                        android:textSize=\"15sp\"></TextView>\n\n                </LinearLayout>\n\n            </androidx.cardview.widget.CardView>\n\n        </GridLayout>\n\n    </LinearLayout>\n\n    </LinearLayout>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_cat_cards.xml	(revision bafaea9f5667075362b07ad80d3b6ca7a7eb3546)
++++ app/src/main/res/layout/activity_cat_cards.xml	(date 1606676647000)
+@@ -10,49 +10,8 @@
+     android:weightSum="8"
+     tools:context=".CatCards">
+ 
+-    <RelativeLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="0dp"
+-        android:layout_weight="1">
+-
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="horizontal"
+-            android:layout_centerInParent="true"
+-            android:gravity="center_horizontal|center_vertical">
+ 
+-            <ImageView
+-                android:layout_width="72dp"
+-                android:layout_height="72dp"
+-                android:layout_weight="1"
+-                android:layout_margin="8dp"
+-                android:layout_alignParentLeft="true"
+-                android:contentDescription="humburger menu icon"
+-                android:src="@drawable/ic_menu"/>
+-
+-            <TextView
+-                android:layout_width="288dp"
+-                android:layout_height="wrap_content"
+-                android:layout_weight="1"
+-                android:gravity="center_vertical|center_horizontal"
+-                android:text="Cats Gallary"
+-                android:textColor="@android:color/white"
+-                android:textSize="24sp"
+-                android:textStyle="bold"/>
+-
+-            <ImageView
+-                android:id="@+id/imageView4"
+-                android:layout_width="80dp"
+-                android:layout_height="80dp"
+-                android:layout_margin="8dp"
+-                app:srcCompat="@drawable/tbnaacircle"
+-                android:layout_weight="1"
+-                android:layout_alignParentRight="true"/>
+-
+-        </LinearLayout>
+-
+-    </RelativeLayout>
++    <include layout="@layout/activity_header"/>
+ 
+     <LinearLayout
+         android:layout_width="match_parent"
+@@ -86,7 +45,6 @@
+                 android:layout_columnWeight="1"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:layout_gravity="center_horizontal"
+                 android:background="@drawable/spinner_design1"
+                 android:ems="10"
+                 android:entries="@array/cat_gender"/>
+Index: app/src/main/java/com/example/tbnaaproject/CatCards.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tbnaaproject;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport android.graphics.Color;\nimport android.os.Bundle;\nimport android.view.View;\nimport android.widget.AdapterView;\nimport android.widget.ArrayAdapter;\nimport android.widget.TextView;\n\npublic class CatCards extends AppCompatActivity {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_cat_cards);\n\n        AdapterView.OnItemSelectedListener OnCatSpinnerCL = new AdapterView.OnItemSelectedListener() {\n            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {\n                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);\n                ((TextView) parent.getChildAt(0)).setTextSize(15);\n            }\n            public void onNothingSelected(AdapterView<?> parent) {\n            }\n        };\n\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/CatCards.java	(revision bafaea9f5667075362b07ad80d3b6ca7a7eb3546)
++++ app/src/main/java/com/example/tbnaaproject/CatCards.java	(date 1606766488000)
+@@ -2,6 +2,7 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
+ import android.graphics.Color;
+ import android.os.Bundle;
+ import android.view.View;
+@@ -11,11 +12,34 @@
+ 
+ public class CatCards extends AppCompatActivity {
+ 
++//    TextView txtView;
++//
++//    public CatCards(TextView tv){
++//        txtView = tv;
++//    }
++//
++    public CatCards(){
++    }
++
++    Context context;
++    public CatCards(Context context){
++        this.context=context;
++    }
++
++    public void Update(){
++        TextView txtView = (TextView) ((com.example.tbnaaproject.Header)context).findViewById(R.id.pageName);
++        txtView.setText("Hello");
++    }
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_cat_cards);
+ 
++        //Update();
++
++        //txtView.setText("Cats Gallary");
++
+         AdapterView.OnItemSelectedListener OnCatSpinnerCL = new AdapterView.OnItemSelectedListener() {
+             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                 ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+@@ -26,4 +50,5 @@
+         };
+ 
+     }
++
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_header.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_header.xml	(date 1606680758000)
++++ app/src/main/res/layout/activity_header.xml	(date 1606680758000)
+@@ -0,0 +1,48 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="0dp"
++    tools:context=".Header"
++    android:layout_weight="1">
++
++<LinearLayout
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:orientation="horizontal"
++    android:layout_centerInParent="true"
++    android:gravity="center_horizontal|center_vertical">
++
++    <ImageView
++        android:layout_width="72dp"
++        android:layout_height="72dp"
++        android:layout_weight="1"
++        android:layout_margin="8dp"
++        android:layout_alignParentLeft="true"
++        android:contentDescription="humburger menu icon"
++        android:src="@drawable/ic_menu"/>
++
++    <TextView
++        android:id="@+id/pageName"
++        android:layout_width="288dp"
++        android:layout_height="wrap_content"
++        android:layout_weight="1"
++        android:text="Activity Name"
++        android:gravity="center_vertical|center_horizontal"
++        android:textColor="@android:color/white"
++        android:textSize="24sp"
++        android:textStyle="bold" />
++
++    <ImageView
++        android:id="@+id/imageView4"
++        android:layout_width="80dp"
++        android:layout_height="80dp"
++        android:layout_margin="8dp"
++        app:srcCompat="@drawable/tbnaacircle"
++        android:layout_weight="1"
++        android:layout_alignParentRight="true"/>
++
++</LinearLayout>
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/Header.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/Header.java	(date 1606683676000)
++++ app/src/main/java/com/example/tbnaaproject/Header.java	(date 1606683676000)
+@@ -0,0 +1,28 @@
++package com.example.tbnaaproject;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.app.ActivityManager;
++import android.content.ComponentName;
++import android.content.Context;
++import android.os.Bundle;
++import android.widget.EditText;
++import android.widget.TextView;
++
++import java.util.List;
++
++public class Header extends AppCompatActivity {
++
++    public TextView pageName;
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_header);
++
++        pageName = (TextView)findViewById(R.id.pageName);
++        //CatCards obj = new CatCards(pageName);
++
++    }
++
++}
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"com.example.tbnaaproject\">\n\n    <uses-permission android:name=\"android.permission.INTERNET\"/>\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\"/>\n    <application\n        android:allowBackup=\"true\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.AppCompat.Light.NoActionBar\">\n        <activity android:name=\".SendingEmail\">\n\n        </activity>\n\n        <activity android:name=\".About\">\n\n        </activity>\n\n        <activity android:name=\".AdoptionForm\" />\n        <activity android:name=\".AdminProfileModification\" />\n        <activity android:name=\".AdminProfile\" />\n        <activity android:name=\".UserProfile2\" >\n\n        </activity>\n        <activity android:name=\".UserProfile\" />\n        <activity android:name=\".CatProfile\" />\n        <activity android:name=\".activity_adding_cat\" />\n\n        <activity android:name=\".SplashScreen\">\n        <intent-filter>\n            <action android:name=\"android.intent.action.MAIN\" />\n\n            <category android:name=\"android.intent.category.LAUNCHER\" />\n        </intent-filter>\n        </activity>\n        <activity android:name=\".three_dyn\">\n\n        </activity>\n        <activity android:name=\".AdoptionRequestsAdmin\" />\n        <activity android:name=\".SignUp\" />\n        <activity android:name=\".TbnaaMembers\" />\n        <activity android:name=\".Login\" />\n        <activity android:name=\".AddingCatsRequestsList\" />\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision bafaea9f5667075362b07ad80d3b6ca7a7eb3546)
++++ app/src/main/AndroidManifest.xml	(date 1606678701000)
+@@ -2,8 +2,12 @@
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+     package="com.example.tbnaaproject">
+ 
+-    <uses-permission android:name="android.permission.INTERNET"/>
+-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
++    <uses-permission android:name="android.permission.INTERNET" />
++    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
++
++    <uses-permission android:name="android.permission.GET_TASKS"/>
++    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
++
+     <application
+         android:allowBackup="true"
+         android:icon="@mipmap/ic_launcher"
+@@ -11,34 +15,26 @@
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+-        <activity android:name=".SendingEmail">
+-
+-        </activity>
+-
+-        <activity android:name=".About">
+-
+-        </activity>
+-
++        <activity android:name=".Header"></activity>
++        <activity android:name=".SendingEmail"></activity>
++        <activity android:name=".About"></activity>
+         <activity android:name=".AdoptionForm" />
+         <activity android:name=".AdminProfileModification" />
+         <activity android:name=".AdminProfile" />
+-        <activity android:name=".UserProfile2" >
+-
+-        </activity>
++        <activity android:name=".UserProfile2"></activity>
+         <activity android:name=".UserProfile" />
+         <activity android:name=".CatProfile" />
+-        <activity android:name=".activity_adding_cat" />
+-
+-        <activity android:name=".SplashScreen">
++        <activity android:name=".CatCards">
+         <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+ 
+             <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter>
+-        </activity>
+-        <activity android:name=".three_dyn">
++    </activity>
++        <activity android:name=".activity_adding_cat" />
++        <activity android:name=".SplashScreen"/>
+ 
+-        </activity>
++        <activity android:name=".three_dyn"></activity>
+         <activity android:name=".AdoptionRequestsAdmin" />
+         <activity android:name=".SignUp" />
+         <activity android:name=".TbnaaMembers" />
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <string name=\"app_name\">TbnaaProject</string>\n    <string name=\"prompt_email\">Email</string>\n    <!-- Strings related to login -->\n    <string name=\"prompt_password\">Password</string>\n    <string name=\"action_sign_in\">Sign in or register</string>\n    <string name=\"action_sign_in_short\">Sign in</string>\n    <string name=\"welcome\">\"Welcome!\"</string>\n    <string name=\"invalid_username\">Not a valid username</string>\n    <string name=\"invalid_password\">Password must be >5 characters</string>\n    <string name=\"login_failed\">\"Login failed\"</string>\n    <!-- TODO: Remove or change this placeholder text -->\n    <string name=\"title_activity_tabbed_test\">TabbedActivityTest</string>\n    <!-- TODO: Remove or change this placeholder text -->\n    <string name=\"tab_text_1\">Tab 1</string>\n    <string name=\"tab_text_2\">Tab 2</string>\n    <string-array name=\"cities_spinner\" id=\"cities_spinner\">\n        <item>Choose a city</item>\n        <item>Riyadh</item>\n        <item>Abha</item>\n        <item>Dammam</item>\n        <item>Jeddah</item>\n        <item>Medina</item>\n        <item>Mecca</item>\n    </string-array>\n    <!-- TODO: Remove or change this placeholder text -->\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\n\n    <string-array name=\"adoption_requests_cats\">\n        <item>Lucy</item>\n        <item>Sasha</item>\n    </string-array>\n\n    <string-array name=\"adoption_requests_gender\">\n        <item>female</item>\n        <item>female</item>\n    </string-array>\n\n    <string-array name=\"adoption_requests_city\">\n        <item>Dammam</item>\n        <item>Dhahran</item>\n    </string-array>\n\n    <string-array name=\"adoption_requests_status\">\n        <item>Accpetted</item>\n        <item>Declined</item>\n    </string-array>\n\n    <string-array name=\"adding_requests_cats\">\n        <item>Nader</item>\n        <item>Alex</item>\n        <item>Maya</item>\n    </string-array>\n\n    <string-array name=\"adding_requests_gender\">\n        <item>male</item>\n        <item>male</item>\n        <item>male</item>\n    </string-array>\n\n    <string-array name=\"adding_requests_city\">\n        <item>Dammam</item>\n        <item>Khobar</item>\n        <item>Jubail</item>\n    </string-array>\n\n    <string-array name=\"adding_requests_status\">\n        <item>Accpet</item>\n        <item>In Progress</item>\n        <item>In Progress</item>\n    </string-array>\n\n    <string-array name=\"cat_names\">\n        <item>Lucy</item>\n        <item>Sasha</item>\n        <item>Nader</item>\n        <item>Alex</item>\n        <item>Maya</item>\n    </string-array>\n\n    <string-array name=\"cat_gender\">\n        <item>Gender</item>\n        <item>Female</item>\n        <item>Male</item>\n    </string-array>\n\n    <string-array name=\"cat_age\">\n        <item>Age</item>\n        <item>1 year and less</item>\n        <item>1 year and more</item>\n    </string-array>\n\n    <string-array name=\"cat_city\">\n        <item>Dammam</item>\n        <item>Khobar</item>\n        <item>Riyadh</item>\n        <item>Jeddah</item>\n        <item>Hail</item>\n    </string-array>\n\n    <string-array name=\"request_decision\">\n        <item>decline</item>\n        <item>accept</item>\n    </string-array>\n\n    <string name=\"userInfoTab\">User Information</string>\n    <string name=\"addReqTab\">Adding Requests</string>\n    <string name=\"adoptReqTab\">Addoption Requests</string>\n\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision bafaea9f5667075362b07ad80d3b6ca7a7eb3546)
++++ app/src/main/res/values/strings.xml	(date 1606674063000)
+@@ -15,7 +15,7 @@
+     <string name="tab_text_1">Tab 1</string>
+     <string name="tab_text_2">Tab 2</string>
+     <string-array name="cities_spinner" id="cities_spinner">
+-        <item>Choose a city</item>
++        <item>City</item>
+         <item>Riyadh</item>
+         <item>Abha</item>
+         <item>Dammam</item>
