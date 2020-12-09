@@ -1,0 +1,408 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 14ee585b6e87f5f19eb13f9c2f99cd7d8d241cef)
++++ app/src/main/AndroidManifest.xml	(date 1607247887225)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++<manifest
++    xmlns:android="http://schemas.android.com/apk/res/android"
+     package="com.example.tbnaaproject">
+ 
+     <uses-permission android:name="android.permission.INTERNET"/>
+@@ -11,39 +12,28 @@
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+-        <activity android:name=".SendingEmail">
+-
+-        </activity>
+-
+-        <activity android:name=".About">
+-
+-        </activity>
+-
++        <activity android:name=".SendingEmail"/>
++        <activity android:name=".About"/>
+         <activity android:name=".AdoptionForm" />
+         <activity android:name=".AdminProfileModification" />
+         <activity android:name=".AdminProfile" />
+-        <activity android:name=".UserProfile2" >
+-
+-        </activity>
++        <activity android:name=".UserProfile2"/>
+         <activity android:name=".UserProfile" />
+         <activity android:name=".CatProfile" />
+         <activity android:name=".activity_adding_cat" />
+-
+         <activity android:name=".SplashScreen">
+         <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+-
+             <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter>
+         </activity>
+-        <activity android:name=".three_dyn">
+-
+-        </activity>
++        <activity android:name=".three_dyn"/>
+         <activity android:name=".AdoptionRequestsAdmin" />
+         <activity android:name=".SignUp" />
+         <activity android:name=".TbnaaMembers" />
+         <activity android:name=".Login" />
+         <activity android:name=".AddingCatsRequestsList" />
++
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/About.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/About.java	(revision 14ee585b6e87f5f19eb13f9c2f99cd7d8d241cef)
++++ app/src/main/java/com/example/tbnaaproject/About.java	(date 1607247431769)
+@@ -1,18 +1,19 @@
+ package com.example.tbnaaproject;
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+-
+ import android.content.Intent;
++import android.net.Uri;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.ImageView;
+ import android.widget.TextView;
+-
+ import javax.mail.internet.InternetAddress;
+ 
+ public class About extends AppCompatActivity {
+ 
+     ImageView emailImage;
++    ImageView webImage;
++    ImageView tweetImage;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -20,24 +21,46 @@
+         setContentView(R.layout.activity_about);
+ 
+         emailImage = (ImageView) findViewById(R.id.contact_us_email);
++        webImage = (ImageView) findViewById(R.id.websiteImage);
++        tweetImage = (ImageView) findViewById(R.id.tweetImage);
+ 
+         emailImage.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+-
+                 sendEmail();
+             }
+         });
+ 
++        webImage.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                openWebsite();
++            }
++        });
++
++        tweetImage.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                opentwitter();
++            }
++        });
+     }
+ 
+     public void sendEmail() {
+-
+         Intent mail = new Intent();
+         mail.setAction(Intent.ACTION_SEND);
+         mail.setType("application/octet-stream");
+         mail.putExtra(Intent.EXTRA_EMAIL, new String[]{"tbnaatest@gmail.com"});
+         startActivity(mail);
++    }
+ 
++    public void openWebsite() {
++        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://tbnaa.com"));
++        startActivity(browserIntent);
++    }
++
++    public void opentwitter() {
++        Intent twitter = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/TbnaaCats?s=20"));
++        startActivity(twitter);
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_about.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_about.xml	(revision 14ee585b6e87f5f19eb13f9c2f99cd7d8d241cef)
++++ app/src/main/res/layout/activity_about.xml	(date 1607247352817)
+@@ -73,114 +73,60 @@
+                     android:src="@drawable/whoarewe"/>
+ 
+                 <ImageView
+-                    android:layout_width="350dp"
+-                    android:layout_height="350dp"
+-                    android:layout_marginTop="0dp"
+-                    android:layout_marginBottom="15dp"
+-                    android:layout_weight="2"
+-                    android:src="@drawable/aboutus"/>
+-
+-            </LinearLayout>
+-
+-        </androidx.cardview.widget.CardView>
+-
+-        <androidx.cardview.widget.CardView
+-            android:layout_width="0dp"
+-            android:layout_height="0dp"
+-            android:layout_rowWeight="1"
+-            android:layout_columnWeight="1"
+-            android:layout_margin="10dp"
+-            android:elevation="10dp"
+-            app:cardCornerRadius="15dp">
+-
+-            <LinearLayout
+-                android:layout_width="match_parent"
+-                android:layout_height="match_parent"
+-                android:layout_weight="1"
+-                android:gravity="center|center_horizontal|center_vertical"
+-                android:orientation="vertical"
+-                android:weightSum="2">
+-
+-                <LinearLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:layout_gravity="center|center_horizontal|center_vertical"
+-                    android:orientation="horizontal"
+-                    android:weightSum="3"
+-                    android:layout_marginTop="15dp">
+-
+-                    <ImageView
+-                        android:layout_width="70dp"
+-                        android:layout_height="70dp"
+-                        android:layout_gravity="center_vertical"
+-                        android:layout_margin="1dp"
+-                        android:layout_weight="1"
+-                        android:src="@drawable/tweet"/>
+-
+-                    <ImageView
+-                        android:layout_width="350dp"
+-                        android:layout_height="350dp"
+-                        android:layout_marginTop="0dp"
+-                        android:layout_marginBottom="15dp"
+-                        android:layout_weight="2"
+-                        android:src="@drawable/aboutus"/>
++                    android:layout_width="match_parent"
++                    android:layout_height="match_parent"
++                    android:layout_marginTop="0dp"
++                    android:layout_marginBottom="15dp"
++                    android:layout_weight="2"
++                    android:src="@drawable/aboutus"/>
+ 
+-                </LinearLayout>
++            </LinearLayout>
+ 
+-            </androidx.cardview.widget.CardView>
++        </androidx.cardview.widget.CardView>
+ 
+-            <androidx.cardview.widget.CardView
+-                android:layout_width="0dp"
+-                android:layout_height="0dp"
+-                android:layout_rowWeight="1"
+-                android:layout_columnWeight="1"
+-                android:layout_margin="10dp"
+-                android:elevation="10dp"
+-                app:cardCornerRadius="15dp">
++        <androidx.cardview.widget.CardView
++            android:layout_width="0dp"
++            android:layout_height="0dp"
++            android:layout_rowWeight="1"
++            android:layout_columnWeight="1"
++            android:layout_margin="10dp"
++            android:elevation="10dp"
++            app:cardCornerRadius="15dp">
+ 
+-                <LinearLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="match_parent"
+-                    android:layout_weight="1"
+-                    android:gravity="center|center_horizontal|center_vertical"
+-                    android:orientation="vertical"
+-                    android:weightSum="2">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:layout_weight="1"
++                android:gravity="center|center_horizontal|center_vertical"
++                android:orientation="vertical"
++                android:weightSum="2">
+ 
+-                    <LinearLayout
+-                        android:layout_width="match_parent"
+-                        android:layout_height="wrap_content"
+-                        android:layout_gravity="center|center_horizontal|center_vertical"
+-                        android:orientation="horizontal"
+-                        android:weightSum="3"
+-                        android:layout_marginTop="15dp">
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_gravity="center|center_horizontal|center_vertical"
++                    android:orientation="horizontal"
++                    android:weightSum="3"
++                    android:layout_marginTop="15dp">
+ 
+-                        <ImageView
+-                            android:layout_width="70dp"
+-                            android:layout_height="70dp"
+-                            android:layout_gravity="center_vertical"
+-                            android:layout_margin="1dp"
+-                            android:layout_weight="1"
+-                            android:src="@drawable/tweet"/>
++                    <ImageView
++                        android:id="@+id/tweetImage"
++                        android:layout_width="70dp"
++                        android:layout_height="70dp"
++                        android:layout_gravity="center_vertical"
++                        android:layout_margin="1dp"
++                        android:layout_weight="1"
++                        android:src="@drawable/tweet"/>
+ 
+-                        <ImageView
+-                            android:layout_width="70dp"
+-                            android:layout_height="70dp"
+-                            android:layout_gravity="center_vertical"
+-                            android:layout_margin="1dp"
+-                            android:layout_weight="1"
+-                            android:src="@drawable/website"/>
++                    <ImageView
++                        android:id="@+id/websiteImage"
++                        android:layout_width="70dp"
++                        android:layout_height="70dp"
++                        android:layout_gravity="center_vertical"
++                        android:layout_margin="1dp"
++                        android:layout_weight="1"
++                        android:src="@drawable/website"/>
+ 
+-                        <ImageView
+-                            android:id="@+id/contact_us_email"
+-                            android:layout_width="70dp"
+-                            android:layout_height="70dp"
+-                            android:layout_gravity="center_vertical"
+-                            android:layout_margin="1dp"
+-                            android:layout_weight="1"
+-                            android:src="@drawable/emailicon" />
+-
+-                    </LinearLayout>
+-
+                     <ImageView
+                         android:id="@+id/contact_us_email"
+                         android:layout_width="70dp"
+@@ -190,10 +136,18 @@
+                         android:layout_weight="1"
+                         android:src="@drawable/emailicon" />
+ 
++<!--                    <ImageView-->
++<!--                        android:layout_width="350dp"-->
++<!--                        android:layout_height="350dp"-->
++<!--                        android:layout_marginTop="0dp"-->
++<!--                        android:layout_marginBottom="15dp"-->
++<!--                        android:layout_weight="2"-->
++<!--                        android:src="@drawable/aboutus"/>-->
++
+                 </LinearLayout>
+ 
+                 <ImageView
+-                    android:id="@+id/imageView3"
++                    android:id="@+id/imageView"
+                     android:layout_width="200dp"
+                     android:layout_height="70dp"
+                     app:srcCompat="@drawable/copyrightblack"
+@@ -202,6 +156,79 @@
+ 
+             </LinearLayout>
+ 
++<!--            <androidx.cardview.widget.CardView-->
++<!--                android:layout_width="0dp"-->
++<!--                android:layout_height="0dp"-->
++<!--                android:layout_rowWeight="1"-->
++<!--                android:layout_columnWeight="1"-->
++<!--                android:layout_margin="10dp"-->
++<!--                android:elevation="10dp"-->
++<!--                app:cardCornerRadius="15dp">-->
++
++<!--                <LinearLayout-->
++<!--                    android:layout_width="match_parent"-->
++<!--                    android:layout_height="match_parent"-->
++<!--                    android:layout_weight="1"-->
++<!--                    android:gravity="center|center_horizontal|center_vertical"-->
++<!--                    android:orientation="vertical"-->
++<!--                    android:weightSum="2">-->
++
++<!--                    <LinearLayout-->
++<!--                        android:layout_width="match_parent"-->
++<!--                        android:layout_height="wrap_content"-->
++<!--                        android:layout_gravity="center|center_horizontal|center_vertical"-->
++<!--                        android:orientation="horizontal"-->
++<!--                        android:weightSum="3"-->
++<!--                        android:layout_marginTop="15dp">-->
++
++<!--                        <ImageView-->
++<!--                            android:layout_width="70dp"-->
++<!--                            android:layout_height="70dp"-->
++<!--                            android:layout_gravity="center_vertical"-->
++<!--                            android:layout_margin="1dp"-->
++<!--                            android:layout_weight="1"-->
++<!--                            android:src="@drawable/tweet"/>-->
++
++<!--                        <ImageView-->
++<!--                            android:layout_width="70dp"-->
++<!--                            android:layout_height="70dp"-->
++<!--                            android:layout_gravity="center_vertical"-->
++<!--                            android:layout_margin="1dp"-->
++<!--                            android:layout_weight="1"-->
++<!--                            android:src="@drawable/website"/>-->
++
++<!--                        <ImageView-->
++<!--                            android:id="@+id/contact_us_email1"-->
++<!--                            android:layout_width="70dp"-->
++<!--                            android:layout_height="70dp"-->
++<!--                            android:layout_gravity="center_vertical"-->
++<!--                            android:layout_margin="1dp"-->
++<!--                            android:layout_weight="1"-->
++<!--                            android:src="@drawable/emailicon" />-->
++
++<!--                    </LinearLayout>-->
++
++<!--                    <ImageView-->
++<!--                        android:id="@+id/contact_us_email"-->
++<!--                        android:layout_width="70dp"-->
++<!--                        android:layout_height="70dp"-->
++<!--                        android:layout_gravity="center_vertical"-->
++<!--                        android:layout_margin="1dp"-->
++<!--                        android:layout_weight="1"-->
++<!--                        android:src="@drawable/emailicon" />-->
++
++<!--                </LinearLayout>-->
++
++<!--                <ImageView-->
++<!--                    android:id="@+id/imageView3"-->
++<!--                    android:layout_width="200dp"-->
++<!--                    android:layout_height="70dp"-->
++<!--                    app:srcCompat="@drawable/copyrightblack"-->
++<!--                    android:layout_marginBottom="0dp"-->
++<!--                    android:layout_marginTop="15dp"/>-->
++
++<!--            </androidx.cardview.widget.CardView>-->
++
+         </androidx.cardview.widget.CardView>
+ 
+     </GridLayout>
