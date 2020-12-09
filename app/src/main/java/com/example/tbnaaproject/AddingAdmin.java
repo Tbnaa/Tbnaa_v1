@@ -9,10 +9,14 @@ import android.database.sqlite.SQLiteCursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.tbnaaproject.adapters.CatCardsAdapter;
+import com.example.tbnaaproject.models.Cats;
 
 import java.util.ArrayList;
 
@@ -21,12 +25,10 @@ TbnaaDatabase.DatabaseHelper DBHelper;
 
     private TbnaaDatabase TbnaaDBHelper;
 
-    private ListView listView;
+    ListView listView;
+    ArrayList<Cats> catsList;
+    AddingAdminAdapter catAdapter;
 
-    private AddingAdminAdapter addingAdminAdapter;
-
-    String catname[];
-    int images[];
     TextView catName1, userName1;
     ImageView imge1;
     ImageButton yes,no;
@@ -35,39 +37,26 @@ TbnaaDatabase.DatabaseHelper DBHelper;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_admin);
+
         listView = (ListView) findViewById(R.id.activity_adding_cats_requests_list);
-        catName1 = (TextView) listView.findViewById(R.id.catName);
-        userName1 = (TextView) listView.findViewById(R.id.userName);
-       // imge1 = (ImageView) listView.findViewById(R.id.imge);
-        yes = (ImageButton)listView.findViewById(R.id.yes);
-        no = (ImageButton)listView.findViewById(R.id.no);
 
-        // Create a list of words
-        final ArrayList<Integer> image = new ArrayList<>();
-        final ArrayList<String> words= new ArrayList<>();
-        ArrayList<AddingAdminAdapter> Word= new ArrayList<>();
-        Cursor result=TbnaaDBHelper.getAllCatData();
-        if(result.getCount()==0) return;
-        while (result.moveToNext()) {
-//            image.add(result.getPosition());
-//            words.add(result.getString(2));
-            catName1 = (TextView) listView.findViewById(R.id.catName);
-        }
+        TbnaaDatabase databaseHelper = new TbnaaDatabase(AddingAdmin.this);
+        catsList = new ArrayList<Cats>();
+
+        catsList = databaseHelper.getAddingCatAdminInfo();
+        catAdapter = new AddingAdminAdapter(AddingAdmin.this, catsList);
+        listView.setAdapter(catAdapter);
 
 
-        //AddingAdminAdapter adapter = new AddingAdminAdapter(this, );
-       // listView.setAdapter(adapter);
+//        listView = (ListView) findViewById(R.id.activity_adding_cats_requests_list);
+//        catName1 = (TextView) listView.findViewById(R.id.catName);
+//        userName1 = (TextView) listView.findViewById(R.id.userName);
+//       // imge1 = (ImageView) listView.findViewById(R.id.imge);
+//        yes = (ImageButton)listView.findViewById(R.id.yes);
+//        no = (ImageButton)listView.findViewById(R.id.no);
 
-       
-        
-       
 
-        // Get SQLite database query cursor.
-        TbnaaDBHelper = new TbnaaDatabase(getApplicationContext());
-        TbnaaDBHelper.connect();
-        Cursor cursor = TbnaaDBHelper.getAllCatData();
 
-      
 
         // When list view item is clicked.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -93,20 +82,4 @@ TbnaaDatabase.DatabaseHelper DBHelper;
  
     }
 
-//    @Override
-//    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
-//        holder.catName.setText(catname[position]);
-//        holder.catImage.setImageResource(images[position]);
-//    }
-//
-//    public class MyViewHolder extends RecyclerView.ViewHolder{
-//        TextView catName;
-//        ImageView catImage;
-//
-//        public MyViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//            catName = itemView.findViewById(R.id.catName);
-//            catImage = itemView.findViewById(R.id.image);
-//
-//        }
 }

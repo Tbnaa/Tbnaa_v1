@@ -109,14 +109,17 @@
         </GridLayout>
 
     <GridView
-        android:id="@+id/gridView"
+        android:id="@+id/catsGridView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="8dp"
         android:horizontalSpacing="8dp"
-        android:verticalSpacing="16dp"
+        android:verticalSpacing="4dp"
         android:numColumns="2"
         android:scrollbars="none"/>
+
+
     </LinearLayout>
 
     </LinearLayout>
+

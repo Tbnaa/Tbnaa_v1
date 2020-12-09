@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.tbnaaproject.models.Cats;
+
 import java.util.ArrayList;
 
 public class AddingAdminAdapter extends ArrayAdapter<AddingAdminWord> {
@@ -34,7 +36,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
         userTextView.setText(currentWord.getUserName());
 
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
-        imageView.setImageResource(currentWord.getmImageResourceId());
+        imageView.setImage(currentWord.getCatImage());
         imageView.setVisibility(View.VISIBLE);
 
         return listItemView;
