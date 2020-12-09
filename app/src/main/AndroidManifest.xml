@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tbnaaproject">
 
-    <supports-screens
-        android:largeScreens="true"
-        android:normalScreens="true"
-        android:smallScreens="true"
-        android:xlargeScreens="true" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,37 +12,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <provider
-            android:name=".TbnaaContentProvider"
-            android:authorities="com.tbnaa.content.provider"
-            android:enabled="true"
-            android:exported="true"></provider>
-
-        <activity android:name=".SendingEmail"></activity>
-        <activity android:name=".About"></activity>
-        <activity android:name=".AdoptionForm"></activity>
+        <activity android:name=".SendingEmail"/>
+        <activity android:name=".About"/>
+        <activity android:name=".AdoptionForm" />
         <activity android:name=".AdminProfileModification" />
         <activity android:name=".AdminProfile" />
-        <activity android:name=".UserProfile2"></activity>
+        <activity android:name=".UserProfile2"/>
         <activity android:name=".UserProfile" />
-        <activity android:name=".CatProfile">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity_adding_cat">
-
-        </activity>
-        <activity android:name=".SplashScreen"></activity>
-        <activity android:name=".three_dyn" />
-        <activity android:name=".adding_request_2stat"></activity>
+        <activity android:name=".CatProfile" />
+        <activity android:name=".activity_adding_cat"/>
+        <activity android:name=".SplashScreen"/>
+        <activity android:name=".three_dyn"/>
         <activity android:name=".AdoptionRequestsAdmin" />
         <activity android:name=".SignUp" />
         <activity android:name=".TbnaaMembers" />
         <activity android:name=".Login" />
         <activity android:name=".AddingCatsRequestsList" />
+        <activity android:name=".CatCards">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
