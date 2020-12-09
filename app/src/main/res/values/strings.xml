@@ -14,7 +14,15 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
-    <string-array name="cities_spinner">
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="userInfoTab">User Information</string>
+
+    <string name="addReqTab">Adding Requests</string>
+
+    <string name="adoptReqTab">Addoption Requests</string>
+
+    <string-array name="cities_spinner" id="cities_spinner">
         <item>Choose a city</item>
         <item>Riyadh</item>
         <item>Abha</item>
@@ -23,8 +31,6 @@
         <item>Medina</item>
         <item>Mecca</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="adoption_requests_cats">
         <item>Lucy</item>
@@ -89,7 +95,6 @@
         <item>1 year and less</item>
         <item>1 year and more</item>
     </string-array>
-
     <string-array name="cat_city">
         <item>Dammam</item>
         <item>Khobar</item>
@@ -97,14 +102,9 @@
         <item>Jeddah</item>
         <item>Hail</item>
     </string-array>
-
     <string-array name="request_decision">
         <item>decline</item>
         <item>accept</item>
     </string-array>
-
-    <string name="userInfoTab">User Information</string>
-    <string name="addReqTab">Adding Requests</string>
-    <string name="adoptReqTab">Addoption Requests</string>
 
 </resources>
