@@ -21,6 +21,7 @@
         <activity android:name=".UserProfile" />
         <activity android:name=".CatProfile" />
         <activity android:name=".activity_adding_cat"/>
+
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
