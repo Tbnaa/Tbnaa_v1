@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -71,7 +72,6 @@ TbnaaDatabase.DatabaseHelper DBHelper;
                 Object clickItemObject = adapterView.getAdapter().getItem(position);
                 SQLiteCursor cursor = (SQLiteCursor)clickItemObject;
                 Toast.makeText(AddingAdmin.this, "Maha", Toast.LENGTH_SHORT).show();
-
 
             }
         });

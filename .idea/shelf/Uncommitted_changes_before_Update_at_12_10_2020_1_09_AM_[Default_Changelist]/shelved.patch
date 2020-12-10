@@ -1,0 +1,22 @@
+Index: app/src/main/java/com/example/tbnaaproject/About.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tbnaaproject;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport javax.mail.internet.InternetAddress;\r\n\r\npublic class About extends AppCompatActivity {\r\n\r\n    ImageView emailImage;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_about);\r\n\r\n        emailImage = (ImageView) findViewById(R.id.contact_us_email);\r\n\r\n        emailImage.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n\r\n                sendEmail();\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n    public void sendEmail() {\r\n\r\n        Intent mail = new Intent();\r\n        mail.setAction(Intent.ACTION_SEND);\r\n        mail.setType(\"application/octet-stream\");\r\n        mail.putExtra(Intent.EXTRA_EMAIL, new String[]{\"tbnaatest@gmail.com\"});\r\n        startActivity(mail);\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/About.java	(revision ffd47f7007c4636d75360a9d4e23cfc8bafb9c33)
++++ app/src/main/java/com/example/tbnaaproject/About.java	(date 1607550288912)
+@@ -1,3 +1,4 @@
++
+ package com.example.tbnaaproject;
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+@@ -24,7 +25,6 @@
+         emailImage.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+-
+                 sendEmail();
+             }
+         });

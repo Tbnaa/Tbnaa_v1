@@ -10,7 +10,7 @@
     tools:context=".CatCards">
 
 
-<!--    TODO: filters-->
+    <!--    TODO: filters-->
 
 
 
@@ -68,19 +68,19 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:layout_margin="8dp"
-            android:paddingTop="8dp"
+            android:columnCount="2"
+            android:layout_margin="15dp"
+            android:paddingTop="10dp"
             android:gravity="center_horizontal">
 
             <Spinner
                 android:id="@+id/sp1"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_width="104dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:layout_gravity="left"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/spinner_design1"
                 android:entries="@array/cities_spinner"/>
 
@@ -88,38 +88,27 @@
                 android:id="@+id/sp2"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_width="112dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:background="@drawable/spinner_design1"
                 android:ems="10"
+                android:layout_marginLeft="8dp"
                 android:entries="@array/cat_gender"/>
-
-            <Spinner
-                android:id="@+id/sp3"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_width="104dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:layout_gravity="right"
-                android:background="@drawable/spinner_design1"
-                android:entries="@array/cat_age"/>
 
         </GridLayout>
 
-    <GridView
-        android:id="@+id/catsGridView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp"
-        android:horizontalSpacing="8dp"
-        android:verticalSpacing="4dp"
-        android:numColumns="2"
-        android:scrollbars="none"/>
+        <GridView
+            android:id="@+id/catsGridView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:horizontalSpacing="8dp"
+            android:verticalSpacing="4dp"
+            android:numColumns="2"
+            android:scrollbars="none"/>
 
 
     </LinearLayout>
 
-    </LinearLayout>
+</LinearLayout>
 

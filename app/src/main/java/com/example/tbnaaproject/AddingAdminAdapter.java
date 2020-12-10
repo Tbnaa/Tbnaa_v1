@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -71,21 +72,24 @@ public class AddingAdminAdapter extends BaseAdapter{
                 catImageView.setImageBitmap(cattImage);
                 catNameTextView.setText("Name: " + c.getCatName());
 
+                final View finalConvertView = convertView;
                 yes.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                                 Toast.makeText(context, "Accept", Toast.LENGTH_SHORT).show();
                                 DBhelper.UpdateIsApproved(c.getCatID());
-
+                                finalConvertView.setLayoutParams(new AbsListView.LayoutParams(-1,1));
+                                finalConvertView.setVisibility(View.GONE);
                         }
                 });
-
 
                 no.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                                 Toast.makeText(context, "reject", Toast.LENGTH_SHORT).show();
                                 DBhelper.UpdateIsApprovedReject(c.getCatID());
+                                finalConvertView.setLayoutParams(new AbsListView.LayoutParams(-1,1));
+                                finalConvertView.setVisibility(View.GONE);
                         }
                 });
 
