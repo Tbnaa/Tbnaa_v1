@@ -62,7 +62,7 @@
                     android:text="Cat's name."
                     android:textSize="15sp"
                     android:layout_marginLeft="-152dp"
-                    android:layout_marginTop="10dp" />
+                    />
 
             </TableRow>
 
