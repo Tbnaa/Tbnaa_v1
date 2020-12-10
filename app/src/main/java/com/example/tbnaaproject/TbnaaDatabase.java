@@ -46,6 +46,16 @@ public class TbnaaDatabase {
     //shareableCatInfo Table for ContentProvider
     private static String shareableCatInfoTableName = "shareableCatInfo";
     private static final String createShareableCatInfo = "CREATE TABLE IF NOT EXISTS shareableCatInfo(cat_Id INTEGER PRIMARY KEY AUTOINCREMENT, CatName TEXT,CatLocation TEXT);";
+
+    //Adoption  table
+    private static String adoptionTableName = "AdaptionForm";
+    private static final String createAdaptionFormTable = "CREATE TABLE IF NOT EXISTS AdaptionForm(adoptionFormId INTEGER PRIMARY KEY AUTOINCREMENT, uID INTEGER, hadAdopted TEXT,adoptedStory TEXT, extraPhoneNo TEXT, liveAlone TEXT,haveKids TEXT, perantApproval TEXT, allergic TEXT, catPlacement TEXT,isOwner TEXT,clinicName TEXT, pledge TEXT, isApproved TEXT);";
+
+    //Adoption  table
+    private static String addingTableName = "AdaptionForm";
+    private static final String createAddingFormTable = "CREATE TABLE IF NOT EXISTS AdaptionForm(adoptionFormId INTEGER PRIMARY KEY AUTOINCREMENT, hadAdopted TEXT,adoptedStory TEXT, extraPhoneNo TEXT, liveAlone TEXT,haveKids TEXT, perantApproval TEXT, allergic TEXT, catPlacement TEXT,isOwner TEXT,clinicName TEXT, pledge TEXT, isApproved TEXT);";
+
+
     //basics
     private final Context ct;
     private DatabaseHelper dbHelper;
@@ -205,9 +215,8 @@ public class TbnaaDatabase {
         return setOfCats;
     }
 
-
     // getAllCats method to get all cats general info from Cat table to show in gallary
-    public ArrayList<Cats> getRequestedCats(String useridgi) {
+    public ArrayList<Cats> getRequestedCats(String userid) {
         this.connect();
         //return database.rawQuery("SELECT catImage,catName, catCity, catGender FROM Cat", null);
 
@@ -258,6 +267,5 @@ public class TbnaaDatabase {
         return database.insert(userTableName, null, cv);
     }
 
+
 }
-
-
