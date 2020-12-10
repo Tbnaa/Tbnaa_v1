@@ -154,20 +154,21 @@ public class TbnaaDatabase  {
 
     // getAddingCatAdminInfo method to get cats image and name info from Cat table to show in Add cat request
     // also, getting userName from User table
-    public ArrayList<Cats> getAddingCatAdminInfo() {
+    public ArrayList<AddingAdminWord> getAddingCatAdminInfo() {
 
         this.connect();
-
-        String query = "SELECT catImage, catName FROM Cat";
-        ArrayList<Cats> setOfCats = new ArrayList<Cats>();
+        String query = "SELECT catId, catImage, catName FROM Cat";
+        ArrayList<AddingAdminWord> setOfCats = new ArrayList<AddingAdminWord>();
 
         Cursor c = database.rawQuery(query, null);
         if (c != null) {
             while (c.moveToNext()) {
                 byte[] imageOfCatt = c.getBlob(c.getColumnIndex("catImage"));
                 String nameOfCat = c.getString(c.getColumnIndex("catName"));
+                int catID = c.getInt(c.getColumnIndex("catId"));
 
-                Cats cat = new Cats();
+                AddingAdminWord cat = new AddingAdminWord();
+
                 cat.setImage(imageOfCatt);
                 cat.setName(nameOfCat);
 
@@ -179,6 +180,16 @@ public class TbnaaDatabase  {
 
     }
 
+    //Update isApproved record from cat table
+    public void UpdateIsApproved(int id) {
+        this.connect();
+        String query = "Update Cat Set isApproved='true' Where catId = id";
+        }
+    //Update isApproved record from cat table
+    public void UpdateIsApprovedReject(int id) {
+        this.connect();
+        String query = "Update Cat Set isApproved='false' Where catId = id";
+    }
 
 //    public boolean updateData(String id,String name,String username,String email,String phone, String city) {
 //        this.connect();

@@ -13,18 +13,22 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tbnaaproject.models.Cats;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-
-public class AddingAdminAdapter extends BaseAdapter {
+//implements View.OnClickListener
+public class AddingAdminAdapter extends BaseAdapter{
         Context context;
-        private ArrayList<Cats> catsList;
+        private ArrayList<AddingAdminWord> catsList;
         private static LayoutInflater inflater = null;
         private static ListView listView;
+        TbnaaDatabase DBhelper;
+        AddingAdminWord c;
 
-        public AddingAdminAdapter(Context context, ArrayList<Cats> catsList) {
+        public AddingAdminAdapter(Context context, ArrayList<AddingAdminWord> catsList) {
                 this.context = context;
                 this.catsList = catsList;
                 inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -46,6 +50,9 @@ public class AddingAdminAdapter extends BaseAdapter {
                 return position;
         }
 
+
+        private int lastPosition = -1;
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -57,34 +64,58 @@ public class AddingAdminAdapter extends BaseAdapter {
                 ImageButton yes = (ImageButton) convertView.findViewById(R.id.yes);
                 ImageButton no = (ImageButton) convertView.findViewById(R.id.no);
 
-
-                Cats c = new Cats();
+                c = new AddingAdminWord();
                 c = catsList.get(position);
 
                 Bitmap cattImage = BitmapFactory.decodeByteArray(c.getCatImage(), 0, c.getCatImage().length);
                 catImageView.setImageBitmap(cattImage);
                 catNameTextView.setText("Name: " + c.getCatName());
-                return convertView;
 
-                //OnClick listeners for all the buttons on the ListView Item
                 yes.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View view) {
+                        public void onClick(View v) {
+                                Toast.makeText(context, "Accept", Toast.LENGTH_SHORT).show();
+                                DBhelper.UpdateIsApproved(c.getCatID());
 
                         }
                 });
 
-                //OnClick listeners for all the buttons on the ListView Item
+
                 no.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View view) {
-
+                        public void onClick(View v) {
+                                Toast.makeText(context, "reject", Toast.LENGTH_SHORT).show();
+                                DBhelper.UpdateIsApprovedReject(c.getCatID());
                         }
                 });
+
+                return convertView;
 
 
         }
+/*
+        @Override
+        public void onClick(View v) {
 
+                int position=(Integer) v.getTag();
+                Object object= getItem(position);
+                AddingAdminWord dataModel=(AddingAdminWord)object;
+
+                switch (v.getId())
+                {
+                        case R.id.yes:
+                                Snackbar.make(v, "Release date " +dataModel.getCatName(), Snackbar.LENGTH_LONG)
+                                        .setAction("No action", null).show();
+                                Toast.makeText(context, "meeeeeeee", Toast.LENGTH_SHORT).show();
+                                break;
+                        case R.id.no:
+                                Snackbar.make(v, "Release date " +dataModel.getCatImage(), Snackbar.LENGTH_LONG)
+                                        .setAction("No action", null).show();
+                                Toast.makeText(context, "meeeeeeee", Toast.LENGTH_SHORT).show();
+                                break;
+                }
+        }
+*/
 
 
 }

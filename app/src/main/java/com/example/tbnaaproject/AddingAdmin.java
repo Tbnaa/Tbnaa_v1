@@ -15,9 +15,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tbnaaproject.adapters.CatCardsAdapter;
 import com.example.tbnaaproject.models.Cats;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -27,7 +29,7 @@ TbnaaDatabase.DatabaseHelper DBHelper;
     private TbnaaDatabase TbnaaDBHelper;
 
     ListView listView;
-    ArrayList<Cats> catsList;
+    ArrayList<AddingAdminWord> catsList;
     AddingAdminAdapter catAdapter;
 
     ImageButton yes,no;
@@ -40,11 +42,13 @@ TbnaaDatabase.DatabaseHelper DBHelper;
         listView = (ListView) findViewById(R.id.activity_adding_cats_requests_list);
 
         TbnaaDatabase databaseHelper = new TbnaaDatabase(AddingAdmin.this);
-        catsList = new ArrayList<Cats>();
+        catsList = new ArrayList<AddingAdminWord>();
 
         catsList = databaseHelper.getAddingCatAdminInfo();
         catAdapter = new AddingAdminAdapter(AddingAdmin.this, catsList);
         listView.setAdapter(catAdapter);
+
+
 
 
 //        listView = (ListView) findViewById(R.id.activity_adding_cats_requests_list);
@@ -66,7 +70,7 @@ TbnaaDatabase.DatabaseHelper DBHelper;
                 // Get list view item SQLiteCursor object.
                 Object clickItemObject = adapterView.getAdapter().getItem(position);
                 SQLiteCursor cursor = (SQLiteCursor)clickItemObject;
-
+                Toast.makeText(AddingAdmin.this, "Maha", Toast.LENGTH_SHORT).show();
 
 
             }
