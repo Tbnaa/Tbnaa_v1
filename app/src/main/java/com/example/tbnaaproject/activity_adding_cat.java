@@ -6,14 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
 import android.Manifest;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-
 import android.content.ContentValues;
-
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -51,11 +47,9 @@ public class activity_adding_cat extends AppCompatActivity {
     String cities[]={"Choose a city","Riyadh","Abha","Dammam","Jeddah","Medina","Mecca"};
     String cityName;
 
-
     //for notification
     NotificationManagerCompat notificationManager;
     NotificationCompat.Builder builder;
-
 
     // for uploading cat image
     final int PICK_IMAGE_FROM_GALLERY=1;
@@ -146,7 +140,6 @@ public class activity_adding_cat extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-
                     String catName, catStory, catAge, catHealtheCondition, catCity,
                             catGender, catVaccinated, catNeutered;
                     byte[] catImage;
