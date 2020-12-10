@@ -15,8 +15,11 @@ public class adding_request_2stat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_request_2stat);
 
-        button1 = (Button) findViewById(R.id.accept);
-        button2 = (Button) findViewById(R.id.reject);
+
+
+
+        button1 = (Button) findViewById(R.id.Accept_2stat);
+        button2 = (Button) findViewById(R.id.Reject_2stat);
 
         button1.setOnClickListener(new View.OnClickListener() { @Override
         public void onClick(View v) {
@@ -53,6 +56,7 @@ public class adding_request_2stat extends AppCompatActivity {
         });
     }
 }
+
 
 
 
