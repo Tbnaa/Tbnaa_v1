@@ -56,6 +56,7 @@ public class TbnaaDatabase {
     private static final String createAddingFormTable = "CREATE TABLE IF NOT EXISTS AdaptionForm(adoptionFormId INTEGER PRIMARY KEY AUTOINCREMENT, hadAdopted TEXT,adoptedStory TEXT, extraPhoneNo TEXT, liveAlone TEXT,haveKids TEXT, perantApproval TEXT, allergic TEXT, catPlacement TEXT,isOwner TEXT,clinicName TEXT, pledge TEXT, isApproved TEXT);";
 
 
+
     //basics
     private final Context ct;
     private DatabaseHelper dbHelper;
@@ -215,10 +216,67 @@ public class TbnaaDatabase {
         return setOfCats;
     }
 
+
+    // getAddingCatAdminInfo method to get cats image and name info from Cat table to show in Add cat request
+    // also, getting userName from User table
+    public ArrayList<AddingAdminWord> getAddingCatAdminInfo() {
+
+        this.connect();
+        String query = "SELECT catId, catImage, catName FROM Cat";
+        ArrayList<AddingAdminWord> setOfCats = new ArrayList<AddingAdminWord>();
+
+        Cursor c = database.rawQuery(query, null);
+        if (c != null) {
+            while (c.moveToNext()) {
+                byte[] imageOfCatt = c.getBlob(c.getColumnIndex("catImage"));
+                String nameOfCat = c.getString(c.getColumnIndex("catName"));
+                int catID = c.getInt(c.getColumnIndex("catId"));
+
+                AddingAdminWord cat = new AddingAdminWord();
+
+                cat.setImage(imageOfCatt);
+                cat.setName(nameOfCat);
+
+                setOfCats.add(cat);
+            }
+        }
+
+        return setOfCats;
+
+    }
+
+    //Update isApproved record from cat table
+    public void UpdateIsApproved(int id) {
+        this.connect();
+        String query = "Update Cat Set isApproved='true' Where catId = id";
+        }
+    //Update isApproved record from cat table
+    public void UpdateIsApprovedReject(int id) {
+        this.connect();
+        String query = "Update Cat Set isApproved='false' Where catId = id";
+    }
+
+//    public boolean updateData(String id,String name,String username,String email,String phone, String city) {
+//        this.connect();
+//        database = dbHelper.getWritableDatabase();
+//
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(Col_1,id);
+//        contentValues.put(COL_2,name);
+//        contentValues.put(COL_3,username);
+//        contentValues.put(COL_4,email);
+//        contentValues.put(COL_5,phone);
+//        contentValues.put(COL_6,city);
+//        database.update(adminTableName, contentValues, "ID = ?",new String[] { id });
+//        return true;
+//    }
+
+
     // getAllCats method to get all cats general info from Cat table to show in gallary
     public ArrayList<Cats> getRequestedCats(String userid) {
         this.connect();
         //return database.rawQuery("SELECT catImage,catName, catCity, catGender FROM Cat", null);
+
 
         String query = "SELECT catImage, catName, catCity, catGender FROM Cat";
         ArrayList<Cats> setOfCats = new ArrayList<Cats>();
