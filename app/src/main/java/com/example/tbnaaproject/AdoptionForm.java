@@ -1,7 +1,6 @@
 package com.example.tbnaaproject;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,7 +29,6 @@ public class AdoptionForm extends AppCompatActivity {
 
     ImageView catImage_imageView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +44,6 @@ public class AdoptionForm extends AppCompatActivity {
         //toast(""+catID+"    "+userId);
 
         init();
-
 
         Cursor c = tbnaadbHelper.retrieveCatInfo(catID);
         while (c.moveToNext()) {
@@ -141,7 +138,6 @@ public class AdoptionForm extends AppCompatActivity {
                             getcatPlacementRadiobutton = findViewById(catPlacementRadioGroupID);
                             getcatPlacementRadiobuttonValue = getcatPlacementRadiobutton.getText().toString();
 
-
                             // add adaption form to db
                             tbnaadbHelper.addAdaptionForm(gethadAdoptedValue, adoptedStory,
                                     additionalPhoneNo, getliveAloneValue, gethaveKidsRadiobuttonValue,
@@ -158,10 +154,6 @@ public class AdoptionForm extends AppCompatActivity {
             });
         }
     }
-
-
-
-
 
     //----------------------------------------------------------------------------------
     private void init(){

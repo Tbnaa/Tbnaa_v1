@@ -33,28 +33,32 @@ public class TbnaaDatabase {
 
     //User table
     private static String userTableName = "User";
-    private static final String createUserTable = "CREATE TABLE User (uID INTEGER PRIMARY KEY AUTOINCREMENT" +
+    private static final String createUserTable = "CREATE TABLE IF NOT EXISTS User (uID INTEGER PRIMARY KEY AUTOINCREMENT" +
             ", upassword TEXT, uImage BLOB, uFirstName TEXT, uLastName TEXT, uGender TEXT, socialState TEXT, uEmail TEXT" +
             ", uPhone TEXT, uCity TEXT);";
 
     //Admin table
     private static String adminTableName = "Admin";
-    private static final String createAdminTable = "CREATE TABLE Admin (aID INTEGER PRIMARY KEY AUTOINCREMENT" +
+    private static final String createAdminTable = "CREATE TABLE IF NOT EXISTS Admin (aID INTEGER PRIMARY KEY AUTOINCREMENT" +
             ", aPassword TEXT, aImage BLOB, aFirstName TEXT, aLastName TEXT, aGender TEXT, aEmail TEXT, aPhone TEXT);";
 
 
     //shareableCatInfo Table for ContentProvider
     private static String shareableCatInfoTableName = "shareableCatInfo";
-    private static final String createShareableCatInfo = "CREATE TABLE IF NOT EXISTS shareableCatInfo(cat_Id INTEGER PRIMARY KEY AUTOINCREMENT, CatName TEXT,CatLocation TEXT);";
+    private static final String createShareableCatInfo = "CREATE TABLE IF NOT EXISTS shareableCatInfo(cat_Id INTEGER PRIMARY KEY AUTOINCREMENT" +
+            ", CatName TEXT, CatLocation TEXT);";
 
     //Adoption  table
     private static String adoptionTableName = "AdaptionForm";
-    private static final String createAdaptionFormTable = "CREATE TABLE IF NOT EXISTS AdaptionForm(adoptionFormId INTEGER PRIMARY KEY AUTOINCREMENT, uID INTEGER, hadAdopted TEXT,adoptedStory TEXT, extraPhoneNo TEXT, liveAlone TEXT,haveKids TEXT, perantApproval TEXT, allergic TEXT, catPlacement TEXT,isOwner TEXT,clinicName TEXT, pledge TEXT, isApproved TEXT);";
+    private static final String createAdaptionFormTable = "CREATE TABLE IF NOT EXISTS AdaptionForm(adoptionFormId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "uID INTEGER, hadAdopted TEXT, adoptedStory TEXT, extraPhoneNo TEXT, liveAlone TEXT, haveKids TEXT, perantApproval TEXT, allergic TEXT, " +
+            "catPlacement TEXT, isOwner TEXT, clinicName TEXT, pledge TEXT, isApproved TEXT);";
 
     //Adoption  table
     private static String addingTableName = "AdaptionForm";
-    private static final String createAddingFormTable = "CREATE TABLE IF NOT EXISTS AdaptionForm(adoptionFormId INTEGER PRIMARY KEY AUTOINCREMENT, hadAdopted TEXT,adoptedStory TEXT, extraPhoneNo TEXT, liveAlone TEXT,haveKids TEXT, perantApproval TEXT, allergic TEXT, catPlacement TEXT,isOwner TEXT,clinicName TEXT, pledge TEXT, isApproved TEXT);";
-
+    private static final String createAddingFormTable = "CREATE TABLE IF NOT EXISTS AdaptionForm(adoptionFormId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "hadAdopted TEXT, adoptedStory TEXT, extraPhoneNo TEXT, liveAlone TEXT, haveKids TEXT, perantApproval TEXT, allergic TEXT, catPlacement TEXT, " +
+            "isOwner TEXT, clinicName TEXT, pledge TEXT, isApproved TEXT);";
 
 
     //basics
@@ -122,8 +126,7 @@ public class TbnaaDatabase {
 
     // addCat method to insert cats into Cat table
     public long addCat(byte[] catImage, String catName, String catAge,
-                       String catCity,
-                       String catGender, String vaccinated,
+                       String catCity, String catGender, String vaccinated,
                        String neutered, String healtheCare, String catStory) {
 
         this.connect();
@@ -174,7 +177,8 @@ public class TbnaaDatabase {
 
     public Cursor retrieveCatInfo(int id) {
         this.connect();
-        Cursor c = database.rawQuery("SELECT catImage, catName, catAge , catCity , catGender, vaccinated,neutered ,catStory,isAdoptted FROM Cat WHERE catId=" + id + ";", null);
+        Cursor c = database.rawQuery("SELECT catImage, catName, catAge , catCity , catGender, " +
+                "vaccinated,neutered ,catStory,isAdoptted FROM Cat WHERE catId=" + id + ";", null);
         return c;
     }
 
@@ -309,7 +313,6 @@ public class TbnaaDatabase {
 
         ContentValues cv = new ContentValues();
 
-
         cv.put("uPassword", uPassword);
         cv.put("uImage", uImage);
         cv.put("uFirstName", uFirstName);
@@ -319,7 +322,6 @@ public class TbnaaDatabase {
         cv.put("uEmail", uEmail);
         cv.put("uPhone", uPhone);
         cv.put("uCity", uCity);
-
 
         this.connect();
         return database.insert(userTableName, null, cv);
