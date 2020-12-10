@@ -58,7 +58,6 @@
                     android:id="@+id/usetextView2"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-
                     android:layout_marginLeft="-160dp"
                     android:text="user name."
                     android:textSize="18sp" />
@@ -84,7 +83,6 @@
                     android:id="@+id/textView289last"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-
                     android:layout_marginLeft="-160dp"
                     android:text="Last name."
                     android:textSize="18sp" />

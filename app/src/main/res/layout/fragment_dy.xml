@@ -52,10 +52,6 @@
                         android:contentDescription="humburger menu icon"
                         android:src="@drawable/ic_menu" />
 
-
-
-
-
                 </LinearLayout>
 
                 <TableRow

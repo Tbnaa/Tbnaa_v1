@@ -1,0 +1,1617 @@
+Index: app/src/main/java/com/example/tbnaaproject/activity_adding_cat.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tbnaaproject;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.app.ActivityCompat;\r\n\r\nimport android.Manifest;\r\nimport android.content.Intent;\r\nimport android.content.pm.PackageManager;\r\nimport android.graphics.Bitmap;\r\nimport android.graphics.BitmapFactory;\r\nimport android.graphics.drawable.BitmapDrawable;\r\nimport android.net.Uri;\r\nimport android.os.Build;\r\nimport android.os.Bundle;\r\nimport android.provider.MediaStore;\r\nimport android.view.View;\r\nimport android.widget.AdapterView;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageView;\r\nimport android.widget.RadioButton;\r\nimport android.widget.RadioGroup;\r\nimport android.widget.Spinner;\r\nimport android.widget.Toast;\r\n\r\nimport java.io.ByteArrayOutputStream;\r\nimport java.io.FileNotFoundException;\r\nimport java.io.IOException;\r\nimport java.io.InputStream;\r\nimport java.sql.Blob;\r\n\r\n\r\npublic class activity_adding_cat extends AppCompatActivity {\r\n\r\n\r\n\r\n    EditText catNameEditText,catStoryEditText,catAgeEditText, catHealtheConditionEditText;\r\n    ImageView catImage_ImageView;\r\n    Spinner catCitySpinner;\r\n    Button addCatButton,uploadCatImageButton;\r\n    RadioGroup genderRadioGroup, vaccinatedRadioGroup,neuteredRadioGroup;\r\n    RadioButton catGenderRadioButton, isVaccinatedRadioButton, isNeuteredRadioButton;\r\n\r\n    String cities[]={\"Choose a city\",\"Riyadh\",\"Abha\",\"Dammam\",\"Jeddah\",\"Medina\",\"Mecca\"};\r\n    String cityName;\r\n\r\n\r\n    // for uploading cat image\r\n    final int PICK_IMAGE_FROM_GALLERY=1;\r\n    public Bitmap imageBitmap;\r\n    public byte[] imageByte;\r\n    Uri imageUri;\r\n\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_adding_cat);\r\n\r\n        final TbnaaDatabase tbnaadbHelper= new TbnaaDatabase(this);\r\n\r\n        init();\r\n\r\n\r\n        // upload cat image\r\n        uploadCatImageButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {\r\n                    if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {\r\n                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};\r\n                        requestPermissions(permissions, 1001);\r\n                    } else pickImageFromGallery();\r\n                } else pickImageFromGallery();\r\n            }\r\n        });\r\n\r\n        //set Spinner adapter\r\n        ArrayAdapter <String> adapter=new ArrayAdapter <String>(this,R.layout.support_simple_spinner_dropdown_item,cities);\r\n        catCitySpinner.setAdapter(adapter);\r\n\r\n        //city Spinner values\r\n        catCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {\r\n\r\n\r\n            @Override\r\n            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {\r\n\r\n                switch (i) {\r\n\r\n                    case 0:\r\n                        cityName = \"\";\r\n                        break;\r\n                    case 1:\r\n                        cityName = \"Riyadh\";\r\n                        break;\r\n\r\n                    case 2:\r\n                        cityName = \"Abha\";\r\n                        break;\r\n\r\n                    case 3:\r\n                        cityName = \"Dammam\";\r\n                        break;\r\n\r\n                    case 4:\r\n                        cityName = \"Jeddah\";\r\n                        break;\r\n\r\n                    case 5:\r\n                        cityName = \"Medina\";\r\n                        break;\r\n\r\n                    case 6:\r\n                        cityName = \"Mecca\";\r\n                        break;\r\n\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void onNothingSelected(AdapterView<?> adapterView) {\r\n\r\n            }\r\n        });\r\n\r\n\r\n        //add cat\r\n        addCatButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                try {\r\n\r\n                    String catName, catStory, catAge, catHealtheCondition, catCity,\r\n                            catGender, catVaccinated, catNeutered;\r\n                    byte[] catImage;\r\n\r\n                    catName = catNameEditText.getText().toString();\r\n                    catStory = catStoryEditText.getText().toString();\r\n                    catAge = catAgeEditText.getText().toString();\r\n                    catHealtheCondition = catHealtheConditionEditText.getText().toString();\r\n                    catCity = cityName;\r\n\r\n\r\n                    if (catName.isEmpty() || catStory.isEmpty() || catAge.isEmpty()\r\n                            || catHealtheCondition.isEmpty()\r\n                    ) {\r\n                        toast(\"Please fill all the fields\");\r\n                    } else if (genderRadioGroup.getCheckedRadioButtonId() == -1) {\r\n                        // no radio buttons are checked\r\n                        toast(\"Please enter cat's gender\");\r\n                    } else if (vaccinatedRadioGroup.getCheckedRadioButtonId() == -1) {\r\n//                        // no radio buttons are checked\r\n                        toast(\"Please enter cat's vaccinated field\");\r\n                    } else if (neuteredRadioGroup.getCheckedRadioButtonId() == -1) {\r\n                        // no radio buttons are checked\r\n                        toast(\"Please enter cat's neutered field\");\r\n                    } else if (catCity.isEmpty()) {\r\n                        toast(\"Please enter cat's city field\");\r\n                    } else {\r\n\r\n                        //RadioButtons\r\n                        int genderRadioButtonID = genderRadioGroup.getCheckedRadioButtonId();\r\n                        catGenderRadioButton = findViewById(genderRadioButtonID);\r\n                        catGender = catGenderRadioButton.getText().toString();\r\n\r\n                        int vaccinatedRadioGroupID = vaccinatedRadioGroup.getCheckedRadioButtonId();\r\n                        isVaccinatedRadioButton = findViewById(vaccinatedRadioGroupID);\r\n                        catVaccinated = isVaccinatedRadioButton.getText().toString();\r\n\r\n\r\n                        int neuteredRadioGroupID = neuteredRadioGroup.getCheckedRadioButtonId();\r\n                        isNeuteredRadioButton = findViewById(neuteredRadioGroupID);\r\n                        catNeutered = isNeuteredRadioButton.getText().toString();\r\n\r\n                        //image\r\n                        catImage = imageViewToByte(catImage_ImageView);\r\n\r\n                        //add cat to db\r\n\r\n                        tbnaadbHelper.addCat(catImage, catName, catAge,\r\n                                catCity, catGender, catVaccinated,\r\n                                catNeutered, catHealtheCondition, catStory);\r\n\r\n//                    toast(catGender+catVaccinated+catNeutered+catCity+catImage);\r\n                        toast(\"Your request for adding your cat has been sent successfully. Wait For administrator approval\");\r\n                    }\r\n\r\n                } catch (Exception exception) {\r\n                    exception.printStackTrace();\r\n                }\r\n            }\r\n\r\n\r\n        });\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    // Start upload cat image\r\n    @Override\r\n    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {\r\n        // check permission\r\n        if(requestCode==PICK_IMAGE_FROM_GALLERY){\r\n            if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){\r\n                Intent intent = new Intent(Intent.ACTION_PICK);\r\n                intent.setType(\"image/*\");\r\n                startActivityForResult(intent,PICK_IMAGE_FROM_GALLERY);\r\n            }else{\r\n                Toast.makeText(getApplicationContext(),\"You don't have permission to access file location\",Toast.LENGTH_LONG).show();\r\n            }\r\n            return;\r\n        }\r\n\r\n        super.onRequestPermissionsResult(requestCode, permissions, grantResults);\r\n    }\r\n\r\n    //-----------------------------------------------------------------------------------\r\n\r\n    @Override\r\n    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {\r\n        if(requestCode==PICK_IMAGE_FROM_GALLERY && resultCode ==RESULT_OK && data!= null){\r\n            imageUri = data.getData();\r\n\r\n            try {\r\n                imageBitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),imageUri);\r\n                //convert Bitmap into byte\r\n                ByteArrayOutputStream byteStream =new ByteArrayOutputStream();\r\n                imageBitmap.compress(Bitmap.CompressFormat.JPEG,100,byteStream);\r\n                imageByte=byteStream.toByteArray();\r\n                catImage_ImageView.setImageURI(imageUri);\r\n\r\n\r\n            } catch (IOException e) {\r\n                e.printStackTrace();\r\n            }\r\n\r\n        }\r\n\r\n        super.onActivityResult(requestCode, resultCode, data);\r\n    }\r\n    //End uploading cat image\r\n\r\n\r\n\r\n    //-------------------------------------------------------------------\r\n    private void init() {\r\n        //EditText\r\n        catNameEditText = (EditText) findViewById(R.id.catName_xml);\r\n        catStoryEditText = (EditText) findViewById(R.id.cat_story_xml);\r\n        catAgeEditText = (EditText) findViewById(R.id.catAge_xml);\r\n        catHealtheConditionEditText = (EditText) findViewById(R.id.cat_helth_xml);\r\n\r\n        //Buttons\r\n        addCatButton = (Button) findViewById(R.id.add_cat_button);\r\n        uploadCatImageButton = (Button) findViewById(R.id.upload_cat_image_button);\r\n\r\n        //ImageView\r\n        catImage_ImageView = (ImageView) findViewById(R.id.cat_image_xml);\r\n\r\n        //Spinner\r\n        catCitySpinner = (Spinner) findViewById(R.id.catcity_xml);\r\n\r\n        //RadioGroup\r\n        genderRadioGroup = findViewById(R.id.cat_gender_rideogroup);\r\n        vaccinatedRadioGroup = findViewById(R.id.vaccinated_rideogroup);\r\n        neuteredRadioGroup = findViewById(R.id.neutered_rideogroup);\r\n\r\n    }\r\n\r\n    //------------------------------------------------------------------\r\n    private byte[] imageViewToByte(ImageView image) {\r\n        BitmapDrawable drawable=(BitmapDrawable)catImage_ImageView.getDrawable();\r\n        Bitmap bitmap = drawable.getBitmap();\r\n        ByteArrayOutputStream byteStream =new ByteArrayOutputStream();\r\n        bitmap.compress(Bitmap.CompressFormat.PNG,100,byteStream);\r\n        imageByte=byteStream.toByteArray();\r\n\r\n        return imageByte;\r\n    }\r\n\r\n    //-----------------------------------------------------------------\r\n    public void toast(String msg){\r\n        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();\r\n    }\r\n\r\n    public void pickImageFromGallery(){\r\n        Intent galleryIntent= new Intent(Intent.ACTION_PICK);\r\n        galleryIntent.setType(\"image/*\");\r\n        startActivityForResult(galleryIntent,PICK_IMAGE_FROM_GALLERY);\r\n\r\n    }\r\n\r\n    //add cat\r\n//    public void addCat() {\r\n//\r\n//\r\n//        try {\r\n//\r\n//            String catName, catStory, catAge, catHealtheCondition, catCity,\r\n//                    catGender, catVaccinated, catNeutered;\r\n//            byte[] catImage;\r\n//\r\n//            catName = catNameEditText.getText().toString();\r\n//            catStory = catStoryEditText.getText().toString();\r\n//            catAge = catAgeEditText.getText().toString();\r\n//            catHealtheCondition = catHealtheConditionEditText.getText().toString();\r\n//            catCity = \"cityName\";\r\n//            catGender = catGenderRadioButton.getText().toString();\r\n//            catVaccinated = isVaccinatedRadioButton.getText().toString();\r\n//            catNeutered = isNeuteredRadioButton.getText().toString();\r\n//\r\n//\r\n//            if (genderRadioGroup.getCheckedRadioButtonId() == -1) {\r\n//                // no radio buttons are checked\r\n//                toast(\"Please enter cat's gender\");\r\n//            }\r\n//\r\n//            if (vaccinatedRadioGroup.getCheckedRadioButtonId() == -1) {\r\n//                // no radio buttons are checked\r\n//                toast(\"Please enter cat's vaccinated field\");\r\n//            }\r\n//            if (neuteredRadioGroup.getCheckedRadioButtonId() == -1) {\r\n//                // no radio buttons are checked\r\n//                toast(\"Please enter cat's neutered field\");\r\n//            }\r\n//\r\n//            if (catName.isEmpty() || catStory.isEmpty() || catAge.isEmpty()\r\n//                    || catHealtheCondition.isEmpty() || catGender.isEmpty()\r\n//            ) {\r\n//                toast(\"Please fill all the fields cat's neutered field\");\r\n//            } else {\r\n////                            catImage=imageViewToByte(catImage_ImageView);\r\n////\r\n////                            tbnaaDbHelper.addCat(catImage, catName, catAge,\r\n////                                    catCity, catGender,  catVaccinated,\r\n////                                    catNeutered, catHealtheCondition,catStory);\r\n//                toast(\"Your request for adding your cat has been sent successfully. Wait For administrator approval\");\r\n//            }\r\n//\r\n//        } catch (Exception e) {\r\n//            e.printStackTrace();\r\n//\r\n//        }\r\n//    }\r\n    }
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/activity_adding_cat.java	(revision 9530027528da57626c7c27f599ebb578493d64ae)
++++ app/src/main/java/com/example/tbnaaproject/activity_adding_cat.java	(date 1607308188760)
+@@ -2,10 +2,18 @@
+ 
+ import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
++import androidx.annotation.RequiresApi;
+ import androidx.appcompat.app.AppCompatActivity;
+ import androidx.core.app.ActivityCompat;
++import androidx.core.app.NotificationCompat;
++import androidx.core.app.NotificationManagerCompat;
+ 
+ import android.Manifest;
++import android.app.Notification;
++import android.app.NotificationChannel;
++import android.app.NotificationManager;
++import android.app.PendingIntent;
++import android.content.Context;
+ import android.content.Intent;
+ import android.content.pm.PackageManager;
+ import android.graphics.Bitmap;
+@@ -20,6 +28,7 @@
+ import android.widget.ArrayAdapter;
+ import android.widget.Button;
+ import android.widget.EditText;
++import android.widget.ImageButton;
+ import android.widget.ImageView;
+ import android.widget.RadioButton;
+ import android.widget.RadioGroup;
+@@ -47,6 +56,9 @@
+     String cities[]={"Choose a city","Riyadh","Abha","Dammam","Jeddah","Medina","Mecca"};
+     String cityName;
+ 
++    //for notification
++    NotificationManagerCompat notificationManager;
++    NotificationCompat.Builder builder;
+ 
+     // for uploading cat image
+     final int PICK_IMAGE_FROM_GALLERY=1;
+@@ -129,6 +141,16 @@
+         });
+ 
+ 
++        //Notification creation
++        createNotificationChannel();
++        builder = new NotificationCompat.Builder(this, "AddCatAdmin")
++                .setSmallIcon(R.drawable.ic_notification_tbnaalogo)
++                .setContentTitle("Adding Cat Request")
++                .setContentText("Your cat adding request sent successfully 👍")
++                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
++        notificationManager = NotificationManagerCompat.from(this);
++
++
+         //add cat
+         addCatButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+@@ -188,6 +210,8 @@
+ 
+ //                    toast(catGender+catVaccinated+catNeutered+catCity+catImage);
+                         toast("Your request for adding your cat has been sent successfully. Wait For administrator approval");
++
++                        notificationManager.notify(100, builder.build());
+                     }
+ 
+                 } catch (Exception exception) {
+@@ -351,4 +375,24 @@
+ //
+ //        }
+ //    }
+-    }
+\ No newline at end of file
++
++//-------------------------------------Notification section-------------------------------------------------
++
++    private void createNotificationChannel() {
++        // Create the NotificationChannel, but only on API 26+ because
++        // the NotificationChannel class is new and not in the support library
++        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
++            CharSequence name = "addingCatsChannel";
++            String description = "Channel for adding cats request ";
++            int importance = NotificationManager.IMPORTANCE_DEFAULT;
++            NotificationChannel channel = new NotificationChannel("AddCatAdmin", name, importance);
++            channel.setDescription(description);
++            // Register the channel with the system; you can't change the importance
++            // or other notification behaviors after this
++            NotificationManager notificationManager = getSystemService(NotificationManager.class);
++            notificationManager.createNotificationChannel(channel);
++        }
++    }
++
++
++}
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.example.tbnaaproject\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\"/>\r\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\"/>\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.AppCompat.Light.NoActionBar\">\r\n        <activity android:name=\".SendingEmail\">\r\n\r\n        </activity>\r\n\r\n        <activity android:name=\".About\">\r\n\r\n        </activity>\r\n\r\n        <activity android:name=\".AdoptionForm\" />\r\n        <activity android:name=\".AdminProfileModification\" />\r\n        <activity android:name=\".AdminProfile\" />\r\n        <activity android:name=\".UserProfile2\" >\r\n\r\n        </activity>\r\n        <activity android:name=\".UserProfile\" />\r\n        <activity android:name=\".CatProfile\" />\r\n        <activity android:name=\".activity_adding_cat\" />\r\n\r\n        <activity android:name=\".SplashScreen\">\r\n        <intent-filter>\r\n            <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n            <category android:name=\"android.intent.category.LAUNCHER\" />\r\n        </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".three_dyn\">\r\n\r\n        </activity>\r\n        <activity android:name=\".AdoptionRequestsAdmin\" />\r\n        <activity android:name=\".SignUp\" />\r\n        <activity android:name=\".TbnaaMembers\" />\r\n        <activity android:name=\".Login\" />\r\n        <activity android:name=\".AddingCatsRequestsList\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 9530027528da57626c7c27f599ebb578493d64ae)
++++ app/src/main/AndroidManifest.xml	(date 1607276791246)
+@@ -2,8 +2,6 @@
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+     package="com.example.tbnaaproject">
+ 
+-    <uses-permission android:name="android.permission.INTERNET"/>
+-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+     <application
+         android:allowBackup="true"
+         android:icon="@mipmap/ic_launcher"
+@@ -11,39 +9,33 @@
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+-        <activity android:name=".SendingEmail">
+-
+-        </activity>
+-
+-        <activity android:name=".About">
+-
++        <activity android:name=".AddingRequestAdmin">
+         </activity>
+-
++        <activity android:name=".SendingEmail"></activity>
++        <activity android:name=".About"></activity>
+         <activity android:name=".AdoptionForm" />
+         <activity android:name=".AdminProfileModification" />
+         <activity android:name=".AdminProfile" />
+-        <activity android:name=".UserProfile2" >
+-
+-        </activity>
++        <activity android:name=".UserProfile2"></activity>
+         <activity android:name=".UserProfile" />
+         <activity android:name=".CatProfile" />
+-        <activity android:name=".activity_adding_cat" />
+-
+-        <activity android:name=".SplashScreen">
+-        <intent-filter>
+-            <action android:name="android.intent.action.MAIN" />
++        <activity android:name=".activity_adding_cat" >
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
+ 
+-            <category android:name="android.intent.category.LAUNCHER" />
+-        </intent-filter>
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
+         </activity>
+-        <activity android:name=".three_dyn">
+-
+-        </activity>
++        <activity android:name=".SplashScreen"/>
++        <activity android:name=".three_dyn"></activity>
+         <activity android:name=".AdoptionRequestsAdmin" />
+         <activity android:name=".SignUp" />
+         <activity android:name=".TbnaaMembers" />
+         <activity android:name=".Login" />
+         <activity android:name=".AddingCatsRequestsList" />
+     </application>
++    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
++
++    <uses-permission android:name="android.permission.INTERNET" />
+ 
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">TbnaaProject</string>\r\n    <string name=\"prompt_email\">Email</string>\r\n    <!-- Strings related to login -->\r\n    <string name=\"prompt_password\">Password</string>\r\n    <string name=\"action_sign_in\">Sign in or register</string>\r\n    <string name=\"action_sign_in_short\">Sign in</string>\r\n    <string name=\"welcome\">\"Welcome!\"</string>\r\n    <string name=\"invalid_username\">Not a valid username</string>\r\n    <string name=\"invalid_password\">Password must be >5 characters</string>\r\n    <string name=\"login_failed\">\"Login failed\"</string>\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"title_activity_tabbed_test\">TabbedActivityTest</string>\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"tab_text_1\">Tab 1</string>\r\n    <string name=\"tab_text_2\">Tab 2</string>\r\n    <string-array name=\"cities_spinner\" id=\"cities_spinner\">\r\n        <item>Choose a city</item>\r\n        <item>Riyadh</item>\r\n        <item>Abha</item>\r\n        <item>Dammam</item>\r\n        <item>Jeddah</item>\r\n        <item>Medina</item>\r\n        <item>Mecca</item>\r\n    </string-array>\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n\r\n    <string-array name=\"adoption_requests_cats\">\r\n        <item>Lucy</item>\r\n        <item>Sasha</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"adoption_requests_gender\">\r\n        <item>female</item>\r\n        <item>female</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"adoption_requests_city\">\r\n        <item>Dammam</item>\r\n        <item>Dhahran</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"adoption_requests_status\">\r\n        <item>Accpetted</item>\r\n        <item>Declined</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"adding_requests_cats\">\r\n        <item>Nader</item>\r\n        <item>Alex</item>\r\n        <item>Maya</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"adding_requests_gender\">\r\n        <item>male</item>\r\n        <item>male</item>\r\n        <item>male</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"adding_requests_city\">\r\n        <item>Dammam</item>\r\n        <item>Khobar</item>\r\n        <item>Jubail</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"adding_requests_status\">\r\n        <item>Accpet</item>\r\n        <item>In Progress</item>\r\n        <item>In Progress</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"cat_names\">\r\n        <item>Lucy</item>\r\n        <item>Sasha</item>\r\n        <item>Nader</item>\r\n        <item>Alex</item>\r\n        <item>Maya</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"cat_gender\">\r\n        <item>Gender</item>\r\n        <item>Female</item>\r\n        <item>Male</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"cat_age\">\r\n        <item>Age</item>\r\n        <item>1 year and less</item>\r\n        <item>1 year and more</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"cat_city\">\r\n        <item>Dammam</item>\r\n        <item>Khobar</item>\r\n        <item>Riyadh</item>\r\n        <item>Jeddah</item>\r\n        <item>Hail</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"request_decision\">\r\n        <item>decline</item>\r\n        <item>accept</item>\r\n    </string-array>\r\n\r\n    <string name=\"userInfoTab\">User Information</string>\r\n    <string name=\"addReqTab\">Adding Requests</string>\r\n    <string name=\"adoptReqTab\">Addoption Requests</string>\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision 9530027528da57626c7c27f599ebb578493d64ae)
++++ app/src/main/res/values/strings.xml	(date 1607187790014)
+@@ -14,6 +14,14 @@
+     <!-- TODO: Remove or change this placeholder text -->
+     <string name="tab_text_1">Tab 1</string>
+     <string name="tab_text_2">Tab 2</string>
++    <string name="hello_blank_fragment">Hello blank fragment</string>
++    <!-- TODO: Remove or change this placeholder text -->
++    <string name="userInfoTab">User Information</string>
++
++    <string name="addReqTab">Adding Requests</string>
++
++    <string name="adoptReqTab">Addoption Requests</string>
++
+     <string-array name="cities_spinner" id="cities_spinner">
+         <item>Choose a city</item>
+         <item>Riyadh</item>
+@@ -23,8 +31,6 @@
+         <item>Medina</item>
+         <item>Mecca</item>
+     </string-array>
+-    <!-- TODO: Remove or change this placeholder text -->
+-    <string name="hello_blank_fragment">Hello blank fragment</string>
+ 
+     <string-array name="adoption_requests_cats">
+         <item>Lucy</item>
+@@ -89,7 +95,6 @@
+         <item>1 year and less</item>
+         <item>1 year and more</item>
+     </string-array>
+-
+     <string-array name="cat_city">
+         <item>Dammam</item>
+         <item>Khobar</item>
+@@ -97,14 +102,9 @@
+         <item>Jeddah</item>
+         <item>Hail</item>
+     </string-array>
+-
+     <string-array name="request_decision">
+         <item>decline</item>
+         <item>accept</item>
+     </string-array>
+ 
+-    <string name="userInfoTab">User Information</string>
+-    <string name="addReqTab">Adding Requests</string>
+-    <string name="adoptReqTab">Addoption Requests</string>
+-
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/AddingAdminAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/AddingAdminAdapter.java	(date 1607273102690)
++++ app/src/main/java/com/example/tbnaaproject/AddingAdminAdapter.java	(date 1607273102690)
+@@ -0,0 +1,87 @@
++package com.example.tbnaaproject;
++
++import android.content.Context;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.BaseAdapter;
++import android.widget.ImageButton;
++import android.widget.ImageView;
++import android.widget.TextView;
++
++import java.util.ArrayList;
++
++public class AddingAdminAdapter extends BaseAdapter {
++
++    Context context;
++    ArrayList<WordAdding> arrayList;
++
++    public AddingAdminAdapter (Context context, ArrayList<WordAdding> arrayList){
++        this.context = context;
++        this.arrayList=arrayList;
++    }
++
++    @Override
++    public long getItemId(int position) {
++        return position;
++    }
++
++    @Override
++    public Object getItem(int position) {
++        return arrayList.get(position);
++    }
++
++    @Override
++    public View getView(int position, View convertView, ViewGroup parent) {
++
++        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
++        convertView = inflater.inflate(R.layout.activity_adding_cats_requests_list, parent, false);
++        TextView catName=(TextView) convertView.findViewById(R.id.catName);
++        TextView userName=(TextView) convertView.findViewById(R.id.userName);
++        ImageView image = (ImageView) convertView.findViewById(R.id.image);
++        ImageButton yesClick = (ImageButton) convertView.findViewById(R.id.yes);
++        ImageButton noClick = (ImageButton) convertView.findViewById(R.id.no);
++
++        WordAdding currentWord = arrayList.get(position);
++
++        catName.setText(currentWord.getCatName());
++        userName.setText(currentWord.getUserName());
++        image.setImageBitmap(currentWord.getCatImage());
++
++
++        return convertView;
++    }
++
++    //    //get each row
++//    public View getView(int Position, View convertView, ViewGroup parent){
++//        LayoutInflater inflater = getLayoutInflater();
++//        View row= inflater.inflate(R.layout.activity_adding_cats_requests_list, parent, false);
++//        TextView catName=(TextView) row.findViewById(R.id.catName);
++//        TextView userName=(TextView) row.findViewById(R.id.userName);
++//        ImageView image = (ImageView) row.findViewById(R.id.image);
++//        ImageButton yesClick = (ImageButton) row.findViewById(R.id.yes);
++//        ImageButton noClick = (ImageButton) row.findViewById(R.id.no);
++//
++//        yesClick.setOnClickListener(new View.OnClickListener() {
++//            @Override
++//            public void onClick(View view) {
++//                sendNormalSizeNotification();
++//            }
++//        });
++//
++//        noClick.setOnClickListener(new View.OnClickListener() {
++//            @Override
++//            public void onClick(View view) {
++//                sendNormalSizeNotification();
++//            }
++//        });
++//
++//        return row;
++//    }
++
++
++    @Override
++    public int getCount() {
++        return this.arrayList.size();
++    }
++}
+Index: app/src/main/res/layout/activity_adding_cats_requests_list.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"#212121\"\r\n    android:orientation=\"vertical\"\r\n    tools:context=\".AddingCatsRequestsList\">\r\n\r\n    <RelativeLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_weight=\"1\">\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\"\r\n            android:layout_centerInParent=\"true\"\r\n            android:gravity=\"center_horizontal|center_vertical\">\r\n\r\n            <ImageView\r\n                android:layout_width=\"72dp\"\r\n                android:layout_height=\"72dp\"\r\n                android:layout_weight=\"1\"\r\n                android:layout_margin=\"8dp\"\r\n                android:layout_alignParentLeft=\"true\"\r\n                android:contentDescription=\"humburger menu icon\"\r\n                android:src=\"@drawable/ic_menu\"/>\r\n\r\n            <TextView\r\n                android:layout_width=\"288dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_weight=\"1\"\r\n                android:gravity=\"center_vertical|center_horizontal\"\r\n                android:text=\"Cat Adding Requests\"\r\n                android:textColor=\"@android:color/white\"\r\n                android:textSize=\"16sp\"\r\n                android:textStyle=\"bold\"/>\r\n\r\n            <ImageView\r\n                android:id=\"@+id/imageView4\"\r\n                android:layout_width=\"80dp\"\r\n                android:layout_height=\"80dp\"\r\n                android:layout_margin=\"8dp\"\r\n                app:srcCompat=\"@drawable/tbnaacircle\"\r\n                android:layout_weight=\"1\"\r\n                android:layout_alignParentRight=\"true\"/>\r\n\r\n        </LinearLayout>\r\n\r\n    </RelativeLayout>\r\n\r\n    <GridLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_weight=\"7\"\r\n        android:columnCount=\"1\"\r\n        android:rowCount=\"17\"\r\n        android:padding=\"15dp\"\r\n        android:background=\"@drawable/whitebackground\">\r\n\r\n        <RelativeLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"15dp\">\r\n\r\n            <ScrollView\r\n                android:id=\"@+id/scrollView_ForAddCatRequest\"\r\n                android:layout_width=\"fill_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                tools:ignore=\"MissingConstraints\"\r\n                android:layout_weight=\"1\">\r\n\r\n                <RelativeLayout\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_gravity=\"center\"\r\n                    android:layout_marginTop=\"30dp\"\r\n                    android:layout_marginHorizontal=\"30dp\">\r\n\r\n                    <TableLayout\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:orientation=\"vertical\"\r\n                        android:stretchColumns=\"0,1,2\"\r\n                        tools:layout_editor_absoluteX=\"202dp\"\r\n                        tools:layout_editor_absoluteY=\"263dp\">\r\n\r\n                        <TableRow\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"wrap_content\"\r\n                            android:padding=\"15dp\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/addCatRequest1\"\r\n                                android:layout_width=\"60dp\"\r\n                                android:layout_height=\"80dp\"\r\n                                app:srcCompat=\"@drawable/blackcat\"\r\n                                android:layout_weight=\"1\"\r\n                                android:layout_gravity=\"center_vertical\" />\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:orientation=\"vertical\"\r\n                                android:layout_gravity=\"center_vertical\"\r\n                                android:gravity=\"center\"\r\n                                android:layout_marginLeft=\"20dp\">\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Cat Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Luna\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"User Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Ahmed\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <Button\r\n                                    android:layout_width=\"105dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:layout_marginTop=\"10dp\"\r\n                                    android:background=\"@drawable/design\"\r\n                                    android:fontFamily=\"sans-serif-light\"\r\n                                    android:text=\"Show Details\"\r\n                                    android:textStyle=\"bold\"\r\n                                    android:textColor=\"@color/Color5\"/>\r\n\r\n                            </LinearLayout>\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_gravity=\"center\"\r\n                                android:orientation=\"vertical\">\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:layout_marginBottom=\"10dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"#6ACF6E\"\r\n                                    android:src=\"@drawable/ic_accept\" />\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"@color/Color6\"\r\n                                    android:src=\"@drawable/ic_reject\"/>\r\n\r\n                            </LinearLayout>\r\n\r\n                        </TableRow>\r\n\r\n                        <View\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"0.5dp\"\r\n                            android:background=\"@android:color/black\"\r\n                            android:layout_marginTop=\"10dp\" />\r\n\r\n                        <TableRow\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"wrap_content\"\r\n                            android:padding=\"15dp\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/addCatRequest2\"\r\n                                android:layout_width=\"60dp\"\r\n                                android:layout_height=\"80dp\"\r\n                                app:srcCompat=\"@drawable/blackcat\"\r\n                                android:layout_weight=\"1\"\r\n                                android:layout_gravity=\"center_vertical\" />\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:orientation=\"vertical\"\r\n                                android:layout_gravity=\"center_vertical\"\r\n                                android:gravity=\"center\"\r\n                                android:layout_marginLeft=\"20dp\">\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Cat Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Bella\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"User Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Sara\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <Button\r\n                                    android:layout_width=\"105dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:layout_marginTop=\"10dp\"\r\n                                    android:background=\"@drawable/design\"\r\n                                    android:fontFamily=\"sans-serif-light\"\r\n                                    android:text=\"Show Details\"\r\n                                    android:textStyle=\"bold\"\r\n                                    android:textColor=\"@color/Color5\" />\r\n\r\n                            </LinearLayout>\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_gravity=\"center\"\r\n                                android:orientation=\"vertical\">\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:layout_marginBottom=\"10dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"#6ACF6E\"\r\n                                    android:src=\"@drawable/ic_accept\" />\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"@color/Color6\"\r\n                                    android:src=\"@drawable/ic_reject\"/>\r\n\r\n                            </LinearLayout>\r\n\r\n                        </TableRow>\r\n\r\n                        <View\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"0.5dp\"\r\n                            android:background=\"@android:color/black\"\r\n                            android:layout_marginTop=\"10dp\" />\r\n\r\n                        <TableRow\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"wrap_content\"\r\n                            android:padding=\"15dp\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/addCatRequest3\"\r\n                                android:layout_width=\"60dp\"\r\n                                android:layout_height=\"80dp\"\r\n                                app:srcCompat=\"@drawable/blackcat\"\r\n                                android:layout_weight=\"1\"\r\n                                android:layout_gravity=\"center_vertical\" />\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:orientation=\"vertical\"\r\n                                android:layout_gravity=\"center_vertical\"\r\n                                android:gravity=\"center\"\r\n                                android:layout_marginLeft=\"20dp\">\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Cat Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Kitty\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"User Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Ayman\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <Button\r\n                                    android:layout_width=\"105dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:layout_marginTop=\"10dp\"\r\n                                    android:background=\"@drawable/design\"\r\n                                    android:fontFamily=\"sans-serif-light\"\r\n                                    android:text=\"Show Details\"\r\n                                    android:textStyle=\"bold\"\r\n                                    android:textColor=\"@color/Color5\" />\r\n\r\n                            </LinearLayout>\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_gravity=\"center\"\r\n                                android:orientation=\"vertical\">\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:layout_marginBottom=\"10dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"#6ACF6E\"\r\n                                    android:src=\"@drawable/ic_accept\" />\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"@color/Color6\"\r\n                                    android:src=\"@drawable/ic_reject\"/>\r\n\r\n                            </LinearLayout>\r\n\r\n                        </TableRow>\r\n\r\n                        <View\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"0.5dp\"\r\n                            android:background=\"@android:color/black\"\r\n                            android:layout_marginTop=\"10dp\" />\r\n\r\n                        <TableRow\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"wrap_content\"\r\n                            android:padding=\"15dp\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/addCatRequest4\"\r\n                                android:layout_width=\"60dp\"\r\n                                android:layout_height=\"80dp\"\r\n                                app:srcCompat=\"@drawable/blackcat\"\r\n                                android:layout_weight=\"1\"\r\n                                android:layout_gravity=\"center_vertical\" />\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:orientation=\"vertical\"\r\n                                android:layout_gravity=\"center_vertical\"\r\n                                android:gravity=\"center\"\r\n                                android:layout_marginLeft=\"20dp\">\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Cat Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Callie\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"User Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Malak\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <Button\r\n                                    android:layout_width=\"105dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:layout_marginTop=\"10dp\"\r\n                                    android:background=\"@drawable/design\"\r\n                                    android:fontFamily=\"sans-serif-light\"\r\n                                    android:text=\"Show Details\"\r\n                                    android:textStyle=\"bold\"\r\n                                    android:textColor=\"@color/Color5\" />\r\n\r\n                            </LinearLayout>\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_gravity=\"center\"\r\n                                android:orientation=\"vertical\">\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:layout_marginBottom=\"10dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"#6ACF6E\"\r\n                                    android:src=\"@drawable/ic_accept\" />\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"@color/Color6\"\r\n                                    android:src=\"@drawable/ic_reject\"/>\r\n\r\n                            </LinearLayout>\r\n\r\n                        </TableRow>\r\n\r\n                        <View\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"0.5dp\"\r\n                            android:background=\"@android:color/black\"\r\n                            android:layout_marginTop=\"10dp\" />\r\n\r\n                        <TableRow\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"wrap_content\"\r\n                            android:padding=\"15dp\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/addCatRequest5\"\r\n                                android:layout_width=\"60dp\"\r\n                                android:layout_height=\"80dp\"\r\n                                app:srcCompat=\"@drawable/blackcat\"\r\n                                android:layout_weight=\"1\"\r\n                                android:layout_gravity=\"center_vertical\" />\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:orientation=\"vertical\"\r\n                                android:layout_gravity=\"center_vertical\"\r\n                                android:gravity=\"center\"\r\n                                android:layout_marginLeft=\"20dp\">\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Cat Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Nala\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"User Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Majed\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <Button\r\n                                    android:layout_width=\"105dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:layout_marginTop=\"10dp\"\r\n                                    android:background=\"@drawable/design\"\r\n                                    android:fontFamily=\"sans-serif-light\"\r\n                                    android:text=\"Show Details\"\r\n                                    android:textStyle=\"bold\"\r\n                                    android:textColor=\"@color/Color5\" />\r\n\r\n                            </LinearLayout>\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_gravity=\"center\"\r\n                                android:orientation=\"vertical\">\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:layout_marginBottom=\"10dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"#6ACF6E\"\r\n                                    android:src=\"@drawable/ic_accept\" />\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"@color/Color6\"\r\n                                    android:src=\"@drawable/ic_reject\"/>\r\n\r\n                            </LinearLayout>\r\n\r\n                        </TableRow>\r\n\r\n                        <View\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"0.5dp\"\r\n                            android:background=\"@android:color/black\"\r\n                            android:layout_marginTop=\"10dp\" />\r\n\r\n                        <TableRow\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"wrap_content\"\r\n                            android:padding=\"15dp\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/addCatRequest6\"\r\n                                android:layout_width=\"60dp\"\r\n                                android:layout_height=\"80dp\"\r\n                                app:srcCompat=\"@drawable/blackcat\"\r\n                                android:layout_weight=\"1\"\r\n                                android:layout_gravity=\"center_vertical\" />\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:orientation=\"vertical\"\r\n                                android:layout_gravity=\"center_vertical\"\r\n                                android:gravity=\"center\"\r\n                                android:layout_marginLeft=\"20dp\">\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Cat Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Zeo\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <LinearLayout\r\n                                    android:layout_width=\"wrap_content\"\r\n                                    android:layout_height=\"wrap_content\"\r\n                                    android:orientation=\"horizontal\">\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"User Name: \"\r\n                                        android:textSize=\"15sp\"\r\n                                        android:textStyle=\"bold\"/>\r\n\r\n                                    <TextView\r\n                                        android:layout_width=\"wrap_content\"\r\n                                        android:layout_height=\"wrap_content\"\r\n                                        android:text=\"Maram\"/>\r\n\r\n                                </LinearLayout>\r\n\r\n                                <Button\r\n                                    android:layout_width=\"105dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:layout_marginTop=\"10dp\"\r\n                                    android:background=\"@drawable/design\"\r\n                                    android:fontFamily=\"sans-serif-light\"\r\n                                    android:text=\"Show Details\"\r\n                                    android:textStyle=\"bold\"\r\n                                    android:textColor=\"@color/Color5\" />\r\n\r\n                            </LinearLayout>\r\n\r\n                            <LinearLayout\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_gravity=\"center\"\r\n                                android:orientation=\"vertical\">\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:layout_marginBottom=\"10dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"#6ACF6E\"\r\n                                    android:src=\"@drawable/ic_accept\" />\r\n\r\n                                <ImageButton\r\n                                    android:layout_width=\"25dp\"\r\n                                    android:layout_height=\"25dp\"\r\n                                    android:elevation=\"1dp\"\r\n                                    android:scaleType=\"centerInside\"\r\n                                    android:background=\"@color/Color6\"\r\n                                    android:src=\"@drawable/ic_reject\"/>\r\n\r\n                            </LinearLayout>\r\n\r\n                        </TableRow>\r\n\r\n                        <View\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"0.5dp\"\r\n                            android:background=\"@android:color/black\"\r\n                            android:layout_marginTop=\"10dp\" />\r\n\r\n                    </TableLayout>\r\n\r\n                </RelativeLayout>\r\n\r\n            </ScrollView>\r\n\r\n        </RelativeLayout>\r\n\r\n    </GridLayout>\r\n\r\n</LinearLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_adding_cats_requests_list.xml	(revision 9530027528da57626c7c27f599ebb578493d64ae)
++++ app/src/main/res/layout/activity_adding_cats_requests_list.xml	(date 1607220729907)
+@@ -1,725 +1,86 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout
++<RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
++    android:background="#fff"
+     android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:background="#212121"
+-    android:orientation="vertical"
+-    tools:context=".AddingCatsRequestsList">
+-
+-    <RelativeLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="0dp"
+-        android:layout_weight="1">
++    android:layout_height="wrap_content">
++
++    <ImageView
++        android:layout_width="@dimen/list_item_height"
++        android:layout_height="@dimen/list_item_height"
++        android:src="@drawable/blackcat"
++        android:layout_margin="8dp"
++        android:id="@+id/image"/>
+ 
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="horizontal"
+-            android:layout_centerInParent="true"
+-            android:gravity="center_horizontal|center_vertical">
+-
+-            <ImageView
+-                android:layout_width="72dp"
+-                android:layout_height="72dp"
+-                android:layout_weight="1"
+-                android:layout_margin="8dp"
+-                android:layout_alignParentLeft="true"
+-                android:contentDescription="humburger menu icon"
+-                android:src="@drawable/ic_menu"/>
+-
+-            <TextView
+-                android:layout_width="288dp"
+-                android:layout_height="wrap_content"
+-                android:layout_weight="1"
+-                android:gravity="center_vertical|center_horizontal"
+-                android:text="Cat Adding Requests"
+-                android:textColor="@android:color/white"
+-                android:textSize="16sp"
+-                android:textStyle="bold"/>
+-
+-            <ImageView
+-                android:id="@+id/imageView4"
+-                android:layout_width="80dp"
+-                android:layout_height="80dp"
+-                android:layout_margin="8dp"
+-                app:srcCompat="@drawable/tbnaacircle"
+-                android:layout_weight="1"
+-                android:layout_alignParentRight="true"/>
+-
+-        </LinearLayout>
+-
+-    </RelativeLayout>
+-
+-    <GridLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="0dp"
+-        android:layout_weight="7"
+-        android:columnCount="1"
+-        android:rowCount="17"
+-        android:padding="15dp"
+-        android:background="@drawable/whitebackground">
+-
+-        <RelativeLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginTop="15dp">
+-
+-            <ScrollView
+-                android:id="@+id/scrollView_ForAddCatRequest"
+-                android:layout_width="fill_parent"
+-                android:layout_height="match_parent"
+-                tools:ignore="MissingConstraints"
+-                android:layout_weight="1">
+-
+-                <RelativeLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:layout_gravity="center"
+-                    android:layout_marginTop="30dp"
+-                    android:layout_marginHorizontal="30dp">
+-
+-                    <TableLayout
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:orientation="vertical"
+-                        android:stretchColumns="0,1,2"
+-                        tools:layout_editor_absoluteX="202dp"
+-                        tools:layout_editor_absoluteY="263dp">
+-
+-                        <TableRow
+-                            android:layout_width="match_parent"
+-                            android:layout_height="wrap_content"
+-                            android:padding="15dp">
+-
+-                            <ImageView
+-                                android:id="@+id/addCatRequest1"
+-                                android:layout_width="60dp"
+-                                android:layout_height="80dp"
+-                                app:srcCompat="@drawable/blackcat"
+-                                android:layout_weight="1"
+-                                android:layout_gravity="center_vertical" />
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:orientation="vertical"
+-                                android:layout_gravity="center_vertical"
+-                                android:gravity="center"
+-                                android:layout_marginLeft="20dp">
++    <LinearLayout
++        android:id="@+id/text_container_"
++        android:layout_width="match_parent"
++        android:layout_height="@dimen/list_item_height"
++        android:orientation="horizontal"
++        android:gravity="center"
++        android:paddingLeft="16dp"
++        android:background="?android:attr/selectableItemBackground"
++        android:clickable="true"
++        android:focusable="true"
++        android:layout_toRightOf="@id/image"
++        android:layout_alignParentBottom="true"
++        android:layout_alignParentRight="true"
++        android:layout_alignParentTop="true">
+ 
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Cat Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Luna"/>
+-
+-                                </LinearLayout>
+-
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="User Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Ahmed"/>
+-
+-                                </LinearLayout>
+-
+-                                <Button
+-                                    android:layout_width="105dp"
+-                                    android:layout_height="25dp"
+-                                    android:layout_marginTop="10dp"
+-                                    android:background="@drawable/design"
+-                                    android:fontFamily="sans-serif-light"
+-                                    android:text="Show Details"
+-                                    android:textStyle="bold"
+-                                    android:textColor="@color/Color5"/>
+-
+-                            </LinearLayout>
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_gravity="center"
+-                                android:orientation="vertical">
+-
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:layout_marginBottom="10dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="#6ACF6E"
+-                                    android:src="@drawable/ic_accept" />
+-
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="@color/Color6"
+-                                    android:src="@drawable/ic_reject"/>
+-
+-                            </LinearLayout>
+-
+-                        </TableRow>
+-
+-                        <View
+-                            android:layout_width="match_parent"
+-                            android:layout_height="0.5dp"
+-                            android:background="@android:color/black"
+-                            android:layout_marginTop="10dp" />
+-
+-                        <TableRow
+-                            android:layout_width="match_parent"
+-                            android:layout_height="wrap_content"
+-                            android:padding="15dp">
+-
+-                            <ImageView
+-                                android:id="@+id/addCatRequest2"
+-                                android:layout_width="60dp"
+-                                android:layout_height="80dp"
+-                                app:srcCompat="@drawable/blackcat"
+-                                android:layout_weight="1"
+-                                android:layout_gravity="center_vertical" />
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:orientation="vertical"
+-                                android:layout_gravity="center_vertical"
+-                                android:gravity="center"
+-                                android:layout_marginLeft="20dp">
+-
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Cat Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Bella"/>
+-
+-                                </LinearLayout>
+-
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="User Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Sara"/>
+-
+-                                </LinearLayout>
+-
+-                                <Button
+-                                    android:layout_width="105dp"
+-                                    android:layout_height="25dp"
+-                                    android:layout_marginTop="10dp"
+-                                    android:background="@drawable/design"
+-                                    android:fontFamily="sans-serif-light"
+-                                    android:text="Show Details"
+-                                    android:textStyle="bold"
+-                                    android:textColor="@color/Color5" />
+-
+-                            </LinearLayout>
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_gravity="center"
+-                                android:orientation="vertical">
+-
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:layout_marginBottom="10dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="#6ACF6E"
+-                                    android:src="@drawable/ic_accept" />
+-
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="@color/Color6"
+-                                    android:src="@drawable/ic_reject"/>
+-
+-                            </LinearLayout>
+-
+-                        </TableRow>
+-
+-                        <View
+-                            android:layout_width="match_parent"
+-                            android:layout_height="0.5dp"
+-                            android:background="@android:color/black"
+-                            android:layout_marginTop="10dp" />
+-
+-                        <TableRow
+-                            android:layout_width="match_parent"
+-                            android:layout_height="wrap_content"
+-                            android:padding="15dp">
+-
+-                            <ImageView
+-                                android:id="@+id/addCatRequest3"
+-                                android:layout_width="60dp"
+-                                android:layout_height="80dp"
+-                                app:srcCompat="@drawable/blackcat"
+-                                android:layout_weight="1"
+-                                android:layout_gravity="center_vertical" />
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:orientation="vertical"
+-                                android:layout_gravity="center_vertical"
+-                                android:gravity="center"
+-                                android:layout_marginLeft="20dp">
+-
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
++        <LinearLayout
++            android:id="@+id/text_container"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:orientation="vertical"
++            android:layout_weight="1"
++            android:layout_toRightOf="@id/image"
++            android:layout_alignParentBottom="true"
++            android:layout_alignParentRight="true"
++            android:layout_alignParentTop="true">
+ 
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Cat Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Kitty"/>
+-
+-                                </LinearLayout>
+-
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="User Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Ayman"/>
+-
+-                                </LinearLayout>
+-
+-                                <Button
+-                                    android:layout_width="105dp"
+-                                    android:layout_height="25dp"
+-                                    android:layout_marginTop="10dp"
+-                                    android:background="@drawable/design"
+-                                    android:fontFamily="sans-serif-light"
+-                                    android:text="Show Details"
+-                                    android:textStyle="bold"
+-                                    android:textColor="@color/Color5" />
+-
+-                            </LinearLayout>
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_gravity="center"
+-                                android:orientation="vertical">
+-
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:layout_marginBottom="10dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="#6ACF6E"
+-                                    android:src="@drawable/ic_accept" />
+-
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="@color/Color6"
+-                                    android:src="@drawable/ic_reject"/>
+-
+-                            </LinearLayout>
+-
+-                        </TableRow>
+-
+-                        <View
+-                            android:layout_width="match_parent"
+-                            android:layout_height="0.5dp"
+-                            android:background="@android:color/black"
+-                            android:layout_marginTop="10dp" />
+-
+-                        <TableRow
+-                            android:layout_width="match_parent"
+-                            android:layout_height="wrap_content"
+-                            android:padding="15dp">
+-
+-                            <ImageView
+-                                android:id="@+id/addCatRequest4"
+-                                android:layout_width="60dp"
+-                                android:layout_height="80dp"
+-                                app:srcCompat="@drawable/blackcat"
+-                                android:layout_weight="1"
+-                                android:layout_gravity="center_vertical" />
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:orientation="vertical"
+-                                android:layout_gravity="center_vertical"
+-                                android:gravity="center"
+-                                android:layout_marginLeft="20dp">
+-
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Cat Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Callie"/>
+-
+-                                </LinearLayout>
+-
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="User Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Malak"/>
+-
+-                                </LinearLayout>
+-
+-                                <Button
+-                                    android:layout_width="105dp"
+-                                    android:layout_height="25dp"
+-                                    android:layout_marginTop="10dp"
+-                                    android:background="@drawable/design"
+-                                    android:fontFamily="sans-serif-light"
+-                                    android:text="Show Details"
+-                                    android:textStyle="bold"
+-                                    android:textColor="@color/Color5" />
+-
+-                            </LinearLayout>
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_gravity="center"
+-                                android:orientation="vertical">
+-
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:layout_marginBottom="10dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="#6ACF6E"
+-                                    android:src="@drawable/ic_accept" />
+-
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="@color/Color6"
+-                                    android:src="@drawable/ic_reject"/>
+-
+-                            </LinearLayout>
+-
+-                        </TableRow>
+-
+-                        <View
+-                            android:layout_width="match_parent"
+-                            android:layout_height="0.5dp"
+-                            android:background="@android:color/black"
+-                            android:layout_marginTop="10dp" />
+-
+-                        <TableRow
+-                            android:layout_width="match_parent"
+-                            android:layout_height="wrap_content"
+-                            android:padding="15dp">
+-
+-                            <ImageView
+-                                android:id="@+id/addCatRequest5"
+-                                android:layout_width="60dp"
+-                                android:layout_height="80dp"
+-                                app:srcCompat="@drawable/blackcat"
+-                                android:layout_weight="1"
+-                                android:layout_gravity="center_vertical" />
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:orientation="vertical"
+-                                android:layout_gravity="center_vertical"
+-                                android:gravity="center"
+-                                android:layout_marginLeft="20dp">
+-
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Cat Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Nala"/>
+-
+-                                </LinearLayout>
+-
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="User Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
++            <TextView
++                android:layout_width="match_parent"
++                android:layout_weight="1"
++                android:layout_height="0dp"
++                android:id="@+id/catName"
++                android:textStyle="bold"
++                android:textSize="16sp"
++                android:textColor="@color/Color8"
++                android:gravity="bottom"
++                android:text="Cat Name"/>
+ 
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Majed"/>
+-
+-                                </LinearLayout>
+-
+-                                <Button
+-                                    android:layout_width="105dp"
+-                                    android:layout_height="25dp"
+-                                    android:layout_marginTop="10dp"
+-                                    android:background="@drawable/design"
+-                                    android:fontFamily="sans-serif-light"
+-                                    android:text="Show Details"
+-                                    android:textStyle="bold"
+-                                    android:textColor="@color/Color5" />
+-
+-                            </LinearLayout>
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_gravity="center"
+-                                android:orientation="vertical">
+-
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:layout_marginBottom="10dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="#6ACF6E"
+-                                    android:src="@drawable/ic_accept" />
+-
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="@color/Color6"
+-                                    android:src="@drawable/ic_reject"/>
+-
+-                            </LinearLayout>
+-
+-                        </TableRow>
+-
+-                        <View
+-                            android:layout_width="match_parent"
+-                            android:layout_height="0.5dp"
+-                            android:background="@android:color/black"
+-                            android:layout_marginTop="10dp" />
+-
+-                        <TableRow
+-                            android:layout_width="match_parent"
+-                            android:layout_height="wrap_content"
+-                            android:padding="15dp">
+-
+-                            <ImageView
+-                                android:id="@+id/addCatRequest6"
+-                                android:layout_width="60dp"
+-                                android:layout_height="80dp"
+-                                app:srcCompat="@drawable/blackcat"
+-                                android:layout_weight="1"
+-                                android:layout_gravity="center_vertical" />
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:orientation="vertical"
+-                                android:layout_gravity="center_vertical"
+-                                android:gravity="center"
+-                                android:layout_marginLeft="20dp">
+-
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Cat Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Zeo"/>
+-
+-                                </LinearLayout>
+-
+-                                <LinearLayout
+-                                    android:layout_width="wrap_content"
+-                                    android:layout_height="wrap_content"
+-                                    android:orientation="horizontal">
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="User Name: "
+-                                        android:textSize="15sp"
+-                                        android:textStyle="bold"/>
+-
+-                                    <TextView
+-                                        android:layout_width="wrap_content"
+-                                        android:layout_height="wrap_content"
+-                                        android:text="Maram"/>
++            <TextView
++                android:layout_width="match_parent"
++                android:layout_weight="1"
++                android:layout_height="0dp"
++                android:textSize="16sp"
++                android:textColor="@color/Color7"
++                android:id="@+id/userName"
++                android:gravity="top"
++                android:text="User Name"/>
+ 
+-                                </LinearLayout>
++        </LinearLayout>
+ 
+-                                <Button
+-                                    android:layout_width="105dp"
+-                                    android:layout_height="25dp"
+-                                    android:layout_marginTop="10dp"
+-                                    android:background="@drawable/design"
+-                                    android:fontFamily="sans-serif-light"
+-                                    android:text="Show Details"
+-                                    android:textStyle="bold"
+-                                    android:textColor="@color/Color5" />
+-
+-                            </LinearLayout>
+-
+-                            <LinearLayout
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_gravity="center"
+-                                android:orientation="vertical">
+-
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:layout_marginBottom="10dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="#6ACF6E"
+-                                    android:src="@drawable/ic_accept" />
++        <ImageButton
++            android:id="@+id/yes"
++            android:layout_width="@dimen/yes_no_icon_height"
++            android:layout_height="@dimen/yes_no_icon_height"
++            android:background="@drawable/yes_ii"
++            android:layout_alignParentRight="true"
++            android:layout_centerVertical="true"
++            android:layout_marginRight="16dp"/>
+ 
+-                                <ImageButton
+-                                    android:layout_width="25dp"
+-                                    android:layout_height="25dp"
+-                                    android:elevation="1dp"
+-                                    android:scaleType="centerInside"
+-                                    android:background="@color/Color6"
+-                                    android:src="@drawable/ic_reject"/>
++        <ImageButton
++            android:id="@+id/no"
++            android:layout_width="@dimen/yes_no_icon_height"
++            android:layout_height="@dimen/yes_no_icon_height"
++            android:background="@drawable/no_ii"
++            android:layout_alignParentRight="true"
++            android:layout_centerVertical="true"
++            android:layout_marginRight="16dp"/>
+ 
+-                            </LinearLayout>
++    </LinearLayout>
+ 
+-                        </TableRow>
+-
+-                        <View
+-                            android:layout_width="match_parent"
+-                            android:layout_height="0.5dp"
+-                            android:background="@android:color/black"
+-                            android:layout_marginTop="10dp" />
+-
+-                    </TableLayout>
+-
+-                </RelativeLayout>
+-
+-            </ScrollView>
+-
+-        </RelativeLayout>
+-
+-    </GridLayout>
+-
+-</LinearLayout>
++</RelativeLayout>
+Index: app/src/main/res/drawable/ic_tbnaalogo.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/ic_tbnaalogo.xml	(date 1607305664109)
++++ app/src/main/res/drawable/ic_tbnaalogo.xml	(date 1607305664109)
+@@ -0,0 +1,16 @@
++<vector android:autoMirrored="true" android:height="533dp"
++    android:viewportHeight="533" android:viewportWidth="300"
++    android:width="300dp" xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="#000000"
++        android:pathData="M138,118.1c-51.1,3.7 -98.4,35.5 -120.9,81.4 -7,14.3 -10.2,23.3 -13.3,37.5 -3.2,15.1 -3.2,43.7 0,59 10.5,48.9 43.6,89.2 88.5,107.9 36.9,15.3 78.5,15.3 115.4,-0 32.2,-13.4 59.9,-39.3 75.2,-70.4 6.8,-13.7 10.2,-23.4 13.3,-37.9 3.2,-14.7 3.2,-43.7 0,-58.2 -9.5,-43.6 -35,-79 -72.1,-100.1 -26.4,-15.1 -54.9,-21.4 -86.1,-19.2zM176,126.4c46.2,9.4 81.7,36.8 102.8,79.1 15.1,30.5 17.6,72.9 6.2,106.5 -14.9,43.6 -49.8,77.4 -93.5,90.7 -15.4,4.6 -23,5.7 -41.5,5.7 -18.5,-0 -26.1,-1.1 -41.5,-5.7 -36.6,-11.1 -66.9,-36.4 -84.8,-70.6 -11.1,-21.3 -15.7,-40.6 -15.7,-65.6 0,-38.7 13.4,-71.8 40.2,-99.4 23.9,-24.5 50.6,-37.4 88.3,-42.5 5.6,-0.8 33,0.4 39.5,1.8zM67,147.4c0,0.2 -0.7,0.7 -1.6,1 -0.8,0.3 -1.2,0.2 -0.9,-0.4 0.6,-1 2.5,-1.4 2.5,-0.6zM62,151c0,0.5 -0.5,1 -1.1,1 -0.5,-0 -0.7,-0.5 -0.4,-1 0.3,-0.6 0.8,-1 1.1,-1 0.2,-0 0.4,0.4 0.4,1zM58.9,153.3c-0.2,0.1 -1.3,0.9 -2.4,1.7 -1.9,1.4 -1.9,1.4 -0.6,-0.3 0.7,-0.9 1.8,-1.7 2.4,-1.7 0.6,-0 0.8,0.1 0.6,0.3zM261.5,172.1c6.8,8.2 19.1,26.6 18.2,27.5 -0.2,0.2 -2.3,-2.9 -4.7,-6.8 -6.1,-10.4 -12,-17.9 -22.9,-29.2 -7.7,-7.9 -8.4,-8.9 -3.7,-5 3.2,2.7 9.1,8.8 13.1,13.5zM44.3,167.4c-5,5.2 -11.8,13.5 -15.2,18.6 -3.3,5 -6.1,8.7 -6.1,8.3 0,-1.4 8.7,-14.2 13.8,-20.3 6.1,-7.3 15.6,-17 16.1,-16.5 0.2,0.3 -3.7,4.7 -8.6,9.9zM20.4,200.9c-0.9,1.8 -1.8,3 -2.1,2.8 -0.2,-0.3 0.3,-1.9 1.2,-3.7 0.9,-1.8 1.8,-3 2.1,-2.8 0.2,0.3 -0.3,1.9 -1.2,3.7zM283.4,207l0.7,2.5 -1.5,-2.5c-0.9,-1.4 -1.5,-3.2 -1.5,-4 0,-1.3 0.1,-1.3 0.8,-0 0.5,0.8 1.2,2.6 1.5,4zM285.7,213.2c-0.3,0.8 -0.6,0.5 -0.6,-0.6 -0.1,-1.1 0.2,-1.7 0.5,-1.3 0.3,0.3 0.4,1.2 0.1,1.9zM13.7,216.2c-0.3,0.7 -0.5,0.2 -0.5,-1.2 0,-1.4 0.2,-1.9 0.5,-1.3 0.2,0.7 0.2,1.9 0,2.5zM288.9,221.5c0,2 0,2 -0.9,-0 -0.5,-1.1 -0.9,-2.7 -0.9,-3.5 -0.1,-1.3 0,-1.3 0.9,-0 0.5,0.8 0.9,2.4 0.9,3.5zM288.6,313.6c-0.4,1.4 -0.9,2.4 -1.2,2.1 -0.3,-0.2 -0.2,-1.7 0.2,-3.1 0.3,-1.5 0.9,-2.5 1.1,-2.2 0.3,0.3 0.2,1.7 -0.1,3.2zM14.9,321c0.1,1.3 0,1.3 -0.9,-0 -0.5,-0.8 -0.9,-2.4 -0.9,-3.5 0,-2 0,-2 0.9,-0 0.5,1.1 0.9,2.7 0.9,3.5zM280.7,331.9c-7.9,15.7 -22.9,35.4 -32.9,43.2 -2.6,2 -0.9,-0.1 4.1,-5.1 12.6,-12.7 24.8,-30.1 30,-42.8 0.8,-1.8 1.6,-3.1 1.8,-2.8 0.3,0.3 -1.1,3.6 -3,7.5zM20.9,333.5c0,0.5 -0.6,0.1 -1.4,-0.9 -0.8,-1.1 -1.5,-2.7 -1.5,-3.5 0.1,-1.7 2.9,2.6 2.9,4.4zM41,362.6c6.1,6.8 8.5,9.1 16.5,16.2 2.2,1.9 3.3,3.1 2.3,2.6 -3.5,-1.9 -16.6,-14.4 -21.9,-21 -6.7,-8.2 -14.9,-20.2 -14.9,-21.7 0,-0.6 2.7,3 5.9,7.9 3.3,5 8.7,12.1 12.1,16z" android:strokeColor="#00000000"/>
++    <path android:fillColor="#000000"
++        android:pathData="M160.1,130.4c-0.8,0.9 -1.1,2.6 -0.7,4 0.6,2.6 3.1,4.8 15.1,13.5 9,6.5 17.2,14.6 23.8,23.7 5.7,7.8 8,12.1 7.1,13.7 -0.5,0.9 -0.4,0.9 0.6,-0 1.8,-1.6 0.7,-5 -3.7,-11.5 -8.1,-11.8 -16.1,-20.2 -26.4,-27.8 -3,-2.2 -5.9,-4.4 -6.6,-5 -0.7,-0.5 -1.6,-1 -2.1,-1 -0.8,-0 -4.1,-3.4 -5.5,-5.7 -1.3,-2.1 2.7,-3.4 6.5,-2.2 4.1,1.4 18.3,8.3 21.9,10.7 6.8,4.5 8.6,5.8 11.2,8.2 1.5,1.5 5.6,5.1 9.2,8.1 3.5,3 6.4,6 6.4,6.6 0.1,0.7 0.5,1.3 1.1,1.3 3.3,-0 23.8,33.2 25.4,41 0.2,1.4 1.1,3.8 1.9,5.5 0.9,1.6 1.8,4.6 2.2,6.5 0.4,1.9 1,5.3 1.4,7.5 0.4,2.3 1.1,4.7 1.5,5.4 1,1.6 2,36.8 1,35.8 -0.6,-0.6 -1.2,-3.5 -2.8,-12.7 -0.1,-0.8 -0.8,-2.8 -1.4,-4.3 -0.7,-1.6 -1.2,-3.1 -1.2,-3.5 -0.1,-1.4 -3.6,-7.9 -5.5,-10.3 -3.3,-4.1 -17.6,-15.8 -23.2,-19 -2.9,-1.7 -5.9,-3.6 -6.6,-4.2 -0.6,-0.7 -2.5,-1.9 -4.1,-2.7 -4.2,-2.1 -14.8,-13 -14.2,-14.6 0.3,-0.7 -0.2,-1.5 -1,-1.8 -0.8,-0.3 -2.2,-2.2 -3.2,-4.3 -0.9,-2.1 -2,-4 -2.3,-4.3 -0.4,-0.3 -2.4,-3.4 -4.5,-7 -4.6,-7.7 -4.9,-11.8 -0.7,-11.8 1.5,-0 3.6,0.9 4.7,1.9 1.1,1.1 2.6,1.9 3.3,1.9 0.7,-0 1.3,0.5 1.3,1 0,0.6 1.1,1.6 2.5,2.2 1.4,0.6 2.5,1.5 2.5,1.9 0,0.5 1,1.9 2.3,3.1 1.3,1.3 2.9,3.2 3.5,4.3 0.6,1.1 1.4,1.7 1.7,1.3 1,-1 -2.8,-6.7 -7.2,-10.9 -5.8,-5.5 -11.4,-8.9 -14.8,-8.9 -6.5,-0 -7.1,4.4 -2,13.1 1.9,3.3 3.5,6.2 3.5,6.4 0,1.3 11.3,17.6 14.6,21.1 2.1,2.2 9.3,7.6 15.9,11.8 20.7,13.5 27.2,19.7 31.4,30.6 3.5,8.9 5.1,17.1 5.1,25.7 0,6.7 1.3,8.1 3.2,3.5 0.8,-1.8 1.2,-9.4 1.2,-23.2 0,-18.1 -0.3,-21.6 -2.3,-29.9 -7.8,-31.7 -25.8,-58.6 -52.2,-78.6 -16,-12.1 -35.5,-20.1 -38.8,-16.1z" android:strokeColor="#00000000"/>
++    <path android:fillColor="#000000"
++        android:pathData="M132.5,150.2c-10.3,8.7 -29.7,29.1 -36,37.6 -15.5,21.2 -29.3,49.1 -31.1,63.1 -1.4,11 5.8,30.1 16.2,42.7 5.7,7.1 8.3,9.2 7,5.8 -0.4,-1.1 -1.7,-7.3 -2.8,-13.9 -2.6,-15.9 -2.1,-37.7 1.2,-47.4 2.1,-6.3 8.5,-19.4 13.7,-28.3 1.6,-2.5 4.1,-6.8 5.7,-9.5 1.6,-2.6 5.6,-8.6 8.8,-13.2 3.3,-4.6 6.5,-9.5 7,-10.7 0.6,-1.3 1.8,-2.4 2.5,-2.4 0.8,-0 1.1,0.5 0.8,1.1 -0.4,0.5 -0.2,4.8 0.5,9.4l1.2,8.3 8,-6c4.4,-3.3 8.1,-5.8 8.3,-5.6 0.2,0.1 -0.2,4.2 -0.8,9 -1,7.7 -0.9,8.9 0.6,10.5 5.2,5.8 6.1,15.4 2,20.3l-2.6,3.1 3.9,-0.7c7.9,-1.4 14.9,-4.7 19.2,-9l4.3,-4.2 -2.7,-5.4c-5.3,-10.4 -7.6,-18.7 -8.1,-29.5 -0.4,-7.9 -0.2,-11.4 1.1,-15.2 2.1,-6.5 2.1,-6.4 -1.3,-4.6 -1.6,0.8 -5.6,2.4 -8.8,3.6 -3.2,1.2 -6.4,2.6 -7.1,3.2 -0.7,0.5 -1.5,0.8 -1.7,0.5 -0.3,-0.2 -1.1,-4.3 -1.7,-9.1l-1.3,-8.6 -6,5.1zM137,154.6c0,2 0.7,5.1 1.6,7 1.9,3.9 4.3,4.4 9.6,1.7 5.7,-2.8 6.7,-3.3 7.5,-3.3 0.5,-0 0.8,5.5 0.8,12.2 0,12.9 1,17.6 5.9,28.3 4.1,8.8 4.1,9.2 0.5,12.4 -1.7,1.6 -5.3,3.8 -8,4.9l-4.8,2 0.6,-4.8c0.5,-4.1 0.1,-5.9 -2.3,-10.7 -2.5,-5.1 -2.9,-6.9 -2.9,-14.7 0,-7.3 -0.3,-9.1 -1.7,-10 -1.2,-0.7 -2.3,-0.8 -3.2,-0.1 -5.9,4.2 -10.8,7.5 -11.1,7.5 -0.1,-0 -0.6,-2.7 -1,-6 -0.5,-4.5 -1.2,-6.4 -2.8,-7.5 -2.1,-1.4 -2.4,-1.3 -5.9,2.2 -2,2.1 -3.7,4.4 -3.8,5 0,0.7 -0.4,1.3 -1,1.3 -0.5,-0 -1,0.5 -1,1.1 0,0.5 -1.6,3.1 -3.5,5.7 -5,6.7 -4.8,6.5 -6.6,9.8 -0.9,1.6 -4.2,7.4 -7.4,12.9 -9.4,16.2 -13.4,26.9 -15,39.9 -0.7,6.4 -0.8,20.7 0,24.4 1.4,7.2 1.7,14.5 0.7,13.8 -1.6,-0.9 -8.8,-13.5 -9.7,-16.6 -0.4,-1.4 -1.3,-4 -2.1,-5.7 -0.8,-1.8 -1.6,-6.8 -1.7,-11 -0.2,-8.8 2.6,-18.7 9.2,-32.2 5.8,-11.8 16.5,-29.8 19.1,-32.1 0.3,-0.3 1.3,-1.6 2.2,-3 2.4,-3.9 18.8,-22.2 23.1,-25.9 1.1,-0.9 4.4,-3.9 7.5,-6.8 3.2,-2.9 6,-5.3 6.5,-5.3 0.4,-0 0.7,1.6 0.7,3.6z" android:strokeColor="#00000000"/>
++    <path android:fillColor="#000000"
++        android:pathData="M146.1,226.7l-3.3,0.4 7.4,7.7c13.2,13.6 28.3,35.6 36.6,53.2 2.7,5.8 5.9,14.6 9,25l1,3.5 0.1,-3.5c0.1,-3.9 -3.8,-21.7 -6.4,-29.5 -3.9,-11.4 -15.2,-31.3 -23.8,-42 -6.8,-8.4 -14.1,-15.5 -15.7,-15.3 -0.8,-0 -3,0.3 -4.9,0.5zM165.6,244.5c4.1,5.5 14.6,22.6 14.2,23 -0.5,0.5 -6.8,-8.2 -6.8,-9.4 0,-0.4 -0.9,-1.6 -2,-2.6 -1.1,-1 -2,-2.2 -2,-2.7 0,-0.4 -0.8,-1.6 -1.7,-2.6 -1,-1 -3.1,-3.5 -4.8,-5.7 -1.6,-2.2 -5.1,-6.2 -7.7,-9.1 -2.7,-2.8 -4.5,-5.4 -4.1,-5.8 0.7,-0.7 10.8,9.4 14.9,14.9z" android:strokeColor="#00000000"/>
++    <path android:fillColor="#000000"
++        android:pathData="M213.2,233.3c-0.8,0.9 -1.1,10.2 -0.9,29.3 0.2,24.5 0,28.7 -1.6,34.4 -2.6,9 -4.1,11.6 -11.5,19.2 -3.6,3.8 -5.9,6.8 -5.1,6.8 0.7,-0 5.1,-3.8 9.6,-8.4 10.8,-11 13.6,-16.9 15.6,-32.4 0.8,-6.2 1.9,-11.8 2.4,-12.3 1.5,-1.5 4.9,0.8 7.6,5.1 1.9,3 2.2,4.9 2.1,13.5 -0.1,11.4 -1.2,17.4 -5.9,31.9 -4.3,13.1 -9.2,23.8 -14.4,31.5 -4.3,6.2 -4.7,7.1 -3.2,7.1 1.4,-0 16.7,-22.1 20.9,-30.1 9.3,-17.8 12.4,-29.6 12.5,-47.4 0.1,-17.4 -3,-27.9 -11.5,-38.6 -4.3,-5.5 -11.2,-10.9 -13.8,-10.9 -1,-0 -2.2,0.6 -2.8,1.3zM224.3,241c2.6,2.3 4.7,4.6 4.7,5.1 0,0.4 1.3,2.9 2.9,5.4 8.7,13.8 8.6,45.2 -0.3,64.6 -2.1,4.7 -2.4,5 -1.9,1.9 0.3,-1.9 1,-4.3 1.5,-5.4 1.3,-2.5 3.8,-18.9 3.8,-25.2 0,-9.4 -4.8,-18.6 -10.5,-20 -3.2,-0.8 -6.1,1.6 -7.1,5.9 -0.5,2.3 -0.8,2.7 -1.5,1.5 -1,-1.7 -1.4,-37.2 -0.4,-38.8 0.8,-1.3 2.9,-0.2 8.8,5z" android:strokeColor="#00000000"/>
++    <path android:fillColor="#000000"
++        android:pathData="M57.8,259c-1.3,3.4 -2.8,19.2 -2.8,29.8 0,29.8 10.3,60.3 27.4,80.9 13.9,16.9 32.2,30.4 43.6,32.4 6.9,1.3 8.6,0.5 7.7,-3.3 -0.7,-2.7 -4.9,-7 -13.7,-14.1 -7.4,-6 -17.9,-19.3 -23,-29.3 -2,-4 -3.6,-6.1 -3.8,-5.2 -0.3,1.5 1.4,5.3 5,11.3 3.6,6 8.5,13.3 10.3,15.2 1.1,1.1 2.9,3.3 4,4.7 1.1,1.4 2.5,2.5 3.1,2.6 0.5,-0 2.3,1.4 4,3.1 1.6,1.7 4.2,3.7 5.7,4.6 1.6,0.8 2.6,1.7 2.4,2 -0.3,0.3 0.5,1.7 1.8,3.1 1.5,1.6 2,2.9 1.4,3.3 -1.1,0.6 -6.9,-0.3 -10.4,-1.6 -4.6,-1.8 -13.4,-7.8 -12.8,-8.8 0.3,-0.5 0.1,-0.7 -0.5,-0.4 -0.5,0.4 -2.9,-1 -5.1,-3 -2.2,-2.1 -6.1,-5.6 -8.7,-7.7 -7.3,-6.3 -16.5,-19.2 -22.7,-31.6 -3.1,-6.4 -5.7,-12.2 -5.7,-13.1 0,-0.8 -0.4,-1.9 -0.9,-2.5 -0.5,-0.5 -1.2,-2.3 -1.5,-3.9 -0.2,-1.7 -1,-4.6 -1.6,-6.5 -2.1,-6.6 -4,-22.3 -3.9,-31.9 0.1,-10.6 1.1,-16.8 2.2,-13.9 0.8,2 1.4,3.9 1.6,5 0.3,1.9 8.6,16.4 10.5,18.5 8.2,9.3 20.8,20.3 23.3,20.3 1.1,-0 5.9,5.1 9.5,10.1 3.6,4.8 13.8,25.6 13.8,28 0,1 0.5,1.9 1,1.9 1.3,-0 1.3,2.6 0,5.1 -1.1,1.9 -1.1,1.9 -5.3,-0.2 -2.3,-1.2 -5.3,-3.5 -6.7,-5.2 -1.4,-1.7 -3.3,-3.8 -4.2,-4.6 -1,-0.9 -1.8,-1.9 -1.8,-2.4 0,-0.4 -0.9,-1.7 -2,-2.9 -2.8,-3 -2.5,-0.6 0.4,4.1 4.2,6.5 12.3,13.8 16.2,14.6 8.6,1.6 8.4,-4.5 -0.8,-23.5 -7.6,-15.8 -12.7,-22.6 -20.5,-27.6 -14.6,-9.2 -27.6,-25.2 -32.2,-39.6 -0.7,-2.1 -1.8,-7.2 -2.5,-11.5 -0.7,-4.3 -1.5,-7.1 -1.8,-6.3z" android:strokeColor="#00000000"/>
++</vector>
+Index: app/src/main/res/drawable/ic_notifications.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/ic_notifications.xml	(date 1607280836097)
++++ app/src/main/res/drawable/ic_notifications.xml	(date 1607280836097)
+@@ -0,0 +1,5 @@
++<vector android:autoMirrored="true" android:height="24dp"
++    android:tint="?attr/colorControlNormal" android:viewportHeight="24"
++    android:viewportWidth="24" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="@android:color/white" android:pathData="M12,22c1.1,0 2,-0.9 2,-2h-4c0,1.1 0.89,2 2,2zM18,16v-5c0,-3.07 -1.64,-5.64 -4.5,-6.32L13.5,4c0,-0.83 -0.67,-1.5 -1.5,-1.5s-1.5,0.67 -1.5,1.5v0.68C7.63,5.36 6,7.92 6,11v5l-2,2v1h16v-1l-2,-2z"/>
++</vector>
+Index: app/src/main/java/com/example/tbnaaproject/WordAdding.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/WordAdding.java	(date 1607269666690)
++++ app/src/main/java/com/example/tbnaaproject/WordAdding.java	(date 1607269666690)
+@@ -0,0 +1,28 @@
++package com.example.tbnaaproject;
++
++import android.graphics.Bitmap;
++import android.util.Base64;
++
++public class WordAdding {
++    private String catName;
++    private String userName;
++    private Bitmap catImage;
++
++    public WordAdding(String CatName, String UserName, Bitmap catImage) {
++        catName = CatName;
++        userName = UserName;
++        catImage = catImage;
++    }
++
++    public String getCatName() {
++        return catName;
++    }
++
++    public String getUserName() {
++        return userName;
++    }
++
++    public Bitmap getCatImage() {
++        return catImage;
++    }
++}
+Index: app/src/main/res/drawable/ic_tbnaacircle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/ic_tbnaacircle.xml	(date 1607307457234)
++++ app/src/main/res/drawable/ic_tbnaacircle.xml	(date 1607307457234)
+@@ -0,0 +1,11 @@
++<vector android:autoMirrored="true" android:height="600dp"
++    android:viewportHeight="252" android:viewportWidth="256"
++    android:width="600dp" xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="#75C9CA"
++        android:pathData="M108.9,23.3c-14.2,12.1 -28.9,29.2 -38.6,44.7 -8.2,13.3 -16,30.7 -18.4,41.4 -2.4,10.7 3.6,28.3 13.8,41 2.6,3.2 4.9,5.4 5.1,4.7 0.2,-0.6 -0.4,-5.9 -1.3,-11.8 -1.9,-11.9 -2,-27.6 -0.4,-36.8 2,-11.3 9.3,-25.7 25.7,-50.5 10.6,-16 10.3,-15.9 11.7,-3.8 0.4,3.2 0.8,5.8 1.1,5.8 0.2,-0 3.2,-2 6.6,-4.5 3.4,-2.5 6.6,-4.5 7.1,-4.5 0.6,-0 0.7,3 0.3,7.4 -0.6,7.1 -0.5,7.8 2.4,12.9 3.4,6 3.7,8.9 1.5,13.1 -2.2,4.1 -1.9,4.5 2.6,3.5 5.6,-1.3 10.8,-4.1 14.4,-7.8 2.7,-3 2.8,-3.3 1.6,-6.4 -6.1,-15.3 -7.4,-19.6 -7.8,-27.9 -0.4,-5.2 -0.1,-10.6 0.6,-13.4 0.7,-2.5 1,-4.8 0.8,-5 -0.2,-0.2 -4,1.1 -8.6,2.8 -9.5,3.6 -9.5,3.6 -10.5,-5.3 -0.4,-3.3 -1.1,-5.9 -1.5,-5.9 -0.4,-0 -4.1,2.8 -8.2,6.3z" android:strokeColor="#00000000"/>
++    <path android:fillColor="#75C9CA"
++        android:pathData="M126.3,89.8c-1.8,0.2 -3.3,0.6 -3.3,0.9 0,0.3 2.8,3.5 6.2,7.1 7.5,8.1 19.5,24.1 24.7,33 5.8,10.1 8.1,14.8 12.2,25.7 4.2,11.1 4.8,10.3 2,-2.5 -4.5,-20.1 -14.8,-39.3 -31.5,-58.2 -5.5,-6.4 -5.7,-6.5 -10.3,-6z" android:strokeColor="#00000000"/>
++    <path android:fillColor="#75C9CA"
++        android:pathData="M185.7,95.7c-0.4,0.3 -0.7,12 -0.7,25.9 0,14.9 -0.5,27.5 -1.1,30.6 -1.4,6.3 -4.8,13.5 -7.9,16.3 -1.2,1.1 -2.6,2.8 -3.2,3.8 -2,3.8 5.3,-2.6 9.7,-8.5 5.2,-6.9 7.1,-12.4 8.8,-24.9 1,-7.4 1.6,-9.5 3,-9.7 4,-0.8 8.7,7.7 8.7,15.9 0,11 -6.7,35 -14,50.4 -2.1,4.4 -3.7,8.1 -3.6,8.2 0.8,0.9 11,-15 15.8,-24.4 7.9,-15.8 10.2,-26.1 9.5,-42.5 -0.3,-7.2 -1.1,-14.4 -2.1,-17.4 -4,-12.6 -18.8,-27.9 -22.9,-23.7z" android:strokeColor="#00000000"/>
++
++</vector>
+Index: app/src/main/java/com/example/tbnaaproject/TbnaaDatabase.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tbnaaproject;\r\n\r\nimport android.content.ContentValues;\r\nimport android.content.Context;\r\nimport android.database.SQLException;\r\nimport android.database.sqlite.SQLiteDatabase;\r\nimport android.database.sqlite.SQLiteOpenHelper;\r\nimport android.database.sqlite.SQLiteStatement;\r\n\r\nimport androidx.annotation.Nullable;\r\n\r\nimport javax.xml.validation.Schema;\r\n\r\npublic class TbnaaDatabase  {\r\n\r\n    //Define the db Schema\r\n    private static final String databaseName = \"TbnaaDB\";\r\n    private static final int databaseVersion = 1;\r\n    //Cat table\r\n    private static String catTableName = \"Cat\";\r\n    private static final String createCatTable = \"CREATE TABLE Cat (catId INTEGER PRIMARY KEY AUTOINCREMENT,catImage BLOB, catName TEXT,catAge TEXT, catCity TEXT, catGender TEXT,vaccinated TEXT, neutered TEXT, healtheCare TEXT, catStory TEXT, isApproved TEXT, isAdoptted TEXT);\";\r\n\r\n    //basics\r\n    private final Context ct;\r\n    private DatabaseHelper dbHelper;\r\n    private SQLiteDatabase database;\r\n\r\n    //Constructor\r\n    public TbnaaDatabase(Context context) {\r\n        this.ct = context;\r\n        dbHelper = new DatabaseHelper(ct);\r\n\r\n    }\r\n\r\n    //-------------------------------------------------------------------------\r\n\r\n    public class DatabaseHelper extends SQLiteOpenHelper {\r\n        //Constructor\r\n        DatabaseHelper(Context c) {\r\n            super(c, databaseName, null, databaseVersion);\r\n        }\r\n\r\n        @Override\r\n        public void onCreate(SQLiteDatabase sqLiteDatabase) {\r\n\r\n            try {\r\n                //Create Tables here\r\n\r\n                //Cat Table\r\n                sqLiteDatabase.execSQL(createCatTable);\r\n\r\n            } catch (SQLException ex) {\r\n                ex.printStackTrace();\r\n            }\r\n\r\n        }\r\n\r\n        @Override\r\n        public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {\r\n\r\n            database.execSQL(\"DROP TABLE IF EXISTS CAT\");\r\n            onCreate(database);\r\n\r\n        }\r\n    }// End of DatabaseHelper\r\n\r\n    //Connect to the Database\r\n    public TbnaaDatabase connect() throws SQLException {\r\n        database = dbHelper.getWritableDatabase();\r\n        return this;\r\n    }\r\n\r\n    //Disconnect from the Database\r\n    public void disconnect() {\r\n        dbHelper.close();\r\n    }\r\n\r\n    // addCat method to insert cats into Cat table\r\n    public long addCat(byte[] catImage, String catName, String catAge,\r\n                       String catCity,\r\n                       String catGender, String vaccinated,\r\n                       String neutered, String healtheCare, String catStory) {\r\n\r\n        ContentValues cv = new ContentValues();\r\n\r\n        cv.put(\"catImage\", catImage);\r\n        cv.put(\"catName\", catName);\r\n        cv.put(\"catAge\", catAge);\r\n        cv.put(\"catCity\", catCity);\r\n        cv.put(\"catGender\", catGender);\r\n        cv.put(\"vaccinated\", vaccinated);\r\n        cv.put(\"neutered\", neutered);\r\n        cv.put(\"healtheCare\", healtheCare);\r\n        cv.put(\"catStory\", catStory);\r\n        cv.put(\"isApproved\", \"null\");\r\n        cv.put(\"isAdoptted\", \"null\");\r\n\r\n        this.connect();\r\n        return database.insert(catTableName, null, cv);\r\n\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/TbnaaDatabase.java	(revision 9530027528da57626c7c27f599ebb578493d64ae)
++++ app/src/main/java/com/example/tbnaaproject/TbnaaDatabase.java	(date 1607271198808)
+@@ -2,14 +2,14 @@
+ 
+ import android.content.ContentValues;
+ import android.content.Context;
++import android.database.Cursor;
+ import android.database.SQLException;
+ import android.database.sqlite.SQLiteDatabase;
+ import android.database.sqlite.SQLiteOpenHelper;
+-import android.database.sqlite.SQLiteStatement;
++import android.graphics.Bitmap;
++import android.graphics.BitmapFactory;
+ 
+-import androidx.annotation.Nullable;
+-
+-import javax.xml.validation.Schema;
++import java.util.ArrayList;
+ 
+ public class TbnaaDatabase  {
+ 
+@@ -32,6 +32,7 @@
+ 
+     }
+ 
++
+     //-------------------------------------------------------------------------
+ 
+     public class DatabaseHelper extends SQLiteOpenHelper {
+@@ -99,6 +100,33 @@
+         return database.insert(catTableName, null, cv);
+ 
+     }
++
++    //create method to view data
++   public Cursor viewAllcats()
++    {
++        this.connect();
++        String query= "Select * from "+catTableName;
++        Cursor cursor=database.rawQuery(query,null);
++        return cursor;
++    }
++
++    public ArrayList<WordAdding> getAllData(){
++        ArrayList<WordAdding> arrayList= new ArrayList<>();
++        dbHelper.getReadableDatabase();
++        String query= " Select * from "+catTableName;
++        Cursor cursor=database.rawQuery(query,null);
++
++        while (cursor.moveToNext()){
++            byte[] image = cursor.getBlob(1);
++            String catName = cursor.getString(2);
++            Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
++            WordAdding word = new WordAdding(catName,catName,bitmap);
++            arrayList.add(word);
++        }
++        return arrayList;
++    }
++
++
+ }
+ 
+ 
+Index: app/src/main/res/layout/activity_adding_request_admin.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_adding_request_admin.xml	(date 1607191745382)
++++ app/src/main/res/layout/activity_adding_request_admin.xml	(date 1607191745382)
+@@ -0,0 +1,76 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:background="#212121"
++    android:orientation="vertical"
++    tools:context=".AddingRequestAdmin">
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="0dp"
++        android:layout_weight="1">
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="horizontal"
++            android:layout_centerInParent="true"
++            android:gravity="center_horizontal|center_vertical">
++
++            <ImageView
++                android:layout_width="72dp"
++                android:layout_height="72dp"
++                android:layout_weight="1"
++                android:layout_margin="8dp"
++                android:layout_alignParentLeft="true"
++                android:contentDescription="humburger menu icon"
++                android:src="@drawable/ic_menu"/>
++
++            <TextView
++                android:layout_width="288dp"
++                android:layout_height="wrap_content"
++                android:layout_weight="1"
++                android:gravity="center_vertical|center_horizontal"
++                android:text="Cat Adding Requests"
++                android:textColor="@android:color/white"
++                android:textSize="16sp"
++                android:textStyle="bold"/>
++
++            <ImageView
++                android:id="@+id/imageView4"
++                android:layout_width="80dp"
++                android:layout_height="80dp"
++                android:layout_margin="8dp"
++                app:srcCompat="@drawable/tbnaacircle"
++                android:layout_weight="1"
++                android:layout_alignParentRight="true"/>
++
++        </LinearLayout>
++
++    </RelativeLayout>
++
++    <GridLayout
++        android:layout_width="match_parent"
++        android:layout_height="0dp"
++        android:layout_weight="7"
++        android:columnCount="1"
++        android:rowCount="17"
++        android:padding="15dp"
++        android:background="@drawable/whitebackground">
++
++        <ListView
++            android:id="@+id/activity_adding_cats_requests_list"
++            android:orientation="vertical"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:paddingBottom="@dimen/activity_vertical_margin"
++            android:paddingLeft="@dimen/activity_horizontal_margin"
++            android:paddingRight="@dimen/activity_horizontal_margin"
++            android:paddingTop="@dimen/activity_vertical_margin"
++            android:background="#fff"/>
++
++    </GridLayout>
++
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/tbnaaproject/AddingRequestAdmin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/AddingRequestAdmin.java	(date 1607275007112)
++++ app/src/main/java/com/example/tbnaaproject/AddingRequestAdmin.java	(date 1607275007112)
+@@ -0,0 +1,195 @@
++package com.example.tbnaaproject;
++
++import androidx.annotation.RequiresApi;
++import androidx.appcompat.app.AppCompatActivity;
++import androidx.core.app.NotificationCompat;
++
++import android.app.Notification;
++import android.app.NotificationManager;
++import android.app.PendingIntent;
++import android.content.Context;
++import android.content.Intent;
++import android.database.Cursor;
++import android.graphics.Bitmap;
++import android.graphics.BitmapFactory;
++import android.graphics.drawable.BitmapDrawable;
++import android.media.Image;
++import android.os.Build;
++import android.os.Bundle;
++import android.util.Base64;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.AdapterView;
++import android.widget.ArrayAdapter;
++import android.widget.Button;
++import android.widget.ImageButton;
++import android.widget.ImageView;
++import android.widget.ListView;
++import android.widget.TextView;
++import android.widget.Toast;
++
++import java.util.ArrayList;
++import java.util.ListResourceBundle;
++
++public class AddingRequestAdmin extends AppCompatActivity {
++
++    TbnaaDatabase tbnaadbHelper;
++
++    ListView listView;
++    Button cancelButton, approveButton;
++    private int NOTIFICATION_ID_NORMAL_SIZE = 1;
++    TextView userName,catName;
++    ImageView image;
++    ArrayList<WordAdding> arrayList;
++    AddingAdminAdapter myAdapter;
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_adding_request_admin);
++
++        listView = (ListView) findViewById(R.id.activity_adding_cats_requests_list);
++        catName = (TextView) findViewById(R.id.catName);
++        userName = (TextView) findViewById(R.id.userName);
++        image = (ImageView) findViewById(R.id.image);
++        tbnaadbHelper= new TbnaaDatabase(this);
++        arrayList=new ArrayList<>();
++
++        //LoadDataInListView();
++        viewAllcats();
++
++//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
++//            @Override
++//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
++//                //  ImageView image = ((ImageView) listView.getItemAtPosition(1));
++//
++//
++//                Toast.makeText(AddingRequestAdmin.this, ""+catName, Toast.LENGTH_SHORT).show();
++//            }
++//        });
++
++//        WordAdapter adapter = new WordAdapter(this, words);
++//        ListView listView = (ListView) findViewById(R.id.activity_adding_cats_requests_list);
++//        listView.setAdapter(adapter);
++//
++//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
++//
++//            @Override
++//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
++//                Word word = words.get(position);
++//
++//                //TODO: Open more INFO
++//            }
++//            //this.sendNormalSizeNotification();
++//        });
++
++
++    }
++
++    private void LoadDataInListView() {
++        arrayList=tbnaadbHelper.getAllData();
++        myAdapter=new AddingAdminAdapter(this,arrayList);
++        listView.setAdapter(myAdapter);
++        myAdapter.notifyDataSetChanged();
++    }
++
++   private void viewAllcats() {
++        Cursor cursor = tbnaadbHelper.viewAllcats();
++        if(cursor.getCount()==0){
++            Toast.makeText(this, "No data to show", Toast.LENGTH_SHORT).show();
++        } else{
++           do{
++               byte[] image = cursor.getBlob(1);
++               String catName = cursor.getString(2);
++               Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
++               WordAdding word = new WordAdding(catName,catName,bitmap);
++               arrayList.add(word);
++
++          //      arrayList.add(cursor.getString(2));//index 2 is catName
++            } while (cursor.moveToNext());
++
++          //  listView.setAdapter(adapter);
++        }
++    }
++
++
++    // Click a button to show a normal screen size notification.
++    private void sendNormalSizeNotification()
++    {
++        ImageButton sendNormalSizeNotificationButton = (ImageButton) findViewById(R.id.yes);
++        sendNormalSizeNotificationButton.setOnClickListener(new View.OnClickListener() {
++            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
++            @Override
++            public void onClick(View view) {
++
++                // Create NotificationManager.
++                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
++
++                // UserProfile is the activity opened when user click notification.
++                Intent intent = new Intent(AddingRequestAdmin.this, UserProfile.class);
++                Intent intentArr[] = {intent};
++
++                PendingIntent pendingIntent = PendingIntent.getActivities(AddingRequestAdmin.this, 0, intentArr, 0);
++
++                // Create a Notification Builder instance.
++                String title = "Adding request status";
++                String textContent = "Your request to add a cat is accepted.";
++                int smallIconResId = R.drawable.ic_email;
++                int largeIconResId = R.drawable.tbnaacircle;
++                long sendTime = System.currentTimeMillis();
++                boolean autoCancel = false;
++
++                // Get general settings Builder instance.
++                NotificationCompat.Builder builder = getGeneralNotificationBuilder(title, textContent, smallIconResId, largeIconResId, autoCancel, sendTime);
++
++                // Set content intent.
++                builder.setContentIntent(pendingIntent);
++
++                // Use both light, sound and vibrate.
++                builder.setDefaults(Notification.DEFAULT_ALL);
++
++                // Create Notification instance.
++                Notification notification = builder.build();
++                notification.flags = Notification.FLAG_ONGOING_EVENT | Notification.FLAG_SHOW_LIGHTS | Notification.FLAG_INSISTENT;
++
++                // Send the notification.
++                notificationManager.notify(NOTIFICATION_ID_NORMAL_SIZE, notification);
++            }
++        });
++    }
++
++
++    // This method create and return a general Notification Builder instance.
++    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
++    private NotificationCompat.Builder getGeneralNotificationBuilder(String title, String textContent, int smallIconResId, int largeIconResId, boolean autoCancel, long sendTime)
++    {
++        // Create a Notification Builder instance.
++        NotificationCompat.Builder builder = new NotificationCompat.Builder(AddingRequestAdmin.this);
++
++        // Set small icon.
++        builder.setSmallIcon(smallIconResId);
++
++        // Set large icon.
++        BitmapDrawable bitmapDrawable = (BitmapDrawable)getDrawable(largeIconResId);
++        Bitmap largeIconBitmap = bitmapDrawable.getBitmap();
++        builder.setLargeIcon(largeIconBitmap);
++
++        // Set title.
++        builder.setContentTitle(title);
++
++        // Set content text.
++        builder.setContentText(textContent);
++
++        // Set notification send time.
++        builder.setWhen(sendTime);
++
++        // If true then cancel the notification automatically.
++        builder.setAutoCancel(autoCancel);
++
++        return builder;
++    }
++
++
++
++}
+\ No newline at end of file
+Index: app/src/main/res/drawable/ic_highlight_tbnaalogo.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/ic_highlight_tbnaalogo.xml	(date 1607307251961)
++++ app/src/main/res/drawable/ic_highlight_tbnaalogo.xml	(date 1607307251961)
+@@ -0,0 +1,12 @@
++<vector android:autoMirrored="true" android:height="1833dp"
++    android:viewportHeight="1833" android:viewportWidth="1031"
++    android:width="1031dp" xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="#000000"
++        android:pathData="M486.5,404.6c-2.2,0.2 -11.1,0.9 -19.7,1.5 -8.7,0.6 -15.8,1.5 -15.8,1.8 0,0.4 -4.6,1.3 -10.2,1.9 -13.8,1.7 -35.2,5.4 -35.8,6.2 -0.3,0.3 -3.2,1.2 -6.5,1.9 -16.1,3.3 -28.5,6.4 -28.5,7.2 0,0.5 -0.7,0.9 -1.6,0.9 -2.4,-0 -22.8,6.1 -23.4,7 -0.3,0.4 -5,2.2 -10.5,3.9 -5.4,1.7 -10.2,3.5 -10.5,3.9 -0.3,0.4 -4.5,2.3 -9.5,4.1 -4.9,1.9 -9.2,3.7 -9.5,4.1 -0.3,0.4 -3.9,2.2 -8,3.9 -4.1,1.8 -7.7,3.6 -8,4 -0.3,0.5 -4.3,2.5 -8.9,4.5 -4.7,2 -8.7,4 -9,4.4 -0.4,0.4 -3.6,2.2 -7.3,4 -3.8,1.8 -6.8,3.7 -6.8,4.2 0,0.4 -1.2,1.3 -2.7,1.9 -3.6,1.3 -10.7,5.4 -11.1,6.3 -0.2,0.4 -3,2.2 -6.2,3.9 -3.2,1.7 -6.1,3.7 -6.4,4.5 -0.3,0.8 -1,1.4 -1.6,1.4 -0.6,-0 -2.6,1.1 -4.4,2.5 -1.8,1.4 -3.6,2.5 -3.9,2.5 -0.3,-0 -2.1,1.3 -3.9,3 -1.8,1.6 -3.8,3 -4.4,3 -0.6,-0 -2.6,1.6 -4.5,3.5 -1.9,1.9 -3.8,3.5 -4.4,3.5 -0.5,-0 -2.3,1.3 -4,2.8 -1.6,1.5 -5,4.3 -7.5,6.2 -2.5,1.9 -6.3,5.1 -8.5,7.2 -2.2,2.1 -4.3,3.8 -4.6,3.8 -0.3,-0 -3.8,3.1 -7.8,7 -3.9,3.8 -7.4,7 -7.7,7 -1,-0 -25.7,25.9 -33.4,35 -1.2,1.4 -3.6,4.1 -5.3,6 -1.8,1.9 -4.8,5.5 -6.7,8 -1.9,2.5 -4.7,5.8 -6.2,7.5 -1.5,1.6 -2.8,3.4 -2.8,4 0,0.5 -1.6,2.5 -3.5,4.4 -1.9,1.9 -3.5,3.9 -3.5,4.5 0,0.6 -1.3,2.6 -3,4.4 -1.6,1.8 -3,3.6 -3,3.9 0,0.3 -1.1,2.1 -2.5,3.9 -1.4,1.8 -2.5,3.7 -2.5,4.3 0,0.5 -0.6,1.4 -1.3,1.8 -0.8,0.4 -2.6,3 -4.2,5.8 -1.5,2.7 -3.3,5.4 -3.9,6 -1.4,1.3 -5.4,8.2 -6.7,11.7 -0.6,1.6 -1.5,2.8 -1.9,2.8 -0.5,-0 -2.3,3 -4.1,6.7 -1.8,3.8 -3.6,7 -4,7.4 -0.5,0.3 -2.5,4.3 -4.5,9 -2,4.6 -4,8.6 -4.5,8.9 -0.4,0.3 -2.2,3.9 -4,8 -1.7,4.1 -3.5,7.7 -3.9,8 -0.4,0.3 -2.2,4.5 -4.1,9.5 -1.8,4.9 -3.7,9.2 -4.1,9.5 -0.4,0.3 -2.1,5 -3.9,10.5 -1.8,5.5 -3.6,10.2 -4.1,10.5 -0.4,0.3 -2.2,6 -4,12.5 -1.8,6.6 -3.6,12.2 -3.9,12.5 -1.1,0.8 -7.9,29.7 -7.9,33.5 0,1.3 -0.4,2.5 -1,2.7 -1.1,0.3 -4.4,18.8 -6.2,34.8 -0.6,5.8 -1.5,10.7 -1.8,11 -0.4,0.3 -1.3,7.2 -2.1,15.5 -2.6,27.6 -1.1,109.2 2,111.5 0.4,0.3 1.3,5.2 2,11 1.9,16.7 5.2,35.5 6.2,35.8 0.5,0.2 0.9,1.2 0.9,2.3 0,3.4 7.1,32.4 8.1,32.7 0.5,0.2 0.9,1.1 0.9,2 0,2.9 6,21.7 7,22 0.6,0.2 1,1 1,1.8 0,2.6 6.1,19.6 7.5,21.1 0.8,0.8 1.5,2.1 1.5,2.9 0,1.6 5.2,14.7 6.1,15.4 0.4,0.3 2.1,4 3.9,8.2 1.8,4.3 3.6,7.8 4.1,7.8 0.4,-0 1.1,1 1.4,2.2 1,3.4 6.6,15.2 7.5,15.8 0.4,0.3 2.1,3.5 3.9,7.2 1.8,3.8 3.6,6.8 4.1,6.8 0.4,-0 1.3,1.2 1.9,2.7 1.3,3.6 5.4,10.7 6.3,11.1 0.4,0.2 2.2,3 3.9,6.2 1.7,3.2 3.7,6.1 4.5,6.4 0.8,0.3 1.4,1 1.4,1.6 0,0.6 1.1,2.6 2.5,4.4 1.4,1.8 2.5,3.6 2.5,3.9 0,0.3 1.3,2.1 3,3.9 1.6,1.8 3,3.8 3,4.4 0,0.6 1.6,2.6 3.5,4.5 1.9,1.9 3.5,3.8 3.5,4.4 0,1.1 5.4,7.7 10.8,13.3 1.7,1.9 3.2,3.7 3.2,4.1 0,0.4 1.3,2 3,3.6 1.6,1.6 3,3.2 3,3.5 0,1.9 47.9,49.9 49.9,50 0.3,-0 2.8,2.1 5.4,4.5 2.6,2.5 6.4,5.7 8.4,7.2 2,1.6 5.1,4 6.7,5.5 1.7,1.6 3.6,2.8 4.2,2.8 0.6,-0 2.6,1.6 4.5,3.5 1.9,1.9 3.9,3.5 4.4,3.5 0.6,-0 2.5,1.3 4.3,3 1.8,1.6 3.6,3 3.9,3 0.3,-0 2,1.1 3.7,2.4 1.7,1.3 4.1,2.6 5.3,3 1.1,0.4 2.4,1.3 2.7,2.1 0.3,0.8 2.7,2.5 5.5,3.9 2.7,1.4 5.1,2.9 5.3,3.3 0.4,1 7.4,5.1 11.1,6.4 1.5,0.6 2.7,1.5 2.7,2 0,0.4 3.5,2.5 7.7,4.5 4.3,2 8,4 8.3,4.5 0.3,0.4 3.9,2.2 8,4 4.1,1.7 7.7,3.5 8,4 0.3,0.4 3.9,2.2 8,4 4.1,1.7 7.7,3.5 8,3.9 0.3,0.4 4.6,2.2 9.5,4.1 5,1.8 9.2,3.7 9.5,4.1 0.3,0.4 5,2.1 10.5,3.9 5.5,1.8 10.2,3.6 10.5,4 0.5,0.6 17.4,5.7 24.5,7.4 1.6,0.3 3.2,1 3.5,1.4 0.5,0.7 19.1,5.2 27.5,6.7 2.2,0.4 4.2,1 4.5,1.4 0.6,0.9 21.1,4.5 35.8,6.2 5.6,0.6 10.2,1.5 10.2,1.9 0,1.6 34.4,3.4 64.5,3.4 30.1,-0 64.5,-1.8 64.5,-3.5 0,-0.3 4.8,-1.2 10.8,-1.9 15.9,-1.8 34.7,-5.2 35,-6.2 0.2,-0.5 1.4,-0.9 2.6,-0.9 1.3,-0 3.6,-0.4 5.2,-0.9 1.6,-0.5 5.4,-1.4 8.4,-2 11.8,-2.6 15.5,-3.6 16,-4.2 0.3,-0.4 3.4,-1.5 7,-2.4 10.3,-2.6 20.5,-5.8 21,-6.5 0.3,-0.3 5,-2.1 10.5,-3.9 5.5,-1.8 10.2,-3.5 10.5,-4 0.3,-0.4 4.6,-2.2 9.5,-4.1 5,-1.9 9.2,-3.7 9.5,-4.1 0.3,-0.4 3.9,-2.1 8,-3.8 4.1,-1.8 7.7,-3.6 8,-4 0.3,-0.5 3.9,-2.3 8,-4 4.1,-1.8 7.7,-3.6 8,-4 0.3,-0.5 4,-2.5 8.3,-4.5 4.2,-2 7.7,-4.1 7.7,-4.5 0,-0.5 1.2,-1.4 2.8,-2 3.7,-1.4 10.2,-5.2 12.4,-7.3 1,-1 3.3,-2.4 5.1,-3.2 1.9,-0.7 4.3,-2.4 5.5,-3.6 1.1,-1.2 3.1,-2.8 4.4,-3.4 4.6,-2.4 7.1,-4.1 10.2,-6.9 1.7,-1.5 3.5,-2.7 4.1,-2.7 0.5,-0 2.3,-1.4 3.9,-3.1 1.6,-1.7 3.7,-3.4 4.6,-3.7 1.9,-0.8 9.8,-7.1 14.3,-11.5 1.6,-1.5 3.2,-2.7 3.5,-2.7 0.4,-0 2.8,-2 5.3,-4.3 2.5,-2.3 7.4,-6.7 10.9,-9.7 9.9,-8.7 41,-40.5 41,-42 0,-0.3 1.4,-1.9 3,-3.5 1.7,-1.6 3,-3.2 3,-3.6 0,-0.4 1.2,-2 2.8,-3.6 5.4,-5.7 11.2,-12.8 11.2,-13.9 0,-0.6 1.6,-2.6 3.5,-4.5 1.9,-1.9 3.5,-3.9 3.5,-4.4 0,-0.6 1.3,-2.5 3,-4.3 1.6,-1.8 3,-3.6 3,-3.9 0,-0.3 1.1,-2.1 2.5,-3.9 1.4,-1.8 2.5,-3.8 2.5,-4.4 0,-0.6 0.6,-1.3 1.4,-1.6 0.8,-0.3 2.8,-3.2 4.6,-6.5 1.7,-3.2 3.4,-5.9 3.8,-5.9 0.4,-0 1.2,-1 1.8,-2.3 2.8,-5.7 5.9,-11.3 7,-12.4 0.7,-0.7 2.7,-4.3 4.5,-8 1.8,-3.8 3.6,-7 3.9,-7.3 1,-0.7 6,-11.4 6,-12.8 0,-0.6 0.6,-1.5 1.3,-1.9 0.7,-0.4 2.8,-4.4 4.6,-8.8 1.8,-4.4 3.6,-8.2 4,-8.5 0.8,-0.6 7.1,-16.5 7.1,-17.9 0,-0.6 0.4,-1.1 0.8,-1.1 0.5,-0 2.4,-4.6 4.2,-10.3 1.8,-5.6 3.6,-10.4 4,-10.7 0.7,-0.5 3.9,-10.6 6.5,-21 0.9,-3.6 2,-6.7 2.4,-7 0.7,-0.5 3.9,-13.3 6.2,-25 0.8,-3.6 1.6,-6.7 2,-7 0.9,-0.6 4.6,-22.9 6.1,-36.4 0.6,-5.8 1.4,-10.6 1.8,-10.6 1.8,-0 3.5,-31.3 3.5,-62.5 0,-31.1 -1.8,-65.5 -3.4,-65.5 -0.4,-0 -1.3,-4.6 -1.9,-10.2 -1.7,-14.1 -5.3,-35.2 -6.1,-35.8 -0.4,-0.3 -1.2,-3.4 -2,-7 -2.3,-11.8 -5.5,-24.5 -6.2,-25 -0.4,-0.3 -1.1,-1.9 -1.4,-3.5 -1.7,-7.1 -6.8,-24 -7.4,-24.5 -0.4,-0.3 -2.2,-5 -4,-10.5 -1.8,-5.5 -3.5,-10.2 -3.9,-10.5 -0.4,-0.3 -2.3,-4.6 -4.1,-9.5 -1.9,-5 -3.7,-9.2 -4.1,-9.5 -0.4,-0.3 -2.2,-3.9 -3.9,-8 -1.8,-4.1 -3.6,-7.7 -4,-8 -0.5,-0.3 -2.3,-3.9 -4,-8 -1.8,-4.1 -3.6,-7.7 -4,-8 -0.4,-0.3 -2.4,-4 -4.5,-8.3 -2,-4.2 -4.1,-7.7 -4.5,-7.7 -0.5,-0 -1.4,-1.2 -2,-2.8 -1.3,-3.5 -5.4,-10.6 -6.3,-11 -0.4,-0.2 -2.2,-3 -3.9,-6.3 -1.8,-3.2 -3.5,-5.9 -4,-5.9 -0.4,-0 -1.5,-1.6 -2.4,-3.5 -0.9,-1.9 -2.3,-3.9 -3.1,-4.6 -0.8,-0.6 -1.4,-1.5 -1.4,-2 0,-0.4 -1.4,-2.3 -3,-4.1 -1.7,-1.8 -3,-3.7 -3,-4.3 0,-0.5 -1.6,-2.5 -3.5,-4.4 -1.9,-1.9 -3.5,-3.9 -3.5,-4.5 0,-0.6 -1.2,-2.5 -2.8,-4.1 -1.5,-1.7 -4.3,-5.1 -6.2,-7.5 -1.9,-2.5 -4.9,-6.1 -6.6,-8 -1.8,-1.9 -4.2,-4.6 -5.4,-6 -11.8,-13.8 -46.9,-49 -48.8,-49 -0.2,-0 -2.1,-1.4 -4.1,-3.1 -2,-1.7 -5.5,-4.7 -7.9,-6.7 -2.3,-2.1 -5.9,-5.2 -8,-6.9 -2,-1.8 -4.1,-3.3 -4.7,-3.3 -0.5,-0 -2.5,-1.6 -4.4,-3.5 -1.9,-1.9 -3.9,-3.5 -4.5,-3.5 -0.6,-0 -2.6,-1.4 -4.4,-3 -1.8,-1.7 -3.6,-3 -3.9,-3 -0.3,-0 -2.1,-1.1 -3.9,-2.5 -1.8,-1.4 -3.8,-2.5 -4.4,-2.5 -0.6,-0 -1.3,-0.7 -1.6,-1.5 -0.3,-0.8 -2.6,-2.4 -5.2,-3.6 -2.5,-1.2 -5.3,-3 -6.2,-3.8 -1.8,-1.7 -6.5,-4.5 -11.7,-7 -1.8,-0.8 -3.3,-1.8 -3.3,-2.3 0,-0.4 -3,-2.1 -6.7,-3.9 -3.8,-1.8 -7,-3.6 -7.4,-4 -0.3,-0.5 -4.3,-2.5 -9,-4.5 -4.6,-2 -8.6,-4 -8.9,-4.5 -0.3,-0.4 -3.9,-2.2 -8,-4 -4.1,-1.7 -7.7,-3.4 -8,-3.8 -0.6,-0.8 -16.5,-7.1 -17.9,-7.1 -0.6,-0 -1.1,-0.4 -1.1,-0.9 0,-0.5 -4.6,-2.3 -10.2,-4.2 -5.7,-1.8 -10.5,-3.6 -10.8,-3.9 -0.6,-0.9 -21.2,-7 -23.4,-7 -0.9,-0 -1.6,-0.4 -1.6,-0.9 0,-0.8 -14.1,-4.5 -28,-7.2 -3.6,-0.8 -6.7,-1.6 -7,-2 -0.5,-0.8 -28.5,-5.3 -40,-6.5 -3.6,-0.4 -6.7,-1 -7,-1.4 -1.1,-1.6 -27,-3.1 -57,-3.5 -17.3,-0.1 -33.3,-0.1 -35.5,0.1zM557.5,428.4c2.2,0.3 11.4,1.3 20.5,2.2 9.1,1 16.7,2 17,2.4 0.3,0.3 5.2,1.4 11,2.4 14.6,2.4 26.4,4.8 27,5.6 0.3,0.3 6.7,2.1 14.3,3.9 7.5,1.8 13.7,3.7 13.7,4.2 0,0.5 0.9,0.9 2,0.9 1,-0 2.9,0.4 4.2,0.9 1.3,0.5 5.7,1.9 9.8,3.2 4.1,1.2 7.7,2.6 8,2.9 0.3,0.4 1.4,0.9 2.5,1.2 5.1,1.5 20,7 20.5,7.7 0.3,0.4 4.1,2.2 8.4,4 4.3,1.8 8.5,3.9 9.3,4.7 0.8,0.8 2,1.4 2.7,1.4 2,-0 12.6,4.9 12.6,5.8 0,0.4 3,2 6.8,3.6 3.7,1.6 7.2,3.4 7.7,4.1 0.6,0.6 3.5,2.4 6.5,3.9 3,1.5 6,3.2 6.5,3.9 0.6,0.7 3.6,2.5 6.8,4.2 3.2,1.6 6.7,3.8 7.7,4.7 1.1,1 2.2,1.8 2.5,1.8 0.9,-0 8.9,5.3 10.7,7.2 1,0.9 3.8,2.9 6.3,4.4 2.5,1.4 4.5,2.9 4.5,3.3 0,0.5 2.3,2.2 5,3.9 2.8,1.7 5,3.6 5,4.2 0,0.5 0.5,1 1.1,1 0.6,-0 2.6,1.2 4.4,2.7 1.8,1.6 5.1,4.4 7.5,6.3 6.4,5.3 12.5,10.8 19.9,18 3.6,3.6 8,7.6 9.8,8.8 1.8,1.3 3.8,3.5 4.5,5 0.7,1.5 2.3,3.1 3.6,3.7 1.2,0.5 2.2,1.4 2.2,1.9 0,0.5 2.4,3.3 5.3,6.2 2.8,2.9 6.9,7.3 8.9,9.6 15,17.5 15.8,18.5 15.8,19.7 0,0.6 0.5,1.1 1,1.1 0.6,-0 2.5,2.2 4.2,5 1.7,2.7 3.5,5 3.9,5 0.4,-0 2.3,2.5 4.1,5.5 1.8,3 3.6,5.5 4,5.5 0.3,-0 1.3,1.2 2.1,2.7 3,5.9 6,10.8 7.2,11.8 0.7,0.5 2.5,3.5 4.1,6.5 1.6,3 3.4,5.9 4.1,6.5 0.7,0.5 2.4,3.5 3.9,6.5 1.5,3 3.2,5.9 3.9,6.5 0.6,0.5 2.2,3.5 3.5,6.5 1.3,3 3.1,6.2 4,7.1 0.8,0.8 2.9,4.9 4.5,9 1.6,4.1 3.3,7.6 3.6,7.9 0.7,0.5 4.1,8.3 6.9,15.7 0.7,1.8 1.6,3.3 2,3.3 0.4,-0 1,1 1.3,2.2 0.7,3.4 6.1,18.2 6.8,18.8 0.7,0.6 5.6,16.3 6.5,20.7 0.4,1.8 1,3.3 1.4,3.3 0.5,-0 2.3,6.2 4.1,13.7 1.8,7.6 3.6,14 3.9,14.3 0.4,0.3 1.5,4.5 2.4,9.5 0.9,4.9 2.1,10.8 2.6,13 0.4,2.2 1.2,6.7 1.6,10 0.4,3.3 1,6.2 1.4,6.5 2.2,1.5 6,52.2 6,80.5 0,25 -4.1,76.5 -6,76.5 -0.4,-0 -1,2.8 -1.4,6.2 -0.4,3.5 -1.1,7.9 -1.5,9.8 -0.5,1.9 -1.7,8 -2.7,13.5 -1,5.5 -2.1,10.2 -2.5,10.5 -0.4,0.3 -2.1,6.5 -3.9,13.7 -1.7,7.3 -3.5,13.3 -4,13.3 -0.4,-0 -1,1.5 -1.4,3.2 -1,5 -5.9,20.2 -6.7,20.8 -0.4,0.3 -2.2,5 -4,10.5 -1.8,5.5 -3.9,10.6 -4.5,11.3 -0.7,0.6 -1.6,2.2 -1.9,3.5 -0.9,3.1 -5.7,14.1 -6.4,14.7 -0.4,0.3 -2,3.8 -3.6,7.9 -1.6,4.1 -3.7,8.2 -4.5,9 -0.9,0.9 -2.7,4.1 -4,7.1 -1.3,3 -2.9,5.9 -3.5,6.5 -0.7,0.5 -2.4,3.5 -3.9,6.5 -1.5,3 -3.2,6 -3.9,6.5 -0.7,0.6 -2.5,3.5 -4.1,6.5 -1.6,3 -3.7,6.3 -4.8,7.3 -1,1 -1.8,2.2 -1.8,2.8 0,0.6 -1.1,2.5 -2.5,4.3 -1.4,1.8 -2.5,3.7 -2.5,4.2 0,0.5 -0.9,1.7 -1.9,2.6 -1.1,0.9 -3.1,3.7 -4.6,6.2 -1.5,2.5 -3.1,4.6 -3.5,4.6 -0.4,-0 -2,2 -3.4,4.5 -1.5,2.4 -3.5,4.9 -4.6,5.5 -1.1,0.6 -2,1.6 -2,2.1 0,1.1 -2.3,4.2 -7.8,10.5 -1.5,1.7 -4.7,5.5 -7.2,8.4 -2.5,2.9 -8,8.8 -12.2,13.1 -4.3,4.3 -7.8,8.2 -7.8,8.8 0,0.5 -1.9,2.4 -4.2,4.3 -2.4,1.8 -7.1,6 -10.5,9.3 -12.8,12.4 -28.3,25.5 -30.2,25.5 -0.5,-0 -1.5,0.9 -2.1,2 -0.6,1.1 -3.1,3.1 -5.5,4.6 -2.5,1.4 -4.5,3 -4.5,3.4 0,0.4 -2.1,2 -4.6,3.5 -2.5,1.5 -5.3,3.5 -6.2,4.6 -0.9,1 -2,1.9 -2.5,1.9 -0.5,-0 -2.3,1.1 -4.1,2.5 -1.8,1.4 -3.8,2.5 -4.4,2.5 -0.6,-0 -1.9,0.8 -2.9,1.8 -1,1.1 -4.3,3.2 -7.3,4.8 -3,1.6 -5.9,3.4 -6.5,4.1 -0.5,0.7 -3.5,2.4 -6.5,3.9 -3,1.5 -5.9,3.2 -6.5,3.9 -0.5,0.6 -3.5,2.2 -6.5,3.5 -3,1.3 -6.2,3.1 -7.1,4 -0.8,0.8 -4.9,2.9 -9,4.5 -4.1,1.6 -7.6,3.3 -7.9,3.6 -0.3,0.4 -4.6,2.4 -9.5,4.4 -4.9,1.9 -9.2,3.9 -9.5,4.4 -0.3,0.4 -5,2.2 -10.5,4 -5.5,1.8 -10.2,3.6 -10.5,4 -0.6,0.8 -15.8,5.7 -20.7,6.7 -1.8,0.4 -3.3,1 -3.3,1.4 0,0.5 -6.2,2.3 -13.7,4.1 -7.6,1.8 -14,3.6 -14.3,3.9 -0.6,0.8 -11.5,3 -27.5,5.6 -6,1 -11.2,2.1 -11.5,2.5 -1.6,2 -53.9,5.9 -79,5.9 -25.7,-0.1 -76.4,-3.9 -78,-5.9 -0.3,-0.4 -5.4,-1.5 -11.5,-2.5 -16,-2.6 -26.9,-4.8 -27.5,-5.6 -0.3,-0.3 -6.7,-2.1 -14.2,-3.9 -7.6,-1.8 -13.8,-3.6 -13.8,-4.1 0,-0.4 -1.7,-1.1 -3.7,-1.5 -5.1,-0.9 -19.7,-5.7 -20.3,-6.6 -0.3,-0.4 -5,-2.2 -10.5,-4 -5.5,-1.8 -10.3,-3.6 -10.6,-4.1 -0.5,-0.8 -6,-3 -14.4,-6 -1.6,-0.6 -3.4,-1.6 -4,-2.2 -0.5,-0.6 -4.3,-2.5 -8.4,-4.1 -4.1,-1.6 -8,-3.5 -8.7,-4.3 -0.7,-0.7 -4.3,-2.6 -7.9,-4.3 -3.6,-1.7 -6.5,-3.4 -6.5,-3.8 0,-0.4 -2.3,-1.8 -5.1,-3.1 -2.9,-1.3 -6,-3 -6.9,-3.9 -0.9,-0.9 -4.1,-2.9 -7.1,-4.5 -3,-1.6 -6.2,-3.7 -7.2,-4.8 -1,-1 -2.3,-1.8 -2.9,-1.8 -0.6,-0 -2.6,-1.1 -4.4,-2.5 -1.8,-1.4 -3.7,-2.5 -4.3,-2.5 -0.5,-0 -1.4,-0.6 -1.8,-1.4 -0.4,-0.7 -3.2,-2.8 -6,-4.6 -2.9,-1.7 -5.3,-3.5 -5.3,-4 0,-0.4 -2,-2 -4.5,-3.4 -2.4,-1.5 -4.9,-3.5 -5.5,-4.6 -0.6,-1.1 -1.5,-2 -2.1,-2 -1.1,-0 -6.8,-4.1 -10.9,-8 -1.5,-1.4 -4.8,-4.3 -7.4,-6.5 -4.7,-4 -19.8,-18.1 -24.6,-22.9 -5.1,-5.2 -17.7,-18.7 -22,-23.6 -4.3,-4.9 -5.8,-6.7 -12.9,-15.1 -1.7,-2 -3.1,-4.2 -3.1,-4.8 0,-0.6 -0.5,-1.1 -1,-1.1 -0.6,-0 -2.5,-2.3 -4.2,-5 -1.7,-2.8 -3.4,-5 -3.9,-5 -0.4,-0 -1.9,-2.1 -3.4,-4.6 -1.5,-2.5 -3.5,-5.3 -4.6,-6.2 -1,-0.9 -1.9,-2 -1.9,-2.5 0,-0.5 -1.1,-2.3 -2.5,-4.1 -1.4,-1.8 -2.5,-3.6 -2.5,-4 0,-0.4 -0.8,-1.5 -1.8,-2.6 -0.9,-1 -3,-4.5 -4.7,-7.6 -1.6,-3.2 -3.7,-6.5 -4.6,-7.4 -0.9,-1 -2.6,-4 -3.9,-6.9 -1.3,-2.8 -2.7,-5.1 -3.1,-5.1 -0.4,-0 -2.1,-3 -3.9,-6.8 -1.8,-3.7 -3.6,-6.9 -4,-7.2 -1.1,-0.7 -6,-11.9 -6,-13.6 0,-0.7 -0.6,-1.9 -1.3,-2.6 -1.6,-1.6 -6.7,-12.5 -6.7,-14.3 0,-0.8 -0.7,-2 -1.5,-2.8 -1.2,-1.2 -6.3,-14.3 -8.3,-21.2 -0.3,-1.1 -0.8,-2.2 -1.2,-2.5 -0.9,-0.7 -7,-20.1 -7,-22.3 0,-0.9 -0.4,-1.7 -0.9,-1.7 -0.5,-0 -2.4,-6.2 -4.2,-13.7 -1.8,-7.6 -3.6,-14 -4,-14.3 -0.9,-0.6 -6.9,-32.7 -6.9,-36.6 0,-1.2 -0.4,-2.4 -0.9,-2.6 -2.1,-0.8 -6.1,-50.9 -6.1,-77.3 0,-26.7 3.8,-77.8 5.9,-79.5 0.4,-0.3 1.5,-5.5 2.5,-11.5 2.6,-16 4.8,-26.9 5.6,-27.5 0.3,-0.3 2.1,-6.7 3.9,-14.3 1.8,-7.5 3.7,-13.7 4.2,-13.7 0.5,-0 0.9,-0.6 0.9,-1.4 0,-2.1 6.2,-22 7.1,-22.6 0.4,-0.3 2.3,-5.4 4.3,-11.3 1.9,-5.9 4.2,-11.5 5.1,-12.3 0.8,-0.9 1.5,-2.1 1.5,-2.8 0,-1.6 4.9,-12.9 5.9,-13.6 0.4,-0.3 2,-3.8 3.6,-7.9 1.6,-4.1 3.7,-8.2 4.5,-9 0.9,-0.9 2.7,-4.1 4,-7.1 1.3,-3 2.9,-6 3.5,-6.5 0.7,-0.6 2.4,-3.5 3.9,-6.5 1.5,-3 3.2,-6 3.9,-6.5 0.7,-0.6 2.6,-3.6 4.2,-6.8 1.7,-3.2 3.9,-6.8 5,-8 1.2,-1.2 2.6,-3.3 3.3,-4.7 2.3,-4.6 4,-7.3 5,-7.9 0.5,-0.3 2.4,-3 4.2,-5.9 1.7,-2.8 3.5,-5.2 4,-5.2 0.4,-0 2,-2 3.4,-4.5 1.5,-2.4 3.5,-4.9 4.6,-5.5 1.1,-0.6 2,-1.6 2,-2.1 0,-1.3 2.9,-5 14.8,-18.7 4.3,-4.9 18.9,-20.6 22.6,-24.2 7.9,-7.7 20,-19 24.1,-22.5 2.6,-2.2 6.1,-5.2 7.8,-6.7 6.7,-5.7 9.5,-7.8 10.6,-7.8 0.5,-0 1.5,-0.9 2.1,-2 0.6,-1.1 3.1,-3.1 5.5,-4.6 2.5,-1.4 4.5,-3 4.5,-3.4 0,-0.5 2.4,-2.3 5.3,-4 2.8,-1.8 5.6,-3.9 6,-4.6 0.4,-0.8 1.3,-1.4 1.8,-1.4 0.6,-0 2.5,-1.1 4.3,-2.5 1.8,-1.4 3.6,-2.5 4,-2.5 0.4,-0 1.5,-0.8 2.6,-1.8 1,-0.9 4.5,-3.1 7.7,-4.7 3.2,-1.7 6.3,-3.5 6.8,-4.2 0.6,-0.7 3.5,-2.4 6.5,-3.9 3,-1.5 6,-3.2 6.5,-3.9 0.6,-0.6 3.9,-2.4 7.5,-4 3.6,-1.7 6.8,-3.5 7.2,-4.1 0.4,-0.6 4,-2.3 8,-3.9 4,-1.6 7.8,-3.5 8.3,-4.1 0.6,-0.6 4.4,-2.3 8.5,-3.8 4.1,-1.5 7.7,-3.1 8,-3.6 0.4,-0.7 14.7,-6.1 20.5,-7.8 1.1,-0.3 2.2,-0.8 2.5,-1.2 0.6,-0.8 16,-5.7 20.8,-6.6 1.7,-0.4 3.2,-1 3.2,-1.4 0,-0.5 6.2,-2.3 13.8,-4.1 7.5,-1.8 13.9,-3.6 14.2,-3.9 0.6,-0.8 11.5,-3 27.5,-5.6 6.1,-1 11.2,-2.1 11.5,-2.5 0.7,-0.8 15.7,-2.6 33,-3.9 8,-0.6 16.5,-1.2 19,-1.4 5.6,-0.5 63,0.2 68.5,0.8z" android:strokeColor="#00000000"/>
++    <path android:fillColor="#000000"
++        android:pathData="M469.9,505.6c-0.7,0.9 -4,3.7 -7.4,6.2 -3.3,2.5 -8.5,6.8 -11.5,9.6 -3.1,2.8 -6.7,6 -8,7.1 -5.2,4.3 -15.1,13.3 -31.4,28.9 -18.8,17.8 -18.7,17.7 -23.6,23.3 -5.3,5.9 -20.4,22.7 -21,23.3 -0.5,0.4 -11.2,12.7 -17.4,20 -2.9,3.4 -22.1,28.6 -27.1,35.5 -2.2,3.1 -4.5,6.2 -5,6.8 -1.2,1.3 -6.4,9.4 -11.5,17.7 -1.9,3 -6.3,10 -9.8,15.4 -3.5,5.4 -6.6,10.6 -7,11.5 -0.3,0.9 -3.8,7.3 -7.9,14.3 -4,7 -7.3,13.2 -7.3,13.8 0,0.5 -0.4,1 -1,1 -1.1,-0 -12.1,22.4 -20.9,42.2 -1,2.4 -2.6,5.9 -3.5,8 -0.9,2 -1.6,4 -1.6,4.5 0,0.4 -0.7,2.1 -1.5,3.6 -0.8,1.5 -1.9,4.2 -2.4,6 -0.5,1.8 -2.1,6.3 -3.5,10.2 -2.6,7 -6.4,18 -9.1,26.5 -0.8,2.5 -1.8,7 -2.4,10 -0.5,3 -1.4,6.8 -2,8.3 -1.6,4.1 -1.4,18.7 0.5,30.2 3.6,22.8 6.1,31.8 16.6,59.8 1.4,3.8 8.6,17.8 13.4,26 2.1,3.8 4.6,8.1 5.4,9.7 1.8,3.4 6.7,10.4 9.5,13.5 1.1,1.2 4.2,4.8 7,8.1 2.7,3.2 6.6,7.7 8.6,9.9 2,2.2 5.1,5.7 7,7.7 1.9,2.1 4,3.8 4.6,3.8 1.7,-0 1.7,-6.6 -0.2,-17.1 -0.7,-4.6 -1.9,-12.5 -2.5,-17.4 -1.1,-9.4 -2.4,-17.5 -6.2,-38.5 -2.1,-11.4 -2.3,-15.2 -2.2,-43 0.1,-16.8 0.6,-34.8 1.2,-40 0.6,-5.2 1.6,-14 2.2,-19.5 1.2,-11.5 4.1,-24.8 7.7,-35.3 2.4,-7.5 3,-8.9 6.5,-17.7 4.2,-10.3 16.7,-36.2 22.4,-46.5 2,-3.6 5,-9 6.6,-12 1.7,-3 6.1,-10.8 9.9,-17.2 3.8,-6.4 6.9,-12 6.9,-12.5 0,-0.4 1.8,-3.4 4,-6.6 2.2,-3.1 4,-5.9 4,-6.1 0,-0.2 2.1,-3.7 4.6,-7.8 2.5,-4 5.8,-9.3 7.3,-11.7 4.8,-8.1 21.3,-32.6 22.5,-33.6 0.6,-0.6 7.4,-10 15,-21 7.6,-11 14.8,-20.8 16,-21.7 3.8,-3 5,-0.4 6.9,14.9 1.9,14.7 4.4,31.6 5.6,37.3 0.9,4.3 2.6,4.2 8.7,-0.3 2.3,-1.8 6.8,-5 10,-7.2 3.1,-2.2 7.9,-5.6 10.5,-7.5 21.2,-15.3 23.4,-16.6 25.6,-14.9 1.7,1.4 1.4,9.1 -1.3,34.9 -2.3,22.7 -2.2,23.6 3.6,31.3 8.9,11.7 14.1,23.8 16.3,37.9 0.9,5.6 0.8,7.7 -0.7,13 -1.8,6.6 -5.5,14.6 -8.7,18.7 -2.6,3.3 -2.5,6.1 0.4,6.1 8.9,-0 31.1,-6.3 43.7,-12.4 14.1,-6.9 25.7,-16.6 33.2,-27.7 4.1,-6.1 4.4,-4.7 -5.8,-26.4 -13.8,-29.4 -20,-48.1 -25.4,-75.5 -1.6,-8.6 -2,-14.4 -2,-32.5 0.1,-22.9 0.5,-26 6.9,-51.3 1.7,-6.6 0.6,-7.2 -7.4,-3.8 -1.6,0.7 -10.4,4.1 -19.5,7.6 -9.1,3.4 -20.3,7.7 -25,9.6 -13.4,5.2 -13.7,5.3 -15.5,1.1 -0.8,-2 -1.9,-6.7 -2.5,-10.4 -0.6,-3.7 -1.9,-12.9 -3,-20.3 -1.1,-7.4 -2.3,-15.2 -2.6,-17.3 -0.5,-3 -1,-3.7 -2.9,-3.7 -1.2,-0 -2.9,0.7 -3.6,1.6z" android:strokeColor="#00000000"/>
++    <path android:fillColor="#000000"
++        android:pathData="M509.5,779.6c-6,0.8 -11.6,1.6 -12.2,1.9 -3,1.1 -0.6,4.5 11.4,16.4 11,11 20.2,21.1 38.2,42.1 2.6,3 5.4,6.6 6.1,8 0.7,1.3 2,3.1 2.8,3.9 6.5,6.5 46.3,63.3 53.5,76.3 1.4,2.5 3.6,6.3 5,8.5 2.6,4.1 6.9,11.9 15.5,28.3 3.1,5.8 5.8,10.7 6.1,11 0.8,0.7 2.9,5.2 8.5,18 2.6,5.8 5.1,11.2 5.6,12.1 1.1,2 13,33.1 16,41.9 1.2,3.6 2.9,7.9 3.6,9.7 0.8,1.7 1.4,4 1.4,5.2 0,1.2 0.5,2.1 1.1,2.1 3.9,-0 -3.9,-41.9 -14.1,-76.5 -5.2,-17.8 -18.6,-51.7 -21.9,-55.7 -0.6,-0.7 -4.4,-7.8 -8.4,-15.8 -6.3,-12.4 -9.3,-18 -15.2,-27.8 -1.4,-2.3 -7.2,-11.3 -13.1,-20.1 -2.7,-4 -5.3,-8.1 -5.9,-9 -0.5,-0.9 -2.7,-4 -4.7,-6.8 -2.1,-2.8 -3.8,-5.4 -3.8,-5.8 0,-0.7 -17.5,-23.3 -19.4,-25 -0.6,-0.6 -3.3,-3.7 -6.1,-7 -18.9,-22.6 -34.6,-38 -38.3,-37.4 -0.4,0.1 -5.6,0.8 -11.7,1.5z" android:strokeColor="#00000000"/>
++    <path android:fillColor="#000000"
++        android:pathData="M737.4,799.6c-1.2,0.3 -3.1,1.5 -4.3,2.8 -3.9,4.2 -4.3,10.4 -3,52.6 1.3,45.8 0.7,139.7 -0.9,144.9 -0.6,1.8 -1.6,6.7 -2.2,10.8 -1,7.3 -2,11.4 -6.1,24.3 -5.3,16.8 -13.8,31.2 -26,44 -6.5,6.9 -12.9,15 -12.9,16.4 0,0.3 0.5,0.6 1,0.6 0.6,-0 1,-0.7 1,-1.5 0,-0.8 0.6,-1.5 1.4,-1.5 3.6,-0 25.6,-20.8 34,-32 2.3,-3 4.7,-6.1 5.4,-6.8 1.7,-1.9 11.5,-18.7 13.9,-24.2 6.2,-13.5 8.7,-22.1 11.2,-38.5 4.5,-29 5.3,-35.4 5.8,-44.8 0.3,-5.3 1,-9.7 1.4,-9.7 0.5,-0 0.9,-0.6 0.9,-1.3 0,-0.7 1.1,-2.9 2.5,-5 2.2,-3.2 3.1,-3.7 6.5,-3.7 6.9,-0 16.1,8 22.5,19.5 6.8,12.4 8.9,24.1 8.2,46.5 -0.8,30.2 -6.7,62.3 -17,94.1 -1.9,5.7 -4.8,14.7 -6.5,19.9 -1.7,5.2 -4.9,14.7 -7.2,21 -2.3,6.3 -4.6,12.8 -5.2,14.5 -1.2,3.6 -4.1,9.8 -4.9,10.5 -0.3,0.3 -1.1,2.1 -1.9,4 -2.9,7.3 -6.5,15.1 -15.1,32.5 -4.9,9.9 -8.9,18.3 -8.9,18.7 0,0.5 0.5,0.8 1,0.8 0.6,-0 1,-0.7 1,-1.5 0,-0.8 0.7,-1.5 1.5,-1.5 0.8,-0 1.9,-0.9 2.5,-2.1 0.7,-1.1 2,-3 3,-4.2 1,-1.2 5,-6.5 8.9,-11.7 3.9,-5.2 7.9,-10.4 8.9,-11.5 2.8,-3 18.2,-26.9 18.2,-28.2 0,-0.3 0.6,-1.4 1.4,-2.2 1.1,-1.3 3.8,-6.1 11.7,-21.1 3.2,-6.1 14.2,-30.1 16.4,-36 0.8,-1.9 2.3,-6 3.5,-9 6.5,-16.7 11.9,-36.4 16.4,-59.5 1.8,-9.5 4.6,-42.3 4.6,-54.9 0,-10.4 -2.7,-41.8 -4,-46.1 -0.4,-1.7 -1.1,-4.8 -1.5,-7 -0.3,-2.2 -1.3,-6.5 -2.1,-9.5 -3,-10.4 -6.8,-22.5 -7.5,-24 -0.4,-0.8 -1.9,-4.2 -3.4,-7.5 -1.4,-3.3 -3,-6.7 -3.5,-7.5 -0.5,-0.8 -2.6,-4.3 -4.6,-7.7 -1.9,-3.5 -4,-6.5 -4.5,-6.9 -0.5,-0.3 -0.9,-1.2 -0.9,-2.1 0,-1.3 -2.4,-4.6 -9.7,-13.3 -3.7,-4.5 -18.7,-19 -24.3,-23.5 -10.5,-8.5 -19.9,-12.3 -26.6,-10.9z" android:strokeColor="#00000000"/>
++</vector>
+Index: app/src/main/res/drawable/ic_notification_tbnaalogo.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/ic_notification_tbnaalogo.xml	(date 1607308177010)
++++ app/src/main/res/drawable/ic_notification_tbnaalogo.xml	(date 1607308177010)
+@@ -0,0 +1,6 @@
++<vector android:autoMirrored="true" android:height="1064dp"
++    android:viewportHeight="1064" android:viewportWidth="1080"
++    android:width="1080dp" xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="#000000"
++        android:pathData="M504.5,1c-2.2,0.5 -6.6,0.9 -9.8,0.9 -3.2,0.1 -8.8,0.5 -12.5,1 -3.7,0.6 -10.5,1.5 -15.2,2.1 -4.7,0.6 -11.1,1.5 -14.2,2 -13.7,2.3 -18.6,3.2 -22.5,4.1 -8.8,1.9 -13.9,3.1 -17.3,3.9 -1.9,0.5 -5.7,1.4 -8.5,2.1 -2.7,0.6 -6.3,1.5 -8,2 -26.2,7.6 -43.8,13.5 -63,21.3 -15.8,6.4 -52.5,24.3 -62.7,30.5 -3.7,2.3 -7,4.1 -7.3,4.1 -0.4,-0 -3.3,1.8 -6.5,4 -3.2,2.2 -6.2,4 -6.5,4 -1,-0 -21.6,14 -33.5,22.8 -24.4,18.1 -42.8,34.2 -66,57.8 -52.7,53.7 -91.8,115.4 -118.3,186.4 -8.2,22.1 -14.9,44.3 -18.8,62.5 -0.6,2.7 -1.5,6.6 -1.9,8.5 -4.4,19.3 -7.1,37 -10.2,67 -1.6,15 -1.6,73 0,88.5 3.4,33.4 7.6,58.1 14.2,84 4,15.3 4.2,16.1 7.9,28 3.7,12.2 11.2,32.9 17.6,48.5 4.3,10.4 20.8,43.7 26.5,53.5 2.9,4.9 6,10.3 7,12 7.6,13.3 27.6,42.1 39.4,56.8 15.9,19.9 27.2,32.3 48.6,53.2 43.1,42.1 95.6,77.7 151.5,103 12.2,5.5 14.4,6.5 22,9.5 32.7,13.1 75.9,25.3 103.5,29.5 1.9,0.3 6.4,1 10,1.6 3.6,0.6 9.2,1.4 12.5,1.9 3.3,0.4 11.2,1.5 17.5,2.4 6.3,0.8 16,2 21.5,2.6 13,1.3 64.1,1.3 77,-0 5.5,-0.6 14.5,-1.6 20,-2.1 31,-3.2 62.3,-9.4 95.8,-19 19.5,-5.6 46.7,-15.4 61.7,-22.1 2.5,-1.1 6.5,-2.9 9,-4 36.9,-16.1 88.6,-48 118.4,-73.1 52.3,-43.9 88.2,-85.1 121,-139 3.6,-6 6.6,-11 6.6,-11.2 0,-0.2 2.2,-4.1 4.8,-8.7 18.6,-32.4 38.2,-82.5 48.1,-123.3 7,-28.6 7.1,-29.2 11.1,-55.7 0.5,-3.5 1.4,-10.6 1.9,-15.8 0.6,-5.2 1.5,-14 2.1,-19.5 0.5,-5.5 1,-22.4 1,-37.5 0,-15.1 -0.5,-32 -1,-37.5 -3.3,-31.1 -3,-28.7 -6.1,-48.8 -0.6,-3.9 -1.4,-9 -1.9,-11.2 -0.5,-2.2 -1.4,-6.7 -2.1,-10 -9.7,-47.5 -28.7,-99.4 -52.2,-142.5 -6,-11.1 -7.5,-13.8 -11.4,-20.1 -2.2,-3.5 -5.5,-8.9 -7.3,-11.9 -10.2,-16.5 -32.7,-46.9 -47,-63.1 -16.2,-18.5 -43.1,-45 -59.9,-59.1 -17.3,-14.4 -59,-44.8 -61.6,-44.8 -0.3,-0 -3.3,-1.8 -6.5,-4 -3.2,-2.2 -6.2,-4 -6.5,-4 -0.4,-0 -1.9,-0.8 -3.3,-1.8 -6.2,-4.3 -35.4,-19.3 -51.7,-26.4 -31.2,-13.8 -70.8,-27 -99,-32.9 -2.7,-0.6 -6.8,-1.5 -9,-2 -15,-3.4 -25.8,-5 -53,-8 -5.5,-0.6 -13.4,-1.5 -17.5,-2.1 -9.6,-1.3 -73.2,-1.9 -78.5,-0.8zM496.9,72.7c0.5,2.1 1.5,7.6 2.1,12.3 0.6,4.7 1.5,10.7 2,13.5 0.5,2.7 1.4,8.8 2,13.5 1.8,13.8 3.5,20.5 5.2,20.8 0.9,0.2 4.9,-1.1 9,-2.8 4,-1.8 10.5,-4.3 14.3,-5.7 3.9,-1.4 8.8,-3.4 11,-4.4 4.3,-1.9 28.3,-11.2 35.3,-13.7 2.3,-0.8 4.6,-1.2 4.9,-0.8 0.6,0.6 0.1,2.8 -3.2,15.1 -5.1,18.6 -5.8,24.2 -5.9,48.5 -0.1,22.9 0.9,33.7 4.4,47 0.5,1.9 1.8,7.5 3,12.5 1.2,4.9 2.5,9.9 2.9,11 0.4,1.1 1.8,5.1 3,9 1.3,3.8 2.6,7.9 3.1,9 0.5,1.1 2.1,5.1 3.5,8.9 1.5,3.8 3.1,7.7 3.6,8.5 0.4,0.9 2.3,5 4,9.1 1.8,4.1 5.6,12.2 8.5,17.9 5.3,10.2 5.3,10.3 3.9,13.9 -2,4.7 -11.6,15.7 -20.5,23.5 -13.7,12 -42.2,23.1 -67.2,26.2 -7,0.9 -7.4,-0.1 -2.5,-6.6 9.4,-12.5 12.3,-21.2 11.3,-34.4 -1,-14.4 -6.3,-27 -18.6,-44l-6,-8.3 1.5,-16.8c1.7,-19.2 3.4,-36.8 4.1,-43.4 0.3,-2.9 0,-5.1 -0.8,-6.3 -1.6,-2.1 -0.1,-3 -29.6,18.2 -11.2,8 -21.9,15.6 -23.7,16.8 -1.8,1.2 -3.6,2.7 -4,3.3 -0.3,0.5 -1.6,1 -2.9,1 -2.1,-0 -2.4,-0.7 -4,-12.3 -1,-6.7 -2.2,-15.6 -2.6,-19.7 -0.5,-4.1 -1.4,-9.9 -1.9,-12.9 -0.6,-2.9 -1.1,-7.8 -1.1,-10.7 0,-6.2 -1.4,-10.4 -3.4,-10.4 -2,-0 -8.4,8.5 -27.3,36.2 -5.3,7.9 -12,17.6 -14.7,21.6 -6.6,9.5 -12.7,19 -21.6,33.7 -8.7,14.2 -15.1,24.4 -19.1,30.2 -1.6,2.3 -2.9,4.4 -2.9,4.8 0,0.4 -0.8,1.9 -1.9,3.3 -1,1.5 -3.1,4.9 -4.6,7.7 -1.6,2.7 -4.2,7.4 -5.9,10.4 -8.5,14.9 -12.4,22.2 -21.4,40.1 -17.5,35 -22.1,46.5 -29.4,74.4 -5.1,19.5 -9.6,95.2 -6.9,115.9 1.3,9.9 4.4,29.4 6.2,39.2 1.2,6.4 3.1,19.6 5.4,36 0.7,5.5 1.9,13.7 2.6,18.3 0.7,4.5 0.9,8.6 0.5,9 -0.4,0.4 -4.2,-2.9 -8.5,-7.3 -33.9,-35.3 -58.1,-78.1 -68.9,-122 -3.5,-14.1 -4.2,-17.8 -5.6,-29.5 -2.9,-22.7 -2.9,-22.7 -0.1,-34.5 1.5,-6.1 3,-12.6 3.5,-14.5 0.4,-1.9 1.3,-4.9 1.9,-6.5 0.7,-1.7 2.9,-8.4 5.1,-15 5.2,-16.1 11.7,-33.2 16.7,-44.5 0.8,-1.9 2.1,-4.9 2.8,-6.5 11.1,-25.4 32.6,-67.4 37.1,-72.6 0.8,-0.8 1.4,-1.8 1.4,-2.2 0,-0.7 13.4,-22.3 24.9,-40.2 14.1,-21.9 42.6,-59 60,-78.1 2.5,-2.7 7.3,-8.1 10.6,-11.8 17,-19.2 60.6,-62.2 76,-74.9 3.3,-2.7 8.3,-7.1 11,-9.6 2.8,-2.6 7.7,-6.8 11,-9.3 3.3,-2.5 7.8,-6.2 9.9,-8.2 2.2,-2 4.6,-3.6 5.3,-3.6 0.7,-0 1.7,1.7 2.2,3.7zM560.9,387.7c5.9,6 13.6,14.1 17.1,18.2 3.6,4.1 8.5,9.8 11,12.5 4.7,5.3 5.8,6.7 21.2,26.1 8.4,10.6 12.5,16.3 23.1,32 11,16.1 18.4,28 24.3,39 1.1,2.2 3.1,5.8 4.3,7.9 4.2,7.4 7.1,13.3 18,36.9 2.3,4.9 4.1,9.3 4.1,9.8 0,0.5 1.1,3.2 2.5,6.1 2.5,5.5 3.4,8 8.9,23.8 7.5,21.6 12.8,41.8 17.6,66.5 1.1,6 2.5,13 3,15.5 1.7,8.1 2.3,21.6 1.2,23.6 -1.1,1.8 -1.1,1.7 -1.2,-0.4 0,-1.3 -0.8,-4.4 -1.9,-7 -1,-2.6 -3.7,-10.3 -5.9,-17.2 -2.2,-6.9 -4.8,-14.3 -5.8,-16.5 -1,-2.2 -2.7,-6.7 -4,-10 -4.8,-13 -5.8,-15.6 -13.7,-33 -18.4,-40.7 -35.2,-70.6 -63,-112 -8.9,-13.2 -33.8,-46.3 -43.2,-57.4 -2.2,-2.6 -5.9,-7 -8.1,-9.7 -13.1,-15.6 -18.1,-21.2 -29.8,-33.9 -7.2,-7.6 -15.3,-16.3 -18.1,-19.3 -2.7,-2.9 -5,-5.9 -5,-6.5 0,-1.3 8.4,-3 21.5,-4.5 4.7,-0.5 9.1,-1 9.9,-1.1 0.7,-0 6.1,4.7 12,10.6zM804.1,404.3c11.1,5.3 34.8,27.2 47.1,43.7 18,24.1 29.6,50.8 35.4,82 5.4,28.5 6.9,65.3 3.9,91.5 -2.2,18.6 -4.6,35.4 -5.7,39.5 -0.6,1.9 -1.4,5.5 -1.8,8 -1.8,9.9 -11.9,41.8 -16.9,53.5 -1,2.2 -2.6,6 -3.6,8.5 -6.9,17.2 -19.7,42.1 -31.9,62.2 -3.9,6.5 -7.6,12.6 -8.1,13.5 -2.6,4.6 -15.1,22.9 -20.5,29.9 -15.7,20.8 -19.8,26 -23.2,29.6 -3.8,4 -4.6,4.3 -2.9,1 0.5,-0.9 1.2,-2.4 1.6,-3.2 0.3,-0.8 2.5,-5.1 4.9,-9.5 5.2,-9.3 16.8,-32.6 20.3,-40.5 1.3,-3 2.8,-6.3 3.3,-7.2 0.6,-1 1.9,-4.5 3.1,-7.9 1.2,-3.4 2.8,-7.3 3.5,-8.8 0.8,-1.4 1.4,-3.1 1.4,-3.7 0,-1.1 4.3,-12.4 7.5,-19.9 0.7,-1.7 3.4,-9.5 6,-17.5 2.6,-8 5.3,-16.1 6,-18 0.7,-1.9 2,-6.2 3,-9.5 0.9,-3.3 2.3,-7.6 3.1,-9.5 1.3,-3.4 2.6,-8.3 4.4,-16.8 0.6,-2.4 1.2,-4.8 1.5,-5.3 0.6,-0.9 2.2,-9.2 5,-26.1 5.8,-34.7 6.2,-70.7 1.1,-83.8 -0.7,-1.9 -1.8,-5 -2.4,-6.9 -2.9,-8.9 -12.3,-20.7 -20.8,-26 -5.6,-3.6 -7.7,-3.8 -12.1,-1.2 -3.7,2.3 -6.3,9.8 -6.3,18.3 0,4.6 -2.3,24.6 -4.4,38.8 -0.3,1.9 -1,6.6 -1.5,10.5 -1.3,8.3 -4,21.2 -5.2,24 -0.4,1.1 -1.1,3.1 -1.4,4.5 -1.2,4.4 -5.6,15.3 -9.3,22.5 -7.9,15.8 -20,32.1 -35,47.2 -10.2,10.2 -30.4,27.3 -32.3,27.3 -2.8,-0 0.8,-4.4 22.8,-28.2 15,-16.2 25.6,-38.2 31.1,-64.8 3,-14 4.3,-21.6 4.8,-27.4 0.2,-2.8 0.8,-10.5 1.4,-17.1 1.4,-17.1 1.2,-81.2 -0.4,-120.5 -0.8,-18.4 -1.4,-41.6 -1.3,-51.5 0.2,-15.6 0.5,-18.5 2.1,-21.7 3.8,-7.2 12.1,-8.6 22.7,-3.5z" android:strokeColor="#00000000"/>
++</vector>

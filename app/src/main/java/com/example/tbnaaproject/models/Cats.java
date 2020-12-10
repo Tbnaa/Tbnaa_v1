@@ -49,6 +49,7 @@ public class Cats implements Serializable {
         return this.catGender;
     }
 
+
     public String toJson() {
         Gson gson = new Gson();
         return gson.toJson(this);
@@ -58,5 +59,6 @@ public class Cats implements Serializable {
         Gson gson = new Gson();
         return gson.fromJson(json, Cats.class);
     }
+
 
 }

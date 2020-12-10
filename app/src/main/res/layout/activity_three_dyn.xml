@@ -133,15 +133,12 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_weight="1"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/closeButton"
-
             android:background="@color/Color3"
-
-            android:background="@color/Color6"
-
             android:text="close app"
             android:textColor="#fff"
             android:textSize="20sp"
