@@ -93,7 +93,7 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/catName_editText"
+                        android:id="@+id/additionalPhoneNo_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -109,7 +109,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/catAge_TextView1"
+                        android:id="@+id/clinicName_Labelxml"
                         android:layout_width="333dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -127,7 +127,7 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/cat_story_xml"
+                        android:id="@+id/clinicName_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -215,7 +215,7 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/cat_helth_xml"
+                        android:id="@+id/adoptedStory_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -356,7 +356,7 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/radioButton35l"
+                            android:id="@+id/perantApproval_radioGroup_xml"
                             android:layout_width="76dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -569,7 +569,7 @@
                 </TableRow>
 
                 <Button
-                    android:id="@+id/upload_cat_image_button"
+                    android:id="@+id/adoptButton_catProfile_xml"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"

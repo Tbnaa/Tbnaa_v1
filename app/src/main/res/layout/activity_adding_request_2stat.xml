@@ -102,7 +102,11 @@
         android:layout_marginTop="10dp">
 
         <Button
+
             android:id="@+id/accept"
+
+            android:id="@+id/Accept_2stat"
+
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_margin="16dp"
@@ -113,7 +117,11 @@
             android:textStyle="bold" />
 
         <Button
+
             android:id="@+id/reject"
+
+            android:id="@+id/Reject_2stat"
+
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_margin="16dp"

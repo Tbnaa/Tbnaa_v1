@@ -76,7 +76,7 @@
                     android:layout_marginTop="-70dp" />
 
                 <ImageView
-                    android:id="@+id/cat_image_xml"
+                    android:id="@+id/cat_image_catProfile_xml"
                     android:layout_width="274dp"
                     android:layout_height="156dp"
                     android:layout_gravity="center_horizontal"
@@ -101,7 +101,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
-                        android:text="Additional phone number:"
+                        android:text="1) Additional phone number:"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -112,14 +112,14 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/catName_editText"
+                        android:id="@+id/additionalPhoneNo_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="phone" />
+                        android:inputType="textPersonName|phone" />
 
                 </TableRow>
 
@@ -128,13 +128,13 @@
                     android:layout_height="match_parent" >
 
                     <TextView
-                        android:id="@+id/catAge_TextView1"
+                        android:id="@+id/clinicName_Labelxml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
-                        android:text="The name of the veterinary clinic you intend to deal with:"
+                        android:text="2) The name of the veterinary clinic you intend to deal with:"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -145,7 +145,7 @@
                     android:layout_height="match_parent" >
 
                     <EditText
-                        android:id="@+id/cat_story_xml"
+                        android:id="@+id/clinicName_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -168,7 +168,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
-                        android:text="Have you raised cats or animals before?"
+                        android:text="3) Have you raised cats or animals before?"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -178,30 +178,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
-                        <RadioGroup
-                            android:layout_marginTop="8dp"
-                            android:layout_width="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/hadAdopted_xml"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/ryadioButton35"
+                            android:layout_width="72dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:text="Yes"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/radio5Button246"
+                            android:layout_width="88dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:text="No"
+                            android:textSize="16sp" />
 
-                            <RadioButton
-                                android:id="@+id/ryadioButton35"
-                                android:layout_width="72dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="24dp"
-                                android:text="Yes"
-                                android:textSize="16sp" />
-
-                            <RadioButton
-                                android:id="@+id/radio5Button246"
-                                android:layout_width="88dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="No"
-                                android:textSize="16sp" />
-
-                        </RadioGroup>
+                    </RadioGroup>
 
                 </TableRow>
 
@@ -216,7 +217,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
-                        android:text="If yes, what happened to them?"
+                        android:text="4) If yes, what happened to them?"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -227,7 +228,7 @@
                     android:layout_height="match_parent" >
 
                     <EditText
-                        android:id="@+id/cat_helth_xml"
+                        android:id="@+id/adoptedStory_xml"
                         android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -249,7 +250,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
-                        android:text="Do you live alone?"
+                        android:text="5) Do you live alone?"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -260,9 +261,10 @@
                     android:layout_height="match_parent" >
 
                     <RadioGroup
-                        android:layout_marginTop="8dp"
+                        android:id="@+id/liveAlone_radioGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -297,7 +299,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
-                        android:text="Do you have children?"
+                        android:text="6) Do you have children?"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -308,9 +310,10 @@
                     android:layout_height="match_parent">
 
                     <RadioGroup
-                        android:layout_marginTop="16dp"
+                        android:id="@+id/haveKids_radioGroup_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:orientation="horizontal">
 
                         <RadioButton
@@ -344,7 +347,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
-                        android:text="Are your parents agree with the adoption?"
+                        android:text="7) Are your parents agree with the adoption?"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -355,6 +358,7 @@
                     android:layout_height="match_parent" >
 
                     <RadioGroup
+                        android:id="@+id/perantApproval_radioGroup_xml"
                         android:layout_marginTop="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -362,7 +366,7 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/radioButton35l"
+
                             android:layout_width="72dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="24dp"
@@ -392,7 +396,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
-                        android:text="Does anyone in your family is allergic to cats?"
+                        android:text="8) Does anyone in your family is allergic to cats?"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -403,9 +407,10 @@
                     android:layout_height="match_parent" >
 
                     <RadioGroup
-                        android:layout_marginTop="16dp"
+                        android:id="@+id/allergic_radioGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -440,7 +445,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
-                        android:text="To whom this cat will be?"
+                        android:text="9) To whom this cat will be?"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -451,9 +456,10 @@
                     android:layout_height="match_parent" >
 
                     <RadioGroup
-                        android:layout_marginTop="16dp"
+                        android:id="@+id/isOwner_radioGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -463,7 +469,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:text="Me"
-                            android:textSize="16sp"/>
+                            android:textSize="16sp" />
 
                         <RadioButton
                             android:id="@+id/radioButtton246i"
@@ -488,7 +494,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
-                        android:text="Where will you put the cat?"
+                        android:text="10) Where will you put the cat?"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -499,9 +505,10 @@
                     android:layout_height="match_parent" >
 
                     <RadioGroup
-                        android:layout_marginTop="8dp"
+                        android:id="@+id/catPlacement_radioGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -510,27 +517,27 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="16dp"
+                            android:layout_weight="1"
                             android:text="Inside the house"
-                            android:textSize="16sp"
-                            android:layout_weight="1"/>
+                            android:textSize="16sp" />
 
                         <RadioButton
                             android:id="@+id/radioBputtton246i"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginLeft="16dp"
+                            android:layout_weight="1"
                             android:text="Yard"
                             android:textSize="16sp" />
 
-                    <RadioButton
-                        android:id="@+id/radieoButtonl3y5l"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:text="Rooftop"
-                        android:textSize="16sp"
-                        android:layout_weight="1"/>
+                        <RadioButton
+                            android:id="@+id/radieoButtonl3y5l"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_weight="1"
+                            android:text="Rooftop"
+                            android:textSize="16sp" />
 
                     </RadioGroup>
 
@@ -561,17 +568,23 @@
                     android:layout_marginLeft="32dp"
                     android:layout_marginBottom="32dp">
 
-                <RadioButton
-                    android:id="@+id/radiottButtonl3y5l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Agree"
-                    android:textSize="16sp"/>
+                    <RadioGroup
+                        android:id="@+id/pledge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="27dp">
 
+                        <RadioButton
+                            android:id="@+id/radiottButtonl3y5l"
+                            android:layout_width="119dp"
+                            android:layout_height="64dp"
+                            android:layout_marginTop="-20dp"
+                            android:text="Agree"
+                            android:textSize="16sp" />
+                    </RadioGroup>
                 </TableRow>
 
                 <Button
-                    android:id="@+id/upload_cat_image_button"
+                    android:id="@+id/adoptButton_adaptionForm_xml"
                     android:layout_width="142dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
