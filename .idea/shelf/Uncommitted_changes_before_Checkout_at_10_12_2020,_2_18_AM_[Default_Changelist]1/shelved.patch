@@ -1,0 +1,49 @@
+Index: app/src/main/java/com/example/tbnaaproject/TbnaaDatabase.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tbnaaproject;\n\nimport android.content.ContentValues;\nimport android.content.Context;\nimport android.database.Cursor;\nimport android.database.SQLException;\nimport android.database.sqlite.SQLiteDatabase;\nimport android.database.sqlite.SQLiteOpenHelper;\nimport android.database.sqlite.SQLiteStatement;\nimport android.graphics.Bitmap;\nimport android.graphics.BitmapFactory;\n\nimport androidx.annotation.Nullable;\n\nimport com.example.tbnaaproject.models.Cats;\n\nimport java.sql.Blob;\nimport java.util.ArrayList;\n\nimport javax.xml.validation.Schema;\n\npublic class TbnaaDatabase  {\n\n    //Define the db Schema\n    private static final String databaseName = \"TbnaaDB\";\n    private static final int databaseVersion = 1;\n\n    //Cat table\n    private static String catTableName = \"Cat\";\n    private static final String createCatTable = \"CREATE TABLE Cat (catId INTEGER PRIMARY KEY AUTOINCREMENT,catImage BLOB, catName TEXT,catAge TEXT, catCity TEXT, catGender TEXT,vaccinated TEXT, neutered TEXT, healtheCare TEXT, catStory TEXT, isApproved TEXT, isAdoptted TEXT);\";\n\n    //basics\n    private final Context ct;\n    private DatabaseHelper dbHelper;\n    private SQLiteDatabase database;\n\n    //Constructor\n    public TbnaaDatabase(Context context) {\n        this.ct = context;\n        dbHelper = new DatabaseHelper(ct);\n\n    }\n\n    //-------------------------------------------------------------------------\n\n    public class DatabaseHelper extends SQLiteOpenHelper {\n        //Constructor\n        DatabaseHelper(Context c) {\n            super(c, databaseName, null, databaseVersion);\n        }\n\n        @Override\n        public void onCreate(SQLiteDatabase sqLiteDatabase) {\n\n            try {\n                //Create Tables here\n\n                //Cat Table\n                sqLiteDatabase.execSQL(createCatTable);\n\n            } catch (SQLException ex) {\n                ex.printStackTrace();\n            }\n\n        }\n\n        @Override\n        public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {\n\n            database.execSQL(\"DROP TABLE IF EXISTS CAT\");\n            onCreate(database);\n\n        }\n    }// End of DatabaseHelper\n\n    //Connect to the Database\n    public TbnaaDatabase connect() throws SQLException {\n        database = dbHelper.getWritableDatabase();\n        return this;\n    }\n\n    //Disconnect from the Database\n    public void disconnect() {\n        dbHelper.close();\n    }\n\n    // addCat method to insert cats into Cat table\n    public long addCat(byte[] catImage, String catName, String catAge,\n                       String catCity,\n                       String catGender, String vaccinated,\n                       String neutered, String healtheCare, String catStory) {\n\n        ContentValues cv = new ContentValues();\n\n        cv.put(\"catImage\", catImage);\n        cv.put(\"catName\", catName);\n        cv.put(\"catAge\", catAge);\n        cv.put(\"catCity\", catCity);\n        cv.put(\"catGender\", catGender);\n        cv.put(\"vaccinated\", vaccinated);\n        cv.put(\"neutered\", neutered);\n        cv.put(\"healtheCare\", healtheCare);\n        cv.put(\"catStory\", catStory);\n        cv.put(\"isApproved\", \"null\");\n        cv.put(\"isAdoptted\", \"null\");\n\n        this.connect();\n        return database.insert(catTableName, null, cv);\n\n    }\n\n    // getAllCats method to get all cats general info from Cat table to show in gallary\n    public ArrayList<Cats> getAllCats() {\n\n        this.connect();\n\n        //return database.rawQuery(\"SELECT catImage,catName, catCity, catGender FROM Cat\", null);\n\n        String query = \"SELECT catImage, catName, catCity, catGender FROM Cat\";\n        ArrayList<Cats> setOfCats = new ArrayList<Cats>();\n\n        Cursor c = database.rawQuery(query, null);\n        if (c != null) {\n            while (c.moveToNext()) {\n                byte[] imageOfCatt = c.getBlob(c.getColumnIndex(\"catImage\"));\n                //Bitmap cattImage = BitmapFactory.decodeByteArray(imageOfCatt, 0, imageOfCatt.length);\n\n                String nameOfCat = c.getString(c.getColumnIndex(\"catName\"));\n                String cityOfCat = c.getString(c.getColumnIndex(\"catCity\"));\n                String genderOfCat = c.getString(c.getColumnIndex(\"catGender\"));\n\n                Cats cat = new Cats();\n                cat.setImage(imageOfCatt);\n                cat.setName(nameOfCat);\n                cat.setCity(cityOfCat);\n                cat.setGender(genderOfCat);\n\n                setOfCats.add(cat);\n            }\n        }\n\n        return setOfCats;\n\n    }\n\n\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/TbnaaDatabase.java	(revision e7ab100d33ec41bbe876921800bf7d5eba9da689)
++++ app/src/main/java/com/example/tbnaaproject/TbnaaDatabase.java	(date 1607546697000)
+@@ -41,8 +41,6 @@
+ 
+     }
+ 
+-    //-------------------------------------------------------------------------
+-
+     public class DatabaseHelper extends SQLiteOpenHelper {
+         //Constructor
+         DatabaseHelper(Context c) {
+Index: app/src/main/java/com/example/tbnaaproject/models/Cats.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tbnaaproject.models;\n\n\nimport android.graphics.Bitmap;\n\nimport com.google.gson.Gson;\n\nimport java.io.Serializable;\n\npublic class Cats implements Serializable {\n\n    private int catId;\n    private byte[] catImage;\n    private String catName = \"\";\n    private String catCity = \"\";\n    private String catGender = \"\";\n\n    // Setters\n\n    public void setID(int catId) { this.catId = catId;}\n\n    public void setImage(byte[] catImage) { this.catImage = catImage;}\n\n    public void setName(String catName) { this.catName = catName;}\n\n    public void setCity(String catCity) { this.catCity = catCity;}\n\n    public void setGender(String catGender) { this.catGender = catGender;}\n\n    // Getters\n\n    public int getCatId() {\n        return this.catId;\n    }\n\n    public byte[] getCatImage() { return this.catImage;}\n\n    public String getCatName() {\n        return this.catName;\n    }\n\n    public String getCatCity() {\n        return this.catCity;\n    }\n\n    public String getCatGender() {\n        return this.catGender;\n    }\n\n}\n
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/models/Cats.java	(revision e7ab100d33ec41bbe876921800bf7d5eba9da689)
++++ app/src/main/java/com/example/tbnaaproject/models/Cats.java	(date 1607536755000)
+@@ -15,6 +15,8 @@
+     private String catCity = "";
+     private String catGender = "";
+ 
++
++
+     // Setters
+ 
+     public void setID(int catId) { this.catId = catId;}
+@@ -47,4 +49,14 @@
+         return this.catGender;
+     }
+ 
++    public String toJson() {
++        Gson gson = new Gson();
++        return gson.toJson(this);
++    }
++
++    public static Cats fromJson(String json) {
++        Gson gson = new Gson();
++        return gson.fromJson(json, Cats.class);
++    }
++
+ }

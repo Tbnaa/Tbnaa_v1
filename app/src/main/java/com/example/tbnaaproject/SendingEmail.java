@@ -48,7 +48,6 @@ public class SendingEmail extends AppCompatActivity {
             }
         });
     }
-
             private void sendMail() {
 
                 String messageString = messageText.getText().toString();
