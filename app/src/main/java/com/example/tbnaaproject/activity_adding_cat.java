@@ -3,7 +3,6 @@ package com.example.tbnaaproject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -18,6 +17,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -34,7 +34,10 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 
 public class activity_adding_cat extends AppCompatActivity {
 
@@ -195,6 +198,7 @@ public class activity_adding_cat extends AppCompatActivity {
                                 catCity, catGender, catVaccinated,
                                 catNeutered, catHealtheCondition, catStory);
 
+//                    toast(catGender+catVaccinated+catNeutered+catCity+catImage);
                         toast("Your request for adding your cat has been sent successfully. Wait For administrator approval");
 
                         notificationManager.notify(100, builder.build());
@@ -220,7 +224,6 @@ public class activity_adding_cat extends AppCompatActivity {
 
         });
     }
-
 
     // Start upload cat image
     @Override
@@ -269,17 +272,17 @@ public class activity_adding_cat extends AppCompatActivity {
     //-------------------------------------------------------------------
     private void init() {
         //EditText
-        catNameEditText = (EditText) findViewById(R.id.catName_catProfile_xml);
-        catStoryEditText = (EditText) findViewById(R.id.clinicName_xml);
-        catAgeEditText = (EditText) findViewById(R.id.catAge_catProfile_xml);
-        catHealtheConditionEditText = (EditText) findViewById(R.id.adoptedStory_xml);
+        catNameEditText = (EditText) findViewById(R.id.catName_xml);
+        catStoryEditText = (EditText) findViewById(R.id.cat_story_xml);
+        catAgeEditText = (EditText) findViewById(R.id.catAge_xml);
+        catHealtheConditionEditText = (EditText) findViewById(R.id.cat_helth_xml);
 
         //Buttons
         addCatButton = (Button) findViewById(R.id.add_cat_button);
-        uploadCatImageButton = (Button) findViewById(R.id.adoptButton_catProfile_xml);
+        uploadCatImageButton = (Button) findViewById(R.id.upload_cat_image_button);
 
         //ImageView
-        catImage_ImageView = (ImageView) findViewById(R.id.cat_image_catProfile_xml);
+        catImage_ImageView = (ImageView) findViewById(R.id.cat_image_xml);
 
         //Spinner
         catCitySpinner = (Spinner) findViewById(R.id.catcity_xml);
@@ -312,10 +315,6 @@ public class activity_adding_cat extends AppCompatActivity {
         startActivityForResult(galleryIntent,PICK_IMAGE_FROM_GALLERY);
 
     }
-
-
-
-
 
 //add cat
 //    public void addCat() {
