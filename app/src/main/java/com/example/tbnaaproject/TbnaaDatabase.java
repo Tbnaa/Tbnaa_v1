@@ -24,10 +24,10 @@ public class TbnaaDatabase {
     //Define the db Schema
     private static final String databaseName = "TbnaaDB";
     private static final int databaseVersion = 13;
+  
     //Cat table
     private static String catTableName = "Cat";
-
-    private static final String createCatTable = "CREATE TABLE Cat (catId INTEGER PRIMARY KEY AUTOINCREMENT" +
+    private static final String createCatTable = "CREATE TABLE Cat (catID INTEGER PRIMARY KEY AUTOINCREMENT" +
             ",catImage BLOB, catName TEXT,catAge TEXT, catCity TEXT, catGender TEXT,vaccinated TEXT, neutered TEXT" +
             ", healtheCare TEXT, catStory TEXT, isApproved TEXT, isAdoptted TEXT);";
 
@@ -325,5 +325,21 @@ public class TbnaaDatabase {
         return database.insert(userTableName, null, cv);
     }
 
+    public long addAdmin(byte[] aImage, String aPassword, String aFirstName,
+                        String aLastName, String aGender,
+                        String aEmail, String aPhone) {
 
+        ContentValues cv = new ContentValues();
+
+        cv.put("aPassword", aPassword);
+        cv.put("aImage", aImage);
+        cv.put("aFirstName", aFirstName);
+        cv.put("aLastName", aLastName);
+        cv.put("aGender", aGender);
+        cv.put("aEmail", aEmail);
+        cv.put("aPhone", aPhone);
+
+        this.connect();
+        return database.insert(userTableName, null, cv);
+    }
 }
