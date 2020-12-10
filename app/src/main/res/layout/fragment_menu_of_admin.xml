@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".MenuOfAdminFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#212121"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/nav_header_desc"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher_round"/>
+
+        <ImageView
+            android:id="@+id/imageView44"
+            android:layout_width="90dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/tbnaalogotext"/>
+
+        <Button
+            android:id="@+id/buttonAdoptionRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adoption Request" />
+
+        <Button
+            android:id="@+id/buttonAddingRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adding Request" />
+
+        <Button
+            android:id="@+id/buttonAddingACat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adding A Cat" />
+
+        <Button
+            android:id="@+id/buttonTbnaaMember"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tbnaa Members" />
+
+        <Button
+            android:id="@+id/buttonAbout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About" />
+
+    </LinearLayout>
+
+</FrameLayout>

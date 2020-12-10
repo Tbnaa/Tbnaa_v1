@@ -64,5 +64,4 @@ public class CatCardsAdapter extends BaseAdapter {
         catCityTextView.setText("City: " + c.getCatCity());
         return convertView;
     }
-
 }

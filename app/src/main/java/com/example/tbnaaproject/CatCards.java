@@ -1,6 +1,12 @@
 package com.example.tbnaaproject;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +23,7 @@ import android.widget.Toast;
 import com.example.tbnaaproject.adapters.CatCardsAdapter;
 import com.example.tbnaaproject.R;
 import com.example.tbnaaproject.models.Cats;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
@@ -31,10 +39,45 @@ public class CatCards extends AppCompatActivity {
     String cities[]={"City","Riyadh","Abha","Dammam","Jeddah","Medina","Mecca"};
     String gender[]={"Gender","Female","Male"};
 
+    ImageView menuIcon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cat_cards);
+
+//        mDrawerLayout = findViewById(R.id.drawer_layout);
+//        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, 0, 0);
+//        menuIcon.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                if(!mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+//                    mDrawerLayout.openDrawer(GravityCompat.START);
+//                } else {
+//                    mDrawerLayout.closeDrawer(GravityCompat.START);
+//                }
+//            }
+//        });
+
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+        Fragment bottomFragment = manager.findFragmentById(R.id.menusFragment);
+        ft.hide(bottomFragment);
+        ft.commit();
+
+        menuIcon = (ImageView) findViewById(R.id.menuIcon);
+        menuIcon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction ft = manager.beginTransaction();
+                Fragment bottomFragment = manager.findFragmentById(R.id.menusFragment);
+                ft.show(bottomFragment);
+                ft.commit();
+
+            }
+        });
 
         gridView = (GridView) findViewById(R.id.catsGridView);
 
@@ -134,10 +177,6 @@ public class CatCards extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
 
-
-
-
         });
-
     }
 }
