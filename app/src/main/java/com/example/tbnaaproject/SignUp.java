@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +33,10 @@ public class SignUp extends AppCompatActivity implements DatePickerDialog.OnDate
     private Spinner signup_city_spinner;
     private Button signup_DoB_button;
     private Button getSignup_submit_button;
+    private TbnaaDatabase databaseHelper;
+    private RadioGroup genderRadioGroup, socialStateRadioGroup;
+    private RadioButton userGenderRadioButton, socialStateButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +80,6 @@ public class SignUp extends AppCompatActivity implements DatePickerDialog.OnDate
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 signup_city_spinner.setSelection(position);
-
             }
 
             @Override
@@ -94,8 +99,9 @@ public class SignUp extends AppCompatActivity implements DatePickerDialog.OnDate
 
     public  void register(){
         if(!validate()){
-            Toast.makeText(getApplicationContext(),"Login Failed!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Sign up Failed!",Toast.LENGTH_SHORT).show();
         } else {
+
             Toast.makeText(getApplicationContext(),"Valid Info.",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), CatCards.class);
             startActivity(intent);
@@ -147,6 +153,9 @@ public class SignUp extends AppCompatActivity implements DatePickerDialog.OnDate
             signup_DoB_editText.setError("Enter a DOB");
             valid = false;
         }
+
+        databaseHelper.addUser(null, Password, fName, lName, null, null,
+                Email, phoneNo, null);
 
         return valid;
     }

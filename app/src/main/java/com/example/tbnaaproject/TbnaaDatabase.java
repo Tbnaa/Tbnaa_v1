@@ -145,7 +145,6 @@ public class TbnaaDatabase {
         cv.put("isApproved", "null");
         cv.put("isAdoptted", "null");
 
-
         return database.insert(catTableName, null, cv);
     }
 
@@ -186,8 +185,6 @@ public class TbnaaDatabase {
         this.connect();
         return database.insert(shareableCatInfoTableName, null, values);
     }
-
-
 
 
     // getAllCats method to get all cats general info from Cat table to show in gallary
@@ -327,9 +324,9 @@ public class TbnaaDatabase {
         return database.insert(userTableName, null, cv);
     }
 
-    public long addAdmin(byte[] aImage, String aPassword, String aFirstName,
-                        String aLastName, String aGender,
-                        String aEmail, String aPhone) {
+    public long addAdmin(int aImage, String aPassword, String aFirstName,
+                         String aLastName, String aGender,
+                         String aEmail, String aPhone) {
 
         ContentValues cv = new ContentValues();
 

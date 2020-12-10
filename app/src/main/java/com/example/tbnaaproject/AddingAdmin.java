@@ -49,19 +49,14 @@ TbnaaDatabase.DatabaseHelper DBHelper;
         catAdapter = new AddingAdminAdapter(AddingAdmin.this, catsList);
         listView.setAdapter(catAdapter);
 
-
-
-
 //        listView = (ListView) findViewById(R.id.activity_adding_cats_requests_list);
 //        catName1 = (TextView) listView.findViewById(R.id.catName);
 //        userName1 = (TextView) listView.findViewById(R.id.userName);
-//       // imge1 = (ImageView) listView.findViewById(R.id.imge);
+//        imge1 = (ImageView) listView.findViewById(R.id.imge);
 //        yes = (ImageButton)listView.findViewById(R.id.yes);
 //        no = (ImageButton)listView.findViewById(R.id.no);
 
 
-
-//
         // When list view item is clicked.
        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

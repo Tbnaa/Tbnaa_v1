@@ -1,7 +1,6 @@
 package com.example.tbnaaproject;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -17,7 +16,8 @@ public class Login extends AppCompatActivity {
     private EditText login_password_editText;
     private TextView login_signupLink_hyperText;
     private Button login_submit_button;
-    boolean valid = true;
+    private boolean valid = true;
+    private TbnaaDatabase databaseHelper;
     private static final int REQUEST_SIGNUP = 0;
 
     @Override
@@ -29,6 +29,14 @@ public class Login extends AppCompatActivity {
         login_password_editText = (EditText) findViewById(R.id.login_password_editText);
         login_submit_button = (Button) findViewById(R.id.login_submit_button);
         login_signupLink_hyperText = (TextView) findViewById(R.id.login_signupLink_hyperText);
+
+        databaseHelper = new TbnaaDatabase(Login.this);
+
+        for (int i = 0; i >= 6; i++){
+            databaseHelper.addAdmin(R.drawable.user, "password",
+                    "Maryam", "Jamal", "female",
+                    "mema.blue.mo@gmail.com", "0552223333");
+        }
 
         login_submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
