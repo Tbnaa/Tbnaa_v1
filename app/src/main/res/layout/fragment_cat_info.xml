@@ -28,7 +28,7 @@
                 android:layout_height="match_parent" />
 
             <ImageView
-                android:id="@+id/cat_image_xml"
+                android:id="@+id/cat_image_catProfile_xml"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
@@ -114,7 +114,7 @@
                     android:textSize="15sp" />
 
                 <ImageView
-                    android:id="@+id/imageView266"
+                    android:id="@+id/catGender_imageView"
                     android:layout_width="130dp"
                     android:layout_height="15dp"
                     app:srcCompat="@drawable/male"
@@ -140,7 +140,7 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/textView2377"
+                    android:id="@+id/catCity_catProfile_xml"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dammam"
@@ -193,7 +193,7 @@
                     android:textSize="18sp" />
 
                 <ImageView
-                    android:id="@+id/imageView2667"
+                    android:id="@+id/vaccinated_imageView"
                     android:layout_width="130dp"
                     android:layout_height="20dp"
                     app:srcCompat="@drawable/yes"

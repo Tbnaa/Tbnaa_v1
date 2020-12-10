@@ -14,11 +14,13 @@ public class adding_request_2stat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_request_2stat);
+
         button1 = (Button) findViewById(R.id.accept);
         button2 = (Button) findViewById(R.id.reject);
 
         button1.setOnClickListener(new View.OnClickListener() { @Override
         public void onClick(View v) {
+
             AlertDialog.Builder builder = new AlertDialog.Builder(
                     adding_request_2stat.this);
 
@@ -51,3 +53,6 @@ public class adding_request_2stat extends AppCompatActivity {
         });
     }
 }
+
+
+

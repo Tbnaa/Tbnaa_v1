@@ -73,7 +73,7 @@
                     android:layout_height="match_parent"/>
 
                 <ImageView
-                    android:id="@+id/cat_image_xml"
+                    android:id="@+id/cat_image_catProfile_xml"
                     android:layout_width="match_parent"
                     android:layout_height="156dp"
                     android:layout_gravity="center_horizontal"
@@ -88,40 +88,45 @@
                     android:layout_marginTop="16dp"
                     android:layout_weight="2"
                     android:gravity="center"
-                    android:paddingBottom="24dp"
-                    android:text="Cat State"
+                    android:paddingBottom="10dp"
+                    android:text="Cat State:"
                     android:textColor="#326167"
                     android:textSize="16sp" />
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="8dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_gravity="center">
 
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="141dp"
-                        android:layout_height="27dp"
-                        app:srcCompat="@drawable/adopt"
-                        android:layout_weight="1"
-                        android:layout_gravity="right"
-                        android:layout_marginLeft="-70dp"/>
+                    <!--                    <ImageView-->
+                    <!--                        android:id="@+id/catStateImage_catProfile"-->
+                    <!--                        android:layout_width="141dp"-->
+                    <!--                        android:layout_height="27dp"-->
+                    <!--                        app:srcCompat="@drawable/adopt"-->
+                    <!--                        android:layout_weight="1"-->
+                    <!--                        android:layout_marginRight="8dp"-->
+                    <!--                        android:layout_gravity="right"-->
+                    <!--                        android:layout_marginLeft="-70dp"/>-->
 
                     <TextView
-                        android:id="@+id/textView99"
+                        android:id="@+id/catState_catProfile_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="-100dp"
-                        android:layout_marginTop="3dp"
                         android:shadowColor="#FFFFFF"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Available For Adoption"
+                        android:layout_weight="2"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/design"
+                        android:text="Available"
+
+                        android:layout_marginLeft="-50dp"
                         android:textColor="#4CAF50"
                         android:textSize="20sp"/>
 
                 </TableRow>
+
+
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -129,9 +134,9 @@
 
                     <TextView
                         android:id="@+id/catName_textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
                         android:text="Cat's name:"
@@ -139,10 +144,10 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="-112dp"
+                        android:id="@+id/catName_catProfile_xml"
+                        android:layout_width="233dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="-104dp"
                         android:layout_marginTop="16dp"
                         android:text="Cat's name."
                         android:textColor="#000000"
@@ -158,7 +163,7 @@
                         android:id="@+id/catName_textView66"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
                         android:text="Cat's story:"
@@ -166,8 +171,8 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/textView289"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/catStory_catProfile_xml"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-104dp"
                         android:layout_marginTop="16dp"
@@ -184,7 +189,7 @@
                         android:id="@+id/catName_textViehhw66"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
                         android:text="Cat's age:"
@@ -192,7 +197,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/textView25"
+                        android:id="@+id/catAge_catProfile_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-104dp"
@@ -215,20 +220,30 @@
                         android:id="@+id/catName_textView663"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
                         android:text="Cat's gender:"
                         android:textColor="#326167"
                         android:textSize="16sp" />
 
-                    <ImageView
-                        android:id="@+id/imageView266"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:srcCompat="@drawable/male"
-                        android:layout_marginLeft="-280dp"
-                        android:layout_marginTop="16dp"/>
+
+                    <TextView
+                        android:id="@+id/catGender_catProfile_xml"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-104dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Cat's gender."
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+                    <!--                    <ImageView-->
+                    <!--                        android:id="@+id/catGender_imageView"-->
+                    <!--                        android:layout_width="24dp"-->
+                    <!--                        android:layout_height="24dp"-->
+                    <!--                        app:srcCompat="@drawable/male"-->
+                    <!--                        android:layout_marginLeft="-280dp"-->
+                    <!--                        android:layout_marginTop="16dp"/>-->
 
                 </TableRow>
 
@@ -240,7 +255,7 @@
                         android:id="@+id/catName_textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
                         android:text="Cat location:"
@@ -248,7 +263,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/textView2377"
+                        android:id="@+id/catCity_catProfile_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-104dp"
@@ -259,32 +274,32 @@
 
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                <!--                <TableRow-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent" >-->
 
-                    <TextView
-                        android:id="@+id/catName_textView377"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_weight="1"
-                        android:text="Owner:"
-                        android:textColor="#326167"
-                        android:textSize="16sp" />
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/catName_textView377"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginLeft="16dp"-->
+                <!--                        android:layout_marginTop="16dp"-->
+                <!--                        android:layout_weight="1"-->
+                <!--                        android:text="Owner:"-->
+                <!--                        android:textColor="#326167"-->
+                <!--                        android:textSize="16sp" />-->
 
-                    <TextView
-                        android:id="@+id/textView23"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="-104dp"
-                        android:layout_marginTop="16dp"
-                        android:text="Owner account."
-                        android:textColor="#000000"
-                        android:textSize="16sp" />
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/owner_catProfile_xml"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginLeft="-104dp"-->
+                <!--                        android:layout_marginTop="16dp"-->
+                <!--                        android:text="Owner account."-->
+                <!--                        android:textColor="#000000"-->
+                <!--                        android:textSize="16sp" />-->
 
-                </TableRow>
+                <!--                </TableRow>-->
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -294,20 +309,31 @@
                         android:id="@+id/catName_textView663s"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
                         android:text="Vaccinated:"
                         android:textColor="#326167"
                         android:textSize="16sp" />
 
-                    <ImageView
-                        android:id="@+id/imageView2667"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:srcCompat="@drawable/yes"
-                        android:layout_marginLeft="-256dp"
-                        android:layout_marginTop="16dp"/>
+
+                    <TextView
+                        android:id="@+id/catVaccinated_catProfile_xml"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-104dp"
+                        android:layout_marginTop="16dp"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <!--                    <ImageView-->
+                    <!--                        android:id="@+id/vaccinated_imageView"-->
+                    <!--                        android:layout_width="24dp"-->
+                    <!--                        android:layout_height="24dp"-->
+                    <!--                        app:srcCompat="@drawable/yes"-->
+                    <!--                        android:layout_marginLeft="-256dp"-->
+                    <!--                        android:layout_marginTop="16dp"/>-->
 
                 </TableRow>
 
@@ -319,30 +345,40 @@
                         android:id="@+id/catName_textView663st"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
                         android:text="Neutered:"
                         android:textColor="#326167"
                         android:textSize="16sp" />
 
-                    <ImageView
-                        android:id="@+id/imageView267"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:srcCompat="@drawable/no"
-                        android:layout_marginLeft="-256dp"
-                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:id="@+id/catNeutered_catProfile_xml"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-104dp"
+                        android:layout_marginTop="16dp"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <!--                    <ImageView-->
+                    <!--                        android:id="@+id/neutered_imageView"-->
+                    <!--                        android:layout_width="24dp"-->
+                    <!--                        android:layout_height="24dp"-->
+                    <!--                        app:srcCompat="@drawable/no"-->
+                    <!--                        android:layout_marginLeft="-256dp"-->
+                    <!--                        android:layout_marginTop="16dp"/>-->
 
                 </TableRow>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="32dp">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="32dp">
 
                     <Button
-                        android:id="@+id/upload_cat_image_button"
+                        android:id="@+id/adoptButton_catProfile_xml"
                         android:layout_width="156dp"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="16dp"

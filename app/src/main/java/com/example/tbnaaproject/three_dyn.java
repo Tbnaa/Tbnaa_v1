@@ -60,7 +60,11 @@ public class three_dyn extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(
                     three_dyn.this);
 
+
                 builder.setMessage("Do you want to close this application ?");
+
+            builder.setMessage("Do you want to close this application ?");
+
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     finish();

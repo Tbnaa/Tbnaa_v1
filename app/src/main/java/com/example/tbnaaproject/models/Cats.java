@@ -15,6 +15,8 @@ public class Cats implements Serializable {
     private String catCity = "";
     private String catGender = "";
 
+
+
     // Setters
 
     public void setID(int catId) { this.catId = catId;}
@@ -46,5 +48,17 @@ public class Cats implements Serializable {
     public String getCatGender() {
         return this.catGender;
     }
+
+
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    public static Cats fromJson(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, Cats.class);
+    }
+
 
 }
