@@ -98,9 +98,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="100dp"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:layout_weight="6"
+                        android:ems="20"
+                        android:text="055666644" />
 
                 </TableRow>
 
@@ -116,29 +116,13 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="80dp"
                         android:layout_weight="1"
-                        android:text="The name of the veterinary clinic you intend to deal with:"
+                        android:text="The name of the veterinary clinic you intend to deal with: mohsmmed"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
-                    <EditText
-                        android:id="@+id/cat_story_xml"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="100dp"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:gravity="start|top"
-                        android:inputType="textMultiLine" />
-
-                </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -161,30 +145,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/ryadioButton35"
+
+
+                        <TextView
+                            android:id="@+id/CAT_CAT"
                             android:layout_width="76dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:text="Yes"
-                            android:textSize="18sp" />
 
-                        <RadioButton
-                            android:id="@+id/radio5Button246"
-                            android:layout_width="89dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:text="No"
+
                             android:textSize="18sp" />
 
-                    </RadioGroup>
+
 
                 </TableRow>
 
@@ -253,14 +227,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
 
-                        <RadioButton
+
+                        <TextView
                             android:id="@+id/vaccinated_xml"
                             android:layout_width="76dp"
                             android:layout_height="wrap_content"
@@ -268,15 +237,7 @@
                             android:text="Yes"
                             android:textSize="18sp" />
 
-                        <RadioButton
-                            android:id="@+id/not_vaccinated_xml"
-                            android:layout_width="89dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="No"
-                            android:textSize="18sp" />
 
-                    </RadioGroup>
 
                 </TableRow>
 
@@ -301,13 +262,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:orientation="horizontal">
 
-                        <RadioButton
+
+                        <TextView
                             android:id="@+id/neutered_xml"
                             android:layout_width="76dp"
                             android:layout_height="wrap_content"
@@ -315,15 +272,7 @@
                             android:text="Yes"
                             android:textSize="18sp" />
 
-                        <RadioButton
-                            android:id="@+id/not_neutered_xml"
-                            android:layout_width="89dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="No"
-                            android:textSize="18sp" />
 
-                    </RadioGroup>
 
                 </TableRow>
 
@@ -348,14 +297,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
 
-                        <RadioButton
+
+                        <TextView
                             android:id="@+id/radioButton35l"
                             android:layout_width="76dp"
                             android:layout_height="wrap_content"
@@ -363,15 +307,7 @@
                             android:text="Yes"
                             android:textSize="18sp" />
 
-                        <RadioButton
-                            android:id="@+id/radioButton246i"
-                            android:layout_width="89dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="No"
-                            android:textSize="18sp" />
 
-                    </RadioGroup>
 
                 </TableRow>
 
@@ -396,22 +332,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/radioButtioon35l"
-                            android:layout_width="76dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:text="Yes"
-                            android:textSize="18sp" />
 
-                        <RadioButton
+
+
+                        <TextView
                             android:id="@+id/radioB7utton246i"
                             android:layout_width="89dp"
                             android:layout_height="wrap_content"
@@ -419,7 +344,7 @@
                             android:text="No"
                             android:textSize="18sp" />
 
-                    </RadioGroup>
+
 
                 </TableRow>
 
@@ -444,14 +369,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
 
-                        <RadioButton
+
+                        <TextView
                             android:id="@+id/radioButton3y5l"
                             android:layout_width="76dp"
                             android:layout_height="wrap_content"
@@ -459,15 +379,6 @@
                             android:text="Me"
                             android:textSize="18sp" />
 
-                        <RadioButton
-                            android:id="@+id/radioButtton246i"
-                            android:layout_width="89dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="For others"
-                            android:textSize="18sp" />
-
-                    </RadioGroup>
 
                 </TableRow>
 
@@ -492,14 +403,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
 
-                        <RadioButton
+                        <TextView
                             android:id="@+id/radioButtonl3y5l"
                             android:layout_width="76dp"
                             android:layout_height="wrap_content"
@@ -509,24 +414,7 @@
                             android:text="Inside the house"
                             android:textSize="18sp" />
 
-                        <RadioButton
-                            android:id="@+id/radioBputtton246i"
-                            android:layout_width="89dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Yard"
-                            android:textSize="18sp" />
 
-                        <RadioButton
-                            android:id="@+id/radieoButtonl3y5l"
-                            android:layout_width="76dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_weight="1"
-                            android:text="rooftop"
-                            android:textSize="18sp" />
-
-                    </RadioGroup>
 
                 </TableRow>
 
@@ -557,7 +445,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp">
 
-                    <RadioButton
+                    <TextView
                         android:id="@+id/radiottButtonl3y5l"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -568,22 +456,7 @@
 
                 </TableRow>
 
-                <Button
-                    android:id="@+id/upload_cat_image_button"
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/design"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:text="Adapt"
-                    android:textColor="#FFFF"
-                    android:textSize="20sp" />
+
 
             </TableLayout>
 

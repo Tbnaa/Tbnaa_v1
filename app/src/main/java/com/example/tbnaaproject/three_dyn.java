@@ -13,7 +13,7 @@ import android.widget.Button;
 public class three_dyn extends AppCompatActivity {
     Button f1,f2,f3;
     Fragment frag;
-    Button closeButton;
+    Button closeButton,accept,reject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +21,8 @@ public class three_dyn extends AppCompatActivity {
         f1=findViewById(R.id.Fragment1);
         f2=findViewById(R.id.Fragment2);
         f3=findViewById(R.id.Fragment3);
+        accept=findViewById(R.id.acceptdy);
+                reject=findViewById(R.id.rejectdy);
         closeButton=findViewById(R.id.closeButton);
         f1.setOnClickListener(new View.OnClickListener() {
             @Override

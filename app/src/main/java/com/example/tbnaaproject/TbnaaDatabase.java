@@ -148,6 +148,38 @@ public class TbnaaDatabase  {
         }
         return setOfCats;
     }
+    public ArrayList<Cats> getCat(int id) {
+
+        this.connect();
+
+        //return database.rawQuery("SELECT catImage,catName, catCity, catGender FROM Cat", null);
+
+        String query = "SELECT catImage, catName, catCity, catGender FROM Cat WHERE catId = id";
+        ArrayList<Cats> setOfCats = new ArrayList<Cats>();
+
+        Cursor c = database.rawQuery(query, null);
+        if (c != null) {
+            while (c.moveToNext()) {
+                byte[] imageOfCatt = c.getBlob(c.getColumnIndex("catImage"));
+                //Bitmap cattImage = BitmapFactory.decodeByteArray(imageOfCatt, 0, imageOfCatt.length);
+
+                String nameOfCat = c.getString(c.getColumnIndex("catName"));
+                String cityOfCat = c.getString(c.getColumnIndex("catCity"));
+                String genderOfCat = c.getString(c.getColumnIndex("catGender"));
+
+                Cats cat = new Cats();
+                cat.setImage(imageOfCatt);
+                cat.setName(nameOfCat);
+                cat.setCity(cityOfCat);
+                cat.setGender(genderOfCat);
+
+                setOfCats.add(cat);
+            }
+        }
+
+        return setOfCats;
+
+    }
 
     public long addUser(byte[] uImage, String uPassword, String uFirstName,
                        String uLastName, String uGender, String socialState,
@@ -167,5 +199,36 @@ public class TbnaaDatabase  {
 
         this.connect();
         return database.insert(userTableName, null, cv);
+    }
+    public ArrayList<Cats> getuser(int id) {
+
+        this.connect();
+
+        //return database.rawQuery("SELECT catImage,catName, catCity, catGender FROM Cat", null);
+
+        String query = "SELECT  uID,uImage,uFirstNameu,Gender FROM User WHERE catId = id";
+        ArrayList<Cats> setOfCats = new ArrayList<Cats>();
+
+        Cursor c = database.rawQuery(query, null);
+        if (c != null) {
+            while (c.moveToNext()) {
+                byte[] imageOfuser = c.getBlob(c.getColumnIndex("uImage"));
+
+                String nameOuser = c.getString(c.getColumnIndex("uFirstNameu"));
+                String uID = c.getString(c.getColumnIndex("uID"));
+                String genderuser = c.getString(c.getColumnIndex("Gender"));
+
+                Cats user = new Cats();
+                user.setImage(imageOfuser);
+                user.setName(nameOuser);
+                user.setCity(uID);
+                user.setGender(genderuser);
+
+                setOfCats.add(user);
+            }
+        }
+
+        return setOfCats;
+
     }
 }

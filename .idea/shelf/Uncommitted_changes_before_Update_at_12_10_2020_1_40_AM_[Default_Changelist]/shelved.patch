@@ -1,0 +1,177 @@
+Index: app/src/main/java/com/example/tbnaaproject/TbnaaDatabase.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tbnaaproject;\r\n\r\nimport android.content.ContentValues;\r\nimport android.content.Context;\r\nimport android.database.Cursor;\r\nimport android.database.SQLException;\r\nimport android.database.sqlite.SQLiteDatabase;\r\nimport android.database.sqlite.SQLiteOpenHelper;\r\nimport android.database.sqlite.SQLiteStatement;\r\nimport android.graphics.Bitmap;\r\nimport android.graphics.BitmapFactory;\r\n\r\nimport androidx.annotation.Nullable;\r\n\r\nimport com.example.tbnaaproject.models.Cats;\r\n\r\nimport java.sql.Blob;\r\nimport java.util.ArrayList;\r\n\r\nimport javax.xml.validation.Schema;\r\n\r\npublic class TbnaaDatabase  {\r\n\r\n    //Define the db Schema\r\n    private static final String databaseName = \"TbnaaDB\";\r\n    private static final int databaseVersion = 1;\r\n\r\n    //Cat table\r\n    private static String catTableName = \"Cat\";\r\n    private static final String createCatTable = \"CREATE TABLE Cat (catId INTEGER PRIMARY KEY AUTOINCREMENT,catImage BLOB, catName TEXT,catAge TEXT, catCity TEXT, catGender TEXT,vaccinated TEXT, neutered TEXT, healtheCare TEXT, catStory TEXT, isApproved TEXT, isAdoptted TEXT);\";\r\n\r\n    //basics\r\n    private final Context ct;\r\n    private DatabaseHelper dbHelper;\r\n    private SQLiteDatabase database;\r\n\r\n    //Constructor\r\n    public TbnaaDatabase(Context context) {\r\n        this.ct = context;\r\n        dbHelper = new DatabaseHelper(ct);\r\n\r\n    }\r\n\r\n    //-------------------------------------------------------------------------\r\n\r\n    public class DatabaseHelper extends SQLiteOpenHelper {\r\n        //Constructor\r\n        DatabaseHelper(Context c) {\r\n            super(c, databaseName, null, databaseVersion);\r\n        }\r\n\r\n        @Override\r\n        public void onCreate(SQLiteDatabase sqLiteDatabase) {\r\n\r\n            try {\r\n                //Create Tables here\r\n\r\n                //Cat Table\r\n                sqLiteDatabase.execSQL(createCatTable);\r\n\r\n            } catch (SQLException ex) {\r\n                ex.printStackTrace();\r\n            }\r\n\r\n        }\r\n\r\n        @Override\r\n        public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {\r\n\r\n            database.execSQL(\"DROP TABLE IF EXISTS CAT\");\r\n            onCreate(database);\r\n\r\n        }\r\n    }// End of DatabaseHelper\r\n\r\n    //Connect to the Database\r\n    public TbnaaDatabase connect() throws SQLException {\r\n        database = dbHelper.getWritableDatabase();\r\n        return this;\r\n    }\r\n\r\n    //Disconnect from the Database\r\n    public void disconnect() {\r\n        dbHelper.close();\r\n    }\r\n\r\n    // addCat method to insert cats into Cat table\r\n    public long addCat(byte[] catImage, String catName, String catAge,\r\n                       String catCity,\r\n                       String catGender, String vaccinated,\r\n                       String neutered, String healtheCare, String catStory) {\r\n\r\n        ContentValues cv = new ContentValues();\r\n\r\n        cv.put(\"catImage\", catImage);\r\n        cv.put(\"catName\", catName);\r\n        cv.put(\"catAge\", catAge);\r\n        cv.put(\"catCity\", catCity);\r\n        cv.put(\"catGender\", catGender);\r\n        cv.put(\"vaccinated\", vaccinated);\r\n        cv.put(\"neutered\", neutered);\r\n        cv.put(\"healtheCare\", healtheCare);\r\n        cv.put(\"catStory\", catStory);\r\n        cv.put(\"isApproved\", \"null\");\r\n        cv.put(\"isAdoptted\", \"null\");\r\n\r\n        this.connect();\r\n        return database.insert(catTableName, null, cv);\r\n\r\n    }\r\n\r\n    // getAllCats method to get all cats general info from Cat table to show in gallary\r\n    public ArrayList<Cats> getAllCats() {\r\n\r\n        this.connect();\r\n\r\n        //return database.rawQuery(\"SELECT catImage,catName, catCity, catGender FROM Cat\", null);\r\n\r\n        String query = \"SELECT catImage, catName, catCity, catGender FROM Cat\";\r\n        ArrayList<Cats> setOfCats = new ArrayList<Cats>();\r\n\r\n        Cursor c = database.rawQuery(query, null);\r\n        if (c != null) {\r\n            while (c.moveToNext()) {\r\n                byte[] imageOfCatt = c.getBlob(c.getColumnIndex(\"catImage\"));\r\n                //Bitmap cattImage = BitmapFactory.decodeByteArray(imageOfCatt, 0, imageOfCatt.length);\r\n\r\n                String nameOfCat = c.getString(c.getColumnIndex(\"catName\"));\r\n                String cityOfCat = c.getString(c.getColumnIndex(\"catCity\"));\r\n                String genderOfCat = c.getString(c.getColumnIndex(\"catGender\"));\r\n\r\n                Cats cat = new Cats();\r\n                cat.setImage(imageOfCatt);\r\n                cat.setName(nameOfCat);\r\n                cat.setCity(cityOfCat);\r\n                cat.setGender(genderOfCat);\r\n\r\n                setOfCats.add(cat);\r\n            }\r\n        }\r\n\r\n        return setOfCats;\r\n\r\n    }\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/TbnaaDatabase.java	(revision 9a45b33abd01f3597b867b0f0f238f27b1696d45)
++++ app/src/main/java/com/example/tbnaaproject/TbnaaDatabase.java	(date 1607553004561)
+@@ -142,6 +142,38 @@
+         return setOfCats;
+ 
+     }
++    public ArrayList<Cats> getCat(int id) {
++
++        this.connect();
++
++        //return database.rawQuery("SELECT catImage,catName, catCity, catGender FROM Cat", null);
++
++        String query = "SELECT catImage, catName, catCity, catGender FROM Cat WHERE catId = id";
++        ArrayList<Cats> setOfCats = new ArrayList<Cats>();
++
++        Cursor c = database.rawQuery(query, null);
++        if (c != null) {
++            while (c.moveToNext()) {
++                byte[] imageOfCatt = c.getBlob(c.getColumnIndex("catImage"));
++                //Bitmap cattImage = BitmapFactory.decodeByteArray(imageOfCatt, 0, imageOfCatt.length);
++
++                String nameOfCat = c.getString(c.getColumnIndex("catName"));
++                String cityOfCat = c.getString(c.getColumnIndex("catCity"));
++                String genderOfCat = c.getString(c.getColumnIndex("catGender"));
++
++                Cats cat = new Cats();
++                cat.setImage(imageOfCatt);
++                cat.setName(nameOfCat);
++                cat.setCity(cityOfCat);
++                cat.setGender(genderOfCat);
++
++                setOfCats.add(cat);
++            }
++        }
++
++        return setOfCats;
++
++    }
+ 
+ 
+ }
+Index: app/src/main/java/com/example/tbnaaproject/Fragment_cat_info.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tbnaaproject;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link Fragment_cat_info#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class Fragment_cat_info extends Fragment {\r\n\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    public Fragment_cat_info() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment Fragment_cat_info.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static Fragment_cat_info newInstance(String param1, String param2) {\r\n        Fragment_cat_info fragment = new Fragment_cat_info();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        return inflater.inflate(R.layout.fragment_cat_info, container, false);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tbnaaproject/Fragment_cat_info.java	(revision 9a45b33abd01f3597b867b0f0f238f27b1696d45)
++++ app/src/main/java/com/example/tbnaaproject/Fragment_cat_info.java	(date 1607551975903)
+@@ -1,5 +1,6 @@
+ package com.example.tbnaaproject;
+ 
++import android.database.sqlite.SQLiteDatabase;
+ import android.os.Bundle;
+ 
+ import androidx.fragment.app.Fragment;
+@@ -7,6 +8,12 @@
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.GridView;
++
++import com.example.tbnaaproject.adapters.CatCardsAdapter;
++import com.example.tbnaaproject.models.Cats;
++
++import java.util.ArrayList;
+ 
+ /**
+  * A simple {@link Fragment} subclass.
+@@ -24,6 +31,9 @@
+     private String mParam1;
+     private String mParam2;
+ 
++    GridView gridView;
++    ArrayList<Cats> catsList;
++    CatCardsAdapter catAdapter;
+     public Fragment_cat_info() {
+         // Required empty public constructor
+     }
+@@ -53,6 +63,13 @@
+             mParam1 = getArguments().getString(ARG_PARAM1);
+             mParam2 = getArguments().getString(ARG_PARAM2);
+         }
++
++      //  TbnaaDatabase databaseHelper = new TbnaaDatabase(Fragment_cat_info.this);
++        //catsList = new ArrayList<Cats>();
++
++        //catsList = databaseHelper.getAllCats();
++        // catAdapter = new CatCardsAdapter(Fragment_cat_info.this, catsList);
++      //  gridView.setAdapter(catAdapter);
+     }
+ 
+     @Override
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.example.tbnaaproject\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.AppCompat.Light.NoActionBar\">\r\n<<<<<<< HEAD\r\n        <activity android:name=\".AdoptionForm\"/>\r\n=======\r\n        <activity android:name=\".SendingEmail\"/>\r\n        <activity android:name=\".About\"/>\r\n        <activity android:name=\".AdoptionForm\" />\r\n>>>>>>> 5922a2df7cb1ec0950327915d9d6928c47026827\r\n        <activity android:name=\".AdminProfileModification\" />\r\n        <activity android:name=\".AdminProfile\" />\r\n        <activity android:name=\".UserProfile2\"/>\r\n        <activity android:name=\".UserProfile\" />\r\n<<<<<<< HEAD\r\n        <activity android:name=\".CatProfile\"/>\r\n        <activity android:name=\".activity_adding_cat\"/>\r\n\r\n        <activity android:name=\".three_dyn\"/>\r\n        <activity android:name=\".SplashScreen\"/>\r\n            <activity android:name=\".adding_request_2stat\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n\r\n        </activity>\r\n        <activity android:name=\".AdoptionRequestsAdmin\"/>\r\n=======\r\n        <activity android:name=\".CatProfile\" />\r\n        <activity android:name=\".activity_adding_cat\"/>\r\n        <activity android:name=\".SplashScreen\"/>\r\n        <activity android:name=\".three_dyn\"/>\r\n        <activity android:name=\".AdoptionRequestsAdmin\" />\r\n>>>>>>> 5922a2df7cb1ec0950327915d9d6928c47026827\r\n        <activity android:name=\".SignUp\" />\r\n        <activity android:name=\".TbnaaMembers\"/>\r\n        <activity android:name=\".Login\" />\r\n<<<<<<< HEAD\r\n        <activity android:name=\".AddingCatsRequestsList\"/>\r\n=======\r\n        <activity android:name=\".AddingCatsRequestsList\" />\r\n        <activity android:name=\".CatCards\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n\r\n>>>>>>> 5922a2df7cb1ec0950327915d9d6928c47026827\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 9a45b33abd01f3597b867b0f0f238f27b1696d45)
++++ app/src/main/AndroidManifest.xml	(date 1607545308486)
+@@ -10,24 +10,23 @@
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+-<<<<<<< HEAD
++
+         <activity android:name=".AdoptionForm"/>
+-=======
++
+         <activity android:name=".SendingEmail"/>
+         <activity android:name=".About"/>
+-        <activity android:name=".AdoptionForm" />
+->>>>>>> 5922a2df7cb1ec0950327915d9d6928c47026827
++
++
+         <activity android:name=".AdminProfileModification" />
+         <activity android:name=".AdminProfile" />
+         <activity android:name=".UserProfile2"/>
+         <activity android:name=".UserProfile" />
+-<<<<<<< HEAD
+         <activity android:name=".CatProfile"/>
+         <activity android:name=".activity_adding_cat"/>
+ 
+-        <activity android:name=".three_dyn"/>
++        <activity android:name=".adding_request_2stat"/>
+         <activity android:name=".SplashScreen"/>
+-            <activity android:name=".adding_request_2stat">
++            <activity android:name=".three_dyn">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+@@ -35,20 +34,15 @@
+ 
+         </activity>
+         <activity android:name=".AdoptionRequestsAdmin"/>
+-=======
+-        <activity android:name=".CatProfile" />
+-        <activity android:name=".activity_adding_cat"/>
+-        <activity android:name=".SplashScreen"/>
+-        <activity android:name=".three_dyn"/>
+-        <activity android:name=".AdoptionRequestsAdmin" />
+->>>>>>> 5922a2df7cb1ec0950327915d9d6928c47026827
++
++
+         <activity android:name=".SignUp" />
+         <activity android:name=".TbnaaMembers"/>
+         <activity android:name=".Login" />
+-<<<<<<< HEAD
++
+         <activity android:name=".AddingCatsRequestsList"/>
+-=======
+-        <activity android:name=".AddingCatsRequestsList" />
++
++
+         <activity android:name=".CatCards">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+@@ -56,7 +50,7 @@
+             </intent-filter>
+         </activity>
+ 
+->>>>>>> 5922a2df7cb1ec0950327915d9d6928c47026827
++
+     </application>
+ 
+ </manifest>
+\ No newline at end of file

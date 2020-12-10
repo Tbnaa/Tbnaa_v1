@@ -115,7 +115,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/accept"
+            android:id="@+id/acceptdy"
             android:background="@color/Color3"
             android:text="Accept"
             android:textColor="#fff"
@@ -126,7 +126,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/reject"
+            android:id="@+id/rejectdy"
             android:background="@color/Color3"
             android:text="Reject"
             android:textColor="#fff"
