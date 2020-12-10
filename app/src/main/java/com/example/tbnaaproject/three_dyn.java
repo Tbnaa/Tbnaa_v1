@@ -13,7 +13,7 @@ import android.widget.Button;
 public class three_dyn extends AppCompatActivity {
     Button f1,f2,f3;
     Fragment frag;
-    Button closeButton;
+    Button closeButton,accept,reject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +21,8 @@ public class three_dyn extends AppCompatActivity {
         f1=findViewById(R.id.Fragment1);
         f2=findViewById(R.id.Fragment2);
         f3=findViewById(R.id.Fragment3);
+        accept=findViewById(R.id.acceptdy);
+                reject=findViewById(R.id.rejectdy);
         closeButton=findViewById(R.id.closeButton);
         f1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +60,11 @@ public class three_dyn extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(
                     three_dyn.this);
 
+
+                builder.setMessage("Do you want to close this application ?");
+
             builder.setMessage("Do you want to close this application ?");
+
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     finish();

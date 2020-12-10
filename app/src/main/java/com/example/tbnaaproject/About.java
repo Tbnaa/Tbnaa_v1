@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.InternetAddress;
 
 public class About extends AppCompatActivity {
 

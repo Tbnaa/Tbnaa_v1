@@ -206,6 +206,14 @@
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
+                    <!--                    <ImageView-->
+                    <!--                        android:id="@+id/vaccinated_imageView"-->
+                    <!--                        android:layout_width="24dp"-->
+                    <!--                        android:layout_height="24dp"-->
+                    <!--                        app:srcCompat="@drawable/yes"-->
+                    <!--                        android:layout_marginLeft="-256dp"-->
+                    <!--                        android:layout_marginTop="16dp"/>-->
+
                 </TableRow>
 
                 <TableRow
@@ -306,13 +314,13 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/catName_textView663s"
+                        android:id="@+id/catName_textView663st"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="1"
-                        android:text="Vaccinated:"
+                        android:text="Neutered:"
                         android:textColor="#326167"
                         android:textSize="16sp" />
 
@@ -337,20 +345,47 @@
 
                 </TableRow>
 
+                <!--                <TableRow-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent" >-->
+
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/catName_textView377"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginLeft="16dp"-->
+                <!--                        android:layout_marginTop="16dp"-->
+                <!--                        android:layout_weight="1"-->
+                <!--                        android:text="Owner:"-->
+                <!--                        android:textColor="#326167"-->
+                <!--                        android:textSize="16sp" />-->
+
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/owner_catProfile_xml"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginLeft="-104dp"-->
+                <!--                        android:layout_marginTop="16dp"-->
+                <!--                        android:text="Owner account."-->
+                <!--                        android:textColor="#000000"-->
+                <!--                        android:textSize="16sp" />-->
+
+                <!--                </TableRow>-->
+
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/catName_textView663st"
+                        android:id="@+id/catNeutered_catProfile_xml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="16dp"
-                        android:layout_weight="1"
-                        android:text="Neutered:"
-                        android:textColor="#326167"
+                        android:text=""
+                        android:textColor="#000000"
                         android:textSize="16sp" />
+
 
                     <TextView
                         android:id="@+id/catNeutered_catProfile_xml"
