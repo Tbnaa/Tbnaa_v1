@@ -14,6 +14,10 @@ public class adding_request_2stat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_request_2stat);
+
+
+
+
         button1 = (Button) findViewById(R.id.Accept_2stat);
         button2 = (Button) findViewById(R.id.Reject_2stat);
 
@@ -52,6 +56,7 @@ public class adding_request_2stat extends AppCompatActivity {
         });
     }
 }
+
 
 
 

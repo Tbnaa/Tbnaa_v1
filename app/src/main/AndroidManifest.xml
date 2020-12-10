@@ -23,17 +23,19 @@
         <activity android:name=".UserProfile" />
 
         <activity android:name=".CatProfile" />
+
+        <activity android:name=".adding_request_2stat"/>
+        <activity android:name=".three_dyn"/>
         <activity android:name=".activity_adding_cat"/>
 
         <activity android:name=".SplashScreen">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".three_dyn"/>
+
         <activity android:name=".AdoptionRequestsAdmin" />
         <activity android:name=".SignUp" />
         <activity android:name=".TbnaaMembers" />

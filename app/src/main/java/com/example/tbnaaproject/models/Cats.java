@@ -49,6 +49,18 @@ public class Cats implements Serializable {
         return this.catGender;
     }
 
+
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    public static Cats fromJson(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, Cats.class);
+    }
+
+
     public String toJson() {
         Gson gson = new Gson();
         return gson.toJson(this);
