@@ -3,8 +3,6 @@ package com.example.tbnaaproject.models;
 
 import android.graphics.Bitmap;
 
-import com.google.gson.Gson;
-
 import java.io.Serializable;
 
 public class Cats implements Serializable {
@@ -49,26 +47,5 @@ public class Cats implements Serializable {
         return this.catGender;
     }
 
-
-    public String toJson() {
-        Gson gson = new Gson();
-        return gson.toJson(this);
-    }
-
-    public static Cats fromJson(String json) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, Cats.class);
-    }
-
-
-    public String toJson() {
-        Gson gson = new Gson();
-        return gson.toJson(this);
-    }
-
-    public static Cats fromJson(String json) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, Cats.class);
-    }
 
 }
